@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import PageWrapper from "../components/PageWrapper";
 import { Select } from "../components/Core";
+import useSWR from 'swr'
 
 const defaultJobs = [
   { value: "pd", label: "Product Designer" },
@@ -12,6 +13,7 @@ const defaultJobs = [
 ];
 
 const DashboardJobs = () => {
+
   return (
     <>
       <PageWrapper

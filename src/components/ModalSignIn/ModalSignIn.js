@@ -72,34 +72,12 @@ const ModalSignIn = (props) => {
                 <div className="row">
                   <div className="col-4 col-xs-12">
                     <a
-                      href="/#"
-                      className="font-size-4 font-weight-semibold position-relative text-white bg-allports h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
+                      href="http://localhost:8080/api/oauth2/authorization/github"
+                      className="font-size-4 font-weight-semibold position-relative text-white bg-black h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
                     >
-                      <i className="fab fa-linkedin pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
+                      <i className="fab fa-github pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
                       <span className="d-none d-xs-block">
-                        Log in with LinkedIn
-                      </span>
-                    </a>
-                  </div>
-                  <div className="col-4 col-xs-12">
-                    <a
-                      href="/#"
-                      className="font-size-4 font-weight-semibold position-relative text-white bg-poppy h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
-                    >
-                      <i className="fab fa-google pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
-                      <span className="d-none d-xs-block">
-                        Log in with Google
-                      </span>
-                    </a>
-                  </div>
-                  <div className="col-4 col-xs-12">
-                    <a
-                      href="/#"
-                      className="font-size-4 font-weight-semibold position-relative text-white bg-marino h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
-                    >
-                      <i className="fab fa-facebook-square pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
-                      <span className="d-none d-xs-block">
-                        Log in with Facebook
+                        Log in with Github
                       </span>
                     </a>
                   </div>

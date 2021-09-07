@@ -40,7 +40,8 @@ const CandidateProfile = () => {
                   <Tab.Container id="left-tabs-example" defaultActiveKey="jobs">
                     {/* <!-- Tab Content --> */}
                     <Tab.Content className="pl-12 pt-10 pb-7 pr-12 pr-xxl-24">
-                      Thanks for signing up!
+                      Thanks for installing PRHunter! You can now set bounties on your PR's from our web app.
+                       <Link href="/#"> Click here to add a bounty</Link>
                     </Tab.Content>
                     {/* <!-- Tab Content End --> */}
                     {/* <!-- Tab Section End --> */}
