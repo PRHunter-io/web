@@ -1,0 +1,24 @@
+name: Build and deploy to production
+
+on:
+  push:
+    branches: master
+
+jobs:
+  build-production:
+    name: Build production image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@master
+        # Setup doctl
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+      - name: Log in to DO Container Registry
+        run: doctl registry login --expiry-seconds 600
+      - name: Build docker image
+        run: docker build -t . registry.digitalocean.com/prhunter/$IMAGE:${{github.sha}}
+      - name: Push docker image
+        run: docker push registry.digitalocean.com/prhunter/$IMAGE:${{github.sha}}
