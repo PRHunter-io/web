@@ -1,28 +1,23 @@
-FROM node:16-alpine as BUILD_IMAGE
-
-WORKDIR /app
-
+FROM node:lts as dependencies
+WORKDIR /my-project
 COPY package.json yarn.lock ./
-
-# install dependencies
 RUN yarn install --frozen-lockfile
-COPY . .
 
-# build
+FROM node:lts as builder
+WORKDIR /my-project
+COPY . .
+COPY --from=dependencies /my-project/node_modules ./node_modules
 RUN yarn build
 
-# remove dev dependencies
-RUN npm prune --production
-
-FROM node:alpine
-
-WORKDIR /app
-
-# copy from build image
-COPY --from=BUILD_IMAGE /app/package.json ./package.json
-COPY --from=BUILD_IMAGE /app/node_modules ./node_modules
-COPY --from=BUILD_IMAGE /app/.next ./.next
-COPY --from=BUILD_IMAGE /app/public ./public
+FROM node:lts as runner
+WORKDIR /my-project
+ENV NODE_ENV production
+# If you are using a custom next.config.js file, uncomment this line.
+# COPY --from=builder /my-project/next.config.js ./
+COPY --from=builder /my-project/public ./public
+COPY --from=builder /my-project/.next ./.next
+COPY --from=builder /my-project/node_modules ./node_modules
+COPY --from=builder /my-project/package.json ./package.json
 
 EXPOSE 3000
 CMD ["yarn", "start"]
