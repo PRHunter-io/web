@@ -377,7 +377,13 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .result-view-type {
-  a {
+  button {
+    border: none;
+    padding-right: 0;
+    outline: none;
+  }
+  a,
+  button {
     color: map-get($theme-colors, "hit-gray");
     &.active {
       color: map-get($theme-colors, "black-2");
