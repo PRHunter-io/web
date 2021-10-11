@@ -10,6 +10,39 @@ import iconC from "../../assets/image/svg/icon-clock.svg";
 
 import imgB1 from "../../assets/image/l1/png/feature-brand-1.png";
 
+const calculateDays = date => {
+  const currentDate = new Date();
+  const parsedDate = Date.parse(date);
+  const issueDate = new Date(parsedDate);
+
+  const differenceInTime = currentDate.getTime() - issueDate.getTime();
+
+  const differenceInDays = differenceInTime / (1000 * 3600 * 24);
+  return differenceInDays.toFixed();
+};
+
+const formatBountyValue = (number, digits = 2) => {
+  var expK = Math.floor(Math.log10(Math.abs(number)) / 3);
+  var scaled = number / Math.pow(1000, expK);
+
+  if (Math.abs(scaled.toFixed(digits)) >= 1000) { // Check for rounding to next exponent
+    scaled /= 1000;
+    expK += 1;
+  }
+
+  var SI_SYMBOLS = "apμm kMGTPE";
+  var BASE0_OFFSET = SI_SYMBOLS.indexOf(' ');
+
+  if (expK + BASE0_OFFSET >= SI_SYMBOLS.length) { // Bound check
+    expK = SI_SYMBOLS.length - 1 - BASE0_OFFSET;
+    scaled = number / Math.pow(1000, expK);
+  }
+  else if (expK + BASE0_OFFSET < 0) return 0;  // Too small
+
+  return scaled.toFixed(digits).replace(/(\.|(\..*?))0+$/, '$2') + SI_SYMBOLS[expK + BASE0_OFFSET].trim();
+}
+
+
 export const BountiesListRegular = ({ data, error }) => {
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
@@ -37,7 +70,7 @@ export const BountiesListRegular = ({ data, error }) => {
                     </h3>
                     <Link href="/#">
                       <a className="font-size-3 text-default-color line-height-2">
-                        Experience
+                        {bounty.experience}
                       </a>
                     </Link>
                   </div>
@@ -49,7 +82,12 @@ export const BountiesListRegular = ({ data, error }) => {
                     <img src={imgF} alt="" />
                   </div>
                   <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
-                    <span className="text-black-2">80-90K</span> PLN
+                    <span className="text-black-2">{formatBountyValue(bounty.bounty_value, 2)}</span> {bounty.bounty_currency}
+                  </p>
+                </div>
+                <div className="media justify-content-md-end">
+                  <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
+                    <span className="text-black-2">{formatBountyValue(bounty.bounty_value_sec, 2)}</span> {bounty.bounty_currency_sec}
                   </p>
                 </div>
               </div>
@@ -78,7 +116,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       <img src={iconL} alt="" />
                     </span>
                     <span className="font-weight-semibold">
-                      Berlyn, UK
+                      {bounty.bounty_type}
                     </span>
                   </li>
                   <li className="mt-2 mr-8 font-size-small text-black-2 d-flex">
@@ -100,7 +138,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       <img src={iconC} alt="" />
                     </span>
                     <span className="font-weight-semibold">
-                      9d ago
+                      {calculateDays(bounty.created_at)}d ago
                     </span>
                   </li>
                 </ul>
@@ -134,7 +172,7 @@ export const BountiesListGrid = ({ data, error }) => {
             </div>
             <Link href="/#">
               <a className="font-size-3 d-block mb-0 text-gray">
-                Google INC
+                {bounty.experience}
               </a>
             </Link>
             <h2 className="mt-n4">
@@ -149,7 +187,7 @@ export const BountiesListGrid = ({ data, error }) => {
                 <Link href="/#">
                   <a className="bg-regent-opacity-15 text-denim font-size-3 rounded-3">
                     <i className="icon icon-pin-3 mr-2 font-weight-bold"></i>{" "}
-                    Berlyn
+                    {bounty.bounty_type}
                   </a>
                 </Link>
               </li>
@@ -165,15 +203,13 @@ export const BountiesListGrid = ({ data, error }) => {
                 <Link href="/#">
                   <a className="bg-regent-opacity-15 text-eastern font-size-3 rounded-3">
                     <i className="fa fa-dollar-sign mr-2 font-weight-bold"></i>{" "}
-                    80K-90K
+                    {formatBountyValue(bounty.bounty_value, 2)}
                   </a>
                 </Link>
               </li>
             </ul>
-            <p className="mb-7 font-size-4 text-gray">
-              We are looking for Enrollment Advisors who are
-              looking to take 30-35 appointments per week. All
-              leads are pre-scheduled.
+            <p className="mb-7 font-size-4 text-gray line-clamp">
+              {bounty.body}
             </p>
             <div className="card-btn-group">
               <Link href="/#">
