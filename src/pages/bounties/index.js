@@ -18,9 +18,9 @@ const defaultCountries = [
 ];
 
 // TEMPORARY URL, CHANGE TO LATTER AFTER BACKEND FIX
-const url = `${server}/api/dummyData`;
+// const url = `${server}/api/dummyData`;
 
-// const url = 'https://api.prhunter.io/v3/bounty';
+const url = 'https://api.prhunter.io/bounty';
 
 const SearchGrid = () => {
   const [gridDisplay, setgridDisplay] = useState(false);
