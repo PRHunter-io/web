@@ -377,10 +377,35 @@ html .ui-button.ui-state-disabled:active {
 }
 
 .result-view-type {
-  a {
+  button {
+    border: none;
+    padding-right: 0;
+    outline: none;
+  }
+  a,
+  button {
     color: map-get($theme-colors, "hit-gray");
     &.active {
       color: map-get($theme-colors, "black-2");
     }
+  }
+}
+
+.line-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+}
+
+.button-link {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  transition: opacity .3s;
+
+  &:focus {
+    outline: none;
+    opacity: .8;
   }
 }
