@@ -31,14 +31,13 @@ const Hero = () => {
               <div className="row">
                 <div className="col-xxl-8 col-xl-7 col-md-8 col-sm-10">
                   <div className="text-primary font-size-5 font-weight-semibold mb-7">
-                    #4923 jobs are available right now
+                    #28 bounties are available right now
                   </div>
                   <h1 className="font-size-11 mb-9 text-black-2">
-                    Find the most exciting jobs.
+                    Submit pull requests. Get paid in crypto.
                   </h1>
                   <p className="font-size-5">
-                    Leverage agile frameworks to provide a robust synopsis for
-                    high level overviews. Iterative to
+                    PRHunter allows repository maintainers to pay coders for solving Github issues
                   </p>
                 </div>
               </div>
@@ -59,7 +58,7 @@ const Hero = () => {
                         className="form-control focus-reset pl-13"
                         type="text"
                         id="keyword"
-                        placeholder="Type Job title, keywords"
+                        placeholder="React bounties"
                       />
                       <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
                         <i className="icon icon-zoom-2 text-primary font-weight-bold"></i>

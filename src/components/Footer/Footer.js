@@ -21,11 +21,10 @@ const Footer = () => {
                 {/* <!-- cta-content start --> */}
                 <div className="pb-xl-0 pb-9 text-xl-left text-center">
                   <h2 className="text-white font-size-8 mb-4">
-                    Most comprehensive job portal
+                    We democratize coding
                   </h2>
                   <p className="text-hit-gray font-size-5 mb-0">
-                    We must explain to you how all this mistaken idea of
-                    denouncing
+                    Finding work was never this easy
                   </p>
                 </div>
                 {/* <!-- cta-content end --> */}
@@ -38,16 +37,6 @@ const Footer = () => {
                 {/* <!-- cta-btns start --> */}
                 <div className="btns d-flex justify-content-xl-end justify-content-center align-items-xl-center flex-wrap h-100  mx-n4">
                   <a
-                    className="btn btn-outline-gallery btn-xl mx-4 mt-6 text-uppercase"
-                    href="/#"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      gContext.toggleSignInModal();
-                    }}
-                  >
-                    Log in
-                  </a>
-                  <a
                     className="btn btn-green btn-h-60 btn-xl mx-4 mt-6 text-uppercase"
                     href="/#"
                     onClick={(e) => {
@@ -55,7 +44,7 @@ const Footer = () => {
                       gContext.toggleSignUpModal();
                     }}
                   >
-                    Register
+                    Sign in
                   </a>
                 </div>
                 {/* <!-- cta-btns end --> */}
@@ -76,7 +65,7 @@ const Footer = () => {
                   <p className="mb-0 font-size-4 text-white">Contact us at</p>
                   <Link href="/#">
                     <a className="mb-0 font-size-4 font-weight-bold">
-                      support@uxtheme.net
+                      support@prhunter.io
                     </a>
                   </Link>
                 </div>

@@ -17,7 +17,7 @@ const Brands = () => {
             <div className="col-12">
               <div className="section-title mb-9 text-center text-lg-left">
                 <h5 className="font-size-5 font-weight-normal">
-                  Get hired in top companies
+                  With us, you can forget about using these sites to find work
                 </h5>
               </div>
             </div>
