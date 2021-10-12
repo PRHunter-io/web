@@ -397,3 +397,15 @@ html .ui-button.ui-state-disabled:active {
   -webkit-box-orient: vertical;  
   overflow: hidden;
 }
+
+.button-link {
+  border: none;
+  background-color: transparent;
+  padding: 0;
+  transition: opacity .3s;
+
+  &:focus {
+    outline: none;
+    opacity: .8;
+  }
+}

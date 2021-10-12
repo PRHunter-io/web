@@ -62,7 +62,7 @@ export const BountiesListRegular = ({ data, error }) => {
                   </div>
                   <div>
                     <h3 className="mb-0">
-                      <Link href="/#">
+                      <Link href={`/bounties/${bounty.id}`}>
                         <a className="font-size-6 heading-default-color">
                           {bounty.title}
                         </a>
@@ -176,7 +176,7 @@ export const BountiesListGrid = ({ data, error }) => {
               </a>
             </Link>
             <h2 className="mt-n4">
-              <Link href="/#">
+              <Link href={`/bounties/${bounty.id}`}>
                 <a className="font-size-7 text-black-2 font-weight-bold mb-4">
                   {bounty.title}
                 </a>
@@ -211,19 +211,6 @@ export const BountiesListGrid = ({ data, error }) => {
             <p className="mb-7 font-size-4 text-gray line-clamp">
               {bounty.body}
             </p>
-            <div className="card-btn-group">
-              <Link href="/#">
-                <a className="btn btn-green text-uppercase btn-medium rounded-3">
-                  Apply Now
-                </a>
-              </Link>
-              <Link href="/#">
-                <a className="btn btn-outline-mercury text-black-2 text-uppercase btn-medium rounded-3">
-                  <i className="icon icon-bookmark-2 font-weight-bold mr-4 font-size-4"></i>{" "}
-                  Save it
-                </a>
-              </Link>
-            </div>
           </div>
         </div>
       ))

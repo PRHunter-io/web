@@ -17,14 +17,29 @@ const defaultCountries = [
   { value: "pk", label: "Pakistan" },
 ];
 
-// TEMPORARY URL, CHANGE TO LATTER AFTER BACKEND FIX
-const url = `${server}/api/dummyData`;
+// TEMPORARY URL, CHANGE TO LATTER AFTER THERE IS SOME DATA IN BACKEND
+export const bountiesUrl = `${server}/api/dummyData`;
 
-// const url = 'https://api.prhunter.io/bounty';
+// const bountiesUrl = 'https://api.prhunter.io/bounty';
+
+// SSR SOLUTION - THINK IF BETTER THAN SWR
+// export const getServerSideProps = async () => {
+//   const res = await fetch(bountiesUrl)
+
+//   const data = await res.json()
+
+//   return {
+//     props: {
+//       data,
+//     },
+//   }
+// }
+// const SearchGrid = ({ data }) => {
 
 const SearchGrid = () => {
   const [gridDisplay, setgridDisplay] = useState(false);
-  const { data, error } = useSWR(url, fetcher);
+  // SWR SOLUTION
+  const { data, error } = useSWR(bountiesUrl, fetcher);
 
   const bountiesCount = data ? data.length : 0;
 
