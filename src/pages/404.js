@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import PageWrapper from "../components/PageWrapper";
-import imgLogo from "../assets/image/logo-main-black.png";
+import imgLogo from "../assets/image/logo-main-black.svg";
 import imgError from "../assets/image/svg/404.svg";
 
 const Contact = () => {

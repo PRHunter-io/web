@@ -4,11 +4,12 @@ import Link from "next/link";
 import imgF1 from "../../assets/image/l2/png/featured-job-logo-1.png";
 
 import imgF from "../../assets/image/svg/icon-fire-rounded.svg";
-import iconL from "../../assets/image/svg/icon-loaction-pin-black.svg";
+import iconL from "../../assets/image/svg/icon-calendar-grey.svg";
 import iconS from "../../assets/image/svg/icon-suitecase.svg";
 import iconC from "../../assets/image/svg/icon-clock.svg";
 
 import imgB1 from "../../assets/image/l1/png/feature-brand-1.png";
+import { formatBountyValue } from "../../hooks/formatBountyValue";
 
 const calculateDays = date => {
   const currentDate = new Date();
@@ -20,28 +21,6 @@ const calculateDays = date => {
   const differenceInDays = differenceInTime / (1000 * 3600 * 24);
   return differenceInDays.toFixed();
 };
-
-const formatBountyValue = (number, digits = 2) => {
-  var expK = Math.floor(Math.log10(Math.abs(number)) / 3);
-  var scaled = number / Math.pow(1000, expK);
-
-  if (Math.abs(scaled.toFixed(digits)) >= 1000) { // Check for rounding to next exponent
-    scaled /= 1000;
-    expK += 1;
-  }
-
-  var SI_SYMBOLS = "apμm kMGTPE";
-  var BASE0_OFFSET = SI_SYMBOLS.indexOf(' ');
-
-  if (expK + BASE0_OFFSET >= SI_SYMBOLS.length) { // Bound check
-    expK = SI_SYMBOLS.length - 1 - BASE0_OFFSET;
-    scaled = number / Math.pow(1000, expK);
-  }
-  else if (expK + BASE0_OFFSET < 0) return 0;  // Too small
-
-  return scaled.toFixed(digits).replace(/(\.|(\..*?))0+$/, '$2') + SI_SYMBOLS[expK + BASE0_OFFSET].trim();
-}
-
 
 export const BountiesListRegular = ({ data, error }) => {
   if (error) return <div>failed to load</div>
@@ -113,7 +92,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       className="mr-4"
                       css={`margin-top: -2px;`}
                     >
-                      <img src={iconL} alt="" />
+                      <img src={iconS} alt="" />
                     </span>
                     <span className="font-weight-semibold">
                       {bounty.bounty_type}
@@ -124,7 +103,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       className="mr-4"
                       css={`margin-top: -2px;`}
                     >
-                      <img src={iconS} alt="" />
+                      <img src={iconC} alt="" />
                     </span>
                     <span className="font-weight-semibold">
                       Full-time
@@ -135,7 +114,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       className="mr-4"
                       css={`margin-top: -2px;`}
                     >
-                      <img src={iconC} alt="" />
+                      <img src={iconL} alt="" />
                     </span>
                     <span className="font-weight-semibold">
                       {calculateDays(bounty.created_at)}d ago
@@ -186,7 +165,7 @@ export const BountiesListGrid = ({ data, error }) => {
               <li>
                 <Link href="/#">
                   <a className="bg-regent-opacity-15 text-denim font-size-3 rounded-3">
-                    <i className="icon icon-pin-3 mr-2 font-weight-bold"></i>{" "}
+                    <i className="fa fa-briefcase mr-2"></i>{" "}
                     {bounty.bounty_type}
                   </a>
                 </Link>
@@ -194,7 +173,7 @@ export const BountiesListGrid = ({ data, error }) => {
               <li>
                 <Link href="/#">
                   <a className="bg-regent-opacity-15 text-orange font-size-3 rounded-3">
-                    <i className="fa fa-briefcase mr-2 font-weight-bold"></i>{" "}
+                    <i className="far fa-clock mr-2"></i>{" "}
                     Full-time
                   </a>
                 </Link>
@@ -202,7 +181,7 @@ export const BountiesListGrid = ({ data, error }) => {
               <li>
                 <Link href="/#">
                   <a className="bg-regent-opacity-15 text-eastern font-size-3 rounded-3">
-                    <i className="fa fa-dollar-sign mr-2 font-weight-bold"></i>{" "}
+                    <i className="fa fa-dollar-sign mr-2"></i>{" "}
                     {formatBountyValue(bounty.bounty_value, 2)}
                   </a>
                 </Link>

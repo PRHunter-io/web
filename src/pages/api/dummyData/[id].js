@@ -35,7 +35,6 @@ export default function handler({ query: { id } }, res) {
 
 //   const ids = bounties.map((bounty) => bounty.id)
 //   const paths = ids.map((id) => ({ params: { id: id.toString() } }))
-//   console.log(paths)
 //   return {
 //     paths,
 //     fallback: false,

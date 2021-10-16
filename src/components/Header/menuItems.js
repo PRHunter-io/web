@@ -4,13 +4,13 @@ export const menuItems = [
     label: "Home",
   },
   {
-    name: "Bounties",
+    name: "bounties",
     label: "Bounties"
   },
   {
-    name: "Documentation",
+    name: "documentation",
     label: "Documentation", items: [
-        { name: "faq", label: "FAQ" },
+      { name: "faq", label: "FAQ" },
     ]
   },
 ];
