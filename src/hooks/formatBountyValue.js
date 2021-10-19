@@ -1,4 +1,6 @@
 export const formatBountyValue = (number, digits = 2) => {
+  if (number < 1) return number.toFixed(2);
+
   let expK = Math.floor(Math.log10(Math.abs(number)) / 3);
   let scaled = number / Math.pow(1000, expK);
 

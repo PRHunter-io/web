@@ -55,7 +55,7 @@ function randomDate(start, end) {
 }
 
 for (let i = 1; i < 100; i++) {
-  const etfValue = Math.floor((Math.random() + 0.1) * 100) * 5000;
+  const ethValue = ((Math.random() + 0.1) * 0.1).toFixed(5);
   const bounty = {
     "id": i,
     "repo_id": Math.floor(Math.random() * i),
@@ -68,12 +68,13 @@ for (let i = 1; i < 100; i++) {
     ],
     "experience": pickRandomIndex(expLevels),
     "bounty_type": "Feature",
-    "bounty_value": etfValue,
-    "bounty_value_sec": etfValue * 0.00251,
-    "bounty_currency": "ETF",
+    "bounty_value": ethValue,
+    "bounty_value_sec": ethValue * 3800,
+    "bounty_currency": "ETH",
     "bounty_currency_sec": "$",
     "created_at": randomDate(new Date(2021, 8, 1), new Date()),
     "updated_at": "2021-10-10T12:27:03.254Z",
+    "bounty_url": "https://www.google.pl/"
   }
 
   preparedData.push(bounty);

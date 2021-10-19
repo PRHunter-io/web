@@ -6,8 +6,8 @@ import PageWrapper from "../../components/PageWrapper";
 import imgF1 from "../../assets/image/l2/png/featured-job-logo-1.png";
 import iconD from "../../assets/image/svg/icon-dolor.svg";
 import iconB from "../../assets/image/svg/icon-briefcase.svg";
-import iconC from "../../assets/image/svg/icon-clock-filled.svg";
-import { bountiesUrl } from ".";
+import iconC from "../../assets/image/svg/icon-user-tie.svg";
+import { bountiesUrl } from "./";
 import { formatBountyValue } from "../../hooks/formatBountyValue";
 
 // SSR
@@ -76,9 +76,9 @@ const Bounty = ({ data }) => {
                             <h3 className="font-size-6 mb-0">
                               {data.title}
                             </h3>
-                            <span className="font-size-3 text-gray line-height-2">
-                              {data.experience}
-                            </span>
+                            <a href={data.bounty_url} className="font-size-3 text-gray line-height-2">
+                              Check Github issue
+                            </a>
                           </div>
                           {/* <!-- media texts end --> */}
                         </div>
@@ -123,7 +123,7 @@ const Bounty = ({ data }) => {
                             <img src={iconD} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
-                            {formatBountyValue(data.bounty_value, 2)} {data.bounty_currency} <small>({formatBountyValue(data.bounty_value_sec, 2)}{data.bounty_currency_sec})</small>
+                            {data.bounty_value} {data.bounty_currency} <small>({formatBountyValue(data.bounty_value_sec, 2)}{data.bounty_currency_sec})</small>
                           </p>
                         </div>
                       </div>
@@ -133,7 +133,7 @@ const Bounty = ({ data }) => {
                             <img src={iconC} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
-                            Full-Time
+                            {data.experience}
                           </p>
                         </div>
                       </div>

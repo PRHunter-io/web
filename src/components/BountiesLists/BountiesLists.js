@@ -6,7 +6,7 @@ import imgF1 from "../../assets/image/l2/png/featured-job-logo-1.png";
 import imgF from "../../assets/image/svg/icon-fire-rounded.svg";
 import iconL from "../../assets/image/svg/icon-calendar-grey.svg";
 import iconS from "../../assets/image/svg/icon-suitecase.svg";
-import iconC from "../../assets/image/svg/icon-clock.svg";
+import iconC from "../../assets/image/svg/icon-user.svg";
 
 import imgB1 from "../../assets/image/l1/png/feature-brand-1.png";
 import { formatBountyValue } from "../../hooks/formatBountyValue";
@@ -47,11 +47,13 @@ export const BountiesListRegular = ({ data, error }) => {
                         </a>
                       </Link>
                     </h3>
-                    <Link href="/#">
-                      <a className="font-size-3 text-default-color line-height-2">
-                        {bounty.experience}
-                      </a>
-                    </Link>
+                    <a
+                      href={bounty.bounty_url}
+                      target="_BLANK"
+                      className="font-size-3 text-default-color line-height-2"
+                    >
+                      Check Github issue
+                    </a>
                   </div>
                 </div>
               </div>
@@ -61,7 +63,7 @@ export const BountiesListRegular = ({ data, error }) => {
                     <img src={imgF} alt="" />
                   </div>
                   <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
-                    <span className="text-black-2">{formatBountyValue(bounty.bounty_value, 2)}</span> {bounty.bounty_currency}
+                    <span className="text-black-2">{bounty.bounty_value}</span> {bounty.bounty_currency}
                   </p>
                 </div>
                 <div className="media justify-content-md-end">
@@ -106,7 +108,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       <img src={iconC} alt="" />
                     </span>
                     <span className="font-weight-semibold">
-                      Full-time
+                      {bounty.experience}
                     </span>
                   </li>
                   <li className="mt-2 mr-8 font-size-small text-black-2 d-flex">
@@ -149,11 +151,13 @@ export const BountiesListGrid = ({ data, error }) => {
                 </a>
               </Link>
             </div>
-            <Link href="/#">
-              <a className="font-size-3 d-block mb-0 text-gray">
-                {bounty.experience}
-              </a>
-            </Link>
+            <a
+              href={bounty.bounty_url}
+              target="_BLANK"
+              className="font-size-3 d-block mb-0 text-gray"
+            >
+              Check Github issue
+            </a>
             <h2 className="mt-n4">
               <Link href={`/bounties/${bounty.id}`}>
                 <a className="font-size-7 text-black-2 font-weight-bold mb-4">
@@ -173,8 +177,8 @@ export const BountiesListGrid = ({ data, error }) => {
               <li>
                 <Link href="/#">
                   <a className="bg-regent-opacity-15 text-orange font-size-3 rounded-3">
-                    <i className="far fa-clock mr-2"></i>{" "}
-                    Full-time
+                    <i className="fas fa-user-tie mr-2"></i>{" "}
+                    {bounty.experience}
                   </a>
                 </Link>
               </li>
@@ -182,7 +186,7 @@ export const BountiesListGrid = ({ data, error }) => {
                 <Link href="/#">
                   <a className="bg-regent-opacity-15 text-eastern font-size-3 rounded-3">
                     <i className="fa fa-dollar-sign mr-2"></i>{" "}
-                    {formatBountyValue(bounty.bounty_value, 2)}
+                    {bounty.bounty_value}
                   </a>
                 </Link>
               </li>
