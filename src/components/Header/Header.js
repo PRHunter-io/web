@@ -281,7 +281,7 @@ const Header = () => {
                             Edit Profile
                           </a>
                         </Link>
-                        <Link href="http://localhost:8080/api/logout">
+                        <Link href="https://api.prhunter.io/logout">
                           <a className=" dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
                             Log Out
                           </a>
