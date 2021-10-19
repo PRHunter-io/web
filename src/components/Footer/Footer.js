@@ -41,7 +41,7 @@ const Footer = () => {
                     href="/#"
                     onClick={(e) => {
                       e.preventDefault();
-                      gContext.toggleSignUpModal();
+                      gContext.toggleSignInModal();
                     }}
                   >
                     Sign in
