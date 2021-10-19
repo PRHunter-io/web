@@ -321,7 +321,7 @@ const Header = () => {
                   href="/#"
                   onClick={(e) => {
                     e.preventDefault();
-                    gContext.toggleSignUpModal();
+                    gContext.toggleSignInModal();
                   }}
                 >
                   Sign In

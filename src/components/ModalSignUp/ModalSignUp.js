@@ -15,7 +15,7 @@ const ModalSignUp = (props) => {
 
   const gContext = useContext(GlobalContext);
   const handleClose = () => {
-    gContext.toggleSignUpModal();
+    gContext.toggleSignInModal();
   };
 
   const togglePasswordFirst = () => {
@@ -32,7 +32,7 @@ const ModalSignUp = (props) => {
       size="lg"
       centered
       show={gContext.signUpModalVisible}
-      onHide={gContext.toggleSignUpModal}
+      onHide={gContext.toggleSignInModal}
     >
       <Modal.Body className="p-0">
         <button
