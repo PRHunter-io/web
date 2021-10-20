@@ -11,6 +11,37 @@ const defaultExperience = [
 ];
 
 const Hero = () => {
+
+  	// Create reference to store the DOM element containing the animation
+	const el = React.useRef(null);
+  // Create reference to store the Typed instance itself
+	const typed = React.useRef(null);
+
+  React.useEffect(() => {
+    const options = {
+    	strings: [
+        'Javascript, React',
+        'Kotlin, Android development',
+        'Python, Machine learning',
+        'Functional Programming',
+        'Devops tasks'
+      ],
+      typeSpeed: 35,
+      backSpeed: 15,
+      shuffle: true,
+      loop: true
+    };
+    
+    // elRef refers to the <span> rendered below
+    typed.current = new Typed(el.current, options);
+    
+    return () => {
+      // Make sure to destroy Typed instance during cleanup
+      // to prevent memory leaks
+      typed.current.destroy();
+    }
+  }, [])
+
   return (
     <>
       {/* <!-- Hero Area --> */}
@@ -52,12 +83,9 @@ const Hero = () => {
                 <div className="filter-search-form-2 bg-white rounded-sm shadow-7 pr-8 py-7 pl-6">
                   <div className="filter-inputs">
                     <div className="form-group position-relative">
-                      <input
-                        className="form-control focus-reset pl-13"
-                        type="text"
-                        id="keyword"
-                        placeholder="React bounties"
-                      />
+                      <div className="form-control focus-reset pl-13">
+                        <span ref={el} />
+                      </div>
                       <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
                         <i className="icon icon-zoom-2 text-primary font-weight-bold"></i>
                       </span>

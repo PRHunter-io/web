@@ -95,6 +95,7 @@ const Layout = ({ children, pageContext }) => {
           <Helmet>
             <title>PRHunter</title>
             <link rel="icon" type="image/png" href={imgFavicon} />
+            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"}>
             <div className="load-circle">
@@ -126,6 +127,8 @@ const Layout = ({ children, pageContext }) => {
           <Helmet>
             <title>PRHunter</title>
             <link rel="icon" type="image/png" href={imgFavicon} />
+            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"}>
             <div className="load-circle">
@@ -162,6 +165,7 @@ const Layout = ({ children, pageContext }) => {
           <Helmet>
             <title>PRHunter</title>
             <link rel="icon" type="image/png" href={imgFavicon} />
+            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"} />
           <div className="site-wrapper overflow-hidden" ref={eleRef}>
