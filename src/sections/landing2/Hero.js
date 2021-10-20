@@ -4,12 +4,10 @@ import { Button } from "react-bootstrap";
 import { Select } from "../../components/Core";
 import imgP from "../../assets/image/patterns/globe-pattern.png";
 
-const defaultCountries = [
-  { value: "sp", label: "Singapore" },
-  { value: "bd", label: "Bangladesh" },
-  { value: "usa", label: "United States of America" },
-  { value: "uae", label: "United Arab Emirates" },
-  { value: "pk", label: "Pakistan" },
+const defaultExperience = [
+  { value: "beginner", label: "Beginner" },
+  { value: "intermediate", label: "Intermediate" },
+  { value: "expert", label: "Expert" },
 ];
 
 const Hero = () => {
@@ -67,7 +65,7 @@ const Hero = () => {
                     {/* <!-- .select-city starts --> */}
                     <div className="form-group position-relative">
                       <Select
-                        options={defaultCountries}
+                        options={defaultExperience}
                         className="pl-8 h-100 arrow-3 font-size-4 d-flex align-items-center w-100"
                         border={false}
                       />
