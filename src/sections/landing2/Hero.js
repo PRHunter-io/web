@@ -37,7 +37,7 @@ const Hero = () => {
                     Submit pull requests. Get paid in crypto.
                   </h1>
                   <p className="font-size-5">
-                    PRHunter allows repository maintainers to pay coders for solving Github issues
+                    PRHunter allows repository maintainers to pay programmers for solving Github issues
                   </p>
                 </div>
               </div>

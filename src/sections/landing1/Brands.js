@@ -1,11 +1,11 @@
 import React from "react";
 
-import imgB1 from "../../assets/image/l1/png/brand-logo-1.png";
-import imgB2 from "../../assets/image/l1/png/brand-logo-2.png";
-import imgB3 from "../../assets/image/l1/png/brand-logo-3.png";
-import imgB4 from "../../assets/image/l1/png/brand-logo-4.png";
-import imgB5 from "../../assets/image/l1/png/brand-logo-5.png";
-import imgB6 from "../../assets/image/l1/png/brand-logo-6.png";
+import imgB1 from "../../assets/image/resized/linkedin.png";
+import imgB2 from "../../assets/image/resized/upwork.png";
+import imgB3 from "../../assets/image/resized/fiverr.png";
+import imgB4 from "../../assets/image/resized/angellist.png";
+import imgB5 from "../../assets/image/resized/freelancer.png";
+import imgB6 from "../../assets/image/resized/indeed.png";
 
 const Brands = () => {
   return (
