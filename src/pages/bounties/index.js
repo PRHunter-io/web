@@ -7,7 +7,7 @@ import { Select } from "../../components/Core";
 import useSWR from 'swr'
 import { server } from '../../../config'
 import fetcher from "../../utils/fetcher";
-import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists/BountiesLists";
+import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
 
 const defaultCountries = [
   { value: "sp", label: "Singapore" },
