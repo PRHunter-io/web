@@ -59,7 +59,7 @@ const SelectStyled = ({
   return (
     <Select
       styles={getCustomStyles(theme, accentColor, bg, border, indicator)}
-      defaultValue={options[1]}
+      defaultValue={options[0]}
       name={name}
       options={options}
       instanceId="inId"

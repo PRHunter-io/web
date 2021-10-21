@@ -8,14 +8,7 @@ import useSWR from 'swr'
 import { server } from '../../../config'
 import fetcher from "../../utils/fetcher";
 import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
-
-const defaultCountries = [
-  { value: "sp", label: "Singapore" },
-  { value: "bd", label: "Bangladesh" },
-  { value: "usa", label: "United States of America" },
-  { value: "uae", label: "United Arab Emirates" },
-  { value: "pk", label: "Pakistan" },
-];
+import { experienceLevel } from "../../utils/filters";
 
 // TEMPORARY URL, CHANGE TO LATTER AFTER THERE IS SOME DATA IN BACKEND
 export const bountiesUrl = `${server}/api/dummyData`;
@@ -63,21 +56,23 @@ const SearchGrid = () => {
                           className="form-control focus-reset pl-13"
                           type="text"
                           id="keyword"
-                          placeholder="UI Designer"
+                          name="title"
+                          placeholder="Find a bounty"
                         />
                         <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
-                          <i className="icon icon-zoom-2 text-primary font-weight-bold"></i>
+                          <i className="icon icon-zoom-2 text-primary"></i>
                         </span>
                       </div>
                       {/* <!-- .select-city starts --> */}
                       <div className="form-group position-relative w-lg-55 w-xl-60 w-xxl-55">
                         <Select
-                          options={defaultCountries}
+                          name="experience"
+                          options={experienceLevel}
                           className="pl-8 h-100 arrow-3 font-size-4 d-flex align-items-center w-100"
                           border={false}
                         />
                         <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
-                          <i className="icon icon-pin-3 text-primary font-weight-bold"></i>
+                          <i className="icon icon-business-agent text-primary"></i>
                         </span>
                       </div>
                       {/* <!-- ./select-city ends --> */}

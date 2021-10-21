@@ -3,23 +3,18 @@ import { Button } from "react-bootstrap";
 
 import { Select } from "../../components/Core";
 import imgP from "../../assets/image/patterns/globe-pattern.png";
-
-const defaultExperience = [
-  { value: "beginner", label: "Beginner" },
-  { value: "intermediate", label: "Intermediate" },
-  { value: "expert", label: "Expert" },
-];
+import { experienceLevel } from "../../utils/filters";
 
 const Hero = () => {
 
-  	// Create reference to store the DOM element containing the animation
-	const el = React.useRef(null);
+  // Create reference to store the DOM element containing the animation
+  const el = React.useRef(null);
   // Create reference to store the Typed instance itself
-	const typed = React.useRef(null);
+  const typed = React.useRef(null);
 
   React.useEffect(() => {
     const options = {
-    	strings: [
+      strings: [
         'Javascript, React',
         'Kotlin, Android development',
         'Python, Machine learning',
@@ -31,10 +26,10 @@ const Hero = () => {
       shuffle: true,
       loop: true
     };
-    
+
     // elRef refers to the <span> rendered below
     typed.current = new Typed(el.current, options);
-    
+
     return () => {
       // Make sure to destroy Typed instance during cleanup
       // to prevent memory leaks
@@ -93,7 +88,7 @@ const Hero = () => {
                     {/* <!-- .select-city starts --> */}
                     <div className="form-group position-relative">
                       <Select
-                        options={defaultExperience}
+                        options={experienceLevel}
                         className="pl-8 h-100 arrow-3 font-size-4 d-flex align-items-center w-100"
                         border={false}
                       />
