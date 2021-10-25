@@ -14,6 +14,15 @@ export const bountyFilterType = {
   ]
 };
 
+export const bountyFilterLangs = {
+  "query": "languages",
+  "values": [
+    { value: "javascript", label: "JavaScript" },
+    { value: "scala", label: "Scala" },
+    { value: "php", label: "PHP" },
+  ]
+};
+
 export const bountyFilterTags = {
   "query": "categories",
   "values": [

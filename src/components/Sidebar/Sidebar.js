@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 import { Range, getTrackBackground } from "react-range";
-import { bountyFilterType, bountyFilterTags } from "../../utils/filters";
+import { bountyFilterType, bountyFilterLangs, bountyFilterTags } from "../../utils/filters";
 import CheckboxesList from "./CheckboxesList";
+import Router from 'next/router';
 
 const STEP = 1;
 const MIN = 50;
@@ -10,12 +11,26 @@ const MAX = 180;
 
 const Sidebar = () => {
   const [rangeValues, setRangeValues] = useState([70, 150]);
+  const [fullQuery, setFullQuery] = useState({});
+
+  const updateQuery = (data) => {
+    Router.push({
+      pathname: '/bounties',
+      query: data,
+    });
+  };
+
+  useEffect(() => {
+    updateQuery(fullQuery);
+  }, [fullQuery])
+
+
   return (
     <>
       {/* <!-- Sidebar Start --> */}
       <div className="widgets mb-11">
         <h4 className="font-size-6 font-weight-semibold mb-6">Bounty Type</h4>
-        <CheckboxesList filtersList={bountyFilterType} />
+        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterType} />
       </div>
       <div className="widgets mb-11 ">
         <div className="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
@@ -122,14 +137,16 @@ const Sidebar = () => {
       </div>
       <div className="widgets mb-11">
         <h4 className="font-size-6 font-weight-semibold mb-6">
+          Language{" "}
+        </h4>
+        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterLangs} />
+      </div>
+      <div className="widgets mb-11">
+        <h4 className="font-size-6 font-weight-semibold mb-6">
           Category{" "}
         </h4>
-        <CheckboxesList filtersList={bountyFilterTags} />
+        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterTags} />
       </div>
-      {/* <div className="widgets mb-11">
-        <h4 className="font-size-6 font-weight-semibold mb-6">Posted Time</h4>
-        <CheckboxesList filtersList={bountyType} />
-      </div> */}
       {/* <!-- Sidebar End --> */}
     </>
   );

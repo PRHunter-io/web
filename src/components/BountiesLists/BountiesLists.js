@@ -68,7 +68,10 @@ export const BountiesListRegular = ({ data, error }) => {
                 </div>
                 <div className="media justify-content-md-end">
                   <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
-                    <span className="text-black-2">{formatBountyValue(bounty.bounty_value_sec, 2)}</span> {bounty.bounty_currency_sec}
+                    <span className="text-black-2">{formatBountyValue(bounty.bounty_value * 5029, 2)}</span> $
+                    {/* 
+                    UNCOMMENT WHEN VALUE IS ADDED
+                    <span className="text-black-2">{formatBountyValue(bounty.bounty_value_sec, 2)}</span> {bounty.bounty_currency_sec} */}
                   </p>
                 </div>
               </div>
@@ -133,14 +136,12 @@ export const BountiesListRegular = ({ data, error }) => {
   )
 }
 
-
-
 export const BountiesListGrid = ({ data, error }) => {
   if (error) return <div>failed to load</div>
   if (!data) return <div>loading...</div>
 
   return (
-    <>
+    <div className="row justify-content-center">
       {data.map((bounty) => (
         <div className="col-12 col-lg-6" key={bounty.id}>
           <div className="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
@@ -198,6 +199,6 @@ export const BountiesListGrid = ({ data, error }) => {
         </div>
       ))
       }
-    </>
+    </div>
   )
 }

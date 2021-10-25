@@ -123,7 +123,11 @@ const Bounty = ({ data }) => {
                             <img src={iconD} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
-                            {data.bounty_value} {data.bounty_currency} <small>({formatBountyValue(data.bounty_value_sec, 2)}{data.bounty_currency_sec})</small>
+                            {data.bounty_value} {data.bounty_currency} <small>({formatBountyValue(data.bounty_value * 5029, 2)}$)</small>
+                            {/* 
+                            UNCOMMENT WHEN VALUE IS ADDED
+                            
+                            {data.bounty_value} {data.bounty_currency} <small>({formatBountyValue(data.bounty_value_sec, 2)}{data.bounty_currency_sec})</small> */}
                           </p>
                         </div>
                       </div>

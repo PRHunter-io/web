@@ -1,3 +1,4 @@
+import Router from 'next/router';
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -28,18 +29,22 @@ color: inherit;
 }
 `;
 
-const Check = ({ queryName, queryValue, children }) => {
+const Check = ({ querriesArr, setquerriesArr, queryValue, children }) => {
   const [active, setActive] = useState(false);
 
-  // TODO!!! - HANDLE QUERY CHANGE AND REQUEST HANDLING
-  if (queryName, queryValue) {
-    useEffect(() => {
-      if (active) {
-        console.log(queryName)
-        console.log(queryValue)
-      }
-    }, [active])
+  const changeQueryArr = (arr, a, b) => {
+    const newQueryArr = [...arr];
+    if (a) {
+      newQueryArr.push(b);
+    } else {
+      newQueryArr.pop(b);
+    };
+    setquerriesArr(newQueryArr);
   }
+
+  useEffect(() => {
+    changeQueryArr(querriesArr, active, queryValue);
+  }, [active])
 
   return (
     <CheckStyled
@@ -53,14 +58,23 @@ const Check = ({ queryName, queryValue, children }) => {
   );
 };
 
-const CheckboxesList = ({ filtersList }) => {
+const CheckboxesList = ({ setQuery, filtersList }) => {
+  const [querriesArr, setquerriesArr] = useState([])
+
+  useEffect(() => {
+    setQuery(prevState => ({
+      ...prevState,
+      [filtersList.query]: querriesArr
+    }));
+  }, [querriesArr])
+
   return (
     <ul className="list-unstyled filter-check-list">
       {filtersList.values.map(
         (item) => {
           return (
             <li className="mb-2" key={item.value}>
-              <Check queryName={filtersList.query} queryValue={item.value}>{item.label}</Check>
+              <Check querriesArr={querriesArr} setquerriesArr={setquerriesArr} queryValue={item.value}>{item.label}</Check>
             </li>
           )
         })

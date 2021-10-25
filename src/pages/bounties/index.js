@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import PageWrapper from "../../components/PageWrapper";
 import Sidebar from "../../components/Sidebar";
@@ -9,11 +9,12 @@ import { server } from '../../../config'
 import fetcher from "../../utils/fetcher";
 import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
 import { experienceLevel } from "../../utils/filters";
+import Router from "next/router";
 
 // TEMPORARY URL, CHANGE TO LATTER AFTER THERE IS SOME DATA IN BACKEND
-export const bountiesUrl = `${server}/api/dummyData`;
+// const bountiesUrl = `${server}/api/dummyData`;
 
-// const bountiesUrl = 'https://api.prhunter.io/bounty';
+export const bountiesUrl = `${process.env.NEXT_PUBLIC_API_URL}/bounty`;
 
 // SSR SOLUTION - THINK IF BETTER THAN SWR
 // export const getServerSideProps = async () => {
@@ -29,13 +30,13 @@ export const bountiesUrl = `${server}/api/dummyData`;
 // }
 // const SearchGrid = ({ data }) => {
 
-const SearchGrid = () => {
+const SearchGrid = ({ query }) => {
+  // console.log(query)
   const [gridDisplay, setgridDisplay] = useState(false);
   // SWR SOLUTION
   const { data, error } = useSWR(bountiesUrl, fetcher);
 
   const bountiesCount = data ? data.length : 0;
-
   return (
     <>
       <PageWrapper>
@@ -106,12 +107,10 @@ const SearchGrid = () => {
                     </div>
                   </div>
 
-                  {gridDisplay ?
-                    <div className="row justify-content-center">
-                      <BountiesListGrid data={data} error={error} />
-                    </div>
+                  {data ? (gridDisplay ?
+                    <BountiesListGrid data={data} error={error} />
                     :
-                    <BountiesListRegular data={data} error={error} />
+                    <BountiesListRegular data={data} error={error} />) : <div>loading</div>
                   }
 
                   <div className="text-center pt-5 pt-lg-13">
@@ -130,5 +129,9 @@ const SearchGrid = () => {
       </PageWrapper>
     </>
   );
+};
+
+SearchGrid.getInitialProps = ({ query }) => {
+  return { query }
 };
 export default SearchGrid;
