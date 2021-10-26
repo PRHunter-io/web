@@ -7,8 +7,9 @@ import imgF1 from "../../assets/image/l2/png/featured-job-logo-1.png";
 import iconD from "../../assets/image/svg/icon-dolor.svg";
 import iconB from "../../assets/image/svg/icon-briefcase.svg";
 import iconC from "../../assets/image/svg/icon-user-tie.svg";
-import { bountiesUrl } from "./";
 import { formatBountyValue } from "../../hooks/formatBountyValue";
+
+const bountiesUrl = process.env.NEXT_PUBLIC_API_URL + '/bounty';
 
 // SSR
 export const getServerSideProps = async ({ params }) => {
