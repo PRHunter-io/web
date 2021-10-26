@@ -5,16 +5,12 @@ import Sidebar from "../../components/Sidebar";
 import { Select } from "../../components/Core";
 
 import useSWR from 'swr'
-import { server } from '../../../config'
 import fetcher from "../../utils/fetcher";
 import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
 import { experienceLevel } from "../../utils/filters";
 import Router from "next/router";
 
-// TEMPORARY URL, CHANGE TO LATTER AFTER THERE IS SOME DATA IN BACKEND
-// const bountiesUrl = `${server}/api/dummyData`;
-
-export const bountiesUrl = `${process.env.NEXT_PUBLIC_API_URL}/bounty`;
+const bountiesUrl = process.env.NEXT_PUBLIC_API_URL + '/bounty';
 
 // SSR SOLUTION - THINK IF BETTER THAN SWR
 // export const getServerSideProps = async () => {

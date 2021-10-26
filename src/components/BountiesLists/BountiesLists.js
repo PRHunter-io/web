@@ -68,10 +68,7 @@ export const BountiesListRegular = ({ data, error }) => {
                 </div>
                 <div className="media justify-content-md-end">
                   <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
-                    <span className="text-black-2">{formatBountyValue(bounty.bounty_value * 5029, 2)}</span> $
-                    {/* 
-                    UNCOMMENT WHEN VALUE IS ADDED
-                    <span className="text-black-2">{formatBountyValue(bounty.bounty_value_sec, 2)}</span> {bounty.bounty_currency_sec} */}
+                    <span className="text-black-2">{bounty.bounty_value_usd}</span> {bounty.bounty_currency_sec}
                   </p>
                 </div>
               </div>
