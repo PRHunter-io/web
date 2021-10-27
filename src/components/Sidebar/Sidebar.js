@@ -9,9 +9,9 @@ const STEP = 1;
 const MIN = 50;
 const MAX = 180;
 
-const Sidebar = () => {
+const Sidebar = ({ query }) => {
   const [rangeValues, setRangeValues] = useState([70, 150]);
-  const [fullQuery, setFullQuery] = useState({});
+  const [fullQuery, setFullQuery] = useState(query);
 
   const updateQuery = (data) => {
     Router.push({
@@ -23,7 +23,6 @@ const Sidebar = () => {
   useEffect(() => {
     updateQuery(fullQuery);
   }, [fullQuery])
-
 
   return (
     <>

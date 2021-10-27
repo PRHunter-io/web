@@ -4,33 +4,32 @@ import PageWrapper from "../../components/PageWrapper";
 import Sidebar from "../../components/Sidebar";
 import { Select } from "../../components/Core";
 
-import useSWR from 'swr'
-import fetcher from "../../utils/fetcher";
+// import useSWR from 'swr'
+// import fetcher from "../../utils/fetcher";
 import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
 import { experienceLevel } from "../../utils/filters";
-import Router from "next/router";
-
+// 
 const bountiesUrl = process.env.NEXT_PUBLIC_API_URL + '/bounty';
 
 // SSR SOLUTION - THINK IF BETTER THAN SWR
-// export const getServerSideProps = async () => {
-//   const res = await fetch(bountiesUrl)
+export const getServerSideProps = async ({ query }) => {
+  const res = await fetch(bountiesUrl)
 
-//   const data = await res.json()
+  const data = await res.json()
 
-//   return {
-//     props: {
-//       data,
-//     },
-//   }
-// }
+  return {
+    props: {
+      data,
+      query
+    },
+  }
+}
 // const SearchGrid = ({ data }) => {
 
-const SearchGrid = ({ query }) => {
-  // console.log(query)
+const SearchGrid = ({ data, query }) => {
   const [gridDisplay, setgridDisplay] = useState(false);
   // SWR SOLUTION
-  const { data, error } = useSWR(bountiesUrl, fetcher);
+  // const { data, error } = useSWR(bountiesUrl, fetcher);
 
   const bountiesCount = data ? data.length : 0;
   return (
@@ -40,7 +39,7 @@ const SearchGrid = ({ query }) => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-4 col-md-5 col-xs-8">
-                <Sidebar />
+                <Sidebar query={query} />
               </div>
               {/* <!-- Main Body --> */}
               <div className="col-12 col-xl-8 col-lg-8">
@@ -104,10 +103,16 @@ const SearchGrid = ({ query }) => {
                   </div>
 
                   {data ? (gridDisplay ?
+                    <BountiesListGrid data={data} />
+                    :
+                    <BountiesListRegular data={data} />) : <div>loading</div>
+                  }
+
+                  {/* {data ? (gridDisplay ?
                     <BountiesListGrid data={data} error={error} />
                     :
                     <BountiesListRegular data={data} error={error} />) : <div>loading</div>
-                  }
+                  } */}
 
                   <div className="text-center pt-5 pt-lg-13">
                     <Link href="/#">
@@ -125,9 +130,5 @@ const SearchGrid = ({ query }) => {
       </PageWrapper>
     </>
   );
-};
-
-SearchGrid.getInitialProps = ({ query }) => {
-  return { query }
 };
 export default SearchGrid;
