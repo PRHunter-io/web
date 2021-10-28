@@ -13,15 +13,17 @@ const bountiesUrl = process.env.NEXT_PUBLIC_API_URL + '/bounty';
 
 // SSR SOLUTION - THINK IF BETTER THAN SWR
 export const getServerSideProps = async ({ query }) => {
-  const res = await fetch(bountiesUrl)
-
-  const data = await res.json()
-
-  return {
-    props: {
-      data,
-      query
-    },
+  try{
+    const res = await fetch(bountiesUrl)
+    const data = await res.json()
+    return {
+      props: {
+        data,
+        query
+      },
+    }
+  }catch (err){
+    log.err(err)
   }
 }
 // const SearchGrid = ({ data }) => {
