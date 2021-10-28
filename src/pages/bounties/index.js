@@ -23,7 +23,7 @@ export const getServerSideProps = async ({ query }) => {
       },
     }
   }catch (err){
-    log.err(err)
+    console.error('Failed to fetch bounty:', err)
   }
 }
 // const SearchGrid = ({ data }) => {
