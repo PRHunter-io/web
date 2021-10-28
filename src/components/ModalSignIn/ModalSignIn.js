@@ -72,7 +72,7 @@ const ModalSignIn = (props) => {
                 <div className="row">
                   <div className="col-4 col-xs-12">
                     <a
-                      href={process.env.NEXT_PUBLIC_API_URL + '/oauth2/authorization/github'}
+                      href={process.env.NEXT_PUBLIC_EXTERNAL_API_URL + '/oauth2/authorization/github'}
                       className="font-size-4 font-weight-semibold position-relative text-white bg-black h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
                     >
                       <i className="fab fa-github pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}

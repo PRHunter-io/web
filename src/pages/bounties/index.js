@@ -9,7 +9,7 @@ import { Select } from "../../components/Core";
 import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
 import { experienceLevel } from "../../utils/filters";
 // 
-const bountiesUrl = process.env.NEXT_PUBLIC_API_URL + '/bounty';
+const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
 // SSR SOLUTION - THINK IF BETTER THAN SWR
 export const getServerSideProps = async ({ query }) => {

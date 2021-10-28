@@ -9,7 +9,7 @@ import iconB from "../../assets/image/svg/icon-briefcase.svg";
 import iconC from "../../assets/image/svg/icon-user-tie.svg";
 import { formatBountyValue } from "../../hooks/formatBountyValue";
 
-const bountiesUrl = process.env.NEXT_PUBLIC_API_URL + '/bounty';
+const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
 // SSR
 export const getServerSideProps = async ({ params }) => {
