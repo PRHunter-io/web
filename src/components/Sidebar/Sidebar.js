@@ -9,14 +9,26 @@ const MIN = 50;
 const MAX = 180;
 
 const Sidebar = ({ fullQuery, setFullQuery }) => {
-  const [rangeValues, setRangeValues] = useState([70, 150]);
+  const minValue = fullQuery.price_min ? parseInt(fullQuery.price_min) : MIN;
+  const maxValue = fullQuery.price_to ? parseInt(fullQuery.price_to) : MAX;
+
+  const [rangeValues, setRangeValues] = useState([minValue, maxValue]);
+
+  const updateQueryRange = () => {
+    setFullQuery(prevState => ({
+      ...prevState,
+      price_min: rangeValues[0],
+      price_to: rangeValues[1],
+      currency: "ETH"
+    }));
+  }
 
   return (
     <>
       {/* <!-- Sidebar Start --> */}
       <div className="widgets mb-11">
         <h4 className="font-size-6 font-weight-semibold mb-6">Bounty Type</h4>
-        <CheckboxesList fullQuery={fullQuery} setFullQuery={setFullQuery} filtersList={bountyFilterType} />
+        <CheckboxesList fullQuery setFullQuery={setFullQuery} filtersList={bountyFilterType} />
       </div>
       <div className="widgets mb-11 ">
         <div className="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
@@ -63,6 +75,7 @@ const Sidebar = ({ fullQuery, setFullQuery }) => {
               onChange={(values) => {
                 setRangeValues(values);
               }}
+              onFinalChange={updateQueryRange}
               renderTrack={({ props, children }) => (
                 <div
                   role="button"
@@ -125,13 +138,13 @@ const Sidebar = ({ fullQuery, setFullQuery }) => {
         <h4 className="font-size-6 font-weight-semibold mb-6">
           Language{" "}
         </h4>
-        <CheckboxesList fullQuery={fullQuery} setFullQuery={setFullQuery} filtersList={bountyFilterLangs} />
+        <CheckboxesList fullQuery setFullQuery={setFullQuery} filtersList={bountyFilterLangs} />
       </div>
       <div className="widgets mb-11">
         <h4 className="font-size-6 font-weight-semibold mb-6">
           Category{" "}
         </h4>
-        <CheckboxesList fullQuery={fullQuery} setFullQuery={setFullQuery} filtersList={bountyFilterTags} />
+        <CheckboxesList fullQuery setFullQuery={setFullQuery} filtersList={bountyFilterTags} />
       </div>
       {/* <!-- Sidebar End --> */}
     </>

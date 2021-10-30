@@ -5,8 +5,8 @@ import Sidebar from "../../components/Sidebar";
 import { Select } from "../../components/Core";
 import Router from 'next/router';
 
-// import useSWR from 'swr'
-// import fetcher from "../../utils/fetcher";
+import useSWR from 'swr'
+import fetcher from "../../utils/fetcher";
 import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
 import { experienceLevel } from "../../utils/filters";
 // 
@@ -16,10 +16,10 @@ const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 export const getServerSideProps = async ({ query }) => {
   try {
     const res = await fetch(bountiesUrl)
-    const data = await res.json()
+    const bounties = await res.json()
     return {
       props: {
-        data,
+        bounties,
         query
       },
     }
@@ -27,26 +27,74 @@ export const getServerSideProps = async ({ query }) => {
     console.error('Failed to fetch bounty:', err)
   }
 }
-// const SearchGrid = ({ data }) => {
 
-const SearchGrid = ({ data, query }) => {
+const getData = async (reqBody) => {
+  const res = await fetch(`${bountiesUrl}/search`, { method: 'POST', body: reqBody });
+  const newData = await res.json();
+  return newData;
+}
+
+// const SearchGrid = ({ data }) => {
+const SearchGrid = ({ bounties, query }) => {
   const [gridDisplay, setgridDisplay] = useState(false);
+  const [dataFetching, setDataFetching] = useState(false)
+  const [data, setdata] = useState(bounties)
   // SWR SOLUTION
-  // const { data, error } = useSWR(bountiesUrl, fetcher);
+
+  // const { filtersdata, error } = useSWR(bountiesUrl, fetcher);
+
   const bountiesCount = data ? data.length : 0;
 
   const [fullQuery, setFullQuery] = useState(query);
+  const [titleValue, setTitleValue] = useState(fullQuery.title ? fullQuery.title : '');
+  const [expValue, setExpValue] = useState(fullQuery.experience ? fullQuery.experience : experienceLevel[0].value)
+
+
 
   const updateQuery = (data) => {
     Router.push({
       pathname: '/bounties',
       query: data,
     },
-      undefined, { shallow: true });
+      undefined, { shallow: true }
+    );
+
+    setDataFetching(true);
+    // TODO !!! HANDLE ACTUAL DATA FETCHING
+    // const newData = getData(fullQuery);
+
+    // if (newData) {
+    //   setDataFetching(false);
+    // //setdata(newData);
+    //   console.log(newData)
+    // }
   };
 
+  const handleForm = e => {
+    e.preventDefault();
+
+    if (!titleValue) {
+      setFullQuery(prevState => (
+        {
+          ...prevState,
+          title: [],
+          experience: expValue
+        }
+      ));
+
+      return;
+    };
+
+    setFullQuery(prevState => (
+      {
+        ...prevState,
+        title: titleValue,
+        experience: expValue
+      }
+    ));
+  }
+
   useEffect(() => {
-    console.log('udpate query')
     updateQuery(fullQuery);
   }, [fullQuery])
 
@@ -57,12 +105,15 @@ const SearchGrid = ({ data, query }) => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-4 col-md-5 col-xs-8">
-                <Sidebar fullQuery={fullQuery} setFullQuery={setFullQuery} />
+                <Sidebar fullQuery setFullQuery={setFullQuery} />
               </div>
               {/* <!-- Main Body --> */}
               <div className="col-12 col-xl-8 col-lg-8">
                 {/* <!-- form --> */}
-                <form action="/" className="search-form">
+                <form
+                  className="search-form"
+                  onSubmit={handleForm}
+                >
                   <div className="filter-search-form-2 search-1-adjustment bg-white rounded-sm shadow-7 pr-6 py-6 pl-6">
                     <div className="filter-inputs">
                       <div className="form-group position-relative w-lg-45 w-xl-40 w-xxl-45">
@@ -72,6 +123,8 @@ const SearchGrid = ({ data, query }) => {
                           id="keyword"
                           name="title"
                           placeholder="Find a bounty"
+                          value={titleValue}
+                          onChange={e => setTitleValue(e.target.value)}
                         />
                         <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
                           <i className="icon icon-zoom-2 text-primary"></i>
@@ -84,6 +137,10 @@ const SearchGrid = ({ data, query }) => {
                           options={experienceLevel}
                           className="pl-8 h-100 arrow-3 font-size-4 d-flex align-items-center w-100"
                           border={false}
+                          queryValue={expValue}
+                          onChange={(e) => {
+                            setExpValue(e.value)
+                          }}
                         />
                         <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
                           <i className="icon icon-business-agent text-primary"></i>
