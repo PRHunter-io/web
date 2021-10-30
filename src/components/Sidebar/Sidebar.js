@@ -3,33 +3,20 @@ import styled from "styled-components";
 import { Range, getTrackBackground } from "react-range";
 import { bountyFilterType, bountyFilterLangs, bountyFilterTags } from "../../utils/filters";
 import CheckboxesList from "./CheckboxesList";
-import Router from 'next/router';
 
 const STEP = 1;
 const MIN = 50;
 const MAX = 180;
 
-const Sidebar = ({ query }) => {
+const Sidebar = ({ fullQuery, setFullQuery }) => {
   const [rangeValues, setRangeValues] = useState([70, 150]);
-  const [fullQuery, setFullQuery] = useState(query);
-
-  const updateQuery = (data) => {
-    Router.push({
-      pathname: '/bounties',
-      query: data,
-    });
-  };
-
-  useEffect(() => {
-    updateQuery(fullQuery);
-  }, [fullQuery])
 
   return (
     <>
       {/* <!-- Sidebar Start --> */}
       <div className="widgets mb-11">
         <h4 className="font-size-6 font-weight-semibold mb-6">Bounty Type</h4>
-        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterType} />
+        <CheckboxesList fullQuery={fullQuery} setFullQuery={setFullQuery} filtersList={bountyFilterType} />
       </div>
       <div className="widgets mb-11 ">
         <div className="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
@@ -138,13 +125,13 @@ const Sidebar = ({ query }) => {
         <h4 className="font-size-6 font-weight-semibold mb-6">
           Language{" "}
         </h4>
-        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterLangs} />
+        <CheckboxesList fullQuery={fullQuery} setFullQuery={setFullQuery} filtersList={bountyFilterLangs} />
       </div>
       <div className="widgets mb-11">
         <h4 className="font-size-6 font-weight-semibold mb-6">
           Category{" "}
         </h4>
-        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterTags} />
+        <CheckboxesList fullQuery={fullQuery} setFullQuery={setFullQuery} filtersList={bountyFilterTags} />
       </div>
       {/* <!-- Sidebar End --> */}
     </>

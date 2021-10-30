@@ -3,6 +3,7 @@ import Link from "next/link";
 import PageWrapper from "../../components/PageWrapper";
 import Sidebar from "../../components/Sidebar";
 import { Select } from "../../components/Core";
+import Router from 'next/router';
 
 // import useSWR from 'swr'
 // import fetcher from "../../utils/fetcher";
@@ -13,7 +14,7 @@ const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
 // SSR SOLUTION - THINK IF BETTER THAN SWR
 export const getServerSideProps = async ({ query }) => {
-  try{
+  try {
     const res = await fetch(bountiesUrl)
     const data = await res.json()
     return {
@@ -22,7 +23,7 @@ export const getServerSideProps = async ({ query }) => {
         query
       },
     }
-  }catch (err){
+  } catch (err) {
     console.error('Failed to fetch bounty:', err)
   }
 }
@@ -32,8 +33,23 @@ const SearchGrid = ({ data, query }) => {
   const [gridDisplay, setgridDisplay] = useState(false);
   // SWR SOLUTION
   // const { data, error } = useSWR(bountiesUrl, fetcher);
-
   const bountiesCount = data ? data.length : 0;
+
+  const [fullQuery, setFullQuery] = useState(query);
+
+  const updateQuery = (data) => {
+    Router.push({
+      pathname: '/bounties',
+      query: data,
+    },
+      undefined, { shallow: true });
+  };
+
+  useEffect(() => {
+    console.log('udpate query')
+    updateQuery(fullQuery);
+  }, [fullQuery])
+
   return (
     <>
       <PageWrapper>
@@ -41,7 +57,7 @@ const SearchGrid = ({ data, query }) => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-4 col-md-5 col-xs-8">
-                <Sidebar query={query} />
+                <Sidebar fullQuery={fullQuery} setFullQuery={setFullQuery} />
               </div>
               {/* <!-- Main Body --> */}
               <div className="col-12 col-xl-8 col-lg-8">

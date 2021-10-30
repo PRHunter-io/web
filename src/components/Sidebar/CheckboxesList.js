@@ -1,4 +1,4 @@
-import Router from 'next/router';
+import Router, { useRouter } from 'next/router';
 import React, { useEffect, useState } from "react";
 import styled from "styled-components";
 
@@ -29,28 +29,43 @@ color: inherit;
 }
 `;
 
-const Check = ({ querriesArr, setquerriesArr, queryValue, children }) => {
+const Check = ({ queryKey, querriesArr, setquerriesArr, queryValue, children }) => {
   const [active, setActive] = useState(false);
+  const { query } = useRouter();
+  const changeQueryArr = (arr, b) => {
+    setActive(!active);
 
-  const changeQueryArr = (arr, a, b) => {
-    const newQueryArr = [...arr];
-    if (a) {
+    let newQueryArr = [];
+
+    if (typeof arr === 'string') {
+      newQueryArr = [arr];
+    } else if (Array.isArray(arr)) {
+      newQueryArr = [...arr];
+    };
+
+    if (!active) {
       newQueryArr.push(b);
     } else {
-      newQueryArr.pop(b);
+      const index = newQueryArr.indexOf(b);
+
+      if (index > -1) {
+        newQueryArr.splice(index, 1);
+      }
     };
     setquerriesArr(newQueryArr);
   }
 
   useEffect(() => {
-    changeQueryArr(querriesArr, active, queryValue);
-  }, [active])
+    if (query[queryKey]) {
+      setActive(query[queryKey].includes(queryValue))
+    }
+  }, [])
 
   return (
     <CheckStyled
       className={`toggle-item ${active ? "active" : ""}`}
       onClick={() => {
-        setActive(!active);
+        changeQueryArr(querriesArr, queryValue);
       }}
     >
       {children}
@@ -58,11 +73,19 @@ const Check = ({ querriesArr, setquerriesArr, queryValue, children }) => {
   );
 };
 
-const CheckboxesList = ({ setQuery, filtersList }) => {
-  const [querriesArr, setquerriesArr] = useState([])
+const CheckboxesList = ({ fullQuery, setFullQuery, filtersList }) => {
+  const [querriesArr, setquerriesArr] = useState(fullQuery[filtersList.query])
 
   useEffect(() => {
-    setQuery(prevState => ({
+    if (fullQuery[filtersList.query]) {
+      setquerriesArr(fullQuery[filtersList.query])
+    }
+  }, [])
+
+  useEffect(() => {
+    if (querriesArr === undefined) return;
+
+    setFullQuery(prevState => ({
       ...prevState,
       [filtersList.query]: querriesArr
     }));
@@ -74,7 +97,13 @@ const CheckboxesList = ({ setQuery, filtersList }) => {
         (item) => {
           return (
             <li className="mb-2" key={item.value}>
-              <Check querriesArr={querriesArr} setquerriesArr={setquerriesArr} queryValue={item.value}>{item.label}</Check>
+              <Check
+                queryKey={filtersList.query}
+                querriesArr={querriesArr}
+                setquerriesArr={setquerriesArr} queryValue={item.value}
+              >
+                {item.label}
+              </Check>
             </li>
           )
         })
