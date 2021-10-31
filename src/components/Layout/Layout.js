@@ -17,7 +17,7 @@ import GlobalContext from "../../context/GlobalContext";
 
 import GlobalStyle from "../../utils/globalStyle";
 
-import imgFavicon from "../../assets/favicon.png";
+// import imgFavicon from "../../assets/favicon.png";
 
 import { get, merge } from "lodash";
 
@@ -94,7 +94,7 @@ const Layout = ({ children, pageContext }) => {
           <GlobalStyle />
           <Helmet>
             <title>PRHunter</title>
-            <link rel="icon" type="image/png" href={imgFavicon} />
+            {/* <link rel="icon" type="image/png" href={imgFavicon} /> */}
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"}>
@@ -126,7 +126,7 @@ const Layout = ({ children, pageContext }) => {
           <GlobalStyle />
           <Helmet>
             <title>PRHunter</title>
-            <link rel="icon" type="image/png" href={imgFavicon} />
+            {/* <link rel="icon" type="image/png" href={imgFavicon} /> */}
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
 
           </Helmet>
@@ -164,7 +164,7 @@ const Layout = ({ children, pageContext }) => {
           <GlobalStyle />
           <Helmet>
             <title>PRHunter</title>
-            <link rel="icon" type="image/png" href={imgFavicon} />
+            {/* <link rel="icon" type="image/png" href={imgFavicon} /> */}
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"} />

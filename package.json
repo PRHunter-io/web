@@ -11,6 +11,7 @@
     "export": "next build && next export"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-free": "^5.15.4",
     "@n8tb1t/use-scroll-position": "^1.0.43",
     "aos": "^3.0.0-beta.6",
     "bootstrap": "^4.5.0",
@@ -38,7 +39,8 @@
     "styled-components": "^5.1.1",
     "styled-system": "^5.1.5",
     "swr": "^1.0.1",
-    "typed.js": "^2.0.12"
+    "typed.js": "^2.0.12",
+    "webpack": "^5.61.0"
   },
   "devDependencies": {
     "babel-plugin-styled-components": "^1.10.7",

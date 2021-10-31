@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 import PageWrapper from "../components/PageWrapper";
-import imgLogo from "../assets/image/logo-main-black.svg";
+import imgL1LogoBlack from "../../public/images/logo-main-black.svg";
 import imgError from "../assets/image/svg/404.svg";
 
 const Contact = () => {
@@ -14,7 +14,7 @@ const Contact = () => {
               <div className="col-12 text-center">
                 <Link href="/">
                   <a className="brand-logo">
-                    <img src={imgLogo} alt="" />
+                  <Image src={imgL1LogoBlack} alt="" />
                   </a>
                 </Link>
               </div>

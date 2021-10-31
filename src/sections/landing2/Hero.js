@@ -2,7 +2,9 @@ import React from "react";
 import { Button } from "react-bootstrap";
 
 import { Select } from "../../components/Core";
-import imgP from "../../assets/image/patterns/globe-pattern.png";
+import Image from 'next/image'
+import globePattern from '../../../public/images/globe-pattern.png'
+
 import { experienceLevel } from "../../utils/filters";
 
 const Hero = () => {
@@ -42,7 +44,7 @@ const Hero = () => {
       {/* <!-- Hero Area --> */}
       <div className="position-relative z-index-1 bg-squeeze pt-26 dark-mode-texts">
         <div className="pos-abs-tr h-100">
-          <img src={imgP} alt="" className="h-100" />
+          <Image src={globePattern} />
         </div>
         <div className="container position-static">
           <div className="row position-relative align-items-center position-static">
