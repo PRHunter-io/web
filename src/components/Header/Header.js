@@ -12,7 +12,7 @@ import { device } from "../../utils";
 import Logo from "../Logo";
 import { menuItems } from "./menuItems";
 
-import imgP from "../../assets/image/header-profile.png";
+import imgP from "/images/image/header-profile.png";
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
@@ -262,7 +262,7 @@ const Header = () => {
                       className="proile media ml-7 flex-y-center"
                     >
                       <div className="circle-40">
-                        <img src={imgP} alt="" />
+                        <Image src={imgP} alt="" />
                       </div>
                       <i className="fas fa-chevron-down heading-default-color ml-6"></i>
                     </Dropdown.Toggle>

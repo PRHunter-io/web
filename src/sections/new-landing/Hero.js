@@ -3,7 +3,8 @@ import { Button } from "react-bootstrap";
 
 import { Select } from "../../components/Core";
 import Image from 'next/image'
-import globePattern from '../../../public/images/globe-pattern.png'
+import globePattern from 'public/images/globe-pattern.png'
+
 
 import { experienceLevel } from "../../utils/filters";
 

@@ -1,14 +1,15 @@
 import React from "react";
 import Link from "next/link";
 
-import imgF1 from "../../assets/image/l2/png/featured-job-logo-1.png";
+import imgF1 from"public/images/image/l2/png/featured-job-logo-1.png";
 
-import imgF from "../../assets/image/svg/icon-fire-rounded.svg";
-import iconL from "../../assets/image/svg/icon-calendar-grey.svg";
-import iconS from "../../assets/image/svg/icon-suitecase.svg";
-import iconC from "../../assets/image/svg/icon-user.svg";
+import imgF from"public/images/image/svg/icon-fire-rounded.svg";
+import iconL from"public/images/image/svg/icon-calendar-grey.svg";
+import iconS from"public/images/image/svg/icon-suitecase.svg";
+import iconC from"public/images/image/svg/icon-user.svg";
+import Image from 'next/image'
 
-import imgB1 from "../../assets/image/l1/png/feature-brand-1.png";
+import imgB1 from"public/images/image/l1/png/feature-brand-1.png";
 import { formatBountyValue } from "../../hooks/formatBountyValue";
 
 const calculateDays = date => {
@@ -37,7 +38,7 @@ export const BountiesListRegular = ({ data, error }) => {
               <div className="col-md-6">
                 <div className="media align-items-center">
                   <div className="square-72 d-block mr-8">
-                    <img src={imgF1} alt="" />
+                    <Image src={imgF1} alt="" />
                   </div>
                   <div>
                     <h3 className="mb-0">
@@ -60,7 +61,7 @@ export const BountiesListRegular = ({ data, error }) => {
               <div className="col-md-6 text-right pt-7 pt-md-5">
                 <div className="media justify-content-md-end">
                   <div className="image mr-5 mt-2">
-                    <img src={imgF} alt="" />
+                    <Image src={imgF} alt="" />
                   </div>
                   <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                     <span className="text-black-2">{bounty.bounty_value}</span> {bounty.bounty_currency}
@@ -94,7 +95,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       className="mr-4"
                       css={`margin-top: -2px;`}
                     >
-                      <img src={iconS} alt="" />
+                      <Image src={iconS} alt="" />
                     </span>
                     <span className="font-weight-semibold">
                       {bounty.bounty_type}
@@ -105,7 +106,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       className="mr-4"
                       css={`margin-top: -2px;`}
                     >
-                      <img src={iconC} alt="" />
+                      <Image src={iconC} alt="" />
                     </span>
                     <span className="font-weight-semibold">
                       {bounty.experience}
@@ -116,7 +117,7 @@ export const BountiesListRegular = ({ data, error }) => {
                       className="mr-4"
                       css={`margin-top: -2px;`}
                     >
-                      <img src={iconL} alt="" />
+                      <Image src={iconL} alt="" />
                     </span>
                     <span className="font-weight-semibold">
                       {calculateDays(bounty.created_at)}d ago
@@ -145,7 +146,7 @@ export const BountiesListGrid = ({ data, error }) => {
             <div className="d-block mb-7">
               <Link href="/#">
                 <a>
-                  <img src={imgB1} alt="" />
+                  <Image src={imgB1} alt="" />
                 </a>
               </Link>
             </div>

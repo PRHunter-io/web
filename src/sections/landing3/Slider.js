@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 import SlickSlider from "react-slick";
 
-import imgT1 from "../../assets/image/l3/png/testimonial.png";
-import imgTB from "../../assets/image/l3/png/testimonial-brand-logo.png";
+import imgT1 from"public/images/image/l3/png/testimonial.png";
+import imgTB from"public/images/image/l3/png/testimonial-brand-logo.png";
 
 const SliderItem = styled.div`
   &:focus {
@@ -49,7 +49,7 @@ const Slider = () => {
                       <div className="slide-content pl-5 pl-lg-10 pl-xxl-20 pr-5 pr-xl-5 py-lg-5 py-9">
                         {/* <!-- Slide Brand Image --> */}
                         <div className="mb-11">
-                          <img src={imgTB} alt="" />
+                          <Image src={imgTB} alt="" />
                         </div>
                         {/* <!-- Slide Info --> */}
                         <div className="">
@@ -93,7 +93,7 @@ const Slider = () => {
                       <div className="slide-content pl-5 pl-lg-10 pl-xxl-20 pr-5 pr-xl-5 py-lg-5 py-9">
                         {/* <!-- Slide Brand Image --> */}
                         <div className="mb-11">
-                          <img src={imgTB} alt="" />
+                          <Image src={imgTB} alt="" />
                         </div>
                         {/* <!-- Slide Info --> */}
                         <div className="">
@@ -137,7 +137,7 @@ const Slider = () => {
                       <div className="slide-content pl-5 pl-lg-10 pl-xxl-20 pr-5 pr-xl-5 py-lg-5 py-9">
                         {/* <!-- Slide Brand Image --> */}
                         <div className="mb-11">
-                          <img src={imgTB} alt="" />
+                          <Image src={imgTB} alt="" />
                         </div>
                         {/* <!-- Slide Info --> */}
                         <div className="">

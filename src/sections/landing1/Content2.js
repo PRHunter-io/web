@@ -1,10 +1,10 @@
 import React from "react";
 import Link from "next/link";
 
-import imgC from "../../assets/image/l1/jpg/content-1-img2.jpg";
-import imgM1 from "../../assets/image/l1/png/media-img-1.png";
-import imgM2 from "../../assets/image/l1/png/media-img-2.png";
-import imgM3 from "../../assets/image/l1/png/media-img-3.png";
+import imgC from"public/images/image/l1/jpg/content-1-img2.jpg";
+import imgM1 from"public/images/image/l1/png/media-img-1.png";
+import imgM2 from"public/images/image/l1/png/media-img-2.png";
+import imgM3 from"public/images/image/l1/png/media-img-3.png";
 
 const Content = () => {
   return (
@@ -20,7 +20,7 @@ const Content = () => {
             >
               <div className="position-relative pr-lg-20 pr-md-15 pr-9">
                 {/* <!-- content img start --> */}
-                <img src={imgC} alt="" className="w-100 rounded-4" />
+                <Image src={imgC} alt="" className="w-100 rounded-4" />
                 {/* <!-- content img end --> */}
                 {/* <!-- abs-content start --> */}
                 <div className="pos-abs-br mb-10 ">
@@ -33,7 +33,7 @@ const Content = () => {
                       <div className="media mb-5 pr-9">
                         {/* <!-- media img start --> */}
                         <div className="mr-3 mt-2">
-                          <img src={imgM1} className="circle-40" alt="" />
+                          <Image src={imgM1} className="circle-40" alt="" />
                         </div>
                         {/* <!-- media img start --> */}
                         {/* <!-- media body start --> */}
@@ -52,7 +52,7 @@ const Content = () => {
                       <div className="media mb-5 pr-9">
                         {/* <!-- media img start --> */}
                         <div className="mr-3 mt-2">
-                          <img src={imgM2} className="circle-40" alt="" />
+                          <Image src={imgM2} className="circle-40" alt="" />
                         </div>
                         {/* <!-- media img start --> */}
                         {/* <!-- media body start --> */}
@@ -71,7 +71,7 @@ const Content = () => {
                       <div className="media mb-5 pr-9">
                         {/* <!-- media img start --> */}
                         <div className="mr-3 mt-2">
-                          <img src={imgM3} className="circle-40" alt="" />
+                          <Image src={imgM3} className="circle-40" alt="" />
                         </div>
                         {/* <!-- media img start --> */}
                         {/* <!-- media body start --> */}

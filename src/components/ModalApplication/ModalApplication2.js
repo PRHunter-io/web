@@ -168,7 +168,7 @@ const ModalApplication = (props) => {
                   <div className="w-100">
                     <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                       <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                        <img src="./image/l1/png/feature-brand-1.png" alt="" />
+                        <Image src="./image/l1/png/feature-brand-1.png" alt="" />
                       </div>
                       <div className="w-100 mt-n2">
                         <h3 className="mb-0">
@@ -213,7 +213,7 @@ const ModalApplication = (props) => {
                   <div className="w-100">
                     <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                       <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                        <img src="./image/svg/harvard.svg" alt="" />
+                        <Image src="./image/svg/harvard.svg" alt="" />
                       </div>
                       <div className="w-100 mt-n2">
                         <h3 className="mb-0">

@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Modal } from "react-bootstrap";
 import GlobalContext from "../../context/GlobalContext";
+import Image from 'next/image'
 
 const ModalStyled = styled(Modal)`
   /* &.modal {

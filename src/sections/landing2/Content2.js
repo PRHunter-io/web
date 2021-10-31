@@ -1,31 +1,31 @@
 import React from "react";
 import Link from "next/link";
 
-import imgG1 from "../../assets/image/l2/jpg/gallery-img1.jpg";
-import imgG2 from "../../assets/image/l2/jpg/gallery-img2.jpg";
-import imgG3 from "../../assets/image/l2/jpg/gallery-img3.jpg";
-import imgG4 from "../../assets/image/l2/jpg/gallery-img4.jpg";
-import imgG5 from "../../assets/image/l2/jpg/gallery-img5.jpg";
-import imgG6 from "../../assets/image/l2/jpg/gallery-img6.jpg";
-import imgG7 from "../../assets/image/l2/jpg/gallery-img7.jpg";
-import imgG8 from "../../assets/image/l2/jpg/gallery-img8.jpg";
-import imgG9 from "../../assets/image/l2/jpg/gallery-img9.jpg";
-import imgG10 from "../../assets/image/l2/jpg/gallery-img10.jpg";
-import imgG11 from "../../assets/image/l2/jpg/gallery-img11.jpg";
-import imgG12 from "../../assets/image/l2/jpg/gallery-img12.jpg";
-import imgG13 from "../../assets/image/l2/jpg/gallery-img13.jpg";
-import imgG14 from "../../assets/image/l2/jpg/gallery-img14.jpg";
-import imgG15 from "../../assets/image/l2/jpg/gallery-img15.jpg";
-import imgG16 from "../../assets/image/l2/jpg/gallery-img16.jpg";
-import imgG17 from "../../assets/image/l2/jpg/gallery-img17.jpg";
-import imgG18 from "../../assets/image/l2/jpg/gallery-img18.jpg";
-import imgG19 from "../../assets/image/l2/jpg/gallery-img19.jpg";
-import imgG20 from "../../assets/image/l2/jpg/gallery-img20.jpg";
-import imgG21 from "../../assets/image/l2/jpg/gallery-img21.jpg";
-import imgG22 from "../../assets/image/l2/jpg/gallery-img22.jpg";
-import imgG23 from "../../assets/image/l2/jpg/gallery-img23.jpg";
-import imgG24 from "../../assets/image/l2/jpg/gallery-img24.jpg";
-import imgG25 from "../../assets/image/l2/jpg/gallery-img25.jpg";
+import imgG1 from"public/images/image/l2/jpg/gallery-img1.jpg";
+import imgG2 from"public/images/image/l2/jpg/gallery-img2.jpg";
+import imgG3 from"public/images/image/l2/jpg/gallery-img3.jpg";
+import imgG4 from"public/images/image/l2/jpg/gallery-img4.jpg";
+import imgG5 from"public/images/image/l2/jpg/gallery-img5.jpg";
+import imgG6 from"public/images/image/l2/jpg/gallery-img6.jpg";
+import imgG7 from"public/images/image/l2/jpg/gallery-img7.jpg";
+import imgG8 from"public/images/image/l2/jpg/gallery-img8.jpg";
+import imgG9 from"public/images/image/l2/jpg/gallery-img9.jpg";
+import imgG10 from"public/images/image/l2/jpg/gallery-img10.jpg";
+import imgG11 from"public/images/image/l2/jpg/gallery-img11.jpg";
+import imgG12 from"public/images/image/l2/jpg/gallery-img12.jpg";
+import imgG13 from"public/images/image/l2/jpg/gallery-img13.jpg";
+import imgG14 from"public/images/image/l2/jpg/gallery-img14.jpg";
+import imgG15 from"public/images/image/l2/jpg/gallery-img15.jpg";
+import imgG16 from"public/images/image/l2/jpg/gallery-img16.jpg";
+import imgG17 from"public/images/image/l2/jpg/gallery-img17.jpg";
+import imgG18 from"public/images/image/l2/jpg/gallery-img18.jpg";
+import imgG19 from"public/images/image/l2/jpg/gallery-img19.jpg";
+import imgG20 from"public/images/image/l2/jpg/gallery-img20.jpg";
+import imgG21 from"public/images/image/l2/jpg/gallery-img21.jpg";
+import imgG22 from"public/images/image/l2/jpg/gallery-img22.jpg";
+import imgG23 from"public/images/image/l2/jpg/gallery-img23.jpg";
+import imgG24 from"public/images/image/l2/jpg/gallery-img24.jpg";
+import imgG25 from"public/images/image/l2/jpg/gallery-img25.jpg";
 
 const Content = () => {
   return (
@@ -42,79 +42,79 @@ const Content = () => {
           >
             {/* <!-- this content will absolute from right and top --> */}
             <div className="single-item">
-              <img src={imgG1} alt="" />
+              <Image src={imgG1} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG2} alt="" />
+              <Image src={imgG2} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG3} alt="" />
+              <Image src={imgG3} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG4} alt="" />
+              <Image src={imgG4} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG5} alt="" />
+              <Image src={imgG5} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG6} alt="" />
+              <Image src={imgG6} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG7} alt="" />
+              <Image src={imgG7} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG8} alt="" />
+              <Image src={imgG8} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG9} alt="" />
+              <Image src={imgG9} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG10} alt="" />
+              <Image src={imgG10} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG11} alt="" />
+              <Image src={imgG11} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG12} alt="" />
+              <Image src={imgG12} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG13} alt="" />
+              <Image src={imgG13} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG14} alt="" />
+              <Image src={imgG14} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG15} alt="" />
+              <Image src={imgG15} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG16} alt="" />
+              <Image src={imgG16} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG17} alt="" />
+              <Image src={imgG17} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG18} alt="" />
+              <Image src={imgG18} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG19} alt="" />
+              <Image src={imgG19} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG20} alt="" />
+              <Image src={imgG20} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG21} alt="" />
+              <Image src={imgG21} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG22} alt="" />
+              <Image src={imgG22} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG23} alt="" />
+              <Image src={imgG23} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG24} alt="" />
+              <Image src={imgG24} alt="" />
             </div>
             <div className="single-item">
-              <img src={imgG25} alt="" />
+              <Image src={imgG25} alt="" />
             </div>
           </div>
           {/* <!-- gallery end --> */}

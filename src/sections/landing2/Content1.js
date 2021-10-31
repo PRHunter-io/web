@@ -1,5 +1,5 @@
 import React from "react";
-import imgC from "../../assets/image/l2/png/content-2-img1.png";
+import imgC from"public/images/image/l2/png/content-2-img1.png";
 
 const Content = () => {
   return (
@@ -16,7 +16,7 @@ const Content = () => {
               {/* <!-- content-1 left-content start --> */}
               <div className="position-relative pr-lg-20 pr-xs-15 pr-9 ">
                 {/* <!-- content img start --> */}
-                <img src={imgC} alt="" className="w-100" />
+                <Image src={imgC} alt="" className="w-100" />
                 {/* <!-- content img end --> */}
                 {/* <!-- abs-content start --> */}
                 <div className="abs-content pos-abs-br bg-white shadow-2 pl-7 pt-8 pb-1 pr-11 max-width-px-311 rounded mb-15 mb-xs-18 mb-lg-15 mb-xl-18">

@@ -1,8 +1,9 @@
-import React from "react";
 import Link from "next/link";
-import PageWrapper from "../components/PageWrapper";
+import React from "react";
+import Image from 'next/image'
 import imgL1LogoBlack from "../../public/images/logo-main-black.svg";
-import imgError from "../assets/image/svg/404.svg";
+import imgError from "public/images/image/svg/404.svg";
+import PageWrapper from "../components/PageWrapper";
 
 const Contact = () => {
   return (
@@ -32,7 +33,7 @@ const Contact = () => {
                   data-aos-duration="1000"
                 >
                   {/* <!-- card image start --> */}
-                  <img src={imgError} alt="" className="w-100 px-9" />
+                  <Image src={imgError} alt="" className="w-100 px-9" />
                   {/* <!-- card image end --> */}
                   {/* <!-- card-icon start --> */}
                   <div className="404-texts pt-14">

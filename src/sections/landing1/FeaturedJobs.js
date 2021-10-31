@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import imgF1 from "../../assets/image/l1/png/feature-brand-1.png";
-import imgF2 from "../../assets/image/l1/png/feature-brand-2.png";
-import imgF3 from "../../assets/image/l1/png/feature-brand-3.png";
-import imgF4 from "../../assets/image/l1/png/feature-brand-4.png";
-import imgF5 from "../../assets/image/l1/png/feature-brand-5.png";
-import imgF6 from "../../assets/image/l1/png/feature-brand-6.png";
+import imgF1 from"public/images/image/l1/png/feature-brand-1.png";
+import imgF2 from"public/images/image/l1/png/feature-brand-2.png";
+import imgF3 from"public/images/image/l1/png/feature-brand-3.png";
+import imgF4 from"public/images/image/l1/png/feature-brand-4.png";
+import imgF5 from"public/images/image/l1/png/feature-brand-5.png";
+import imgF6 from"public/images/image/l1/png/feature-brand-6.png";
 
 const FeaturedJobs = () => {
   return (
@@ -45,7 +45,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF1} alt="" />
+                      <Image src={imgF1} alt="" />
                     </a>
                   </Link>
                 </div>
@@ -117,7 +117,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF2} alt="" />
+                      <Image src={imgF2} alt="" />
                     </a>
                   </Link>
                 </div>
@@ -187,7 +187,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF3} alt="" />
+                      <Image src={imgF3} alt="" />
                     </a>
                   </Link>
                 </div>
@@ -257,7 +257,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF4} alt="" />
+                      <Image src={imgF4} alt="" />
                     </a>
                   </Link>
                 </div>
@@ -327,7 +327,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF5} alt="" />
+                      <Image src={imgF5} alt="" />
                     </a>
                   </Link>
                 </div>
@@ -397,7 +397,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF6} alt="" />
+                      <Image src={imgF6} alt="" />
                     </a>
                   </Link>
                 </div>

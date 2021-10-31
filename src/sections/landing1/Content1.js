@@ -1,10 +1,10 @@
 import React from "react";
-import imgC from "../../assets/image/l1/jpg/content-1-img1.jpg";
-import imgL1 from "../../assets/image/l1/png/smal-logo1.png";
-import imgL2 from "../../assets/image/l1/png/smal-logo2.png";
-import imgL3 from "../../assets/image/l1/png/smal-logo3.png";
-import imgL4 from "../../assets/image/l1/png/smal-logo4.png";
-import imgL5 from "../../assets/image/l1/png/smal-logo5.png";
+import imgC from"public/images/image/l1/jpg/content-1-img1.jpg";
+import imgL1 from"public/images/image/l1/png/smal-logo1.png";
+import imgL2 from"public/images/image/l1/png/smal-logo2.png";
+import imgL3 from"public/images/image/l1/png/smal-logo3.png";
+import imgL4 from"public/images/image/l1/png/smal-logo4.png";
+import imgL5 from"public/images/image/l1/png/smal-logo5.png";
 
 const Content = () => {
   return (
@@ -41,27 +41,27 @@ const Content = () => {
                     <ul className="list-unstyled list-overlapped-icon max-width-130px">
                       <li className="ml-0">
                         <a href="/#" className="circle-34">
-                          <img src={imgL1} alt="" className="img" />
+                          <Image src={imgL1} alt="" className="img" />
                         </a>
                       </li>
                       <li>
                         <a href="/#">
-                          <img src={imgL2} alt="" className="img img2" />
+                          <Image src={imgL2} alt="" className="img img2" />
                         </a>
                       </li>
                       <li>
                         <a href="/#">
-                          <img src={imgL3} alt="" className="img img3" />
+                          <Image src={imgL3} alt="" className="img img3" />
                         </a>
                       </li>
                       <li>
                         <a href="/#">
-                          <img src={imgL4} alt="" className="img img4" />
+                          <Image src={imgL4} alt="" className="img img4" />
                         </a>
                       </li>
                       <li>
                         <a href="/#">
-                          <img src={imgL5} alt="" className="img img5" />
+                          <Image src={imgL5} alt="" className="img img5" />
                         </a>
                       </li>
                     </ul>

@@ -17,7 +17,7 @@ import GlobalContext from "../../context/GlobalContext";
 
 import GlobalStyle from "../../utils/globalStyle";
 
-// import imgFavicon from "../../assets/favicon.png";
+// import imgFavicon from"public/images/favicon.png";
 
 import { get, merge } from "lodash";
 

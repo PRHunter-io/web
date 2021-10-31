@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
-import imgF1 from "../../assets/image/svg/icon-leaf.svg";
-import imgF2 from "../../assets/image/svg/text-fimize.svg";
-import imgF3 from "../../assets/image/svg/icon-shark-2.svg";
-import imgF4 from "../../assets/image/svg/text-K.svg";
-import imgF5 from "../../assets/image/svg/icon-thunder.svg";
-import imgF6 from "../../assets/image/svg/text-asios.svg";
+import imgF1 from"public/images/image/svg/icon-leaf.svg";
+import imgF2 from"public/images/image/svg/text-fimize.svg";
+import imgF3 from"public/images/image/svg/icon-shark-2.svg";
+import imgF4 from"public/images/image/svg/text-K.svg";
+import imgF5 from"public/images/image/svg/icon-thunder.svg";
+import imgF6 from"public/images/image/svg/text-asios.svg";
 
 const FeaturedJobs = () => {
   return (
@@ -38,7 +38,7 @@ const FeaturedJobs = () => {
                   <div className="square-52 bg-pink mr-8 rounded">
                     <Link href="/#">
                       <a>
-                        <img src={imgF1} alt="" />
+                        <Image src={imgF1} alt="" />
                       </a>
                     </Link>
                   </div>
@@ -90,7 +90,7 @@ const FeaturedJobs = () => {
                   <div className="square-52 bg-indigo mr-8 rounded">
                     <Link href="/#">
                       <a>
-                        <img src={imgF2} alt="" />
+                        <Image src={imgF2} alt="" />
                       </a>
                     </Link>
                   </div>
@@ -142,7 +142,7 @@ const FeaturedJobs = () => {
                   <div className="square-52 bg-regent mr-8 rounded">
                     <Link href="/#">
                       <a>
-                        <img src={imgF3} alt="" />
+                        <Image src={imgF3} alt="" />
                       </a>
                     </Link>
                   </div>
@@ -194,7 +194,7 @@ const FeaturedJobs = () => {
                   <div className="square-52 bg-yellow-2 mr-8 rounded">
                     <Link href="/#">
                       <a>
-                        <img src={imgF4} alt="" />
+                        <Image src={imgF4} alt="" />
                       </a>
                     </Link>
                   </div>
@@ -246,7 +246,7 @@ const FeaturedJobs = () => {
                   <div className="square-52 bg-orange-2 mr-8 rounded">
                     <Link href="/#">
                       <a>
-                        <img src={imgF5} alt="" />
+                        <Image src={imgF5} alt="" />
                       </a>
                     </Link>
                   </div>
@@ -298,7 +298,7 @@ const FeaturedJobs = () => {
                   <div className="square-52 bg-helio mr-8 rounded">
                     <Link href="/#">
                       <a>
-                        <img src={imgF6} alt="" />
+                        <Image src={imgF6} alt="" />
                       </a>
                     </Link>
                   </div>

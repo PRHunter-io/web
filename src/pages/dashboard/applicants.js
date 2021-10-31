@@ -4,11 +4,11 @@ import PageWrapper from "../../components/PageWrapper";
 import { Select } from "../../components/Core";
 import GlobalContext from "../../context/GlobalContext";
 
-import imgP1 from "../../assets/image/table-one-profile-image-1.png";
-import imgP2 from "../../assets/image/table-one-profile-image-2.png";
-import imgP3 from "../../assets/image/table-one-profile-image-3.png";
-import imgP4 from "../../assets/image/table-one-profile-image-4.png";
-import imgP5 from "../../assets/image/table-one-profile-image-5.png";
+import imgP1 from"public/images/image/table-one-profile-image-1.png";
+import imgP2 from"public/images/image/table-one-profile-image-2.png";
+import imgP3 from"public/images/image/table-one-profile-image-3.png";
+import imgP4 from"public/images/image/table-one-profile-image-4.png";
+import imgP5 from"public/images/image/table-one-profile-image-5.png";
 
 const defaultJobs = [
   { value: "pd", label: "Product Designer" },
@@ -94,7 +94,7 @@ const DashboardApplicants = () => {
                           <Link href="/candidate-profile">
                             <a className="media min-width-px-235 align-items-center">
                               <div className="circle-36 mr-6">
-                                <img src={imgP1} alt="" className="w-100" />
+                                <Image src={imgP1} alt="" className="w-100" />
                               </div>
                               <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
                                 Nicolas Bradley
@@ -150,7 +150,7 @@ const DashboardApplicants = () => {
                           <Link href="/candidate-profile">
                             <a className="media min-width-px-235 align-items-center">
                               <div className="circle-36 mr-6">
-                                <img src={imgP2} alt="" className="w-100" />
+                                <Image src={imgP2} alt="" className="w-100" />
                               </div>
                               <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
                                 Elizabeth Gomez
@@ -206,7 +206,7 @@ const DashboardApplicants = () => {
                           <Link href="/candidate-profile">
                             <a className="media min-width-px-235 align-items-center">
                               <div className="circle-36 mr-6">
-                                <img src={imgP3} alt="" className="w-100" />
+                                <Image src={imgP3} alt="" className="w-100" />
                               </div>
                               <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
                                 Joe Wade
@@ -262,7 +262,7 @@ const DashboardApplicants = () => {
                           <Link href="/candidate-profile">
                             <a className="media min-width-px-235 align-items-center">
                               <div className="circle-36 mr-6">
-                                <img src={imgP4} alt="" className="w-100" />
+                                <Image src={imgP4} alt="" className="w-100" />
                               </div>
                               <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
                                 Roger Hawkins
@@ -318,7 +318,7 @@ const DashboardApplicants = () => {
                           <Link href="/candidate-profile">
                             <a className="media min-width-px-235 align-items-center">
                               <div className="circle-36 mr-6">
-                                <img src={imgP5} alt="" className="w-100" />
+                                <Image src={imgP5} alt="" className="w-100" />
                               </div>
                               <h4 className="font-size-4 mb-0 font-weight-semibold text-black-2">
                                 Marie Green

@@ -1,8 +1,9 @@
 import React from "react";
 
 import { Select } from "../../components/Core";
-import imgH from "../../assets/image/l1/png/hero-image-man.png";
-import imgP from "../../assets/image/patterns/hero-pattern.png";
+import imgH from"public/images/image/l1/png/hero-image-man.png";
+import imgP from"public/images/image/patterns/hero-pattern.png";
+import Image from 'next/image'
 
 const defaultCountries = [
   { value: "sp", label: "Singapore" },
@@ -19,7 +20,7 @@ const Hero = () => {
       <div className="bg-gradient-1 pt-26 pt-md-32 pt-lg-33 pt-xl-35 position-relative z-index-1 overflow-hidden">
         {/* <!-- .Hero pattern --> */}
         <div className="pos-abs-tr w-50 z-index-n2">
-          <img src={imgP} alt="" className="gr-opacity-1" />
+          <Image src={imgP} alt="" className="gr-opacity-1" />
         </div>
         {/* <!-- ./Hero pattern --> */}
         <div className="container">
@@ -87,7 +88,7 @@ const Hero = () => {
               data-aos-delay="500"
             >
               <div className=" ml-xxl-23 ml-xl-12 ml-md-7">
-                <img src={imgH} alt="" className="w-100" />
+                <Image src={imgH} alt="" className="w-100" />
               </div>
             </div>
             {/* <!-- ./Hero Right Image --> */}

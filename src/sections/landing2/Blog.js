@@ -1,12 +1,12 @@
 import React from "react";
 import Link from "next/link";
-import imgB1 from "../../assets/image/l2/png/blog-img1.png";
-import imgB2 from "../../assets/image/l2/png/blog-img2.png";
-import imgB3 from "../../assets/image/l2/png/blog-img3.png";
+import imgB1 from"public/images/image/l2/png/blog-img1.png";
+import imgB2 from"public/images/image/l2/png/blog-img2.png";
+import imgB3 from"public/images/image/l2/png/blog-img3.png";
 
-import imgBU1 from "../../assets/image/l2/png/blog-user-img1.png";
-import imgBU2 from "../../assets/image/l2/png/blog-user-img2.png";
-import imgBU3 from "../../assets/image/l2/png/blog-user-img3.png";
+import imgBU1 from"public/images/image/l2/png/blog-user-img1.png";
+import imgBU2 from"public/images/image/l2/png/blog-user-img2.png";
+import imgBU3 from"public/images/image/l2/png/blog-user-img3.png";
 
 const Blog = () => {
   return (
@@ -41,7 +41,7 @@ const Blog = () => {
               {/* <!-- card start --> */}
               <div className="card bg-transparent border-0">
                 {/* <!-- card img start --> */}
-                <img src={imgB1} className="card-img-top" alt="..." />
+                <Image src={imgB1} className="card-img-top" alt="..." />
                 {/* <!-- card img end --> */}
                 {/* <!-- card-body start --> */}
                 <div className="card-body pt-11 px-0 pb-0">
@@ -112,7 +112,7 @@ const Blog = () => {
                 {/* <!-- card img start --> */}
                 <Link href="/#">
                   <a>
-                    <img src={imgB2} className="card-img-top" alt="..." />
+                    <Image src={imgB2} className="card-img-top" alt="..." />
                   </a>
                 </Link>
                 {/* <!-- card img end --> */}
@@ -186,7 +186,7 @@ const Blog = () => {
                 {/* <!-- card img start --> */}
                 <Link href="/#">
                   <a>
-                    <img src={imgB3} className="card-img-top" alt="..." />
+                    <Image src={imgB3} className="card-img-top" alt="..." />
                   </a>
                 </Link>
                 {/* <!-- card img end --> */}

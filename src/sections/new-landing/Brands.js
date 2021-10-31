@@ -1,11 +1,12 @@
 import React from "react";
 
-import imgB1 from "../../assets/image/resized/linkedin.png";
-import imgB2 from "../../assets/image/resized/upwork.png";
-import imgB3 from "../../assets/image/resized/fiverr.png";
-import imgB4 from "../../assets/image/resized/angellist.png";
-import imgB5 from "../../assets/image/resized/freelancer.png";
-import imgB6 from "../../assets/image/resized/indeed.png";
+import imgB1 from "public/images/image/resized/linkedin.png";
+import imgB2 from "public/images/image/resized/upwork.png";
+import imgB3 from "public/images/image/resized/fiverr.png";
+import imgB4 from "public/images/image/resized/angellist.png";
+import imgB5 from "public/images/image/resized/freelancer.png";
+import imgB6 from "public/images/image/resized/indeed.png";
+import Image from 'next/image'
 
 const Brands = () => {
   return (
@@ -30,7 +31,7 @@ const Brands = () => {
               data-aos="fade-in"
               data-aos-duration="800"
             >
-              <img src={imgB1} alt="" />
+              <Image src={imgB1} alt="" />
             </div>
             {/* <!-- Single Brand --> */}
             <div
@@ -39,7 +40,7 @@ const Brands = () => {
               data-aos-duration="800"
               data-aos-delay="300"
             >
-              <img src={imgB2} alt="" />
+              <Image src={imgB2} alt="" />
             </div>
             {/* <!-- Single Brand --> */}
             <div
@@ -48,7 +49,7 @@ const Brands = () => {
               data-aos-duration="800"
               data-aos-delay="500"
             >
-              <img src={imgB3} alt="" />
+              <Image src={imgB3} alt="" />
             </div>
             {/* <!-- Single Brand --> */}
             <div
@@ -57,7 +58,7 @@ const Brands = () => {
               data-aos-duration="800"
               data-aos-delay="700"
             >
-              <img src={imgB4} alt="" />
+              <Image src={imgB4} alt="" />
             </div>
             {/* <!-- Single Brand --> */}
             <div
@@ -66,7 +67,7 @@ const Brands = () => {
               data-aos-duration="800"
               data-aos-delay="900"
             >
-              <img src={imgB5} alt="" />
+              <Image src={imgB5} alt="" />
             </div>
             {/* <!-- Single Brand --> */}
             <div
@@ -75,7 +76,7 @@ const Brands = () => {
               data-aos-duration="800"
               data-aos-delay="1200"
             >
-              <img src={imgB6} alt="" />
+              <Image src={imgB6} alt="" />
             </div>
           </div>
           {/* <!-- End Brand Logos --> */}

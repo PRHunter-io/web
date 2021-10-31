@@ -5,11 +5,12 @@ import { Modal } from "react-bootstrap";
 import GlobalContext from "../../context/GlobalContext";
 import ProfileSidebar from "../ProfileSidebar";
 
-import imgF1 from "../../assets/image/l2/png/featured-job-logo-1.png";
-import imgF2 from "../../assets/image/l1/png/feature-brand-1.png";
-import imgF3 from "../../assets/image/svg/harvard.svg";
-import imgF4 from "../../assets/image/svg/mit.svg";
-import imgL from "../../assets/image/svg/icon-loaction-pin-black.svg";
+import Image from 'next/image'
+import imgF1 from "public/images/image/l2/png/featured-job-logo-1.png";
+import imgF2 from "public/images/image/l1/png/feature-brand-1.png";
+import imgF3 from "public/images/image/svg/harvard.svg";
+import imgF4 from "public/images/image/svg/mit.svg";
+import imgL from "public/images/image/svg/icon-loaction-pin-black.svg";
 
 const ModalStyled = styled(Modal)`
   /* &.modal {
@@ -143,7 +144,7 @@ const ModalSignIn = (props) => {
                     <div className="w-100">
                       <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                         <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                          <img src={imgF1} alt="" />
+                          <Image src={imgF1} alt="" />
                         </div>
                         <div className="w-100 mt-n2">
                           <h3 className="mb-0">
@@ -172,7 +173,7 @@ const ModalSignIn = (props) => {
                                     margin-top: -2px;
                                   `}
                                 >
-                                  <img src={imgL} alt="" />
+                                  <Image src={imgL} alt="" />
                                 </span>
                                 New York, USA
                               </a>
@@ -186,7 +187,7 @@ const ModalSignIn = (props) => {
                     <div className="w-100">
                       <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                         <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                          <img src={imgF2} alt="" />
+                          <Image src={imgF2} alt="" />
                         </div>
                         <div className="w-100 mt-n2">
                           <h3 className="mb-0">
@@ -215,7 +216,7 @@ const ModalSignIn = (props) => {
                                     margin-top: -2px;
                                   `}
                                 >
-                                  <img src={imgL} alt="" />
+                                  <Image src={imgL} alt="" />
                                 </span>
                                 New York, USA
                               </a>
@@ -236,7 +237,7 @@ const ModalSignIn = (props) => {
                     <div className="w-100">
                       <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                         <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                          <img src={imgF3} alt="" />
+                          <Image src={imgF3} alt="" />
                         </div>
                         <div className="w-100 mt-n2">
                           <h3 className="mb-0">
@@ -265,7 +266,7 @@ const ModalSignIn = (props) => {
                                     margin-top: -2px;
                                   `}
                                 >
-                                  <img src={imgL} alt="" />
+                                  <Image src={imgL} alt="" />
                                 </span>
                                 Brylin, USA
                               </a>
@@ -308,7 +309,7 @@ const ModalSignIn = (props) => {
                                     margin-top: -2px;
                                   `}
                                 >
-                                  <img src={imgL} alt="" />
+                                  <Image src={imgL} alt="" />
                                 </span>
                                 New York, USA
                               </a>
@@ -351,7 +352,7 @@ const ModalSignIn = (props) => {
                                     margin-top: -2px;
                                   `}
                                 >
-                                  <img src={imgL} alt="" />
+                                  <Image src={imgL} alt="" />
                                 </span>
                                 New York, USA
                               </a>

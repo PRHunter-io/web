@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
 
-import imgP from "../../assets/image/l3/png/pro-img.png";
+import imgP from "public/images/image/l3/png/pro-img.png";
 
 const Sidebar = (props) => {
   return (
