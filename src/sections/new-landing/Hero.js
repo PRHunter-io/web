@@ -44,8 +44,8 @@ const Hero = () => {
     <>
       {/* <!-- Hero Area --> */}
       <div className="position-relative z-index-1 bg-squeeze pt-26 dark-mode-texts">
-        <div className="pos-abs-tr h-100">
-          <Image src={globePattern} />
+        <div className="pos-abs-tr h-100 w-50">
+          <Image src={globePattern} layout="responsive" />
         </div>
         <div className="container position-static">
           <div className="row position-relative align-items-center position-static">

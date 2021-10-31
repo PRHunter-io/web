@@ -125,7 +125,7 @@ const Header = () => {
                                 onClick={(e) => e.preventDefault()}
                               >
                                 {label}
-                                <i className="icon icon-small-down"></i>
+                                <i className="fas fa-angle-down"></i>
                               </a>
                               <ul className="gr-menu-dropdown dropdown-menu ">
                                 {items.map((subItem, indexSub) => {
@@ -148,7 +148,7 @@ const Header = () => {
                                             onClick={(e) => e.preventDefault()}
                                           >
                                             {subItem.label}
-                                            <i className="icon icon-small-down"></i>
+                                            <i className="fas fa-angle-down"></i>
                                           </a>
                                           <ul className="gr-menu-dropdown dropdown-menu dropdown-left">
                                             {subItem.items.map(

@@ -2,7 +2,7 @@ export const dashboardItems = [
   {
     name: "",
     label: "Dashboard",
-    iconClass: "icon icon-layout-11"
+    iconClass: "fas fa-align-justify"
   },
   {
     name: "posted-bounties",
