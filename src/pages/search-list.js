@@ -4,6 +4,7 @@ import PageWrapper from "../components/PageWrapper";
 import Sidebar from "../components/Sidebar";
 import { Select } from "../components/Core";
 
+import Image from 'next/image'
 import imgF1 from "public/images/image/l2/png/featured-job-logo-1.png";
 import imgF2 from "public/images/image/l2/png/featured-job-logo-2.png";
 import imgF3 from "public/images/image/l2/png/featured-job-logo-3.png";

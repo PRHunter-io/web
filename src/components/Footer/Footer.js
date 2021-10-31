@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import GlobalContext from "../../context/GlobalContext";
 import Logo from "../Logo";
-import imgM from "/images/image/l1/png/message.png";
+import imgM from "../../../public/images/image/l1/png/message.png";
 import Image from 'next/image'
 
 const Footer = () => {

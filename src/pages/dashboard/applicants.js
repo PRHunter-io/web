@@ -4,11 +4,12 @@ import PageWrapper from "../../components/PageWrapper";
 import { Select } from "../../components/Core";
 import GlobalContext from "../../context/GlobalContext";
 
-import imgP1 from"public/images/image/table-one-profile-image-1.png";
-import imgP2 from"public/images/image/table-one-profile-image-2.png";
-import imgP3 from"public/images/image/table-one-profile-image-3.png";
-import imgP4 from"public/images/image/table-one-profile-image-4.png";
-import imgP5 from"public/images/image/table-one-profile-image-5.png";
+import Image from 'next/image';
+import imgP1 from "public/images/image/table-one-profile-image-1.png";
+import imgP2 from "public/images/image/table-one-profile-image-2.png";
+import imgP3 from "public/images/image/table-one-profile-image-3.png";
+import imgP4 from "public/images/image/table-one-profile-image-4.png";
+import imgP5 from "public/images/image/table-one-profile-image-5.png";
 
 const defaultJobs = [
   { value: "pd", label: "Product Designer" },

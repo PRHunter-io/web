@@ -4,6 +4,7 @@ import PageWrapper from "../components/PageWrapper";
 import Sidebar from "../components/Sidebar";
 import { Select } from "../components/Core";
 
+import Image from 'next/image'
 import imgB1 from "public/images/image/l1/png/feature-brand-1.png";
 import imgB2 from "public/images/image/l1/png/feature-brand-2.png";
 import imgB3 from "public/images/image/l1/png/feature-brand-3.png";

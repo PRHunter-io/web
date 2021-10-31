@@ -3,12 +3,12 @@ import { useRouter } from "next/router"
 import Link from "next/link";
 import PageWrapper from "../../components/PageWrapper";
 
-import imgF1 from "public/images/image/l2/png/featured-job-logo-1.png";
-import iconD from "public/images/image/svg/icon-dolor.svg";
-import iconB from "public/images/image/svg/icon-briefcase.svg";
-import iconC from "public/images/image/svg/icon-user-tie.svg";
+// import Image from 'next/image'
+// import imgF1 from "../../../public/images/image/l2/png/featured-job-logo-1.png";
+// import iconD from "../../../public/images/image/svg/icon-dolor.svg";
+// import iconB from "../../../public/images/image/svg/icon-briefcase.svg";
+// import iconC from "../../../public/images/image/svg/icon-user-tie.svg";
 import { formatBountyValue } from "../../hooks/formatBountyValue";
-import Image from 'next/image'
 
 const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
@@ -70,7 +70,7 @@ const Bounty = ({ data }) => {
                         <div className="media align-items-center">
                           {/* <!-- media logo start --> */}
                           <div className="square-72 d-block mr-8">
-                            <Image src={imgF1} alt="" />
+                            {/* <Image src={imgF1} alt="" /> */}
                           </div>
                           {/* <!-- media logo end --> */}
                           {/* <!-- media texts start --> */}
@@ -122,7 +122,7 @@ const Bounty = ({ data }) => {
                       <div className="col-md-4 mb-md-0 mb-6">
                         <div className="media justify-content-md-start">
                           <div className="image mr-5">
-                            <Image src={iconD} alt="" />
+                            {/* <Image src={iconD} alt="" /> */}
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             {data.bounty_value} {data.bounty_currency} <small>({formatBountyValue(data.bounty_value * 5029, 2)}$)</small>
@@ -136,7 +136,7 @@ const Bounty = ({ data }) => {
                       <div className="col-md-4 pr-lg-0 pl-lg-10 mb-md-0 mb-6">
                         <div className="media justify-content-md-start">
                           <div className="image mr-5">
-                            <Image src={iconC} alt="" />
+                            {/* <Image src={iconC} alt="" /> */}
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             {data.experience}
@@ -146,7 +146,7 @@ const Bounty = ({ data }) => {
                       <div className="col-md-4 pl-lg-0">
                         <div className="media justify-content-md-start">
                           <div className="image mr-5">
-                            <Image src={iconB} alt="" />
+                            {/* <Image src={iconB} alt="" /> */}
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             {data.bounty_type}

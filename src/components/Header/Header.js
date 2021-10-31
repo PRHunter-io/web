@@ -12,7 +12,8 @@ import { device } from "../../utils";
 import Logo from "../Logo";
 import { menuItems } from "./menuItems";
 
-import imgP from "/images/image/header-profile.png";
+import Image from 'next/image'
+import imgP from "../../../public/images/image/header-profile.png";
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
