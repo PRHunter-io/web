@@ -23,7 +23,7 @@ const Content = () => {
                 {/* <!-- content img end --> */}
                 {/* <!-- abs-content start --> */}
                 <div className="abs-content pos-abs-br mb-30 mr-8 rounded-4 rotate-n10 border-10 border-white shadow-2">
-                  <img
+                  <Image
                     src={imgC2}
                     alt=""
                     className="rounded-4 border-white border-width-3"

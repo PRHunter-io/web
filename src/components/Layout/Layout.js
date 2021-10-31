@@ -42,7 +42,7 @@ const Loader = styled.div`
 // options for different color modes
 const modes = { light: "light", dark: "dark" };
 
-const imgFavicon = "images/image/favicon.png";
+const imgFavicon = "/images/image/favicon.png";
 
 // merge the color mode with the base theme
 // to create a new theme object
