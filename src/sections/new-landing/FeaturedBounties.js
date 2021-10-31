@@ -108,7 +108,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <TechIcon language="testing"/>
+                      <TechIcon language="html"/>
                     </a>
                   </Link>
                 </div>
@@ -176,7 +176,7 @@ const FeaturedJobs = () => {
               {/* <!-- Start Feature One --> */}
               <div className="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                 <div className="d-block mb-7">
-                  {/* <TechIcon iconName="devicon-java-plain"/> */}
+                  <TechIcon language="ruby"/>
                 </div>
                 <Link href="/#">
                   <a className="font-size-3 d-block mb-0 text-gray">Shopify</a>
@@ -244,7 +244,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                    {/* <TechIcon iconName="devicon-react-plain"/> */}
+                    <TechIcon language="devops"/>
                     </a>
                   </Link>
                 </div>
@@ -314,7 +314,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                    {/* <TechIcon iconName="devicon-amazonwebservices-original"/> */}
+                    <TechIcon language="dotnetcore"/>
                     </a>
                   </Link>
                 </div>
@@ -384,7 +384,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                    {/* <TechIcon language="php"/> */}
+                    <TechIcon language="go"/>
                     </a>
                   </Link>
                 </div>

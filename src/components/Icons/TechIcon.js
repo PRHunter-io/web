@@ -15,7 +15,7 @@ let deviconMap = new Map([
   ['java', 'devicon-java-plain'],
   ['kotlin', 'devicon-kotlin-plain'],
   ['dotnet', 'devicon-dot-net-plain'],
-  ['dotnetcore', 'devicon-dot-net-core-plain'],
+  ['dotnetcore', 'devicon-dotnetcore-plain'],
   ['scala', 'devicon-scala-plain'],
   ['cpp', 'devicon-cplusplus-plain'],
   ['android', 'devicon-android-plain'],
@@ -25,13 +25,13 @@ let deviconMap = new Map([
 
 let fontawesomeMap = new Map([
   ['testing', 'fas fa-vial'],
-  ['devops', 'subscriber'],
-  ['admin', 'subscriber'],
-  ['uxui', 'subscriber'],
-  ['security', 'subscriber'],
-  ['data', 'subscriber'],
-  ['support', 'subscriber'],
-  ['other', 'subscriber']
+  ['devops', 'fas fa-cogs'],
+  ['admin', 'fas fa-tools'],
+  ['uxui', 'fas fa-pencil-ruler'],
+  ['security', 'fas fa-shield-alt'],
+  ['data', 'fas fa-archive'],
+  ['support', 'fas fa-hands-helping'],
+  ['other', 'fas fa-code']
 ])
 
 
