@@ -1,4 +1,3 @@
-// import App from 'next/app'
 import Layout from "../components/Layout";
 import { GlobalProvider } from "../context/GlobalContext";
 

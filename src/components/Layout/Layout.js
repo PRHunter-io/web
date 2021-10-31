@@ -17,8 +17,6 @@ import GlobalContext from "../../context/GlobalContext";
 
 import GlobalStyle from "../../utils/globalStyle";
 
-// import imgFavicon from"public/images/favicon.png";
-
 import { get, merge } from "lodash";
 
 // the full theme object
@@ -43,6 +41,8 @@ const Loader = styled.div`
 
 // options for different color modes
 const modes = { light: "light", dark: "dark" };
+
+const imgFavicon = "images/image/favicon.png";
 
 // merge the color mode with the base theme
 // to create a new theme object
@@ -94,9 +94,9 @@ const Layout = ({ children, pageContext }) => {
           <GlobalStyle />
           <Helmet>
             <title>PRHunter</title>
-            {/* <link rel="icon" type="image/png" href={imgFavicon} /> */}
+            <link rel="icon" type="image/png" href={imgFavicon} />
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"/>
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"}>
             <div className="load-circle">
@@ -127,9 +127,9 @@ const Layout = ({ children, pageContext }) => {
           <GlobalStyle />
           <Helmet>
             <title>PRHunter</title>
-            {/* <link rel="icon" type="image/png" href={imgFavicon} /> */}
+            <link rel="icon" type="image/png" href={imgFavicon} />
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"/>
 
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"}>
@@ -166,9 +166,9 @@ const Layout = ({ children, pageContext }) => {
           <GlobalStyle />
           <Helmet>
             <title>PRHunter</title>
-            {/* <link rel="icon" type="image/png" href={imgFavicon} /> */}
+            <link rel="icon" type="image/png" href={imgFavicon} />
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous"/>
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"/>
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"} />
           <div className="site-wrapper overflow-hidden" ref={eleRef}>

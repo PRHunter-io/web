@@ -4,7 +4,7 @@ import Link from "next/link";
 import imgC1 from "public/images/image/l3/png/content-2-img1.png";
 import imgC2 from "public/images/image/l3/png/content-2-img2.png";
 import imgC3 from "public/images/image/l3/png/content-2-img3.png";
-
+import Image from 'next/image'
 const Content = () => {
   return (
     <>
@@ -46,7 +46,7 @@ const Content = () => {
                 <div className="d-xs-flex  mx-sm-n3">
                   <div className="d-flex flex-column px-3 px-sm-6 w-lg-auto w-100">
                     {/* <!-- single image start --> */}
-                    <img
+                    <Image
                       src={imgC1}
                       alt=""
                       data-aos="zoom-in"
@@ -55,7 +55,7 @@ const Content = () => {
                     />
                     {/* <!-- single image end --> */}
                     {/* <!-- single image --> */}
-                    <img
+                    <Image
                       src={imgC2}
                       alt=""
                       data-aos="zoom-in"
@@ -67,7 +67,7 @@ const Content = () => {
                   </div>
                   <div className="d-flex flex-column pt-xs-11 px-3 px-sm-6 w-lg-auto w-100">
                     {/* <!-- single image --> */}
-                    <img
+                    <Image
                       src={imgC3}
                       alt=""
                       data-aos="zoom-in"
