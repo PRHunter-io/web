@@ -29,7 +29,18 @@ export const getServerSideProps = async ({ query }) => {
 }
 
 const getData = async (reqBody) => {
-  const res = await fetch(`${bountiesUrl}/search`, { method: 'POST', body: reqBody });
+  const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/bounty/search`;
+  const data = JSON.stringify(reqBody);
+  console.log(url);
+  console.log(data);
+
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: data
+  });
   const newData = await res.json();
   return newData;
 }
@@ -47,9 +58,6 @@ const SearchGrid = ({ bounties, query }) => {
 
   const [fullQuery, setFullQuery] = useState(query);
   const [titleValue, setTitleValue] = useState(fullQuery.title ? fullQuery.title : '');
-  const [expValue, setExpValue] = useState(fullQuery.experience ? fullQuery.experience : experienceLevel[0].value)
-
-
 
   const updateQuery = (data) => {
     Router.push({
@@ -61,8 +69,9 @@ const SearchGrid = ({ bounties, query }) => {
 
     setDataFetching(true);
     // TODO !!! HANDLE ACTUAL DATA FETCHING
-    // const newData = getData(fullQuery);
-
+    console.log(fullQuery);
+    const newData = getData(fullQuery);
+    // console.log(newData)
     // if (newData) {
     //   setDataFetching(false);
     // //setdata(newData);
@@ -77,8 +86,7 @@ const SearchGrid = ({ bounties, query }) => {
       setFullQuery(prevState => (
         {
           ...prevState,
-          title: [],
-          experience: expValue
+          title_or_body: []
         }
       ));
 
@@ -88,8 +96,7 @@ const SearchGrid = ({ bounties, query }) => {
     setFullQuery(prevState => (
       {
         ...prevState,
-        title: titleValue,
-        experience: expValue
+        title_or_body: titleValue
       }
     ));
   }
@@ -116,7 +123,7 @@ const SearchGrid = ({ bounties, query }) => {
                 >
                   <div className="filter-search-form-2 search-1-adjustment bg-white rounded-sm shadow-7 pr-6 py-6 pl-6">
                     <div className="filter-inputs">
-                      <div className="form-group position-relative w-lg-45 w-xl-40 w-xxl-45">
+                      <div className="form-group position-relative w-lg-45 w-xl-40 w-xxl-45 flex-grow-1">
                         <input
                           className="form-control focus-reset pl-13"
                           type="text"
@@ -131,7 +138,7 @@ const SearchGrid = ({ bounties, query }) => {
                         </span>
                       </div>
                       {/* <!-- .select-city starts --> */}
-                      <div className="form-group position-relative w-lg-55 w-xl-60 w-xxl-55">
+                      {/* <div className="form-group position-relative w-lg-55 w-xl-60 w-xxl-55">
                         <Select
                           name="experience"
                           options={experienceLevel}
@@ -145,7 +152,7 @@ const SearchGrid = ({ bounties, query }) => {
                         <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
                           <i className="icon icon-business-agent text-primary"></i>
                         </span>
-                      </div>
+                      </div> */}
                       {/* <!-- ./select-city ends --> */}
                     </div>
                     <div className="button-block">

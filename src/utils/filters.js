@@ -1,11 +1,14 @@
-export const experienceLevel = [
-  { value: "default", label: "All" },
-  { value: "beginner", label: "Beginner" },
-  { value: "intermediate", label: "Intermediate" },
-  { value: "expert", label: "Expert" },
-];
+export const experienceLevel = {
+  "query": "experience",
+  values: [
+    { value: "default", label: "All" },
+    { value: "beginner", label: "Beginner" },
+    { value: "intermediate", label: "Intermediate" },
+    { value: "expert", label: "Expert" },
+  ]
+};
 
-export const bountyFilterType = {
+export const bountyType = {
   "query": "bounty_type",
   "values": [
     { value: "feature", label: "Feature" },
@@ -14,7 +17,7 @@ export const bountyFilterType = {
   ]
 };
 
-export const bountyFilterLangs = {
+export const languages = {
   "query": "languages",
   "values": [
     { value: "javascript", label: "JavaScript" },
