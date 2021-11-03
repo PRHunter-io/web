@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Range, getTrackBackground } from "react-range";
 import { bountyType, languages, experienceLevel } from "../../utils/filters";
 import CheckboxesList from "./CheckboxesList";
@@ -9,8 +8,8 @@ const MIN = 50;
 const MAX = 180;
 
 const Sidebar = ({ fullQuery, setFullQuery }) => {
-  const minValue = fullQuery.price_min ? parseInt(fullQuery.price_min) : MIN;
-  const maxValue = fullQuery.price_to ? parseInt(fullQuery.price_to) : MAX;
+  const minValue = fullQuery?.price_min ? parseInt(fullQuery.price_min) : MIN;
+  const maxValue = fullQuery?.price_to ? parseInt(fullQuery.price_to) : MAX;
 
   const [rangeValues, setRangeValues] = useState([minValue, maxValue]);
 
