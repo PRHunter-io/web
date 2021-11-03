@@ -33,7 +33,7 @@ const getData = async (reqBody, setfilteredData) => {
   const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/bounty/search`;
 
   const formattedBody = { ...reqBody };
-  if (formattedBody.price_min) {
+  if (formattedBody.price_to) {
     formattedBody.price = {
       min: reqBody.price_min,
       to: reqBody.price_to,
