@@ -15,13 +15,18 @@ const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 // SSR SOLUTION - THINK IF BETTER THAN SWR
 export const getServerSideProps = async ({ query }) => {
   try {
-    const res = await fetch(bountiesUrl)
-    const bounties = await res.json()
+    // const res = await fetch(bountiesUrl)
+    // const bounties = await res.json()
+    // return {
+    //   props: {
+    //     bounties,
+    //     query
+    //   },
+    // }
     return {
-      props: {
-        bounties,
+      props:{
         query
-      },
+      }
     }
   } catch (err) {
     console.error('Failed to fetch bounty:', err)
@@ -31,18 +36,22 @@ export const getServerSideProps = async ({ query }) => {
 const getData = async (reqBody) => {
   const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/bounty/search`;
   const data = JSON.stringify(reqBody);
-  console.log(url);
-  console.log(data);
 
-  const res = await fetch(url, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: data
-  });
-  const newData = await res.json();
-  return newData;
+  try{
+    const res = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: data
+    });
+    const newData = await res.json();
+    return newData;
+  }catch (err){
+    console.error('Failed to fetch bounty:', err)
+  }
+  return [];
+  
 }
 
 // const SearchGrid = ({ data }) => {
