@@ -3,13 +3,13 @@ import { Range, getTrackBackground } from "react-range";
 import { bountyType, languages, experienceLevel } from "../../utils/filters";
 import CheckboxesList from "./CheckboxesList";
 
-const STEP = 1;
-const MIN = 50;
-const MAX = 180;
+const STEP = 0.01;
+const MIN = 0;
+const MAX = 10;
 
 const Sidebar = ({ fullQuery, setFullQuery }) => {
-  const minValue = fullQuery?.price_min ? parseInt(fullQuery.price_min) : MIN;
-  const maxValue = fullQuery?.price_to ? parseInt(fullQuery.price_to) : MAX;
+  const minValue = fullQuery?.price_min ? parseFloat(fullQuery.price_min) : MIN;
+  const maxValue = fullQuery?.price_to ? parseFloat(fullQuery.price_to) : MAX;
 
   const [rangeValues, setRangeValues] = useState([minValue, maxValue]);
 
@@ -44,7 +44,7 @@ const Sidebar = ({ fullQuery, setFullQuery }) => {
                   white-space: nowrap;
                 `}
               >
-                ${rangeValues[0].toFixed()} - {rangeValues[1].toFixed()}K
+                ${rangeValues[0].toFixed(2)} - {rangeValues[1].toFixed(2)}
               </span>
             </p>
           </div>

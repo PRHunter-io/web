@@ -33,31 +33,26 @@ const Check = ({ queryKey, querriesArr, setquerriesArr, queryValue, children }) 
   const [active, setActive] = useState(false);
   const { query } = useRouter();
   const changeQueryArr = (arr, b) => {
-    setActive(!active);
+    if (!arr && active) {
+      setquerriesArr([]);
+      return;
+    }
 
-    let newQueryArr = [];
-
-    if (typeof arr === 'string') {
-      newQueryArr = [arr];
-    } else if (Array.isArray(arr)) {
-      newQueryArr = [...arr];
-    };
-
-    if (!active) {
-      newQueryArr.push(b);
+    if (arr === b) {
+      setquerriesArr([]);
     } else {
-      const index = newQueryArr.indexOf(b);
-
-      if (index > -1) {
-        newQueryArr.splice(index, 1);
-      }
+      setquerriesArr(b);
     };
-    setquerriesArr(newQueryArr);
   }
 
   useEffect(() => {
+
+    querriesArr === queryValue ? setActive(true) : setActive(false);
+  }, [querriesArr])
+
+  useEffect(() => {
     if (query[queryKey]) {
-      setActive(query[queryKey].includes(queryValue))
+      setActive(query[queryKey] === queryValue)
     }
   }, [])
 
@@ -77,14 +72,7 @@ const CheckboxesList = ({ fullQuery, setFullQuery, filtersList }) => {
   const [querriesArr, setquerriesArr] = useState(fullQuery[filtersList.query])
 
   useEffect(() => {
-    if (fullQuery[filtersList.query]) {
-      setquerriesArr(fullQuery[filtersList.query])
-    }
-  }, [])
-
-  useEffect(() => {
     if (querriesArr === undefined) return;
-
     setFullQuery(prevState => ({
       ...prevState,
       [filtersList.query]: querriesArr
@@ -100,7 +88,8 @@ const CheckboxesList = ({ fullQuery, setFullQuery, filtersList }) => {
               <Check
                 queryKey={filtersList.query}
                 querriesArr={querriesArr}
-                setquerriesArr={setquerriesArr} queryValue={item.value}
+                setquerriesArr={setquerriesArr}
+                queryValue={item.value}
               >
                 {item.label}
               </Check>

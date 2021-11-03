@@ -2,42 +2,59 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import PageWrapper from "../../components/PageWrapper";
 import Sidebar from "../../components/Sidebar";
-import { Select } from "../../components/Core";
 import Router from 'next/router';
-
-import useSWR from 'swr'
-import fetcher from "../../utils/fetcher";
 import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
-import { experienceLevel } from "../../utils/filters";
 // 
 const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
 // SSR SOLUTION - THINK IF BETTER THAN SWR
 export const getServerSideProps = async ({ query }) => {
   try {
-    // const res = await fetch(bountiesUrl)
-    // const bounties = await res.json()
+    const res = await fetch(bountiesUrl)
+    const bounties = await res.json()
+    return {
+      props: {
+        bounties,
+        query
+      },
+    }
     // return {
     //   props: {
     //     bounties,
     //     query
     //   },
     // }
-    return {
-      props:{
-        query
-      }
-    }
   } catch (err) {
     console.error('Failed to fetch bounty:', err)
   }
 }
 
-const getData = async (reqBody) => {
+const getData = async (reqBody, setfilteredData) => {
   const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/bounty/search`;
-  const data = JSON.stringify(reqBody);
 
-  try{
+  const formattedBody = { ...reqBody };
+  if (formattedBody.price_min) {
+    formattedBody.price = {
+      min: reqBody.price_min,
+      to: reqBody.price_to,
+      currency: reqBody.currency
+    };
+    delete formattedBody.price_min;
+    delete formattedBody.price_to;
+    delete formattedBody.currency;
+  }
+
+  for (const key in formattedBody) {
+    if (Object.hasOwnProperty.call(formattedBody, key)) {
+      const element = formattedBody[key];
+      if (element.length === 0) {
+        delete formattedBody[key];
+      }
+    }
+  }
+
+  const data = JSON.stringify(formattedBody);
+  try {
     const res = await fetch(url, {
       method: 'POST',
       headers: {
@@ -46,22 +63,17 @@ const getData = async (reqBody) => {
       body: data
     });
     const newData = await res.json();
-    return newData;
-  }catch (err){
+    setfilteredData(newData);
+  } catch (err) {
     console.error('Failed to fetch bounty:', err)
   }
-  return [];
-  
 }
 
 // const SearchGrid = ({ data }) => {
 const SearchGrid = ({ bounties, query }) => {
   const [gridDisplay, setgridDisplay] = useState(false);
-  const [dataFetching, setDataFetching] = useState(false)
-  const [data, setdata] = useState(bounties)
-  // SWR SOLUTION
-
-  // const { filtersdata, error } = useSWR(bountiesUrl, fetcher);
+  const [data, setdata] = useState(bounties);
+  const [filteredData, setfilteredData] = useState(false);
 
   const bountiesCount = data ? data.length : 0;
 
@@ -76,16 +88,7 @@ const SearchGrid = ({ bounties, query }) => {
       undefined, { shallow: true }
     );
 
-    setDataFetching(true);
-    // TODO !!! HANDLE ACTUAL DATA FETCHING
-    console.log(fullQuery);
-    const newData = getData(fullQuery);
-    // console.log(newData)
-    // if (newData) {
-    //   setDataFetching(false);
-    // //setdata(newData);
-    //   console.log(newData)
-    // }
+    getData(fullQuery, setfilteredData);
   };
 
   const handleForm = e => {
@@ -111,7 +114,9 @@ const SearchGrid = ({ bounties, query }) => {
   }
 
   useEffect(() => {
-    updateQuery(fullQuery);
+    if (Object.keys(fullQuery).length !== 0) {
+      updateQuery(fullQuery);
+    }
   }, [fullQuery])
 
   return (
@@ -121,7 +126,7 @@ const SearchGrid = ({ bounties, query }) => {
           <div className="container">
             <div className="row">
               <div className="col-12 col-lg-4 col-md-5 col-xs-8">
-                <Sidebar fullQuery setFullQuery={setFullQuery} />
+                <Sidebar fullQuery={fullQuery} setFullQuery={setFullQuery} />
               </div>
               {/* <!-- Main Body --> */}
               <div className="col-12 col-xl-8 col-lg-8">
@@ -174,7 +179,7 @@ const SearchGrid = ({ bounties, query }) => {
                 <div className="pt-12">
                   <div className="d-flex align-items-center justify-content-between mb-6">
                     <h5 className="font-size-4 font-weight-normal text-gray">
-                      <span className="heading-default-color">{bountiesCount}</span> results for{" "}
+                      <span className="heading-default-color">{filteredData ? filteredData.total : bountiesCount}</span> results for{" "}
                       <span className="heading-default-color">UI Designer</span>
                     </h5>
                     <div className="d-flex align-items-center result-view-type">
@@ -194,16 +199,10 @@ const SearchGrid = ({ bounties, query }) => {
                   </div>
 
                   {data ? (gridDisplay ?
-                    <BountiesListGrid data={data} />
+                    <BountiesListGrid data={filteredData ? filteredData.content : data} />
                     :
-                    <BountiesListRegular data={data} />) : <div>loading</div>
+                    <BountiesListRegular data={filteredData ? filteredData.content : data} />) : <div>loading</div>
                   }
-
-                  {/* {data ? (gridDisplay ?
-                    <BountiesListGrid data={data} error={error} />
-                    :
-                    <BountiesListRegular data={data} error={error} />) : <div>loading</div>
-                  } */}
 
                   <div className="text-center pt-5 pt-lg-13">
                     <Link href="/#">
