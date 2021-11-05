@@ -2,7 +2,8 @@ import React, { useContext } from "react";
 import Link from "next/link";
 import GlobalContext from "../../context/GlobalContext";
 import Logo from "../Logo";
-import imgM from "../../assets/image/l1/png/message.png";
+import imgM from "../../../public/images/image/l1/png/message.png";
+import Image from 'next/image'
 
 const Footer = () => {
   const gContext = useContext(GlobalContext);
@@ -60,7 +61,7 @@ const Footer = () => {
               {/* <!-- footer logo End --> */}
               {/* <!-- media start --> */}
               <div className="media mb-11">
-                <img src={imgM} className="align-self-center mr-3" alt="" />
+                <Image src={imgM} className="align-self-center mr-3" alt="" />
                 <div className="media-body pl-5">
                   <p className="mb-0 font-size-4 text-white">Contact us at</p>
                   <Link href="/#">

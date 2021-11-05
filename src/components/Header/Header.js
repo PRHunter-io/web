@@ -12,7 +12,8 @@ import { device } from "../../utils";
 import Logo from "../Logo";
 import { menuItems } from "./menuItems";
 
-import imgP from "../../assets/image/header-profile.png";
+import Image from 'next/image'
+import imgP from "../../../public/images/image/header-profile.png";
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
@@ -124,7 +125,7 @@ const Header = () => {
                                 onClick={(e) => e.preventDefault()}
                               >
                                 {label}
-                                <i className="icon icon-small-down"></i>
+                                <i className="fas fa-angle-down"></i>
                               </a>
                               <ul className="gr-menu-dropdown dropdown-menu ">
                                 {items.map((subItem, indexSub) => {
@@ -147,7 +148,7 @@ const Header = () => {
                                             onClick={(e) => e.preventDefault()}
                                           >
                                             {subItem.label}
-                                            <i className="icon icon-small-down"></i>
+                                            <i className="fas fa-angle-down"></i>
                                           </a>
                                           <ul className="gr-menu-dropdown dropdown-menu dropdown-left">
                                             {subItem.items.map(
@@ -262,7 +263,7 @@ const Header = () => {
                       className="proile media ml-7 flex-y-center"
                     >
                       <div className="circle-40">
-                        <img src={imgP} alt="" />
+                        <Image src={imgP} alt="" />
                       </div>
                       <i className="fas fa-chevron-down heading-default-color ml-6"></i>
                     </Dropdown.Toggle>

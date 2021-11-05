@@ -1,11 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import imgF1 from "../../assets/image/l1/png/feature-brand-1.png";
-import imgF2 from "../../assets/image/l1/png/feature-brand-2.png";
-import imgF3 from "../../assets/image/l1/png/feature-brand-3.png";
-import imgF4 from "../../assets/image/l1/png/feature-brand-4.png";
-import imgF5 from "../../assets/image/l1/png/feature-brand-5.png";
-import imgF6 from "../../assets/image/l1/png/feature-brand-6.png";
+import TechIcon from "../../components/Icons/TechIcon";
 
 const FeaturedJobs = () => {
   return (
@@ -43,11 +38,7 @@ const FeaturedJobs = () => {
               {/* <!-- Start Feature One --> */}
               <div className="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                 <div className="d-block mb-7">
-                  <Link href="/#">
-                    <a>
-                      <img src={imgF1} alt="" />
-                    </a>
-                  </Link>
+                    <TechIcon language="javascript"/>
                 </div>
                 <Link href="/#">
                   <a className="font-size-3 d-block mb-0 text-gray">
@@ -117,7 +108,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF2} alt="" />
+                      <TechIcon language="html"/>
                     </a>
                   </Link>
                 </div>
@@ -185,11 +176,7 @@ const FeaturedJobs = () => {
               {/* <!-- Start Feature One --> */}
               <div className="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
                 <div className="d-block mb-7">
-                  <Link href="/#">
-                    <a>
-                      <img src={imgF3} alt="" />
-                    </a>
-                  </Link>
+                  <TechIcon language="ruby"/>
                 </div>
                 <Link href="/#">
                   <a className="font-size-3 d-block mb-0 text-gray">Shopify</a>
@@ -257,7 +244,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF4} alt="" />
+                    <TechIcon language="devops"/>
                     </a>
                   </Link>
                 </div>
@@ -327,7 +314,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF5} alt="" />
+                    <TechIcon language="dotnetcore"/>
                     </a>
                   </Link>
                 </div>
@@ -397,7 +384,7 @@ const FeaturedJobs = () => {
                 <div className="d-block mb-7">
                   <Link href="/#">
                     <a>
-                      <img src={imgF6} alt="" />
+                    <TechIcon language="go"/>
                     </a>
                   </Link>
                 </div>

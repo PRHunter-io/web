@@ -4,18 +4,19 @@ import Link from "next/link";
 import PageWrapper from "../components/PageWrapper";
 import ProfileSidebar from "../components/ProfileSidebar";
 
-import imgB1 from "../assets/image/l2/png/featured-job-logo-1.png";
-import imgB2 from "../assets/image/l1/png/feature-brand-1.png";
-import imgB3 from "../assets/image/svg/harvard.svg";
-import imgB4 from "../assets/image/svg/mit.svg";
+import Image from 'next/image'
+import imgB1 from "public/images/image/l2/png/featured-job-logo-1.png";
+import imgB2 from "public/images/image/l1/png/feature-brand-1.png";
+import imgB3 from "public/images/image/svg/harvard.svg";
+import imgB4 from "public/images/image/svg/mit.svg";
 
-import imgT1 from "../assets/image/l3/png/team-member-1.png";
-import imgT2 from "../assets/image/l3/png/team-member-2.png";
-import imgT3 from "../assets/image/l3/png/team-member-3.png";
-import imgT4 from "../assets/image/l3/png/team-member-4.png";
-import imgT5 from "../assets/image/l3/png/team-member-5.png";
+import imgT1 from "public/images/image/l3/png/team-member-1.png";
+import imgT2 from "public/images/image/l3/png/team-member-2.png";
+import imgT3 from "public/images/image/l3/png/team-member-3.png";
+import imgT4 from "public/images/image/l3/png/team-member-4.png";
+import imgT5 from "public/images/image/l3/png/team-member-5.png";
 
-import imgL from "../assets/image/svg/icon-loaction-pin-black.svg";
+import imgL from "public/images/image/svg/icon-loaction-pin-black.svg";
 
 const CandidateProfile = () => {
   return (
@@ -161,7 +162,7 @@ const CandidateProfile = () => {
                           <div className="w-100">
                             <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                               <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                <img src={imgB1} alt="" />
+                                <Image src={imgB1} alt="" />
                               </div>
                               <div className="w-100 mt-n2">
                                 <h3 className="mb-0">
@@ -190,7 +191,7 @@ const CandidateProfile = () => {
                                           margin-top: -2px;
                                         `}
                                       >
-                                        <img src={imgL} alt="" />
+                                        <Image src={imgL} alt="" />
                                       </span>
                                       New York, USA
                                     </a>
@@ -204,7 +205,7 @@ const CandidateProfile = () => {
                           <div className="w-100">
                             <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                               <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                <img src={imgB2} alt="" />
+                                <Image src={imgB2} alt="" />
                               </div>
                               <div className="w-100 mt-n2">
                                 <h3 className="mb-0">
@@ -233,7 +234,7 @@ const CandidateProfile = () => {
                                           margin-top: -2px;
                                         `}
                                       >
-                                        <img src={imgL} alt="" />
+                                        <Image src={imgL} alt="" />
                                       </span>
                                       New York, USA
                                     </a>
@@ -254,7 +255,7 @@ const CandidateProfile = () => {
                           <div className="w-100">
                             <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                               <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                <img src={imgB3} alt="" />
+                                <Image src={imgB3} alt="" />
                               </div>
                               <div className="w-100 mt-n2">
                                 <h3 className="mb-0">
@@ -283,7 +284,7 @@ const CandidateProfile = () => {
                                           margin-top: -2px;
                                         `}
                                       >
-                                        <img src={imgL} alt="" />
+                                        <Image src={imgL} alt="" />
                                       </span>
                                       Brylin, USA
                                     </a>
@@ -297,7 +298,7 @@ const CandidateProfile = () => {
                           <div className="w-100">
                             <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                               <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                                <img src={imgB4} alt="" />
+                                <Image src={imgB4} alt="" />
                               </div>
                               <div className="w-100 mt-n2">
                                 <h3 className="mb-0">
@@ -326,7 +327,7 @@ const CandidateProfile = () => {
                                           margin-top: -2px;
                                         `}
                                       >
-                                        <img src={imgL} alt="" />
+                                        <Image src={imgL} alt="" />
                                       </span>
                                       New York, USA
                                     </a>

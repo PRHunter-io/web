@@ -3,12 +3,13 @@ import Link from "next/link";
 import PageWrapper from "../components/PageWrapper";
 import ProfileSidebar from "../components/ProfileSidebar";
 
-import img1 from "../assets/image/l3/png/fimize.png";
-import img2 from "../assets/image/svg/icon-shark-2.svg";
-import img3 from "../assets/image/svg/icon-thunder.svg";
-import img4 from "../assets/image/l3/png/asios.png";
-import img5 from "../assets/image/svg/icon-thunder.svg";
-import img6 from "../assets/image/l3/png/asios.png";
+import Image from 'next/image'
+import img1 from "public/images/image/l3/png/fimize.png";
+import img2 from "public/images/image/svg/icon-shark-2.svg";
+import img3 from "public/images/image/svg/icon-thunder.svg";
+import img4 from "public/images/image/l3/png/asios.png";
+import img5 from "public/images/image/svg/icon-thunder.svg";
+import img6 from "public/images/image/l3/png/asios.png";
 
 const CandidateProfile = () => {
   return (
@@ -48,7 +49,7 @@ const CandidateProfile = () => {
                           <div className="square-52 bg-indigo mr-8 rounded">
                             <Link href="/#">
                               <a>
-                                <img src={img1} alt="" />
+                                <Image src={img1} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -100,7 +101,7 @@ const CandidateProfile = () => {
                           <div className="square-52 bg-regent mr-8 rounded">
                             <Link href="/#">
                               <a>
-                                <img src={img2} alt="" />
+                                <Image src={img2} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -152,7 +153,7 @@ const CandidateProfile = () => {
                           <div className="square-52 bg-orange-2 mr-8 rounded">
                             <Link href="/#">
                               <a>
-                                <img src={img3} alt="" />
+                                <Image src={img3} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -204,7 +205,7 @@ const CandidateProfile = () => {
                           <div className="square-52 bg-helio mr-8 rounded">
                             <Link href="/#">
                               <a>
-                                <img src={img4} alt="" />
+                                <Image src={img4} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -263,7 +264,7 @@ const CandidateProfile = () => {
                           <div className="square-52 bg-orange-2 mr-8 rounded">
                             <Link href="/#">
                               <a>
-                                <img src={img5} alt="" />
+                                <Image src={img5} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -315,7 +316,7 @@ const CandidateProfile = () => {
                           <div className="square-52 bg-helio mr-8 rounded">
                             <Link href="/#">
                               <a>
-                                <img src={img6} alt="" />
+                                <Image src={img6} alt="" />
                               </a>
                             </Link>
                           </div>

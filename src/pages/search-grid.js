@@ -4,12 +4,13 @@ import PageWrapper from "../components/PageWrapper";
 import Sidebar from "../components/Sidebar";
 import { Select } from "../components/Core";
 
-import imgB1 from "../assets/image/l1/png/feature-brand-1.png";
-import imgB2 from "../assets/image/l1/png/feature-brand-2.png";
-import imgB3 from "../assets/image/l1/png/feature-brand-3.png";
-import imgB4 from "../assets/image/l1/png/feature-brand-4.png";
-import imgB5 from "../assets/image/l1/png/feature-brand-5.png";
-import imgB6 from "../assets/image/l1/png/feature-brand-6.png";
+import Image from 'next/image'
+import imgB1 from "public/images/image/l1/png/feature-brand-1.png";
+import imgB2 from "public/images/image/l1/png/feature-brand-2.png";
+import imgB3 from "public/images/image/l1/png/feature-brand-3.png";
+import imgB4 from "public/images/image/l1/png/feature-brand-4.png";
+import imgB5 from "public/images/image/l1/png/feature-brand-5.png";
+import imgB6 from "public/images/image/l1/png/feature-brand-6.png";
 
 const defaultCountries = [
   { value: "sp", label: "Singapore" },
@@ -97,7 +98,7 @@ const SearchGrid = () => {
                           <div className="d-block mb-7">
                             <Link href="/#">
                               <a>
-                                <img src={imgB1} alt="" />
+                                <Image src={imgB1} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -166,7 +167,7 @@ const SearchGrid = () => {
                           <div className="d-block mb-7">
                             <Link href="/#">
                               <a>
-                                <img src={imgB2} alt="" />
+                                <Image src={imgB2} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -235,7 +236,7 @@ const SearchGrid = () => {
                           <div className="d-block mb-7">
                             <Link href="/#">
                               <a>
-                                <img src={imgB3} alt="" />
+                                <Image src={imgB3} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -304,7 +305,7 @@ const SearchGrid = () => {
                           <div className="d-block mb-7">
                             <Link href="/#">
                               <a>
-                                <img src={imgB4} alt="" />
+                                <Image src={imgB4} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -373,7 +374,7 @@ const SearchGrid = () => {
                           <div className="d-block mb-7">
                             <Link href="/#">
                               <a>
-                                <img src={imgB5} alt="" />
+                                <Image src={imgB5} alt="" />
                               </a>
                             </Link>
                           </div>
@@ -442,7 +443,7 @@ const SearchGrid = () => {
                           <div className="d-block mb-7">
                             <Link href="/#">
                               <a>
-                                <img src={imgB6} alt="" />
+                                <Image src={imgB6} alt="" />
                               </a>
                             </Link>
                           </div>

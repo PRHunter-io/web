@@ -1,17 +1,18 @@
 import React from "react";
 import Link from "next/link";
 
-import imgL1Logo from "../../assets/image/logo-main-black.svg";
-import imgL1LogoWhite from "../../assets/image/logo-main-white.svg";
+import Image from 'next/image'
+import imgL1LogoWhite from "../../../public/images/logo-main-white.svg";
+import imgL1LogoBlack from "../../../public/images/logo-main-black.svg";
 
 const Logo = ({ white, height, className = "", ...rest }) => {
   return (
     <Link href="/">
       <a className={`d-block ${className}`} {...rest}>
         {white ? (
-          <img src={imgL1LogoWhite} alt="" />
+          <Image src={imgL1LogoWhite} alt="" />
         ) : (
-          <img src={imgL1Logo} alt="" />
+          <Image src={imgL1LogoBlack} alt="" />
         )}
       </a>
     </Link>

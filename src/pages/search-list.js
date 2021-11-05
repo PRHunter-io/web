@@ -4,16 +4,17 @@ import PageWrapper from "../components/PageWrapper";
 import Sidebar from "../components/Sidebar";
 import { Select } from "../components/Core";
 
-import imgF1 from "../assets/image/l2/png/featured-job-logo-1.png";
-import imgF2 from "../assets/image/l2/png/featured-job-logo-2.png";
-import imgF3 from "../assets/image/l2/png/featured-job-logo-3.png";
-import imgF4 from "../assets/image/l2/png/featured-job-logo-4.png";
-import imgF5 from "../assets/image/l2/png/featured-job-logo-5.png";
+import Image from 'next/image'
+import imgF1 from "public/images/image/l2/png/featured-job-logo-1.png";
+import imgF2 from "public/images/image/l2/png/featured-job-logo-2.png";
+import imgF3 from "public/images/image/l2/png/featured-job-logo-3.png";
+import imgF4 from "public/images/image/l2/png/featured-job-logo-4.png";
+import imgF5 from "public/images/image/l2/png/featured-job-logo-5.png";
 
-import imgF from "../assets/image/svg/icon-fire-rounded.svg";
-import iconL from "../assets/image/svg/icon-loaction-pin-black.svg";
-import iconS from "../assets/image/svg/icon-suitecase.svg";
-import iconC from "../assets/image/svg/icon-clock.svg";
+import imgF from "public/images/image/svg/icon-fire-rounded.svg";
+import iconL from "public/images/image/svg/icon-loaction-pin-black.svg";
+import iconS from "public/images/image/svg/icon-suitecase.svg";
+import iconC from "public/images/image/svg/icon-clock.svg";
 
 const defaultCountries = [
   { value: "sp", label: "Singapore" },
@@ -97,7 +98,7 @@ const SearchGrid = () => {
                         <div className="col-md-6">
                           <div className="media align-items-center">
                             <div className="square-72 d-block mr-8">
-                              <img src={imgF1} alt="" />
+                              <Image src={imgF1} alt="" />
                             </div>
                             <div>
                               <h3 className="mb-0">
@@ -118,7 +119,7 @@ const SearchGrid = () => {
                         <div className="col-md-6 text-right pt-7 pt-md-5">
                           <div className="media justify-content-md-end">
                             <div className="image mr-5 mt-2">
-                              <img src={imgF} alt="" />
+                              <Image src={imgF} alt="" />
                             </div>
                             <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                               <span className="text-black-2">80-90K</span> PLN
@@ -161,7 +162,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconL} alt="" />
+                                <Image src={iconL} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Berlyn, UK
@@ -174,7 +175,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconS} alt="" />
+                                <Image src={iconS} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Full-time
@@ -187,7 +188,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconC} alt="" />
+                                <Image src={iconC} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 9d ago
@@ -206,7 +207,7 @@ const SearchGrid = () => {
                         <div className="col-md-6">
                           <div className="media align-items-center">
                             <div className="square-72 d-block mr-8">
-                              <img src={imgF2} alt="" />
+                              <Image src={imgF2} alt="" />
                             </div>
                             <div>
                               <h3 className="mb-0">
@@ -227,7 +228,7 @@ const SearchGrid = () => {
                         <div className="col-md-6 text-right pt-7 pt-md-5">
                           <div className="media justify-content-md-end">
                             <div className="image mr-5 mt-2">
-                              <img src={imgF} alt="" />
+                              <Image src={imgF} alt="" />
                             </div>
                             <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                               <span className="text-black-2">120-150K</span> PLN
@@ -270,7 +271,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconL} alt="" />
+                                <Image src={iconL} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Berlyn, UK
@@ -283,7 +284,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconS} alt="" />
+                                <Image src={iconS} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Full-time
@@ -296,7 +297,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconC} alt="" />
+                                <Image src={iconC} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 9d ago
@@ -315,7 +316,7 @@ const SearchGrid = () => {
                         <div className="col-md-6">
                           <div className="media align-items-center">
                             <div className="square-72 d-block mr-8">
-                              <img src={imgF3} alt="" />
+                              <Image src={imgF3} alt="" />
                             </div>
                             <div>
                               <h3 className="mb-0">
@@ -336,7 +337,7 @@ const SearchGrid = () => {
                         <div className="col-md-6 text-right pt-7 pt-md-5">
                           <div className="media justify-content-md-end">
                             <div className="image mr-5 mt-2">
-                              <img src={imgF} alt="" />
+                              <Image src={imgF} alt="" />
                             </div>
                             <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                               <span className="text-black-2">100-120K</span> PLN
@@ -379,7 +380,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconL} alt="" />
+                                <Image src={iconL} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Berlyn, UK
@@ -392,7 +393,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconS} alt="" />
+                                <Image src={iconS} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Full-time
@@ -405,7 +406,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconC} alt="" />
+                                <Image src={iconC} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 9d ago
@@ -424,7 +425,7 @@ const SearchGrid = () => {
                         <div className="col-md-6">
                           <div className="media align-items-center">
                             <div className="square-72 d-block mr-8">
-                              <img src={imgF4} alt="" />
+                              <Image src={imgF4} alt="" />
                             </div>
                             <div>
                               <h3 className="mb-0">
@@ -445,7 +446,7 @@ const SearchGrid = () => {
                         <div className="col-md-6 text-right pt-7 pt-md-5">
                           <div className="media justify-content-md-end">
                             <div className="image mr-5 mt-2">
-                              <img src={imgF} alt="" />
+                              <Image src={imgF} alt="" />
                             </div>
                             <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                               <span className="text-black-2">80-90K</span> PLN
@@ -488,7 +489,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconL} alt="" />
+                                <Image src={iconL} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Berlyn, UK
@@ -501,7 +502,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconS} alt="" />
+                                <Image src={iconS} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Full-time
@@ -514,7 +515,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconC} alt="" />
+                                <Image src={iconC} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 9d ago
@@ -533,7 +534,7 @@ const SearchGrid = () => {
                         <div className="col-md-6">
                           <div className="media align-items-center">
                             <div className="square-72 d-block mr-8">
-                              <img src={imgF5} alt="" />
+                              <Image src={imgF5} alt="" />
                             </div>
                             <div>
                               <h3 className="mb-0">
@@ -554,7 +555,7 @@ const SearchGrid = () => {
                         <div className="col-md-6 text-right pt-7 pt-md-5">
                           <div className="media justify-content-md-end">
                             <div className="image mr-5 mt-2">
-                              <img src={imgF} alt="" />
+                              <Image src={imgF} alt="" />
                             </div>
                             <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                               <span className="text-black-2">80-90K</span> PLN
@@ -597,7 +598,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconL} alt="" />
+                                <Image src={iconL} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Berlyn, UK
@@ -610,7 +611,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconS} alt="" />
+                                <Image src={iconS} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Full-time
@@ -623,7 +624,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconC} alt="" />
+                                <Image src={iconC} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 9d ago
@@ -642,7 +643,7 @@ const SearchGrid = () => {
                         <div className="col-md-6">
                           <div className="media align-items-center">
                             <div className="square-72 d-block mr-8">
-                              <img src={imgF1} alt="" />
+                              <Image src={imgF1} alt="" />
                             </div>
                             <div>
                               <h3 className="mb-0">
@@ -663,7 +664,7 @@ const SearchGrid = () => {
                         <div className="col-md-6 text-right pt-7 pt-md-5">
                           <div className="media justify-content-md-end">
                             <div className="image mr-5 mt-2">
-                              <img src={imgF} alt="" />
+                              <Image src={imgF} alt="" />
                             </div>
                             <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                               <span className="text-black-2">80-90K</span> PLN
@@ -706,7 +707,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconL} alt="" />
+                                <Image src={iconL} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Berlyn, UK
@@ -719,7 +720,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconS} alt="" />
+                                <Image src={iconS} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 Full-time
@@ -732,7 +733,7 @@ const SearchGrid = () => {
                                   margin-top: -2px;
                                 `}
                               >
-                                <img src={iconC} alt="" />
+                                <Image src={iconC} alt="" />
                               </span>
                               <span className="font-weight-semibold">
                                 9d ago

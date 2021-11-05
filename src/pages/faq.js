@@ -54,10 +54,10 @@ const Faq = () => {
                       <Collapse in={openItem === 1}>
                         <div className="pr-7">
                           <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
-                            Any registered user can create Bounties on PRHunter. A single Bounty is always linked to a github issue in a public repository managed by the user.
+                            Any registered user can create Bounties on PRHunter. A Bounty is always linked to a Github issue in a public repository managed by the user.
                             <br />
-                            When creating a Bounty, the creator must deposit the bounty amount in the PR smart contract.
-                            The smart contract will monitor the activity on the issue - when a pull request gets merged, the author of that pull request will automatically receive the bounty, as long as they have an account on PRHunter
+                            When creating a Bounty, the creator deposits the reward in a smart contract.
+                            The smart contract will monitor the activity on the issue - when a pull request gets merged, the author of that pull request will automatically receive the bounty.
                           </div>
                         </div>
                       </Collapse>

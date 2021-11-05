@@ -3,12 +3,12 @@ import { Nav, Tab } from "react-bootstrap";
 import Link from "next/link";
 import PageWrapper from "../components/PageWrapper";
 
-import imgF1 from "../assets/image/l2/png/featured-job-logo-1.png";
-import imgB1 from "../assets/image/l1/png/feature-brand-1.png";
-import imgB2 from "../assets/image/l1/png/feature-brand-4.png";
-import imgB3 from "../assets/image/l1/png/feature-brand-5.png";
-import imgB4 from "../assets/image/l3/png/github-mark.png";
-import imgB5 from "../assets/image/l3/png/universal.png";
+import imgF1 from "public/images/image/l2/png/featured-job-logo-1.png";
+import imgB1 from "public/images/image/l1/png/feature-brand-1.png";
+import imgB2 from "public/images/image/l1/png/feature-brand-4.png";
+import imgB3 from "public/images/image/l1/png/feature-brand-5.png";
+import imgB4 from "public/images/image/l3/png/github-mark.png";
+import imgB5 from "public/images/image/l3/png/universal.png";
 
 const CandidateProfile = () => {
   return (

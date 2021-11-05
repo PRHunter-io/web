@@ -2,7 +2,8 @@ import React from "react";
 import { Button } from "react-bootstrap";
 
 import { Select } from "../../components/Core";
-import imgP from "../../assets/image/patterns/globe-pattern.png";
+
+
 import { experienceLevel } from "../../utils/filters";
 
 const Hero = () => {
@@ -11,6 +12,7 @@ const Hero = () => {
   const el = React.useRef(null);
   // Create reference to store the Typed instance itself
   const typed = React.useRef(null);
+  let globePattern = '/images/globe-pattern.png' 
 
   React.useEffect(() => {
     const options = {
@@ -42,7 +44,7 @@ const Hero = () => {
       {/* <!-- Hero Area --> */}
       <div className="position-relative z-index-1 bg-squeeze pt-26 dark-mode-texts">
         <div className="pos-abs-tr h-100">
-          <img src={imgP} alt="" className="h-100" />
+          <img src={globePattern} className="h-100" />
         </div>
         <div className="container position-static">
           <div className="row position-relative align-items-center position-static">

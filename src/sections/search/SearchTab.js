@@ -2,19 +2,20 @@ import React from "react";
 import { Tab, Nav } from "react-bootstrap";
 import Link from "next/link";
 
-import imgF1 from "../../assets/image/l2/png/featured-job-logo-1.png";
-import imgF2 from "../../assets/image/l2/png/featured-job-logo-2.png";
-import imgF3 from "../../assets/image/l2/png/featured-job-logo-3.png";
-import imgF4 from "../../assets/image/l2/png/featured-job-logo-4.png";
-import imgF5 from "../../assets/image/l2/png/featured-job-logo-5.png";
+import imgF1 from"public/images/image/l2/png/featured-job-logo-1.png";
+import imgF2 from"public/images/image/l2/png/featured-job-logo-2.png";
+import imgF3 from"public/images/image/l2/png/featured-job-logo-3.png";
+import imgF4 from"public/images/image/l2/png/featured-job-logo-4.png";
+import imgF5 from"public/images/image/l2/png/featured-job-logo-5.png";
 
-import imgF from "../../assets/image/svg/icon-fire-rounded.svg";
-import iconL from "../../assets/image/svg/icon-loaction-pin-black.svg";
-import iconS from "../../assets/image/svg/icon-suitecase.svg";
-import iconC from "../../assets/image/svg/icon-clock.svg";
-import iconL2 from "../../assets/image/svg/icon-location.svg";
-import iconD from "../../assets/image/svg/icon-dolor.svg";
-import iconB from "../../assets/image/svg/icon-briefcase.svg";
+import imgF from"public/images/image/svg/icon-fire-rounded.svg";
+import iconL from"public/images/image/svg/icon-loaction-pin-black.svg";
+import iconS from"public/images/image/svg/icon-suitecase.svg";
+import iconC from"public/images/image/svg/icon-clock.svg";
+import iconL2 from"public/images/image/svg/icon-location.svg";
+import iconD from"public/images/image/svg/icon-dolor.svg";
+import iconB from"public/images/image/svg/icon-briefcase.svg";
+import Image from 'next/image'
 
 const SearchTab = () => {
   return (
@@ -35,7 +36,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media align-items-center">
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF1} alt="" />
+                            <Image src={imgF1} alt="" />
                           </div>
                           <div>
                             <h3 className="mb-0 font-size-6 heading-default-color">
@@ -50,7 +51,7 @@ const SearchTab = () => {
                       <div className="col-md-6 text-right pt-7 pt-md-5">
                         <div className="media justify-content-md-end">
                           <div className="image mr-5 mt-2">
-                            <img src={imgF} alt="" />
+                            <Image src={imgF} alt="" />
                           </div>
                           <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                             <span className="text-black-2">80-90K PLN</span> PLN
@@ -87,7 +88,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconL} alt="" />
+                              <Image src={iconL} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Berlyn, UK
@@ -100,7 +101,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconS} alt="" />
+                              <Image src={iconS} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Full-time
@@ -113,7 +114,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconC} alt="" />
+                              <Image src={iconC} alt="" />
                             </span>
                             <span className="font-weight-semibold">9d ago</span>
                           </li>
@@ -130,7 +131,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media align-items-center">
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF2} alt="" />
+                            <Image src={imgF2} alt="" />
                           </div>
                           <div>
                             <h3 className="mb-0 font-size-6 heading-default-color">
@@ -145,7 +146,7 @@ const SearchTab = () => {
                       <div className="col-md-6 text-right pt-7 pt-md-5">
                         <div className="media justify-content-md-end">
                           <div className="image mr-5 mt-2">
-                            <img src={imgF} alt="" />
+                            <Image src={imgF} alt="" />
                           </div>
                           <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                             <span className="text-black-2">120-150K</span> PLN
@@ -182,7 +183,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconL} alt="" />
+                              <Image src={iconL} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Berlyn, UK
@@ -195,7 +196,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconS} alt="" />
+                              <Image src={iconS} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Full-time
@@ -208,7 +209,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconC} alt="" />
+                              <Image src={iconC} alt="" />
                             </span>
                             <span className="font-weight-semibold">9d ago</span>
                           </li>
@@ -225,7 +226,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media align-items-center">
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF3} alt="" />
+                            <Image src={imgF3} alt="" />
                           </div>
                           <div>
                             <h3 className="mb-0 font-size-6 heading-default-color">
@@ -240,7 +241,7 @@ const SearchTab = () => {
                       <div className="col-md-6 text-right pt-7 pt-md-5">
                         <div className="media justify-content-md-end">
                           <div className="image mr-5 mt-2">
-                            <img src={imgF} alt="" />
+                            <Image src={imgF} alt="" />
                           </div>
                           <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                             <span className="text-black-2">100-120K</span> PLN
@@ -277,7 +278,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconL} alt="" />
+                              <Image src={iconL} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Berlyn, UK
@@ -290,7 +291,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconS} alt="" />
+                              <Image src={iconS} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Full-time
@@ -303,7 +304,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconC} alt="" />
+                              <Image src={iconC} alt="" />
                             </span>
                             <span className="font-weight-semibold">9d ago</span>
                           </li>
@@ -320,7 +321,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media align-items-center">
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF4} alt="" />
+                            <Image src={imgF4} alt="" />
                           </div>
                           <div>
                             <h3 className="mb-0 font-size-6 heading-default-color">
@@ -335,7 +336,7 @@ const SearchTab = () => {
                       <div className="col-md-6 text-right pt-7 pt-md-5">
                         <div className="media justify-content-md-end">
                           <div className="image mr-5 mt-2">
-                            <img src={imgF} alt="" />
+                            <Image src={imgF} alt="" />
                           </div>
                           <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                             <span className="text-black-2">80-90K</span> PLN
@@ -372,7 +373,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconL} alt="" />
+                              <Image src={iconL} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Berlyn, UK
@@ -385,7 +386,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconS} alt="" />
+                              <Image src={iconS} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Full-time
@@ -398,7 +399,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconC} alt="" />
+                              <Image src={iconC} alt="" />
                             </span>
                             <span className="font-weight-semibold">9d ago</span>
                           </li>
@@ -415,7 +416,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media align-items-center">
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF5} alt="" />
+                            <Image src={imgF5} alt="" />
                           </div>
                           <div>
                             <h3 className="mb-0 font-size-6 heading-default-color">
@@ -430,7 +431,7 @@ const SearchTab = () => {
                       <div className="col-md-6 text-right pt-7 pt-md-5">
                         <div className="media justify-content-md-end">
                           <div className="image mr-5 mt-2">
-                            <img src={imgF} alt="" />
+                            <Image src={imgF} alt="" />
                           </div>
                           <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                             <span className="text-black-2">80-90K</span> PLN
@@ -467,7 +468,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconL} alt="" />
+                              <Image src={iconL} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Berlyn, UK
@@ -480,7 +481,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconS} alt="" />
+                              <Image src={iconS} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Full-time
@@ -493,7 +494,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconC} alt="" />
+                              <Image src={iconC} alt="" />
                             </span>
                             <span className="font-weight-semibold">9d ago</span>
                           </li>
@@ -510,7 +511,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media align-items-center">
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF1} alt="" />
+                            <Image src={imgF1} alt="" />
                           </div>
                           <div>
                             <h3 className="mb-0 font-size-6 heading-default-color">
@@ -525,7 +526,7 @@ const SearchTab = () => {
                       <div className="col-md-6 text-right pt-7 pt-md-5">
                         <div className="media justify-content-md-end">
                           <div className="image mr-5 mt-2">
-                            <img src={imgF} alt="" />
+                            <Image src={imgF} alt="" />
                           </div>
                           <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                             <span className="text-black-2">80-90K</span> PLN
@@ -562,7 +563,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconL} alt="" />
+                              <Image src={iconL} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Berlyn, UK
@@ -575,7 +576,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconS} alt="" />
+                              <Image src={iconS} alt="" />
                             </span>
                             <span className="font-weight-semibold">
                               Full-time
@@ -588,7 +589,7 @@ const SearchTab = () => {
                                 margin-top: -2px;
                               `}
                             >
-                              <img src={iconC} alt="" />
+                              <Image src={iconC} alt="" />
                             </span>
                             <span className="font-weight-semibold">9d ago</span>
                           </li>
@@ -623,7 +624,7 @@ const SearchTab = () => {
                         <div className="media align-items-center">
                           {/* <!-- media logo start --> */}
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF1} alt="" />
+                            <Image src={imgF1} alt="" />
                           </div>
                           {/* <!-- media logo end --> */}
                           {/* <!-- media texts start --> */}
@@ -666,7 +667,7 @@ const SearchTab = () => {
                       <div className="col-md-12">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconL2} alt="" />
+                            <Image src={iconL2} alt="" />
                           </div>
                           <p className="font-size-5 text-gray mb-0">
                             777 Brockton Avenue, Abington MA 2351
@@ -676,7 +677,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconD} alt="" />
+                            <Image src={iconD} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             80-90K PLN PLN
@@ -686,7 +687,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-md-0 mb-6">
                           <div className="image mr-5">
-                            <img src={iconB} alt="" />
+                            <Image src={iconB} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             Full-time
@@ -878,7 +879,7 @@ const SearchTab = () => {
                         <div className="media align-items-center">
                           {/* <!-- media logo start --> */}
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF2} alt="" />
+                            <Image src={imgF2} alt="" />
                           </div>
                           {/* <!-- media logo end --> */}
                           {/* <!-- media texts start --> */}
@@ -919,7 +920,7 @@ const SearchTab = () => {
                       <div className="col-md-12">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconL2} alt="" />
+                            <Image src={iconL2} alt="" />
                           </div>
                           <p className="font-size-5 text-gray mb-0">
                             237 Princeton Avenue, Nottinghum MA 3714
@@ -929,7 +930,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconD} alt="" />
+                            <Image src={iconD} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             120-150K PLN PLN
@@ -939,7 +940,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-md-0 mb-6">
                           <div className="image mr-5">
-                            <img src={iconB} alt="" />
+                            <Image src={iconB} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             Full-time
@@ -1131,7 +1132,7 @@ const SearchTab = () => {
                         <div className="media align-items-center">
                           {/* <!-- media logo start --> */}
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF3} alt="" />
+                            <Image src={imgF3} alt="" />
                           </div>
                           {/* <!-- media logo end --> */}
                           {/* <!-- media texts start --> */}
@@ -1172,7 +1173,7 @@ const SearchTab = () => {
                       <div className="col-md-12">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconL2} alt="" />
+                            <Image src={iconL2} alt="" />
                           </div>
                           <p className="font-size-5 text-gray mb-0">
                             221B Baker Street, London
@@ -1182,7 +1183,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconD} alt="" />
+                            <Image src={iconD} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             100-120K PLN PLN
@@ -1192,7 +1193,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-md-0 mb-6">
                           <div className="image mr-5">
-                            <img src={iconB} alt="" />
+                            <Image src={iconB} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             Remote
@@ -1384,7 +1385,7 @@ const SearchTab = () => {
                         <div className="media align-items-center">
                           {/* <!-- media logo start --> */}
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF4} alt="" />
+                            <Image src={imgF4} alt="" />
                           </div>
                           {/* <!-- media logo end --> */}
                           {/* <!-- media texts start --> */}
@@ -1427,7 +1428,7 @@ const SearchTab = () => {
                       <div className="col-md-12">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconL2} alt="" />
+                            <Image src={iconL2} alt="" />
                           </div>
                           <p className="font-size-5 text-gray mb-0">
                             132 North Wellington Avenue, Seattle 1204
@@ -1437,7 +1438,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconD} alt="" />
+                            <Image src={iconD} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             80-90K PLN PLN
@@ -1447,7 +1448,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-md-0 mb-6">
                           <div className="image mr-5">
-                            <img src={iconB} alt="" />
+                            <Image src={iconB} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             Part-time
@@ -1639,7 +1640,7 @@ const SearchTab = () => {
                         <div className="media align-items-center">
                           {/* <!-- media logo start --> */}
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF5} alt="" />
+                            <Image src={imgF5} alt="" />
                           </div>
                           {/* <!-- media logo end --> */}
                           {/* <!-- media texts start --> */}
@@ -1682,7 +1683,7 @@ const SearchTab = () => {
                       <div className="col-md-12">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconL2} alt="" />
+                            <Image src={iconL2} alt="" />
                           </div>
                           <p className="font-size-5 text-gray mb-0">
                             Berlyn, Uk
@@ -1692,7 +1693,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconD} alt="" />
+                            <Image src={iconD} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             120-150K PLN PLN
@@ -1702,7 +1703,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-md-0 mb-6">
                           <div className="image mr-5">
-                            <img src={iconB} alt="" />
+                            <Image src={iconB} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             Full-time
@@ -1894,7 +1895,7 @@ const SearchTab = () => {
                         <div className="media align-items-center">
                           {/* <!-- media logo start --> */}
                           <div className="square-72 d-block mr-8">
-                            <img src={imgF1} alt="" />
+                            <Image src={imgF1} alt="" />
                           </div>
                           {/* <!-- media logo end --> */}
                           {/* <!-- media texts start --> */}
@@ -1937,7 +1938,7 @@ const SearchTab = () => {
                       <div className="col-md-12">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconL2} alt="" />
+                            <Image src={iconL2} alt="" />
                           </div>
                           <p className="font-size-5 text-gray mb-0">
                             170B Bashabo Kodomtola, Dhaka
@@ -1947,7 +1948,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-6">
                           <div className="image mr-5">
-                            <img src={iconD} alt="" />
+                            <Image src={iconD} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             80-100K PLN PLN
@@ -1957,7 +1958,7 @@ const SearchTab = () => {
                       <div className="col-md-6">
                         <div className="media justify-content-md-start mb-md-0 mb-6">
                           <div className="image mr-5">
-                            <img src={iconB} alt="" />
+                            <Image src={iconB} alt="" />
                           </div>
                           <p className="font-weight-semibold font-size-5 text-black-2 mb-0">
                             Full-time

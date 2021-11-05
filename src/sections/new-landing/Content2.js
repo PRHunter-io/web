@@ -1,8 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import imgC1 from "../../assets/image/l3/png/content-1-img1.png";
-import imgC2 from "../../assets/image/l3/png/content-1-img2.png";
-import imgM from "../../assets/image/l3/png/media-img1.png";
+import imgC1 from "public/images/image/l3/png/content-1-img1.png";
+import imgC2 from "public/images/image/l3/png/content-1-img2.png";
+import imgM from "public/images/image/l3/png/media-img1.png";
+import Image from 'next/image'
 
 const Content = () => {
   return (
@@ -18,11 +19,11 @@ const Content = () => {
             >
               <div className="position-relative px-xl-20 pr-md-15 pr-9">
                 {/* <!-- content img start --> */}
-                <img src={imgC1} alt="" className="w-100 rounded-4" />
+                <Image src={imgC1} alt="" className="w-100 rounded-4" />
                 {/* <!-- content img end --> */}
                 {/* <!-- abs-content start --> */}
                 <div className="abs-content pos-abs-br mb-30 mr-8 rounded-4 rotate-n10 border-10 border-white shadow-2">
-                  <img
+                  <Image
                     src={imgC2}
                     alt=""
                     className="rounded-4 border-white border-width-3"
@@ -57,7 +58,7 @@ const Content = () => {
                 <div className="media mb-9 mt-9 mt-lg-15 pr-sm-10 pr-md-18 pr-xl-20">
                   {/* <!-- media img start --> */}
                   <div className="media-img">
-                    <img src={imgM} alt="" className="circle-48" />
+                    <Image src={imgM} alt="" className="circle-48" />
                   </div>
                   {/* <!-- media img start --> */}
                   {/* <!-- media body start --> */}
