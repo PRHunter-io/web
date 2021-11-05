@@ -4,23 +4,8 @@ import * as Yup from "yup";
 import { ContactService } from './service';
 import Router from 'next/router';
 
-// const useStyles = makeStyles((theme) => ({
-//     formControl: {
-//         '& > *': {
-//             margin: theme.spacing(1),
-//             display: 'flex',
-//             // flexGrow: 1
-//         },
-//         display: 'flex',
-//         flexDirection: 'column',
-//         width: '100%',
-//         alignItems: 'center'
-//     }
-// }));
 
 export const ContactForm = () => {
-
-    // const classes = useStyles();
 
     const initialValues = {
         name: "",
