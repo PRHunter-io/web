@@ -12,9 +12,5 @@ export const menuItems = [
     label: "Documentation", items: [
       { name: "faq", label: "FAQ" },
     ]
-  },
-  {
-    name: "contact",
-    label: "Contact"
   }
 ];

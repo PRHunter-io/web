@@ -23,7 +23,7 @@ const Faq = () => {
                   <p className="font-size-4 mb-2">
                     Not seeing your question here?
                   </p>
-                  <Link href="/#">
+                  <Link href="/contact">
                     <a className="font-size-3 font-weight-bold text-green text-uppercase">
                       Send us a message
                     </a>
