@@ -1,35 +1,33 @@
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { Range, getTrackBackground } from "react-range";
-import { bountyFilterType, bountyFilterLangs, bountyFilterTags } from "../../utils/filters";
+import { bountyType, languages, experienceLevel } from "../../utils/filters";
 import CheckboxesList from "./CheckboxesList";
-import Router from 'next/router';
 
-const STEP = 1;
-const MIN = 50;
-const MAX = 180;
+const STEP = 0.01;
+const MIN = 0;
+const MAX = 10;
 
-const Sidebar = ({ query }) => {
-  const [rangeValues, setRangeValues] = useState([70, 150]);
-  const [fullQuery, setFullQuery] = useState(query);
+const Sidebar = ({ fullQuery, setFullQuery }) => {
+  const minValue = fullQuery?.price_min ? parseFloat(fullQuery.price_min) : MIN;
+  const maxValue = fullQuery?.price_to ? parseFloat(fullQuery.price_to) : MAX;
 
-  const updateQuery = (data) => {
-    Router.push({
-      pathname: '/bounties',
-      query: data,
-    });
-  };
+  const [rangeValues, setRangeValues] = useState([minValue, maxValue]);
 
-  useEffect(() => {
-    updateQuery(fullQuery);
-  }, [fullQuery])
+  const updateQueryRange = () => {
+    setFullQuery(prevState => ({
+      ...prevState,
+      price_min: rangeValues[0],
+      price_to: rangeValues[1],
+      currency: "ETH"
+    }));
+  }
 
   return (
     <>
       {/* <!-- Sidebar Start --> */}
       <div className="widgets mb-11">
         <h4 className="font-size-6 font-weight-semibold mb-6">Bounty Type</h4>
-        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterType} />
+        <CheckboxesList fullQuery setFullQuery={setFullQuery} filtersList={bountyType} />
       </div>
       <div className="widgets mb-11 ">
         <div className="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
@@ -46,7 +44,7 @@ const Sidebar = ({ query }) => {
                   white-space: nowrap;
                 `}
               >
-                ${rangeValues[0].toFixed()} - {rangeValues[1].toFixed()}K
+                ${rangeValues[0].toFixed(2)} - {rangeValues[1].toFixed(2)}
               </span>
             </p>
           </div>
@@ -76,6 +74,7 @@ const Sidebar = ({ query }) => {
               onChange={(values) => {
                 setRangeValues(values);
               }}
+              onFinalChange={updateQueryRange}
               renderTrack={({ props, children }) => (
                 <div
                   role="button"
@@ -138,13 +137,13 @@ const Sidebar = ({ query }) => {
         <h4 className="font-size-6 font-weight-semibold mb-6">
           Language{" "}
         </h4>
-        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterLangs} />
+        <CheckboxesList fullQuery setFullQuery={setFullQuery} filtersList={languages} />
       </div>
       <div className="widgets mb-11">
         <h4 className="font-size-6 font-weight-semibold mb-6">
-          Category{" "}
+          Experience{" "}
         </h4>
-        <CheckboxesList setQuery={setFullQuery} filtersList={bountyFilterTags} />
+        <CheckboxesList fullQuery setFullQuery={setFullQuery} filtersList={experienceLevel} />
       </div>
       {/* <!-- Sidebar End --> */}
     </>

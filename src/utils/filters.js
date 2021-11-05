@@ -1,25 +1,30 @@
-export const experienceLevel = [
-  { value: "default", label: "All" },
-  { value: "beginner", label: "Beginner" },
-  { value: "intermediate", label: "Intermediate" },
-  { value: "expert", label: "Expert" },
-];
-
-export const bountyFilterType = {
-  "query": "bounty_type",
-  "values": [
-    { value: "feature", label: "Feature" },
-    { value: "bug", label: "Bug" },
-    { value: "mentoring", label: "Mentoring" },
+export const experienceLevel = {
+  "query": "experience",
+  values: [
+    { value: "Beginner", label: "Beginner" },
+    { value: "Intermediate", label: "Intermediate" },
+    { value: "Advanced", label: "Advanced" },
   ]
 };
 
-export const bountyFilterLangs = {
-  "query": "languages",
+export const bountyType = {
+  "query": "bounty_type",
+  "values": [
+    { value: "Feature", label: "Feature" },
+    { value: "Bug", label: "Bug" },
+    { value: "Housekeeping", label: "Housekeeping" },
+    { value: "Meta", label: "Meta" },
+    { value: "Other", label: "Other" }
+  ]
+};
+
+export const languages = {
+  "query": "language",
   "values": [
     { value: "javascript", label: "JavaScript" },
     { value: "scala", label: "Scala" },
     { value: "php", label: "PHP" },
+    { value: "java", label: "Java" },
   ]
 };
 

@@ -16,7 +16,7 @@ const getCustomStyles = (theme, accentColor, bg, border, indicator) => {
         display: !indicator && "none",
       };
     },
-    indicatorSeparator: () => {},
+    indicatorSeparator: () => { },
     option: (provided, state) => {
       return {
         ...provided,
@@ -31,8 +31,8 @@ const getCustomStyles = (theme, accentColor, bg, border, indicator) => {
         border: !border
           ? "none"
           : state.menuIsOpen || state.isFocused
-          ? `1px solid ${theme.colors[accentColor]} !important`
-          : `1px solid ${theme.colors.border} !important`,
+            ? `1px solid ${theme.colors[accentColor]} !important`
+            : `1px solid ${theme.colors.border} !important`,
         borderRadius: 10,
         padding: "0.25rem 1rem",
         width: "100%",
@@ -54,12 +54,24 @@ const SelectStyled = ({
   name = "item",
   indicator = true,
   options = defaultOptions,
+  queryValue = false,
   ...rest
 }) => {
+
+  const setDefaultValue = () => {
+    let result;
+    if (queryValue) {
+      result = options.filter((o) => { return o.value == queryValue; });
+    } else {
+      result = options[0];
+    }
+    return result;
+  }
+
   return (
     <Select
       styles={getCustomStyles(theme, accentColor, bg, border, indicator)}
-      defaultValue={options[0]}
+      defaultValue={setDefaultValue()}
       name={name}
       options={options}
       instanceId="inId"

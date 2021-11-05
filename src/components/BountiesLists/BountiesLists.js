@@ -23,10 +23,7 @@ const calculateDays = date => {
   return differenceInDays.toFixed();
 };
 
-export const BountiesListRegular = ({ data, error }) => {
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
-
+export const BountiesListRegular = ({ data }) => {
   return (
     <>
       {data.map((bounty) => (
@@ -134,10 +131,7 @@ export const BountiesListRegular = ({ data, error }) => {
   )
 }
 
-export const BountiesListGrid = ({ data, error }) => {
-  if (error) return <div>failed to load</div>
-  if (!data) return <div>loading...</div>
-
+export const BountiesListGrid = ({ data }) => {
   return (
     <div className="row justify-content-center">
       {data.map((bounty) => (
