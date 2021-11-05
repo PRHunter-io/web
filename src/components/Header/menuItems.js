@@ -13,4 +13,8 @@ export const menuItems = [
       { name: "faq", label: "FAQ" },
     ]
   },
+  {
+    name: "contact",
+    label: "Contact"
+  }
 ];
