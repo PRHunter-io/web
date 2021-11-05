@@ -21,9 +21,9 @@ const Faq = () => {
                     Frequently Asked Questions
                   </h3>
                   <p className="font-size-4 mb-2">
-                    Not seeing your question here?
+                    PRHunter is currently in a pre-launch phase. If you have any suggestions or would like to know more, please don't hestitate to contact us. We'd love to hear from you!
                   </p>
-                  <Link href="/#">
+                  <Link href="/contact">
                     <a className="font-size-3 font-weight-bold text-green text-uppercase">
                       Send us a message
                     </a>
@@ -89,7 +89,7 @@ const Faq = () => {
                           onClick={() => setOpenItem(3)}
                           aria-expanded={openItem === 3}
                         >
-                          How do you handle fraud detection?
+                          How do you handle fraud?
                         </button>
                       </div>
                       <Collapse in={openItem === 3}>
@@ -176,7 +176,8 @@ const Faq = () => {
                     <Collapse in={openItem === 7}>
                       <div className="pr-7">
                         <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
-                          An in-app messaging platform will be created, where Creators and Hunters will be able to discuss the ongoing work on Bounties. In case of any dispute, the messages will be used by our moderators to resolve conflicts.
+                          We'll be moving towards automatic rating systems and try to automate the dispute process as much as possible. Initially,
+                          an in-app messaging platform will be added, where Creators and Hunters will be able to discuss the ongoing work on Bounties. In case of any dispute, the messages will be used by our moderators to resolve conflicts.
                         </div>
                       </div>
                     </Collapse>
@@ -196,7 +197,8 @@ const Faq = () => {
                   <Collapse in={openItem === 8}>
                     <div className="pr-7">
                       <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
-                        We currently only support ETH, as it's the currency used in our smart contract. We plan on supporting other cryptocurrencies, however FIAT payments are unlikely in the foreseeable future.
+                        We're currently investigating the best blockchain to build our contract upon, it looks like we'll definitely use both ETH and BSC. If you have any suggestions, please let us know. 
+                        We plan on supporting multiple cryptocurrencies, however FIAT payments are unlikely in the foreseeable future.
                       </div>
                     </div>
                   </Collapse>
