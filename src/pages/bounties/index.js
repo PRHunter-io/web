@@ -18,12 +18,6 @@ export const getServerSideProps = async ({ query }) => {
         query
       },
     }
-    // return {
-    //   props: {
-    //     bounties,
-    //     query
-    //   },
-    // }
   } catch (err) {
     console.error('Failed to fetch bounty:', err)
   }
