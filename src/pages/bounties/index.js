@@ -4,11 +4,10 @@ import PageWrapper from "../../components/PageWrapper";
 import Sidebar from "../../components/Sidebar";
 import Router from 'next/router';
 import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
-// 
-const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
-// SSR SOLUTION - THINK IF BETTER THAN SWR
 export const getServerSideProps = async ({ query }) => {
+  const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
+
   try {
     const res = await fetch(bountiesUrl)
     const bounties = await res.json()
@@ -24,8 +23,6 @@ export const getServerSideProps = async ({ query }) => {
 }
 
 const getData = async (reqBody, setfilteredData) => {
-  const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/bounty/search`;
-
   const formattedBody = { ...reqBody };
   if (formattedBody.price_to) {
     formattedBody.price = {
@@ -49,7 +46,7 @@ const getData = async (reqBody, setfilteredData) => {
 
   const data = JSON.stringify(formattedBody);
   try {
-    const res = await fetch(url, {
+    const res = await fetch('/api/filters', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -57,7 +54,8 @@ const getData = async (reqBody, setfilteredData) => {
       body: data
     });
     const newData = await res.json();
-    setfilteredData(newData);
+
+    setfilteredData(newData.data);
   } catch (err) {
     console.error('Failed to fetch bounty:', err)
   }
@@ -66,10 +64,9 @@ const getData = async (reqBody, setfilteredData) => {
 // const SearchGrid = ({ data }) => {
 const SearchGrid = ({ bounties, query }) => {
   const [gridDisplay, setgridDisplay] = useState(false);
-  const [data, setdata] = useState(bounties);
   const [filteredData, setfilteredData] = useState(false);
 
-  const bountiesCount = data ? data.length : 0;
+  const bountiesCount = bounties ? bounties.length : 0;
 
   const [fullQuery, setFullQuery] = useState(query);
   const [titleValue, setTitleValue] = useState(fullQuery.title ? fullQuery.title : '');
@@ -81,7 +78,6 @@ const SearchGrid = ({ bounties, query }) => {
     },
       undefined, { shallow: true }
     );
-
     getData(fullQuery, setfilteredData);
   };
 
@@ -192,10 +188,10 @@ const SearchGrid = ({ bounties, query }) => {
                     </div>
                   </div>
 
-                  {data ? (gridDisplay ?
-                    <BountiesListGrid data={filteredData ? filteredData.content : data} />
+                  {bounties ? (gridDisplay ?
+                    <BountiesListGrid data={filteredData ? filteredData.content : bounties} />
                     :
-                    <BountiesListRegular data={filteredData ? filteredData.content : data} />) : <div>loading</div>
+                    <BountiesListRegular data={filteredData ? filteredData.content : bounties} />) : <div>loading</div>
                   }
 
                   <div className="text-center pt-5 pt-lg-13">
