@@ -1,5 +1,5 @@
 export default async function filters(req, res) {
-  const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/bounty/search`;
+  const url = `${process.env.NEXT_PUBLIC_INTERNAL_API_URL}/bounty/search`;
 
   const fetchData = async (req) => {
     const data = JSON.stringify(req.body);
