@@ -12,5 +12,9 @@ export const menuItems = [
     label: "Documentation", items: [
       { name: "faq", label: "FAQ" },
     ]
+  },
+  {
+    name: "blog",
+    label: "Blog"
   }
 ];
