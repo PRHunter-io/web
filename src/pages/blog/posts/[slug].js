@@ -1,208 +1,86 @@
-import * as React from 'react'
-import matter from 'gray-matter'
-import ReactMarkdown from 'react-markdown'
-const glob = require('glob')
+import { useRouter } from 'next/router'
+import ErrorPage from 'next/error'
+import Container from '../../components/container'
+import PostBody from '../../components/post-body'
+import Header from '../../components/header'
+import PostHeader from '../../components/post-header'
+import Layout from '../../components/layout'
+import { getPostBySlug, getAllPosts } from '../../lib/api'
+import PostTitle from '../../components/post-title'
+import Head from 'next/head'
+import { CMS_NAME } from '../../lib/constants'
+import markdownToHtml from '../../lib/markdownToHtml'
 
-import Layout from '../../../components/Layout'
-
-export default function BlogTemplate({ frontmatter, markdownBody, siteTitle }) {
-  function reformatDate(fullDate) {
-    const date = new Date(fullDate)
-    return date.toDateString().slice(4)
+export default function Post({ post, morePosts, preview }) {
+  const router = useRouter()
+  if (!router.isFallback && !post?.slug) {
+    return <ErrorPage statusCode={404} />
   }
-
-  /*
-   ** Odd fix to get build to run
-   ** It seems like on first go the props
-   ** are undefined — could be a Next bug?
-   */
-
-  if (!frontmatter) return <></>
-
   return (
-    <Layout siteTitle={siteTitle}>
-      <article className="blog">
-        <figure className="blog__hero">
-          <img
-            src={frontmatter.hero_image}
-            alt={`blog_hero_${frontmatter.title}`}
-          />
-        </figure>
-        <div className="blog__info">
-          <h1>{frontmatter.title}</h1>
-          <h3>{reformatDate(frontmatter.date)}</h3>
+      <PageWrapper>
+        <div className="jobDetails-section bg-default pt-md-30 pt-sm-25 pt-23 pb-md-27 pb-sm-20 pb-17">
+          <div className="container">
+            <div className="row">
+              {router.isFallback ? (
+                <PostTitle>Loading…</PostTitle>
+              ) : (
+                <>
+                  <article className="mb-32">
+                    <Head>
+                      <title>
+                        {post.title} | Next.js Blog Example with {CMS_NAME}
+                      </title>
+                      <meta property="og:image" content={post.ogImage.url} />
+                    </Head>
+                    <PostHeader
+                      title={post.title}
+                      coverImage={post.coverImage}
+                      date={post.date}
+                      author={post.author}
+                    />
+                    <PostBody content={post.content} />
+                  </article>
+                </>
+              )
+            </div>
+          </div>
         </div>
-        <div className="blog__body">
-          <ReactMarkdown source={markdownBody} />
-        </div>
-        <h2 className="blog__footer">Written By: {frontmatter.author}</h2>
-      </article>
-      <style jsx>
-        {`
-          .blog h1 {
-            margin-bottom: 0.7rem;
-          }
-
-          .blog__hero {
-            min-height: 300px;
-            height: 60vh;
-            width: 100%;
-            margin: 0;
-            overflow: hidden;
-          }
-          .blog__hero img {
-            margin-bottom: 0;
-            object-fit: cover;
-            min-height: 100%;
-            min-width: 100%;
-            object-position: center;
-          }
-
-          .blog__info {
-            padding: 1.5rem 1.25rem;
-            width: 100%;
-            max-width: 768px;
-            margin: 0 auto;
-          }
-          .blog__info h1 {
-            margin-bottom: 0.66rem;
-          }
-          .blog__info h3 {
-            margin-bottom: 0;
-          }
-
-          .blog__body {
-            width: 100%;
-            padding: 0 1.25rem;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-          }
-          .blog__body a {
-            padding-bottom: 1.5rem;
-          }
-          .blog__body:last-child {
-            margin-bottom: 0;
-          }
-          .blog__body h1 h2 h3 h4 h5 h6 p {
-            font-weight: normal;
-          }
-          .blog__body p {
-            color: inherit;
-          }
-          .blog__body ul {
-            list-style: initial;
-          }
-          .blog__body ul ol {
-            margin-left: 1.25rem;
-            margin-bottom: 1.25rem;
-            padding-left: 1.45rem;
-          }
-
-          .blog__footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 1.25rem;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-          }
-          .blog__footer h2 {
-            margin-bottom: 0;
-          }
-          .blog__footer a {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-          }
-          .blog__footer a svg {
-            width: 20px;
-          }
-
-          @media (min-width: 768px) {
-            .blog {
-              display: flex;
-              flex-direction: column;
-            }
-            .blog__body {
-              max-width: 800px;
-              padding: 0 2rem;
-            }
-            .blog__body span {
-              width: 100%;
-              margin: 1.5rem auto;
-            }
-            .blog__body ul ol {
-              margin-left: 1.5rem;
-              margin-bottom: 1.5rem;
-            }
-            .blog__hero {
-              min-height: 600px;
-              height: 75vh;
-            }
-            .blog__info {
-              text-align: center;
-              padding: 2rem 0;
-            }
-            .blog__info h1 {
-              max-width: 500px;
-              margin: 0 auto 0.66rem auto;
-            }
-            .blog__footer {
-              padding: 2.25rem;
-            }
-          }
-
-          @media (min-width: 1440px) {
-            .blog__hero {
-              height: 70vh;
-            }
-            .blog__info {
-              padding: 3rem 0;
-            }
-            .blog__footer {
-              padding: 2rem 2rem 3rem 2rem;
-            }
-          }
-        `}
-      </style>
-    </Layout>
-  )
+      </PageWrapper>
 }
 
-export async function getStaticProps({ ...ctx }) {
-  const { slug } = ctx.params
-  const content = await import(`${slug}.md`)
-  const data = matter(content.default)
+export async function getStaticProps({ params }) {
+  const post = getPostBySlug(params.slug, [
+    'title',
+    'date',
+    'slug',
+    'author',
+    'content',
+    'ogImage',
+    'coverImage',
+  ])
+  const content = await markdownToHtml(post.content || '')
 
   return {
     props: {
-      siteTitle: config.title,
-      frontmatter: data.data,
-      markdownBody: data.content,
+      post: {
+        ...post,
+        content,
+      },
     },
   }
 }
 
 export async function getStaticPaths() {
-  //get all .md files in the posts dir
-  const blogs = glob.sync('/*.md')
+  const posts = getAllPosts(['slug'])
 
-  //remove path and extension to leave filename only
-  const blogSlugs = blogs.map(file =>
-    file
-      .split('/')[1]
-      .replace(/ /g, '-')
-      .slice(0, -3)
-      .trim()
-  )
-
-  // create paths with `slug` param
-  const paths = blogSlugs.map(slug => `/blog/${slug}`)
   return {
-    paths,
+    paths: posts.map((post) => {
+      return {
+        params: {
+          slug: post.slug,
+        },
+      }
+    }),
     fallback: false,
   }
 }
