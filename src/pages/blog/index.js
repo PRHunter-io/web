@@ -46,7 +46,6 @@ export default function BlogMain({ allPosts }) {
             </div>
           </div>
         </div>
-
       </PageWrapper>
     </>
   )

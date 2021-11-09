@@ -1,15 +1,10 @@
 import { useRouter } from 'next/router'
 import ErrorPage from 'next/error'
-import Container from '../../components/container'
-import PostBody from '../../components/post-body'
-import Header from '../../components/header'
-import PostHeader from '../../components/post-header'
-import Layout from '../../components/layout'
-import { getPostBySlug, getAllPosts } from '../../lib/api'
-import PostTitle from '../../components/post-title'
+import PostHeader from '@/components/post-header'
+import { getPostBySlug, getAllPosts } from '../../../lib/ga/blogApi'
 import Head from 'next/head'
-import { CMS_NAME } from '../../lib/constants'
-import markdownToHtml from '../../lib/markdownToHtml'
+import { markdownToHtml } from '../../../lib/ga/blogApi'
+import PageWrapper from '@/components/PageWrapper'
 
 export default function Post({ post, morePosts, preview }) {
   const router = useRouter()
@@ -17,35 +12,33 @@ export default function Post({ post, morePosts, preview }) {
     return <ErrorPage statusCode={404} />
   }
   return (
-      <PageWrapper>
-        <div className="jobDetails-section bg-default pt-md-30 pt-sm-25 pt-23 pb-md-27 pb-sm-20 pb-17">
-          <div className="container">
-            <div className="row">
-              {router.isFallback ? (
-                <PostTitle>Loading…</PostTitle>
-              ) : (
-                <>
-                  <article className="mb-32">
-                    <Head>
-                      <title>
-                        {post.title} | Next.js Blog Example with {CMS_NAME}
-                      </title>
-                      <meta property="og:image" content={post.ogImage.url} />
-                    </Head>
-                    <PostHeader
-                      title={post.title}
-                      coverImage={post.coverImage}
-                      date={post.date}
-                      author={post.author}
-                    />
-                    <PostBody content={post.content} />
-                  </article>
-                </>
-              )
-            </div>
+    <PageWrapper>
+      <div className="jobDetails-section bg-default pt-md-30 pt-sm-25 pt-23 pb-md-27 pb-sm-20 pb-17">
+        <div className="container">
+          <div className="row">
+            <>
+              <article className="mb-32">
+                <Head>
+                  <title>
+                    {post.title} | Next.js Blog Example
+                  </title>
+                  <meta property="og:image" content={post.ogImage.url} />
+                </Head>
+                <PostHeader
+                  title={post.title}
+                  coverImage={post.coverImage}
+                  date={post.date}
+                  author={post.author}
+                />
+                <div dangerouslySetInnerHTML={{ __html: post.content }}>
+                </div>
+              </article>
+            </>
           </div>
         </div>
-      </PageWrapper>
+      </div>
+    </PageWrapper>
+  )
 }
 
 export async function getStaticProps({ params }) {

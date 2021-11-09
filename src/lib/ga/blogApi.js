@@ -1,6 +1,8 @@
 import fs from 'fs'
 import { join } from 'path'
 import matter from 'gray-matter'
+import {remark} from 'remark'
+import html from 'remark-html'
 
 const postsDirectory = join(process.cwd(), '_posts')
 
@@ -40,4 +42,9 @@ export function getAllPosts(fields = []) {
     // sort posts by date in descending order
     .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
   return posts
+}
+
+export async function markdownToHtml(markdown) {
+  const result = await remark().use(html).process(markdown)
+  return result.toString()
 }
