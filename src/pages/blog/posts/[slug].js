@@ -9,7 +9,6 @@ import DateFormatter from '@/components/date-formatter'
 
 export default function Post({ post }) {
   const router = useRouter()
-  console.log(post)
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />
   }
@@ -68,8 +67,6 @@ export async function getStaticProps({ params }) {
 
 export async function getStaticPaths() {
   const posts = getAllPosts(['slug', 'excerpt'])
-
-  console.log(posts)
 
   return {
     paths: posts.map((post) => {
