@@ -1,6 +1,6 @@
 
 import PageWrapper from '@/components/PageWrapper';
-import HeroPost from '@/components/hero-post'
+import HeroPost from '@/components/HeroPost'
 import { getAllPosts } from 'src/lib/ga/blogApi';
 import { NextSeo } from 'next-seo';
 

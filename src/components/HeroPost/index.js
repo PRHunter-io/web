@@ -1,6 +1,6 @@
-import DateFormatter from '../components/date-formatter'
+import DateFormatter from '../DateFormatter'
 import Link from 'next/link'
-import Avatar from './avatar'
+import Avatar from '@/components/Avatar'
 
 export default function HeroPost({
   title,

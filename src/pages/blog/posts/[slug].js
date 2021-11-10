@@ -4,8 +4,8 @@ import { getPostBySlug, getAllPosts } from '@/lib/ga/blogApi'
 import { markdownToHtml } from '@/lib/ga/blogApi'
 import PageWrapper from '@/components/PageWrapper'
 import { NextSeo } from 'next-seo'
-import Avatar from '@/components/avatar'
-import DateFormatter from '@/components/date-formatter'
+import Avatar from '@/components/Avatar'
+import DateFormatter from '@/components/DateFormatter'
 
 export default function Post({ post }) {
   const router = useRouter()
