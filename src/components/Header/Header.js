@@ -344,7 +344,7 @@ const Header = () => {
               dark={gContext.header.theme === "dark" ? 1 : 0}
             >
               {/* <i className="icon icon-simple-remove icon-close"></i> */}
-              <i className="icon icon-menu-34 icon-burger d-block"></i>
+              <i className="fas fa-bars"></i>
             </ToggleButton>
           </nav>
         </Container>
