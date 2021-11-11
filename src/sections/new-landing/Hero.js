@@ -1,9 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-
+import Typed from "typed.js";
 import { Select } from "../../components/Core";
-
-
 import { experienceLevel } from "../../utils/filters";
 
 const Hero = () => {

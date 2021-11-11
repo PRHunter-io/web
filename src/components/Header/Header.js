@@ -125,7 +125,7 @@ const Header = () => {
                                 onClick={(e) => e.preventDefault()}
                               >
                                 {label}
-                                <i className="fas fa-angle-down"></i>
+                                <FontAwesomeIcon icon={["fas", "fa-angle-down"]}></FontAwesomeIcon>
                               </a>
                               <ul className="gr-menu-dropdown dropdown-menu ">
                                 {items.map((subItem, indexSub) => {
