@@ -4,15 +4,10 @@ import PageWrapper from "@/components/PageWrapper";
 
 const DashboardMain = () => {
 
-  const fetcher = (url) => fetch(url).then((res) => res.json())
+  // const fetcher = (url) => fetch(url).then((res) => res.json())
 
 
-  const { data, error } = useSWR('/user/bounties', fetcher)
-
-
-  const [bounties, setBounties] = useState([])
-  const bountiesCount = data ? data.length : 0;
-
+  // const { data, error } = useSWR('/user/bounties', fetcher)
 //   const getData = async (reqBody) => {
 //     const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/user/bounty`;
 //     const data = JSON.stringify(reqBody);
@@ -45,7 +40,7 @@ const DashboardMain = () => {
       >
         <div className="dashboard-main-container mt-25 mt-lg-31">
           <div className="container">
-            <BountyTable bounties={data} />
+            <BountyTable />
             <div className="mb-18">
               <div className="row mb-11 align-items-center">
                 <div className="col-lg-6 mb-lg-0 mb-4">
