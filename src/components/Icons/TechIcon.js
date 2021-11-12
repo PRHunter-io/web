@@ -38,6 +38,8 @@ let fontawesomeMap = new Map([
 
 const TechIcon = ({ language }) => {
 
+  console.log(language)
+  
   const devicon = deviconMap.get(language)
   const faIcon = fontawesomeMap.get(language)
 
@@ -47,10 +49,10 @@ const TechIcon = ({ language }) => {
     />
   }else if (faIcon != null) {
     return <TechIconColored
-      className={`${faIcon}`}
+      className={`${faIcon} colored`}
     />
   }else{
-    return <TechIcon className={`devicon-atom-original colored`} />
+    return <TechIconColored className="devicon-atom-original colored" />
   } 
 };
 

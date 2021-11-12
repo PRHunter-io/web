@@ -9,8 +9,10 @@ export const menuItems = [
   },
   {
     name: "documentation",
-    label: "Documentation", items: [
+    label: "Docs", items: [
+      { name: "docs", label: "PRHunter docs" },
       { name: "faq", label: "FAQ" },
+      { name: "about", label: "About us" },
     ]
   },
   {

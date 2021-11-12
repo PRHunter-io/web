@@ -295,12 +295,12 @@ const Header = () => {
                       >
                         <Link href="/#">
                           <a className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
-                            Settings
+                            Dashboard
                           </a>
                         </Link>
                         <Link href="/#">
                           <a className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
-                            Edit Profile
+                            Settings
                           </a>
                         </Link>
                         <Link href="/#">

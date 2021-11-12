@@ -169,40 +169,15 @@ const SearchGrid = ({ bounties, query }) => {
                 <div className="pt-12">
                   <div className="d-flex align-items-center justify-content-between mb-6">
                     <h5 className="font-size-4 font-weight-normal text-gray">
-                      <span className="heading-default-color">{filteredData ? filteredData.total : bountiesCount}</span> results for{" "}
-                      <span className="heading-default-color">UI Designer</span>
+                      <span className="heading-default-color">{filteredData ? filteredData.total : bountiesCount}</span> results
                     </h5>
                     <div className="d-flex align-items-center result-view-type">
-                      <button
-                        className={`heading-default-color pl-5 font-size-6 hover-text-hitgray${gridDisplay ? '' : ' active'}`}
-                        onClick={() => setgridDisplay(false)}
-                      >
-                        <i className="fa fa-list-ul"></i>
-                      </button>
-                      <button
-                        className={`heading-default-color pl-5 font-size-6 hover-text-hitgray${gridDisplay ? ' active' : ''}`}
-                        onClick={() => setgridDisplay(true)}
-                      >
-                        <i className="fa fa-th-large"></i>
-                      </button>
                     </div>
                   </div>
 
-                  {bounties ? (gridDisplay ?
-                    <BountiesListGrid data={filteredData ? filteredData.content : bounties} />
-                    :
-                    <BountiesListRegular data={filteredData ? filteredData.content : bounties} />) : <div>loading</div>
+                  {bounties ? (<BountiesListRegular data={filteredData ? filteredData.content : bounties} />) : <div>loading</div>
                   }
-
-                  <div className="text-center pt-5 pt-lg-13">
-                    <Link href="/#">
-                      <a className="text-green font-weight-bold text-uppercase font-size-3">
-                        Load More <i className="fas fa-sort-down ml-3"></i>
-                      </a>
-                    </Link>
-                  </div>
                 </div>
-                {/* <!-- form end --> */}
               </div>
             </div>
           </div>
