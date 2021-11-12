@@ -4,6 +4,7 @@ import Link from "next/link";
 import imgC1 from "public/images/image/l3/png/content-2-img1.png";
 import imgC2 from "public/images/image/l3/png/content-2-img2.png";
 import imgC3 from "public/images/image/l3/png/content-2-img3.png";
+import landingPic3 from "public/images/landing-pic-3.jpeg";
 import Image from 'next/image'
 
 const Content = () => {
@@ -24,7 +25,7 @@ const Content = () => {
                   Powered by crypto
                 </h2>
                 <p className="text-default-color font-size-5 mb-7 mb-lg-12 pr-xxl-13 pr-lg-0 pr-md-10">
-                  Our system utilizes an Ethereum Smart Contract that makes sure you get paid out once your PR gets merged.
+                  PRHunter's Smart Contract makes sure that you get paid out once a PR is merged
                 </p>
                 {/* <!-- content-2 section title end --> */}
                 {/* <!-- content-2 btn start --> */}
@@ -46,39 +47,14 @@ const Content = () => {
                 {/* <!-- content img start --> */}
                 <div className="d-xs-flex  mx-sm-n3">
                   <div className="d-flex flex-column px-3 px-sm-6 w-lg-auto w-100">
-                    {/* <!-- single image start --> */}
                     <Image
-                      src={imgC1}
-                      alt=""
-                      data-aos="zoom-in"
-                      data-aos-duration="500"
-                      className="w-100 pb-6 pb-sm-9 rounded-4 "
-                    />
-                    {/* <!-- single image end --> */}
-                    {/* <!-- single image --> */}
-                    <Image
-                      src={imgC2}
+                      src={landingPic3}
                       alt=""
                       data-aos="zoom-in"
                       data-aos-duration="500"
                       data-aos-delay="700"
                       className="w-100 pb-6 pb-sm-9 rounded-4 "
                     />
-                    {/* <!-- single image end --> */}
-                  </div>
-                  <div className="d-flex flex-column pt-xs-11 px-3 px-sm-6 w-lg-auto w-100">
-                    {/* <!-- single image --> */}
-                    <Image
-                      src={imgC3}
-                      alt=""
-                      data-aos="zoom-in"
-                      data-aos-duration="500"
-                      data-aos-delay="400"
-                      className="w-100 pb-6 pb-sm-9 rounded-4 "
-                    />
-                    {/* <!-- single image end --> */}
-                    {/* <!-- single image --> */}
-                    <div className="bg-green py-16 px-19 rounded-4"></div>
                     {/* <!-- single image end --> */}
                   </div>
                 </div>

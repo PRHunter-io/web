@@ -25,7 +25,7 @@ const Categories = () => {
             {/* <!-- Section Button --> */}
             <div className="col-12 col-lg-6">
               <div className="text-center text-lg-right">
-                <Link href="/#">
+                <Link href="/bounties">
                   <a className="btn btn-outline-green text-uppercase">
                     Explore All
                   </a>
@@ -38,7 +38,7 @@ const Categories = () => {
           <div className="row justify-content-center">
             {/* <!-- Single Category --> */}
             <div className="col-12 col-xl-3 col-lg-4 col-sm-6 col-xs-8">
-              <Link href="/#">
+              <Link href="/bounties?bounty_type=Feature">
                 <a className="bg-white border border-color-2 rounded-4 pl-9 pt-10 pb-3 pr-7 hover-shadow-1 mb-9 d-block w-100">
                   <div className="text-blue bg-blue-opacity-1 square-70 rounded-4 mb-7 font-size-7">
                     <i className="fa fa-briefcase"></i>
@@ -58,7 +58,7 @@ const Categories = () => {
             {/* <!-- End Single Category --> */}
             {/* <!-- Single Category --> */}
             <div className="col-12 col-xl-3 col-lg-4 col-sm-6 col-xs-8">
-              <Link href="/#">
+              <Link href="/bounties?bounty_type=Bug">
                 <a className="bg-white border border-color-2 rounded-4 pl-9 pt-10 pb-3 pr-7 hover-shadow-1 mb-9 d-block w-100">
                   <div className="text-spray bg-spray-opacity-1 square-70 rounded-4 mb-7 font-size-7">
                     <i className="fa fa-headset"></i>
@@ -78,7 +78,7 @@ const Categories = () => {
             {/* <!-- End Single Category --> */}
             {/* <!-- Single Category --> */}
             <div className="col-12 col-xl-3 col-lg-4 col-sm-6 col-xs-8">
-              <Link href="/#">
+              <Link href="/bounties?bounty_type=Housekeeping">
                 <a className="bg-white border border-color-2 rounded-4 pl-9 pt-10 pb-3 pr-7 hover-shadow-1 mb-9 d-block w-100">
                   <div className="text-coral bg-coral-opacity-1 square-70 rounded-4 mb-7 font-size-7">
                     <i className="fa fa-layer-group"></i>
@@ -98,7 +98,7 @@ const Categories = () => {
             {/* <!-- End Single Category --> */}
             {/* <!-- Single Category --> */}
             <div className="col-12 col-xl-3 col-lg-4 col-sm-6 col-xs-8">
-              <Link href="/#">
+              <Link href="/bounties?bounty_type=Meta">
                 <a className="bg-white border border-color-2 rounded-4 pl-9 pt-10 pb-3 pr-7 hover-shadow-1 mb-9 d-block w-100">
                   <div className="text-red bg-red-opacity-1 square-70 rounded-4 mb-7 font-size-7">
                     <i className="fa fa-pen-nib"></i>
