@@ -4,30 +4,6 @@ import PageWrapper from "@/components/PageWrapper";
 
 const DashboardMain = () => {
 
-  // const fetcher = (url) => fetch(url).then((res) => res.json())
-
-
-  // const { data, error } = useSWR('/user/bounties', fetcher)
-//   const getData = async (reqBody) => {
-//     const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/user/bounty`;
-//     const data = JSON.stringify(reqBody);
-
-//     try {
-//         const res = await fetch(url, {
-//             method: 'POST',
-//             headers: {
-//                 'Content-Type': 'application/json'
-//             },
-//             body: data
-//         });
-//         const newData = await res.json();
-//         return newData;
-//     } catch (err) {
-//         console.error('Failed to fetch bounty:', err)
-//     }
-//     return [];
-// }
-
   return (
     <>
       <PageWrapper

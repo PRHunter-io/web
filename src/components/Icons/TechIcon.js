@@ -35,7 +35,6 @@ let fontawesomeMap = new Map([
 ])
 
 
-
 const TechIcon = ({ language }) => {
 
   console.log(language)

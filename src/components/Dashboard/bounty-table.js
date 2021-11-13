@@ -1,9 +1,35 @@
 import { BountyListView } from "./bounty-list-view";
+import { useUserBounties } from "@/lib/useUserBounties";
+import { Spinner } from "react-bootstrap";
 
+const BountyTable = () => {
 
+    const { bounties, isLoading, isError } = useUserBounties()
 
-const BountyTable = (bounties) => {
+    if (isLoading) return (
+        <BountyTableInner content={
+            <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        } />
+    )
 
+    if (isError) return (
+        <BountyTableInner content={
+            <div>
+                Error
+            </div>
+        } />
+    )
+
+    console.log(bounties)
+
+    return (
+        <BountyTableInner children={bounties.map(bounty => <BountyListView bounty={bounty} />)}/>
+    )
+}
+
+const BountyTableInner = props => {
     return (
         <div className="mb-14">
             <div className="row mb-11 align-items-center">
@@ -20,28 +46,20 @@ const BountyTable = (bounties) => {
                                     scope="col"
                                     className="pl-0  border-0 font-size-4 font-weight-normal"
                                 >
-                                    Name
+                                    Title
                                 </th>
                                 <th
                                     scope="col"
                                     className="border-0 font-size-4 font-weight-normal"
                                 >
-                                    Applied as
+                                    Bounty Value
                                 </th>
                                 <th
                                     scope="col"
                                     className="border-0 font-size-4 font-weight-normal"
                                 >
-                                    Applied on
+                                    Created at
                                 </th>
-                                <th
-                                    scope="col"
-                                    className="border-0 font-size-4 font-weight-normal"
-                                ></th>
-                                <th
-                                    scope="col"
-                                    className="border-0 font-size-4 font-weight-normal"
-                                ></th>
                                 <th
                                     scope="col"
                                     className="border-0 font-size-4 font-weight-normal"
@@ -49,9 +67,7 @@ const BountyTable = (bounties) => {
                             </tr>
                         </thead>
                         <tbody>
-                            <BountyListView />
-                            <BountyListView />
-                            <BountyListView />
+                            {props.children}
                         </tbody>
                     </table>
                 </div>
