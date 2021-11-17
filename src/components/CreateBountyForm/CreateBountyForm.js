@@ -13,7 +13,7 @@ const CreateBountyForm = () => {
     if (bountyData) {
       console.log(bountyData);
     };
-  }, [bountyData]);
+  });
 
   const nextFormStep = () => setFormStep((currentStep) => currentStep + 1);
 

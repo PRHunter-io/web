@@ -79,14 +79,15 @@ const NewBounty = () => {
                     Create new bounty
                   </h5>
                   <div className="contact-form bg-white shadow-8 rounded-4 pl-sm-10 pl-4 pr-sm-11 pr-4 pt-13 pb-13">
-                    {readyToPostBounty ? <CreateBountyForm />
+                    {/* {readyToPostBounty ? <CreateBountyForm />
                       :
                       <button
                         onClick={() => setReadyToPostBounty(true)}
                       >
                         Let's create a bounty!
                       </button>
-                    }
+                    } */}
+                    <CreateBountyForm />
                   </div>
                 </div>
               </div>
