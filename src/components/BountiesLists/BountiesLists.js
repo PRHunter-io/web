@@ -1,16 +1,13 @@
 import React from "react";
 import Link from "next/link";
 
-import imgF1 from"public/images/image/l2/png/featured-job-logo-1.png";
-
 import imgF from"public/images/image/svg/icon-fire-rounded.svg";
 import iconL from"public/images/image/svg/icon-calendar-grey.svg";
 import iconS from"public/images/image/svg/icon-suitecase.svg";
 import iconC from"public/images/image/svg/icon-user.svg";
 import Image from 'next/image'
 
-import imgB1 from"public/images/image/l1/png/feature-brand-1.png";
-import { formatBountyValue } from "../../hooks/formatBountyValue";
+import TechIcon from "../Icons/TechIcon";
 
 const calculateDays = date => {
   const currentDate = new Date();
@@ -26,8 +23,8 @@ const calculateDays = date => {
 export const BountiesListRegular = ({ data }) => {
   return (
     <>
-      {data.map((bounty) => (
-
+      {data.map((bounty) => 
+      (          
         <div className="mb-8" key={bounty.id}>
           {/* <!-- Single Featured Job --> */}
           <div className="pt-9 px-xl-9 px-lg-7 px-7 pb-7 light-mode-texts bg-white rounded hover-shadow-3 ">
@@ -35,7 +32,7 @@ export const BountiesListRegular = ({ data }) => {
               <div className="col-md-6">
                 <div className="media align-items-center">
                   <div className="square-72 d-block mr-8">
-                    <Image src={imgF1} alt="" />
+                    <TechIcon language={bounty.languages[0]}></TechIcon>
                   </div>
                   <div>
                     <h3 className="mb-0">
@@ -66,7 +63,7 @@ export const BountiesListRegular = ({ data }) => {
                 </div>
                 <div className="media justify-content-md-end">
                   <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
-                    <span className="text-black-2">{bounty.bounty_value_usd}</span> {bounty.bounty_currency_sec}
+                    <span className="text-black-2">{bounty.bounty_value_usd}</span> $
                   </p>
                 </div>
               </div>
@@ -128,69 +125,5 @@ export const BountiesListRegular = ({ data }) => {
       ))
       }
     </>
-  )
-}
-
-export const BountiesListGrid = ({ data }) => {
-  return (
-    <div className="row justify-content-center">
-      {data.map((bounty) => (
-        <div className="col-12 col-lg-6" key={bounty.id}>
-          <div className="bg-white px-8 pt-9 pb-7 rounded-4 mb-9 feature-cardOne-adjustments">
-            <div className="d-block mb-7">
-              <Link href="/#">
-                <a>
-                  <Image src={imgB1} alt="" />
-                </a>
-              </Link>
-            </div>
-            <a
-              href={bounty.bounty_url}
-              target="_BLANK"
-              className="font-size-3 d-block mb-0 text-gray"
-            >
-              Check Github issue
-            </a>
-            <h2 className="mt-n4">
-              <Link href={`/bounties/${bounty.id}`}>
-                <a className="font-size-7 text-black-2 font-weight-bold mb-4">
-                  {bounty.title}
-                </a>
-              </Link>
-            </h2>
-            <ul className="list-unstyled mb-1 card-tag-list">
-              <li>
-                <Link href="/#">
-                  <a className="bg-regent-opacity-15 text-denim font-size-3 rounded-3">
-                    <i className="fa fa-briefcase mr-2"></i>{" "}
-                    {bounty.bounty_type}
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/#">
-                  <a className="bg-regent-opacity-15 text-orange font-size-3 rounded-3">
-                    <i className="fas fa-user-tie mr-2"></i>{" "}
-                    {bounty.experience}
-                  </a>
-                </Link>
-              </li>
-              <li>
-                <Link href="/#">
-                  <a className="bg-regent-opacity-15 text-eastern font-size-3 rounded-3">
-                    <i className="fa fa-dollar-sign mr-2"></i>{" "}
-                    {bounty.bounty_value}
-                  </a>
-                </Link>
-              </li>
-            </ul>
-            <p className="mb-7 font-size-4 text-gray line-clamp">
-              {bounty.body}
-            </p>
-          </div>
-        </div>
-      ))
-      }
-    </div>
   )
 }

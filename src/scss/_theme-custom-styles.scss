@@ -409,3 +409,8 @@ html .ui-button.ui-state-disabled:active {
     opacity: .8;
   }
 }
+
+.avatar-small {
+  display: flex;
+  flex-wrap: wrap;
+}

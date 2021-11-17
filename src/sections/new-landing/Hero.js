@@ -87,19 +87,6 @@ const Hero = () => {
                         <i className="icon icon-zoom-2 text-primary font-weight-bold"></i>
                       </span>
                     </div>
-                    {/* <!-- .select-city starts --> */}
-                    <div className="form-group position-relative">
-                      <Select
-                        options={experienceLevel}
-                        className="pl-8 h-100 arrow-3 font-size-4 d-flex align-items-center w-100"
-                        border={false}
-                      />
-
-                      <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
-                        <i className="icon icon-pin-3 text-primary font-weight-bold"></i>
-                      </span>
-                    </div>
-                    {/* <!-- ./select-city ends --> */}
                   </div>
                   <div className="button-block">
                     <Button

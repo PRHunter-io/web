@@ -282,7 +282,7 @@ const Header = () => {
                             Edit Profile
                           </a>
                         </Link>
-                        <Link href="https://api.prhunter.io/logout">
+                        <Link href={`${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/logout`}>
                           <a className=" dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
                             Log Out
                           </a>
@@ -295,12 +295,12 @@ const Header = () => {
                       >
                         <Link href="/#">
                           <a className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
-                            Settings
+                            Dashboard
                           </a>
                         </Link>
                         <Link href="/#">
                           <a className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
-                            Edit Profile
+                            Settings
                           </a>
                         </Link>
                         <Link href="/#">
@@ -344,7 +344,7 @@ const Header = () => {
               dark={gContext.header.theme === "dark" ? 1 : 0}
             >
               {/* <i className="icon icon-simple-remove icon-close"></i> */}
-              <i className="icon icon-menu-34 icon-burger d-block"></i>
+              <i className="fas fa-bars"></i>
             </ToggleButton>
           </nav>
         </Container>

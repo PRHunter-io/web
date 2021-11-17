@@ -115,30 +115,16 @@ const Footer = () => {
                     {/* <!-- widget social menu start --> */}
                     <ul className="widget-links pl-0 list-unstyled list-hover-primary">
                       <li className="mb-6">
-                        <Link href="/#">
+                        <Link href="/about">
                           <a className="heading-default-color font-size-4 font-weight-normal">
                             About us
                           </a>
                         </Link>
                       </li>
                       <li className="mb-6">
-                        <Link href="/#">
+                        <Link href="/contact">
                           <a className="heading-default-color font-size-4 font-weight-normal">
                             Contact us
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="mb-6">
-                        <Link href="/#">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            Careers
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="mb-6">
-                        <Link href="/#">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            Press
                           </a>
                         </Link>
                       </li>
@@ -156,78 +142,30 @@ const Footer = () => {
                     {/* <!-- widget social menu start --> */}
                     <ul className="widget-links pl-0 list-unstyled list-hover-primary">
                       <li className="mb-6">
-                        <Link href="/#">
+                        <Link href="/docs">
                           <a className="heading-default-color font-size-4 font-weight-normal">
-                            Features
+                            Documentation
                           </a>
                         </Link>
                       </li>
                       <li className="mb-6">
-                        <Link href="/#">
+                        <Link href="/faq">
                           <a className="heading-default-color font-size-4 font-weight-normal">
-                            Pricing
+                            FAQ
                           </a>
                         </Link>
                       </li>
                       <li className="mb-6">
-                        <Link href="/#">
+                        <Link href="/blog">
                           <a className="heading-default-color font-size-4 font-weight-normal">
-                            News
+                            Blog
                           </a>
                         </Link>
                       </li>
                       <li className="mb-6">
-                        <Link href="/#">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            Help desk
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="mb-6">
-                        <Link href="/#">
+                        <Link href="/contact">
                           <a className="heading-default-color font-size-4 font-weight-normal">
                             Support
-                          </a>
-                        </Link>
-                      </li>
-                    </ul>
-                    {/* <!-- widget social menu end --> */}
-                  </div>
-                </div>
-                <div className="col-lg-3 col-md-6 col-sm-3 col-xs-6">
-                  <div className="footer-widget widget4 mb-sm-0 mb-13">
-                    {/* <!-- footer widget title start --> */}
-                    <p className="widget-title font-size-4 text-gray mb-md-8 mb-7">
-                      Services
-                    </p>
-                    {/* <!-- footer widget title end --> */}
-                    {/* <!-- widget social menu start --> */}
-                    <ul className="widget-links pl-0 list-unstyled list-hover-primary">
-                      <li className="mb-6">
-                        <Link href="/#">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            Digital Marketing
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="mb-6">
-                        <Link href="/#">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            SEO for Business
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="mb-6">
-                        <Link href="/#">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            Avasta Dash
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="mb-6">
-                        <Link href="/#">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            UI Design
                           </a>
                         </Link>
                       </li>
@@ -254,13 +192,6 @@ const Footer = () => {
                         <Link href="/#">
                           <a className="heading-default-color font-size-4 font-weight-normal">
                             Terms &amp; Conditions
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="mb-6">
-                        <Link href="/#">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            Return Policy
                           </a>
                         </Link>
                       </li>
