@@ -25,11 +25,13 @@
       text-overflow: ellipsis;
       line-height: 1.2;
     }
+
     .list {
       min-width: 290px;
     }
   }
 }
+
 /* ----------------------------
   Search list 1
 ------------------------------*/
@@ -43,6 +45,7 @@
       text-overflow: ellipsis;
       line-height: 1.2;
     }
+
     .list {
       min-width: 290px;
     }
@@ -51,6 +54,7 @@
 
 // masonry css added newly for responsive
 .card-columns {
+
   // used in Landing-3 content-2 section masonry
   @include media-breakpoint-only(lg) {
     column-count: 4;
@@ -221,6 +225,7 @@
   @include tablet {
     padding-left: 290px;
   }
+
   @include extra-large-desktops {
     max-width: calc(100% - 290px);
     margin-left: auto;
@@ -232,7 +237,7 @@
 // Checkbox
 
 .checkbox-bg-primary {
-  input[type="checkbox"] + label:before {
+  input[type="checkbox"]+label:before {
     background-color: red;
   }
 }
@@ -242,6 +247,7 @@
     width: auto;
   }
 }
+
 // Bar Chart
 
 .slider-price {
@@ -260,6 +266,7 @@
   margin-top: 5px;
   height: 5px;
 }
+
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default,
@@ -275,16 +282,20 @@ html .ui-button.ui-state-disabled:active {
   border-radius: 50%;
   outline: none;
 }
+
 .ui-slider-horizontal .ui-slider-handle {
   top: -10px;
 }
+
 .ui-widget.ui-widget-content {
   border: none;
 }
+
 .pm-range-slider {
   min-width: 290px;
   max-width: 290px;
   background: $conch;
+
   .ui-widget-header {
     background: $primary;
     top: 0;
@@ -302,6 +313,7 @@ html .ui-button.ui-state-disabled:active {
     // left: -55px;
     top: 12px;
   }
+
   @include large-desktops {
     // left: -30px;
     top: 16px;
@@ -311,47 +323,61 @@ html .ui-button.ui-state-disabled:active {
     width: 16px;
     height: 60px;
     background-color: $conch;
+
     &:nth-child(1) {
       height: 10px;
     }
+
     &:nth-child(2) {
       height: 14px;
     }
+
     &:nth-child(3) {
       height: 14px;
     }
+
     &:nth-child(4) {
       height: 19px;
     }
+
     &:nth-child(5) {
       height: 27px;
     }
+
     &:nth-child(6) {
       height: 41px;
     }
+
     &:nth-child(7) {
       height: 50px;
     }
+
     &:nth-child(8) {
       height: 37px;
     }
+
     &:nth-child(9) {
       height: 60px;
     }
+
     &:nth-child(10) {
       height: 27px;
     }
+
     &:nth-child(11) {
       height: 19px;
     }
+
     &:nth-child(12) {
       height: 27px;
     }
+
     &:nth-child(13) {
       height: 14px;
     }
   }
 }
+
 .overflow-y-scroll {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -363,6 +389,7 @@ html .ui-button.ui-state-disabled:active {
   scrollbar-width: thin;
   scrollbar-color: $mercury;
 }
+
 *::-webkit-scrollbar {
   width: 10px;
 }
@@ -382,9 +409,11 @@ html .ui-button.ui-state-disabled:active {
     padding-right: 0;
     outline: none;
   }
+
   a,
   button {
     color: map-get($theme-colors, "hit-gray");
+
     &.active {
       color: map-get($theme-colors, "black-2");
     }
@@ -394,7 +423,7 @@ html .ui-button.ui-state-disabled:active {
 .line-clamp {
   display: -webkit-box;
   -webkit-line-clamp: 3;
-  -webkit-box-orient: vertical;  
+  -webkit-box-orient: vertical;
   overflow: hidden;
 }
 
@@ -413,4 +442,16 @@ html .ui-button.ui-state-disabled:active {
 .avatar-small {
   display: flex;
   flex-wrap: wrap;
+}
+
+label.required-custom {
+  &::after {
+    content: '*';
+    margin-left: 4px;
+    color: #00b074;
+  }
+}
+
+span.required-custom {
+  color: #00b074;
 }

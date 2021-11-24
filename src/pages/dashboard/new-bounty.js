@@ -28,34 +28,6 @@ const defaultLocations = [
 
 const NewBounty = () => {
   const [readyToPostBounty, setReadyToPostBounty] = useState(false);
-  // const getRepos = async () => {
-  //   const token = localStorage.getItem('ACCESS_TOKEN');
-  //   const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/repo`;
-  //   console.log(token);
-
-  //   try {
-  //     // const res = await fetch(url, {
-  //     //   headers: {
-  //     //     Accept: 'application/json',
-  //     //     Authorization: `Bearer ${token}`,
-  //     //     'Content-Type': 'application/json'
-  //     //   },
-  //     // });
-  //     const res = await fetch('/api/repos', {
-  //       method: 'POST',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       },
-  //       data: token
-  //     });
-
-  //     const repos = await res.json();
-  //     console.log(repos)
-  //   } catch (err) {
-  //     console.log('nope', err);
-  //     return false;
-  //   }
-  // };
 
   return (
     <>
@@ -76,10 +48,12 @@ const NewBounty = () => {
               <div className="row">
                 <div className="col-xxxl-9">
                   <h5 className="font-size-6 font-weight-semibold mb-11">
-                    Create new bounty
+                    Create a new bounty
                   </h5>
                   <div className="contact-form bg-white shadow-8 rounded-4 pl-sm-10 pl-4 pr-sm-11 pr-4 pt-13 pb-13">
-                    {/* {readyToPostBounty ? <CreateBountyForm />
+                    {/* 
+                    CHECK IF NEEDED !!!
+                    {readyToPostBounty ? <CreateBountyForm />
                       :
                       <button
                         onClick={() => setReadyToPostBounty(true)}

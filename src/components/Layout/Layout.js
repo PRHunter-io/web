@@ -104,7 +104,7 @@ const Layout = ({ children, pageContext }) => {
               <span className="one"></span>
             </div>
           </Loader>
-          <div className="site-wrapper overflow-hidden" ref={eleRef}>
+          <div className="site-wrapper overflow-hidden min-vh-100" ref={eleRef}>
             {children}
           </div>
 
@@ -140,7 +140,7 @@ const Layout = ({ children, pageContext }) => {
             </div>
           </Loader>
           <div
-            className="site-wrapper overflow-hidden bg-default-2"
+            className="site-wrapper overflow-hidden bg-default-2 min-vh-100"
             ref={eleRef}
           >
             <Header isDark={gContext.headerDark} />
@@ -174,7 +174,7 @@ const Layout = ({ children, pageContext }) => {
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"/>
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"} />
-          <div className="site-wrapper overflow-hidden" ref={eleRef}>
+          <div className="site-wrapper overflow-hidden min-vh-100" ref={eleRef}>
             <Header isDark={gContext.headerDark} />
             {children}
 

@@ -1,3 +1,5 @@
+// CHECK IF NEEDED
+
 const CheckData = ({ nextFormStep, bountyData }) => {
 
   const confirmData = async () => {
@@ -11,8 +13,6 @@ const CheckData = ({ nextFormStep, bountyData }) => {
       });
 
       const repos = await res.json();
-      console.log(repos);
-      console.log(bountyData);
       nextFormStep();
 
     } catch (err) {
@@ -22,8 +22,9 @@ const CheckData = ({ nextFormStep, bountyData }) => {
 
   return (
     <div>
-      <h1>Is everything git?</h1>
+      <h2 className="text-muted">Is everything git?</h2>
       <button
+        className='line-height-reset mt-6 btn-submit text-uppercase btn btn-primary'
         onClick={confirmData}
       >
         It is, create bounty!
