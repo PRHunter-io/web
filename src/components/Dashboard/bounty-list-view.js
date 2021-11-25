@@ -5,11 +5,10 @@ import imgP1 from "public/images/image/table-one-profile-image-1.png";
 import TechIcon from "../Icons/TechIcon";
 
 export const BountyListView = ({ bounty }) => {
-    console.log(bounty)
     return (
         <tr className="border border-color-2">
             <th scope="row" className="pl-6 border-0 py-7 pr-0">
-                <Link href="/candidate-profile">
+                <Link href={`/bounties/${bounty.id}`}>
                     <a className="media min-width-px-235 align-items-center">
                         <div className="circle-36 mr-6">
                             <TechIcon language={bounty.languages[0]} />
