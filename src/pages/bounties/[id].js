@@ -1,13 +1,8 @@
 import React from "react";
 import { useRouter } from "next/router"
-import Link from "next/link";
 import PageWrapper from "../../components/PageWrapper";
-import imgF from "public/images/image/svg/icon-fire-rounded.svg";
-import { formatBountyValue } from "../../hooks/formatBountyValue";
-import suitecaseIcon from "public/images/image/svg/icon-suitecase.svg";
-import userIcon from "public/images/image/svg/icon-user.svg";
 import TechIcon from "@/components/Icons/TechIcon";
-import Image from 'next/image'
+import { formatDate } from "src/utils";
 
 const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
@@ -29,12 +24,6 @@ export const getServerSideProps = async ({ params }) => {
     },
   }
 }
-
-const formatDate = date => {
-  const formattedDate = new Date(date).toLocaleString('en-ZA', { year: 'numeric', month: 'long', day: '2-digit' });
-  return formattedDate;
-}
-
 
 const BountyHeader = ({ bounty }) => {
   const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}`
