@@ -5,6 +5,10 @@ const TechIconColored = styled.i`
   font-size: 65px;
 `;
 
+const TechIconSmall = styled.i`
+  font-size: 35px;
+`;
+
 
 let deviconMap = new Map([
   ['javascript', 'devicon-javascript-plain'],
@@ -34,25 +38,30 @@ let fontawesomeMap = new Map([
   ['other', 'fas fa-code']
 ])
 
+const getClassName = (devicon, faIcon) => {
+  if (devicon != null) {
+    return `${devicon} colored`
+  }else if (faIcon != null) {
+    return `${faIcon} colored`
+  }else{
+    return "devicon-atom-original colored"
+  } 
+}
 
-const TechIcon = ({ language }) => {
 
-  console.log(language)
-  
+const TechIcon = ({ language, small }) => {
+
   const devicon = deviconMap.get(language)
   const faIcon = fontawesomeMap.get(language)
 
-  if (devicon != null) {
-    return <TechIconColored
-      className={`${devicon} colored`}
-    />
-  }else if (faIcon != null) {
-    return <TechIconColored
-      className={`${faIcon} colored`}
-    />
+  const className = getClassName(devicon, faIcon)
+
+  if(small === true){
+    return <TechIconSmall className={className}/>
   }else{
-    return <TechIconColored className="devicon-atom-original colored" />
-  } 
+    return <TechIconColored className={className}/>
+  }
+
 };
 
 export default TechIcon;

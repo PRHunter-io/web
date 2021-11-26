@@ -163,7 +163,7 @@ const SearchGrid = ({ bounties, query }) => {
                       <button className="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">
                         Search
                       </button>
-                    </div>
+                    </div>1
                   </div>
                 </form>
                 <div className="pt-12">
@@ -175,7 +175,7 @@ const SearchGrid = ({ bounties, query }) => {
                     </div>
                   </div>
 
-                  {bounties ? (<BountiesListRegular data={filteredData ? filteredData.content : bounties} />) : <div>loading</div>
+                  {bounties ? (<BountiesListRegular bounties={filteredData ? filteredData.content : bounties} />) : <div>loading</div>
                   }
                 </div>
               </div>
