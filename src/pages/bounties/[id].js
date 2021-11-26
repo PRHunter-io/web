@@ -82,9 +82,6 @@ const BountyDetails = ({ bounty }) => (
           <span class="font-size-4 d-block mb-4">Bounty value</span>
         </div>
         <div className="media justify-content-md-start">
-          {/* <div className="image mr-5 mt-2">
-            <Image src={imgF} alt="" />
-          </div> */}
           <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
             <h5 className="text-black-2">
               <span className="text-primary">

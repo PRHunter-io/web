@@ -1,12 +1,6 @@
 import React from "react";
 import Link from "next/link";
 
-import imgF from "public/images/image/svg/icon-fire-rounded.svg";
-import iconL from "public/images/image/svg/icon-calendar-grey.svg";
-import iconS from "public/images/image/svg/icon-suitecase.svg";
-import iconC from "public/images/image/svg/icon-user.svg";
-import Image from 'next/image'
-
 import TechIcon from "../Icons/TechIcon";
 
 const calculateDays = date => {
@@ -61,16 +55,19 @@ const BountyView = (bounty) => {
           </div>
           <div className="col-md-6 text-right pt-7 pt-md-5">
             <div className="media justify-content-md-end">
-              <div className="image mr-5 mt-2">
-                <Image src={imgF} alt="" />
-              </div>
               <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
-                <span className="text-black-2">{bounty.bounty_value}</span> {bounty.bounty_currency}
+                <h5 className="text-black-2">
+                  <span className="text-primary">
+                    <i className="fas fa-coins pr-3" />
+                  </span>
+                  {bounty.bounty_value}
+                  <span className="text-hit-gray pl-1">{bounty.bounty_currency}</span>
+                </h5>
               </p>
             </div>
             <div className="media justify-content-md-end">
               <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
-                <span className="text-black-2">{bounty.bounty_value_usd}</span> $
+                ~<span className="text-black-2 pl-1">{bounty.bounty_value_usd} $</span>
               </p>
             </div>
           </div>
@@ -92,34 +89,19 @@ const BountyView = (bounty) => {
           <div className="col-md-5">
             <ul className="d-flex list-unstyled mr-n3 flex-wrap mr-n8 justify-content-md-end">
               <li className="mt-2 mr-8 font-size-small text-black-2 d-flex">
-                <span
-                  className="mr-4"
-                  css={`margin-top: -2px;`}
-                >
-                  <Image src={iconS} alt="" />
-                </span>
+                <i className="fas fa-briefcase pr-3" />
                 <span className="font-weight-semibold">
                   {bounty.bounty_type}
                 </span>
               </li>
               <li className="mt-2 mr-8 font-size-small text-black-2 d-flex">
-                <span
-                  className="mr-4"
-                  css={`margin-top: -2px;`}
-                >
-                  <Image src={iconC} alt="" />
-                </span>
+                <i className="fas fa-signal pr-3" />
                 <span className="font-weight-semibold">
                   {bounty.experience}
                 </span>
               </li>
               <li className="mt-2 mr-8 font-size-small text-black-2 d-flex">
-                <span
-                  className="mr-4"
-                  css={`margin-top: -2px;`}
-                >
-                  <Image src={iconL} alt="" />
-                </span>
+                <i className="fas fa-calendar pr-3" />
                 <span className="font-weight-semibold">
                   {calculateDays(bounty.created_at)}d ago
                 </span>
