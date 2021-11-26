@@ -15,7 +15,6 @@ const calculateDays = date => {
 };
 
 export const BountiesListRegular = ({ bounties }) => {
-  console.log(bounties)
   return (
     <>
       {bounties.map((bounty) => BountyView(bounty))}
