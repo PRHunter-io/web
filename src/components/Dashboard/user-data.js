@@ -1,7 +1,4 @@
-
-
 export const UserData = ({ userData }) => {
-    console.log(userData)
     return (
         <div className="container">
             <div className="mb-15 mb-lg-23">
