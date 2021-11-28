@@ -85,8 +85,9 @@ const ModalSignIn = (props) => {
             </div>
             <div className="col-lg-7 col-md-6">
               <div className="bg-white-2 h-100 px-11 pt-11 pb-7">
-                <div className="row align-items-center h-100">
+                <div className="row align-items-center">
                   <div className="col-4 col-xs-12">
+                  <span className="mb-10">We currently support Github sign in only</span>
                     <a
                       href={process.env.NEXT_PUBLIC_EXTERNAL_API_URL + '/oauth2/authorization/github'}
                       className="font-size-4 font-weight-semibold position-relative text-white bg-black h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"

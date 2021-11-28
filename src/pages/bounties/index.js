@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import PageWrapper from "../../components/PageWrapper";
 import Sidebar from "../../components/Sidebar";
 import Router from 'next/router';
@@ -61,9 +60,7 @@ const getData = async (reqBody, setfilteredData) => {
   }
 }
 
-// const SearchGrid = ({ data }) => {
 const SearchGrid = ({ bounties, query }) => {
-  const [gridDisplay, setgridDisplay] = useState(false);
   const [filteredData, setfilteredData] = useState(false);
 
   const bountiesCount = bounties ? bounties.length : 0;

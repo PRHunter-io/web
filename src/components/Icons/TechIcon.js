@@ -37,8 +37,6 @@ let fontawesomeMap = new Map([
 
 const TechIcon = ({ language }) => {
 
-  console.log(language)
-  
   const devicon = deviconMap.get(language)
   const faIcon = fontawesomeMap.get(language)
 
