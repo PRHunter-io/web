@@ -1,5 +1,5 @@
 import { BountyListView } from "./bounty-list-view";
-import { useUserBounties } from "@/lib/useUserBounties";
+import { useUserBounties } from "@/lib/swr";
 import { Spinner } from "react-bootstrap";
 
 const BountyTable = () => {
@@ -21,8 +21,6 @@ const BountyTable = () => {
             </div>
         } />
     )
-
-    console.log(bounties)
 
     return (
         <BountyTableInner children={bounties.map(bounty => <BountyListView bounty={bounty} />)}/>
