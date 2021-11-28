@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 
-import PageWrapper from "../../components/PageWrapper";
+import PageWrapper from "@/components/PageWrapper";
 import { useUserData as useUserData } from "@/lib/swr";
-import { UserData } from "./user-data";
+import { UserData } from "@/components/Dashboard/user-data";
 import { Spinner } from "react-bootstrap";
 
 const DashboardSettings = () => {
