@@ -149,12 +149,22 @@ const BountyBody = ({ bounty }) => (
   <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 light-mode-texts">
     <div className="row">
       <div className="col-xl-11 col-md-12 pr-xxl-9 pr-xl-10 pr-lg-20">
-        <div className="">
+        <div>
           <span className="font-size-4 font-weight-semibold text-black-2 mb-7">
-            Description:
+            Problem statement:
           </span>
           <p className="font-size-4 text-black-2 mb-7">
-            {bounty.body}
+            {bounty.problem_statement}
+          </p>
+        </div>
+      </div>
+      <div className="col-xl-11 col-md-12 pr-xxl-9 pr-xl-10 pr-lg-20">
+        <div>
+          <span className="font-size-4 font-weight-semibold text-black-2 mb-7">
+            Acceptance criteria:
+          </span>
+          <p className="font-size-4 text-black-2 mb-7">
+            {bounty.acceptance_criteria}
           </p>
         </div>
       </div>

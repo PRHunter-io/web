@@ -1,10 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-
-import { Select } from "../../components/Core";
-
-
-import { experienceLevel } from "../../utils/filters";
+import Link from "next/link";
 
 const Hero = () => {
 
@@ -12,7 +8,7 @@ const Hero = () => {
   const el = React.useRef(null);
   // Create reference to store the Typed instance itself
   const typed = React.useRef(null);
-  let globePattern = '/images/globe-pattern.png' 
+  let globePattern = '/images/globe-pattern.png'
 
   React.useEffect(() => {
     const options = {
@@ -89,12 +85,13 @@ const Hero = () => {
                     </div>
                   </div>
                   <div className="button-block">
-                    <Button
-                      type="submit"
-                      className="line-height-reset h-100 btn-submit w-100 text-uppercase"
-                    >
-                      Search
-                    </Button>
+                    <Link href="/bounties">
+                      <Button
+                        className="line-height-reset h-100 btn-submit w-100 text-uppercase"
+                      >
+                        Search
+                      </Button>
+                    </Link>
                   </div>
                 </div>
               </form>
