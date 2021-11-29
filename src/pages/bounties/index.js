@@ -85,7 +85,7 @@ const SearchGrid = ({ bounties, query }) => {
       setFullQuery(prevState => (
         {
           ...prevState,
-          title_or_body: []
+          content_contains: []
         }
       ));
 
@@ -95,7 +95,7 @@ const SearchGrid = ({ bounties, query }) => {
     setFullQuery(prevState => (
       {
         ...prevState,
-        title_or_body: titleValue
+        content_contains: titleValue
       }
     ));
   }
@@ -160,7 +160,7 @@ const SearchGrid = ({ bounties, query }) => {
                       <button className="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">
                         Search
                       </button>
-                    </div>1
+                    </div>
                   </div>
                 </form>
                 <div className="pt-12">
