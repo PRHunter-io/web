@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Select } from "@/components/Core";
 
-const PickRepo = ({ nextFormStep, bountyData, setBountyData }) => {
+const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
   const [pickedData, setPickedData] = useState({
     repo_name: bountyData.repo_name ? bountyData.repo_name : undefined,
     issue_number: bountyData.issue_number >= 0 ? bountyData.issue_number : undefined
@@ -11,40 +11,16 @@ const PickRepo = ({ nextFormStep, bountyData, setBountyData }) => {
 
   const [issuesOptions, setIssuesOptions] = useState(bountyData.issuesOptions ? bountyData.issuesOptions : false);
 
-  // API ISSUE !!!
-  // const url = `${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/repo`;
-
-  // const getRepos = async () => {
-  //   const token = localStorage.getItem('ACCESS_TOKEN');
-  //   try {
-  //     const res = await fetch(url, {
-  //       headers: {
-  //         Accept: 'application/json',
-  //         Authorization: `Bearer ${token}`,
-  //         'Content-Type': 'application/json'
-  //       },
-  //     });
-
-  //     const repos = await res.json();
-  //     console.log(repos);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   if (bountyData.repoOptions) return;
-
-  //   getRepos();
-  // }, [])
+  const apiUrl = process.env.NEXT_PUBLIC_EXTERNAL_API_URL;
 
   const getRepoData = async (issuesUrl) => {
-    const url = issuesUrl ? issuesUrl : '/api/repos';
-
     const token = localStorage.getItem('ACCESS_TOKEN');
+    const url = issuesUrl ? issuesUrl : `${apiUrl}/repo`;
+
     let optionsArr = [];
 
     try {
+      console.log(url);
       const res = await fetch(url, {
         headers: {
           Accept: 'application/json',
@@ -54,6 +30,7 @@ const PickRepo = ({ nextFormStep, bountyData, setBountyData }) => {
       });
 
       const data = await res.json();
+      console.log(data);
       if (issuesUrl) {
         data.forEach(element => {
           optionsArr.push({
@@ -94,11 +71,17 @@ const PickRepo = ({ nextFormStep, bountyData, setBountyData }) => {
         issue_number: pickedData.issue_number
       }
     ))
-    nextFormStep();
+    setFormStep(1);
   }
 
   useEffect(() => {
     if (!pickedData.repo_name) return;
+
+    // API RETURNS ERROR CODE 500, 401 IN MESSAGE, YET BEARER IS DEFINED
+    // const repoName = pickedData.repo_name;
+    // const repoNameLowercase = repoName.toLowerCase();
+    // const issueUrl = `${apiUrl}/repo/${repoName}/issues`;
+    // getRepoData(issueUrl);
 
     getRepoData('/api/issues');
   }, [pickedData.repo_name])
@@ -137,18 +120,15 @@ const PickRepo = ({ nextFormStep, bountyData, setBountyData }) => {
             border={false}
             placeholder={'Pick issue'}
             queryValue={bountyData.issue_number !== undefined ? bountyData.issue_number : true}
-            onChange={e => setPickedData({
-              ...pickedData,
-              issue_number: e.value
-            })}
+            onChange={e => {
+              setPickedData({
+                ...pickedData,
+                issue_number: e.value
+              })
+              moveToNextStep();
+            }
+            }
           />
-          <button
-            onClick={moveToNextStep}
-            disabled={pickedData.issue_number === undefined ? true : false}
-            className='line-height-reset mt-6 btn-submit text-uppercase btn btn-primary'
-          >
-            next step
-          </button>
         </>
         :
         <></>

@@ -15,7 +15,7 @@ const requiredFields = [
   'body'
 ]
 
-const ProvideData = ({ nextFormStep, bountyData, setBountyData }) => {
+const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
   const [validationErr, setValidationErr] = useState([]);
   const [formBlock, setFormBlock] = useState(true);
 
@@ -58,8 +58,6 @@ const ProvideData = ({ nextFormStep, bountyData, setBountyData }) => {
     delete formattedBody.repoOptions;
     delete formattedBody.issuesOptions;
 
-    console.log(formattedBody);
-
     // ADD ACTUAL FORM POST
     // const data = JSON.stringify(formattedBody);
     // try {
@@ -77,11 +75,11 @@ const ProvideData = ({ nextFormStep, bountyData, setBountyData }) => {
     //   console.error('Failed to fetch bounty:', err)
     // }
 
-    nextFormStep();
+    setFormStep(2);
   }
 
   return (
-    <>
+    <div className="mt-12">
       <h2 className="text-muted">Fill in a form</h2>
 
       <form
@@ -91,7 +89,7 @@ const ProvideData = ({ nextFormStep, bountyData, setBountyData }) => {
         }}
       >
         <fieldset>
-          <div className="row mb-xl-1 mb-9">
+          <div className="row">
             <div className="col-lg-6">
               <div className="form-group">
                 <label
@@ -127,8 +125,8 @@ const ProvideData = ({ nextFormStep, bountyData, setBountyData }) => {
               </div>
             </div>
           </div>
-          <div className="row mb-xl-5 mb-8">
-            <div className="col-lg-6 mb-xl-0 mb-7">
+          <div className="row">
+            <div className="col-lg-6">
               <div className="form-group position-relative">
                 <label
                   htmlFor="select3"
@@ -164,7 +162,7 @@ const ProvideData = ({ nextFormStep, bountyData, setBountyData }) => {
               </div>
             </div>
           </div>
-          <div className="row mb-xl-1 mb-9">
+          <div className="row">
             <div className="col-lg-6">
               <div className="form-group">
                 <label
@@ -221,7 +219,7 @@ const ProvideData = ({ nextFormStep, bountyData, setBountyData }) => {
               </div>
             </div>
             <div className="col-md-12">
-              <div className="form-group mb-11">
+              <div className="form-group">
                 <label
                   htmlFor="formGroupExampleInput"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
@@ -247,7 +245,7 @@ const ProvideData = ({ nextFormStep, bountyData, setBountyData }) => {
           </div>
         </fieldset>
       </form>
-    </>
+    </div>
   );
 }
 
