@@ -1,8 +1,19 @@
 import BountyTable from "@/components/Dashboard/bounty-table";
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import PageWrapper from "@/components/PageWrapper";
+import GlobalContext from "src/context/GlobalContext";
+import Router from "next/router";
 
 const DashboardMain = () => {
+
+  const gContext = useContext(GlobalContext);
+
+  useEffect(() => {
+    if (!gContext.signedIn) {
+      Router.push("/")
+    }
+  });
+
 
   return (
     <>
@@ -24,7 +35,7 @@ const DashboardMain = () => {
                 </div>
               </div>
               <div className="bg-white shadow-8 pt-7 rounded pb-8 px-11">
-                  <span>Looks like you don't have any completed bounties yet.</span>
+                <span>Looks like you don't have any completed bounties yet.</span>
               </div>
             </div>
           </div>
