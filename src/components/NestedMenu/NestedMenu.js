@@ -4,6 +4,7 @@ import { ListGroup, Collapse } from "react-bootstrap";
 import { FaAngleRight, FaAngleDown } from "react-icons/fa";
 import Link from "next/link";
 import GlobalContext from "../../context/GlobalContext";
+import { menuItems } from "../Header/menu-items";
 
 const NestedMenuContainer = styled.div`
   a,
@@ -42,42 +43,6 @@ const NestedMenuContainer = styled.div`
     border-bottom-width: 1px;
   } */
 `;
-
-const defaultMenuItems = [
-  { name: "home", label: "Home" },
-  {
-    name: "billing",
-    label: "Billing",
-    items: [
-      { name: "statements", label: "Statements" },
-      { name: "reports", label: "Reports" },
-    ],
-  },
-  {
-    name: "settings",
-    label: "Settings",
-    items: [
-      { name: "profile", label: "Profile" },
-      { name: "insurance", label: "Insurance" },
-      {
-        name: "notifications",
-        label: "Notifications",
-        items: [
-          { name: "email", label: "Email" },
-          {
-            name: "desktop",
-            label: "Desktop",
-            items: [
-              { name: "schedule", label: "Schedule" },
-              { name: "frequency", label: "Frequency" },
-            ],
-          },
-          { name: "sms", label: "SMS" },
-        ],
-      },
-    ],
-  },
-];
 
 const MenuItem = ({
   label,
@@ -160,7 +125,7 @@ const MenuItem = ({
   );
 };
 
-const NestedMenu = ({ menuItems = defaultMenuItems }) => {
+const NestedMenu = () => {
   return (
     <NestedMenuContainer>
       <ListGroup variant="flush">

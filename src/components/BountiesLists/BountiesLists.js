@@ -55,13 +55,13 @@ const BountyView = (bounty) => {
           <div className="col-md-6 text-right pt-7 pt-md-5">
             <div className="media justify-content-md-end">
               <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
-                <h5 className="text-black-2">
+                <span className="text-black-2">
                   <span className="text-primary">
                     <i className="fas fa-coins pr-3" />
                   </span>
                   {bounty.bounty_value}
                   <span className="text-hit-gray pl-1">{bounty.bounty_currency}</span>
-                </h5>
+                </span>
               </p>
             </div>
             <div className="media justify-content-md-end">

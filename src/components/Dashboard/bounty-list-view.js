@@ -1,7 +1,4 @@
 import Link from "next/link";
-import Image from "next/image";
-
-import imgP1 from "public/images/image/table-one-profile-image-1.png";
 import TechIcon from "../Icons/TechIcon";
 import { formatDate } from "src/utils";
 

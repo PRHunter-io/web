@@ -23,7 +23,7 @@ const BountyTable = () => {
     )
 
     return (
-        <BountyTableInner children={bounties.map(bounty => <BountyListView bounty={bounty} />)}/>
+        <BountyTableInner children={bounties.map(bounty => <BountyListView key={bounty.id} bounty={bounty} />)}/>
     )
 }
 
