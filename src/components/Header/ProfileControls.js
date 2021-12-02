@@ -1,5 +1,4 @@
 import Link from "next/link";
-import DropdownToggle from "react-bootstrap/DropdownToggle";
 import Dropdown from 'react-bootstrap/Dropdown'
 
 import Image from "next/image"
@@ -19,7 +18,7 @@ export const ProfileControls = () => (
             </Link>
         </div>
         <div>
-            <DropdownToggle className="show-gr-dropdown py-5">
+            <Dropdown className="show-gr-dropdown py-5">
                 <Dropdown.Toggle
                     as="a"
                     className="proile media ml-7 flex-y-center"
@@ -30,7 +29,7 @@ export const ProfileControls = () => (
                     <i className="fas fa-chevron-down heading-default-color ml-6"></i>
                 </Dropdown.Toggle>
                 <ProfileMenu />
-            </DropdownToggle>
+            </Dropdown>
         </div>
     </div>
 )
