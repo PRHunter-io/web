@@ -47,7 +47,7 @@ const ProfileMenu = () => {
                     Settings
                 </a>
             </Link>
-            <Link href={`${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/logout`}>
+            <Link href="/logout"  >
                 <a className=" dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
                     Log Out
                 </a>

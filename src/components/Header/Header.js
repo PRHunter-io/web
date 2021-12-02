@@ -8,7 +8,7 @@ import Offcanvas from "../Offcanvas";
 import NestedMenu from "../NestedMenu";
 import { device } from "../../utils";
 import Logo from "../Logo";
-import MenuItems, {menuItemList} from "./menu-items";
+import MenuItems, { menuItemList } from "./menu-items";
 
 import { ProfileControls } from "./ProfileControls";
 import { HeaderMenu } from "./HeaderMenu";
@@ -125,19 +125,22 @@ const Header = () => {
   );
 };
 
-const SignInControls = () => (
-  <div className="header-btns ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
-    <a
-      className={`btn btn-primary text-uppercase font-size-3`}
-      href="/#"
-      onClick={(e) => {
-        e.preventDefault();
-        gContext.toggleSignInModal();
-      }}
-    >
-      Sign In
-    </a>
-  </div>
-)
+const SignInControls = () => {
+  const gContext = useContext(GlobalContext);
+  return (
+    <div className="header-btns ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
+      <a
+        className={`btn btn-primary text-uppercase font-size-3`}
+        href="/#"
+        onClick={(e) => {
+          e.preventDefault();
+          gContext.toggleSignInModal();
+        }}
+      >
+        Sign In
+      </a>
+    </div>
+  )
+}
 
 export default Header;

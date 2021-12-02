@@ -1,5 +1,6 @@
 import Router from "next/router";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
+import GlobalContext from "src/context/GlobalContext";
 
 export default function OAuth2RedirectHandler() {
 
