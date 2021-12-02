@@ -101,7 +101,7 @@ const SearchGrid = ({ bounties, query }) => {
   }
 
   useEffect(() => {
-    if (Object.keys(fullQuery).length !== 0) {
+    if (Object.keys(fullQuery). length !== 0) {
       updateQuery(fullQuery);
     }
   }, [fullQuery])

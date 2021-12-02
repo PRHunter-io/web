@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 import { bountyType, languages, experienceLevel } from "../../utils/filters";
 import CheckboxesList from "./CheckboxesList";
