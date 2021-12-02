@@ -1,19 +1,17 @@
 import React, { useState, useContext } from "react";
 import styled from "styled-components";
-import { Container, Dropdown } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
-import Link from "next/link";
 
-import { useWindowSize } from "../../hooks/useWindowSize";
 import GlobalContext from "../../context/GlobalContext";
 import Offcanvas from "../Offcanvas";
 import NestedMenu from "../NestedMenu";
 import { device } from "../../utils";
 import Logo from "../Logo";
-import { menuItems } from "./menuItems";
+import MenuItems, {menuItemList} from "./menu-items";
 
-import Image from 'next/image'
-import imgP from "../../../public/images/image/header-profile.png";
+import { ProfileControls } from "./ProfileControls";
+import { HeaderMenu } from "./HeaderMenu";
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
@@ -46,8 +44,6 @@ const Header = () => {
   const gContext = useContext(GlobalContext);
   const [showScrolling, setShowScrolling] = useState(false);
   const [showReveal, setShowReveal] = useState(false);
-
-  const size = useWindowSize();
 
   const ToggleButton = styled.button`
   color: ${({ dark, theme }) =>
@@ -98,9 +94,9 @@ const Header = () => {
             <div className="brand-logo">
               <Logo />
             </div>
-            <MenuItems menuItems={menuItems} />
+            <HeaderMenu />
 
-            {gContext.signedIn ? <ProfileControls size={size} /> : <SignInControls />}
+            {gContext.signedIn ? <ProfileControls /> : <SignInControls />}
 
             <ToggleButton
               className={`navbar-toggler btn-close-off-canvas ml-3 ${gContext.visibleOffCanvas ? "collapsed" : ""
@@ -123,7 +119,7 @@ const Header = () => {
         show={gContext.visibleOffCanvas}
         onHideOffcanvas={gContext.toggleOffCanvas}
       >
-        <NestedMenu menuItems={menuItems} />
+        <NestedMenu />
       </Offcanvas>
     </>
   );
@@ -143,207 +139,5 @@ const SignInControls = () => (
     </a>
   </div>
 )
-
-const ProfileControls = ({ size }) => (
-  <div className="header-btn-devider ml-auto ml-lg-5 pl-2 d-none d-xs-flex align-items-center">
-    <div>
-      <Link href="/#">
-        <a className="px-3 ml-7 font-size-7 notification-block flex-y-center position-relative">
-          <i className="fas fa-bell heading-default-color"></i>
-          <span className="font-size-3 count font-weight-semibold text-white bg-primary circle-24 border border-width-3 border border-white">
-            3
-          </span>
-        </a>
-      </Link>
-    </div>
-    <div>
-      <Dropdown className="show-gr-dropdown py-5">
-        <Dropdown.Toggle
-          as="a"
-          className="proile media ml-7 flex-y-center"
-        >
-          <div className="circle-40">
-            <Image src={imgP} alt="" />
-          </div>
-          <i className="fas fa-chevron-down heading-default-color ml-6"></i>
-        </Dropdown.Toggle>
-        <ProfileMenu size={size} />
-      </Dropdown>
-    </div>
-  </div>
-)
-
-const MenuItems = ({ menuItems }) => (
-  <div className="collapse navbar-collapse">
-    <div className="navbar-nav-wrapper">
-      <ul className="navbar-nav main-menu d-none d-lg-flex">
-        {menuItems.map(
-          (
-            { label, isExternal = false, name, items, ...rest },
-            index
-          ) => {
-            const hasSubItems = Array.isArray(items);
-            return (
-              <React.Fragment key={name + index}>
-                {hasSubItems ? (
-                  <li className="nav-item dropdown" {...rest}>
-                    <a
-                      className="nav-link dropdown-toggle gr-toggle-arrow"
-                      role="button"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                      href="/#"
-                      onClick={(e) => e.preventDefault()}
-                    >
-                      {label}
-                      <i className="fas fa-angle-down"></i>
-                    </a>
-                    <ul className="gr-menu-dropdown dropdown-menu ">
-                      {items.map((subItem, indexSub) => {
-                        const hasInnerSubItems = Array.isArray(
-                          subItem.items
-                        );
-                        return (
-                          <React.Fragment
-                            key={subItem.name + indexSub}
-                          >
-                            {hasInnerSubItems ? (
-                              <li className="drop-menu-item dropdown">
-                                <a
-                                  className="dropdown-toggle gr-toggle-arrow"
-                                  role="button"
-                                  data-toggle="dropdown"
-                                  aria-expanded="false"
-                                  aria-haspopup="true"
-                                  href="/#"
-                                  onClick={(e) => e.preventDefault()}
-                                >
-                                  {subItem.label}
-                                  <i className="fas fa-angle-down"></i>
-                                </a>
-                                <ul className="gr-menu-dropdown dropdown-menu dropdown-left">
-                                  {subItem.items.map(
-                                    (itemInner, indexInnerMost) => (
-                                      <li
-                                        className="drop-menu-item"
-                                        key={
-                                          itemInner.name +
-                                          indexInnerMost
-                                        }
-                                      >
-                                        {itemInner.isExternal ? (
-                                          <a
-                                            href={`${itemInner.name}`}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                          >
-                                            {itemInner.label}
-                                          </a>
-                                        ) : (
-                                          <Link
-                                            href={`/${itemInner.name}`}
-                                          >
-                                            <a>{itemInner.label}</a>
-                                          </Link>
-                                        )}
-                                      </li>
-                                    )
-                                  )}
-                                </ul>
-                              </li>
-                            ) : (
-                              <li className="drop-menu-item">
-                                {subItem.isExternal ? (
-                                  <a
-                                    href={`${subItem.name}`}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    {subItem.label}
-                                  </a>
-                                ) : (
-                                  <Link href={`/${subItem.name}`}>
-                                    <a>{subItem.label}</a>
-                                  </Link>
-                                )}
-                              </li>
-                            )}
-                          </React.Fragment>
-                        );
-                      })}
-                    </ul>
-                  </li>
-                ) : (
-                  <li className="nav-item" {...rest}>
-                    {isExternal ? (
-                      <a
-                        className="nav-link"
-                        href={`${name}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        {label}
-                      </a>
-                    ) : (
-                      <Link href={`/${name}`}>
-                        <a
-                          className="nav-link"
-                          role="button"
-                          aria-expanded="false"
-                        >
-                          {label}
-                        </a>
-                      </Link>
-                    )}
-                  </li>
-                )}
-              </React.Fragment>
-            );
-          }
-        )}
-      </ul>
-    </div>
-  </div>
-)
-
-const ProfileMenu = ({ size }) => {
-  return (
-    <ProfileMenuHeader size={size}>
-      <Link href="/dashboard">
-        <a className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
-          Dashboard
-        </a>
-      </Link>
-      <Link href="/dashboard/settings">
-        <a className="dropdown-item py-2 font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
-          Settings
-        </a>
-      </Link>
-      <Link href={`${process.env.NEXT_PUBLIC_EXTERNAL_API_URL}/logout`}>
-        <a className=" dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
-          Log Out
-        </a>
-      </Link>
-    </ProfileMenuHeader>
-  )
-}
-
-const ProfileMenuHeader = ({ size, children }) => {
-  if (size.width <= 991) {
-    return (<Dropdown.Menu
-      className={"gr-menu-dropdown border-0 border-width-2 py-2 w-auto bg-default"}
-      key=""
-    >
-      {children}
-    </Dropdown.Menu>)
-  } else {
-    return (
-      <div
-        className="dropdown-menu gr-menu-dropdown dropdown-right border-0 border-width-2 py-2 w-auto bg-default"
-        key="2"
-      >{children}</div>)
-  }
-}
 
 export default Header;
