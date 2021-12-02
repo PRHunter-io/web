@@ -10,7 +10,7 @@ const GlobalProvider = ({ children }) => {
   const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [videoModalVisible, setVideoModalVisible] = useState(false);
   const [visibleOffCanvas, setVisibleOffCanvas] = useState(false);
-  const [signedIn, setSignedIn] = useState(true);
+  const [signedIn, setSignedIn] = useState(false);
   const [header, setHeader] = useState({});
   const [footer, setFooter] = useState({
     theme: "dark",
