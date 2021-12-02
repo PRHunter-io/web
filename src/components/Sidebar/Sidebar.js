@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Range, getTrackBackground } from "react-range";
 import { bountyType, languages, experienceLevel } from "../../utils/filters";
 import CheckboxesList from "./CheckboxesList";
@@ -32,7 +32,7 @@ const Sidebar = ({ fullQuery, setFullQuery }) => {
       <div className="widgets mb-11 ">
         <div className="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
           <h4 className="font-size-6 font-weight-semibold mb-6 w-75">
-            Salary Range
+            Bounty Value
           </h4>
           {/* <!-- Range Slider --> */}
 

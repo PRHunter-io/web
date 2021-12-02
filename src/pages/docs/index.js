@@ -26,8 +26,6 @@ export default function Documentation() {
 
                             - Rejecting a bounty
 
-
-
                         </div>
                     </div>
                 </div>

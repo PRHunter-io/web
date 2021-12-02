@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Link from "next/link";
 import PageWrapper from "../../components/PageWrapper";
 import Sidebar from "../../components/Sidebar";
 import Router from 'next/router';
@@ -61,9 +60,7 @@ const getData = async (reqBody, setfilteredData) => {
   }
 }
 
-// const SearchGrid = ({ data }) => {
 const SearchGrid = ({ bounties, query }) => {
-  const [gridDisplay, setgridDisplay] = useState(false);
   const [filteredData, setfilteredData] = useState(false);
 
   const bountiesCount = bounties ? bounties.length : 0;
@@ -88,7 +85,7 @@ const SearchGrid = ({ bounties, query }) => {
       setFullQuery(prevState => (
         {
           ...prevState,
-          title_or_body: []
+          content_contains: []
         }
       ));
 
@@ -98,13 +95,13 @@ const SearchGrid = ({ bounties, query }) => {
     setFullQuery(prevState => (
       {
         ...prevState,
-        title_or_body: titleValue
+        content_contains: titleValue
       }
     ));
   }
 
   useEffect(() => {
-    if (Object.keys(fullQuery).length !== 0) {
+    if (Object.keys(fullQuery). length !== 0) {
       updateQuery(fullQuery);
     }
   }, [fullQuery])
@@ -175,7 +172,7 @@ const SearchGrid = ({ bounties, query }) => {
                     </div>
                   </div>
 
-                  {bounties ? (<BountiesListRegular data={filteredData ? filteredData.content : bounties} />) : <div>loading</div>
+                  {bounties ? (<BountiesListRegular bounties={filteredData ? filteredData.content : bounties} />) : <div>loading</div>
                   }
                 </div>
               </div>

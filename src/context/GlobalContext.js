@@ -10,16 +10,8 @@ const GlobalProvider = ({ children }) => {
   const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [videoModalVisible, setVideoModalVisible] = useState(false);
   const [visibleOffCanvas, setVisibleOffCanvas] = useState(false);
-  const [header, setHeader] = useState({
-    theme: "light",
-    bgClass: "default",
-    variant: "primary",
-    align: "left",
-    isFluid: false,
-    button: "cta", // profile, account, null
-    buttonText: "Get started free", // profile, account, null
-    reveal: true,
-  });
+  const [signedIn, setSignedIn] = useState(false);
+  const [header, setHeader] = useState({});
   const [footer, setFooter] = useState({
     theme: "dark",
     style: "style1", //style1, style2
@@ -79,6 +71,8 @@ const GlobalProvider = ({ children }) => {
         setHeader,
         footer,
         setFooter,
+        signedIn, 
+        setSignedIn
       }}
     >
       {children}

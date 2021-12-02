@@ -83,85 +83,12 @@ const Layout = ({ children, pageContext }) => {
     );
   }, [gContext]);
 
-  if (pageContext.layout === "bare") {
-    return (
-      <ThemeProvider
-        theme={
-          gContext.themeDark ? getTheme(modes.dark) : getTheme(modes.light)
-        }
-      >
-        <div data-theme-mode-panel-active data-theme="light">
-          <GlobalStyle />
-          <Helmet>
-            <title>PRHunter</title>
-            <link rel="icon" type="image/png" href={imgFavicon} />
-            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"/>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"/>
-          </Helmet>
-          <Loader id="loading" className={visibleLoader ? "" : "inActive"}>
-            <div className="load-circle">
-              <span className="one"></span>
-            </div>
-          </Loader>
-          <div className="site-wrapper overflow-hidden min-vh-100" ref={eleRef}>
-            {children}
-          </div>
-
-          <ModalVideo />
-          <ModalApplication />
-          <ModalSignIn />
-          <ModalSignUp />
-        </div>
-      </ThemeProvider>
-    );
-  }
-
-  if (pageContext.layout === "dashboard") {
-    return (
-      <ThemeProvider
-        theme={
-          gContext.themeDark ? getTheme(modes.dark) : getTheme(modes.light)
-        }
-      >
-        <div data-theme-mode-panel-active data-theme="light">
-          <GlobalStyle />
-          <Helmet>
-            <title>PRHunter</title>
-            <link rel="icon" type="image/png" href={imgFavicon} />
-            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"/>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"/>
-
-          </Helmet>
-          <Loader id="loading" className={visibleLoader ? "" : "inActive"}>
-            <div className="load-circle">
-              <span className="one"></span>
-            </div>
-          </Loader>
-          <div
-            className="site-wrapper overflow-hidden bg-default-2 min-vh-100"
-            ref={eleRef}
-          >
-            <Header isDark={gContext.headerDark} />
-            <SidebarDashboard />
-            {children}
-          </div>
-
-          <ModalVideo />
-          <ModalApplication />
-          <ModalSignIn />
-          <ModalSignUp />
-        </div>
-      </ThemeProvider>
-    );
-  }
 
   return (
     <>
       <ThemeProvider
         theme={
-          gContext.themeDark ? getTheme(modes.dark) : getTheme(modes.light)
+          getTheme(modes.light)
         }
       >
         <div data-theme-mode-panel-active data-theme="light">
@@ -170,15 +97,20 @@ const Layout = ({ children, pageContext }) => {
             <title>PRHunter</title>
             <link rel="icon" type="image/png" href={imgFavicon} />
             <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"/>
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous"/>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css" />
+            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous" />
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"} />
           <div className="site-wrapper overflow-hidden min-vh-100" ref={eleRef}>
-            <Header isDark={gContext.headerDark} />
-            {children}
+            {pageContext.layout !== "bare" &&
+              <Header />
+            }
+            {pageContext.layout === "dashboard" && <SidebarDashboard />}
 
-            <Footer isDark={gContext.footerDark} />
+            {children}
+            {pageContext.layout !== "bare" && pageContext.layout !== "dashboard" &&
+              <Footer />
+            }
           </div>
 
           <ModalVideo />
@@ -188,7 +120,8 @@ const Layout = ({ children, pageContext }) => {
         </div>
       </ThemeProvider>
     </>
-  );
+  )
 };
+
 
 export default Layout;
