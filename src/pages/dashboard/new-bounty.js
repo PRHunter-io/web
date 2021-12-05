@@ -3,6 +3,9 @@ import React, { useState } from "react";
 import PageWrapper from "../../components/PageWrapper";
 import { Select } from "../../components/Core";
 import CreateBountyForm from "../../components/CreateBountyForm/CreateBountyForm";
+import { useContext, useEffect } from "react";
+import GlobalContext from "src/context/GlobalContext";
+import { useRouter } from "next/router";
 
 const defaultTypes = [
   { value: "b2b", label: "B2B" },
@@ -25,6 +28,15 @@ const defaultLocations = [
 ];
 
 const NewBounty = () => {
+  const gContext = useContext(GlobalContext);
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!gContext.signedIn) {
+      router.push("/")
+    }
+  }, [])
+
   const [formStep, setFormStep] = useState(0);
 
   const nextFormStep = () => setFormStep((currentStep) => currentStep + 1);

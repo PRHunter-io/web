@@ -1,16 +1,14 @@
 import Router from "next/router";
-import { useContext, useEffect } from "react";
-import GlobalContext from "src/context/GlobalContext";
+import { useEffect } from "react";
+import { authService } from "@/services/auth.service"
+
 
 export default function OAuth2RedirectHandler() {
-
-    const gContext = useContext(GlobalContext);
 
     useEffect(() => {
         const { query } = Router
         if (query.token) {
-            localStorage.setItem("ACCESS_TOKEN", query.token)
-            gContext.setSignedIn(true)
+            authService.signIn(query.token)
             Router.push("/dashboard")
         } else {
             Router.push("/")
