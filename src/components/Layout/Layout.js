@@ -14,6 +14,7 @@ import ModalSignIn from "../ModalSignIn";
 import ModalSignUp from "../ModalSignUp";
 
 import GlobalContext from "../../context/GlobalContext";
+import { authService } from "@/services/auth.service"
 
 import GlobalStyle from "../../utils/globalStyle";
 
@@ -81,6 +82,13 @@ const Layout = ({ children, pageContext }) => {
       },
       false
     );
+
+    if (authService.isUserSignedIn()){
+      gContext.setSignedIn(true)
+    }else{
+      gContext.setSignedIn(false)
+    }
+
   }, [gContext]);
 
 
