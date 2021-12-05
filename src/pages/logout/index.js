@@ -1,10 +1,13 @@
 import { authService } from "@/services/auth.service";
 import Router from "next/router";
+import { useEffect } from "react";
 
 export default function Logout() {
 
-    authService.logout()
-    Router.push("/")
+    useEffect(() => {
+        authService.logout()
+        Router.push("/")
+    }, {})
 
     return null
 }
