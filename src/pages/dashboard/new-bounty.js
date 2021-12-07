@@ -1,33 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 
 import PageWrapper from "../../components/PageWrapper";
-import { Select } from "../../components/Core";
 import CreateBountyForm from "../../components/CreateBountyForm/CreateBountyForm";
-import fetcher from "src/utils/fetcher";
-import useSWR from "swr";
-
-const defaultTypes = [
-  { value: "b2b", label: "B2B" },
-  { value: "saas", label: "SAAS" },
-  { value: "b2b", label: "b2b" },
-];
-
-const defaultEmployees = [
-  { value: "10-50", label: "10-50" },
-  { value: "50-100", label: "50-100" },
-  { value: "100-500", label: "100-500" },
-  { value: "500-2000", label: "500-2000" },
-];
-
-const defaultLocations = [
-  { value: "bd", label: "Bangladesh" },
-  { value: "sp", label: "Singapore" },
-  { value: "tl", label: "Thailand" },
-  { value: "de", label: "Germany" },
-];
+import { useContext, useEffect } from "react";
+import GlobalContext from "src/context/GlobalContext";
+import { useRouter } from "next/router";
 
 const NewBounty = () => {
-  const [readyToPostBounty, setReadyToPostBounty] = useState(false);
+  const gContext = useContext(GlobalContext);
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!gContext.signedIn) {
+      router.push("/")
+    }
+  }, [])
 
   return (
     <>
@@ -51,16 +38,6 @@ const NewBounty = () => {
                     Create a new bounty
                   </h5>
                   <div className="contact-form bg-white shadow-8 rounded-4 pl-sm-10 pl-4 pr-sm-11 pr-4 pt-13 pb-13">
-                    {/* 
-                    CHECK IF NEEDED !!!
-                    {readyToPostBounty ? <CreateBountyForm />
-                      :
-                      <button
-                        onClick={() => setReadyToPostBounty(true)}
-                      >
-                        Let's create a bounty!
-                      </button>
-                    } */}
                     <CreateBountyForm />
                   </div>
                 </div>

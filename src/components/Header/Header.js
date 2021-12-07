@@ -11,6 +11,7 @@ import Logo from "../Logo";
 
 import { ProfileControls } from "./ProfileControls";
 import { HeaderMenu } from "./HeaderMenu";
+import { authService } from "@/services/auth.service";
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
