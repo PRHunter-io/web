@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
@@ -11,7 +11,6 @@ import Logo from "../Logo";
 
 import { ProfileControls } from "./ProfileControls";
 import { HeaderMenu } from "./HeaderMenu";
-import { authService } from "@/services/auth.service";
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
@@ -24,6 +23,7 @@ const SiteHeader = styled.header`
   right: 0;
   width: 100%;
   z-index: 999;
+  
   @media ${device.lg} {
     position: fixed !important;
     transition: 0.6s;
@@ -35,22 +35,28 @@ const SiteHeader = styled.header`
       transform: translateY(0%);
       box-shadow: 0 12px 34px -11px rgba(65, 62, 101, 0.1);
       z-index: 9999;
-      background: "#fff"};
-    }
+      background: "#fff"
+    };
   }
+`;
+
+const ToggleButton = styled.button`
+color: ${({ dark, theme }) =>
+    dark ? theme.colors.lightShade : theme.colors.heading}!important;
+border-color: ${({ dark, theme }) =>
+    dark ? theme.colors.lightShade : theme.colors.heading}!important;
 `;
 
 const Header = () => {
   const gContext = useContext(GlobalContext);
   const [showScrolling, setShowScrolling] = useState(false);
   const [showReveal, setShowReveal] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
-  const ToggleButton = styled.button`
-  color: ${({ dark, theme }) =>
-      dark ? theme.colors.lightShade : theme.colors.heading}!important;
-  border-color: ${({ dark, theme }) =>
-      dark ? theme.colors.lightShade : theme.colors.heading}!important;
-`;
+  useEffect(() => {
+    // fix 'Warning: Prop `className` did not match.' error
+    setMounted(true);
+  }, [])
 
   useScrollPosition(({ prevPos, currPos }) => {
     if (currPos.y < 0) {
@@ -67,60 +73,66 @@ const Header = () => {
 
   return (
     <>
-      <SiteHeader
-        className={`site-header site-header--sticky  site-header--absolute py-7 py-xs-0 sticky-header ${gContext.header.bgClass
-          } ${gContext.header.align === "left"
-            ? "site-header--menu-left "
-            : gContext.header.align === "right"
-              ? "site-header--menu-right "
-              : "site-header--menu-center "
-          }
+      {mounted ?
+        <>
+          <SiteHeader
+            className={`site-header site-header--sticky  site-header--absolute py-7 py-xs-0 sticky-header ${gContext.header.bgClass
+              } ${gContext.header.align === "left"
+                ? "site-header--menu-left "
+                : gContext.header.align === "right"
+                  ? "site-header--menu-right "
+                  : "site-header--menu-center "
+              }
         ${gContext.header.theme === "dark" ? "dark-mode-texts" : " "} ${showScrolling ? "scrolling" : ""
-          } ${gContext.header.reveal &&
-            showReveal &&
-            gContext.header.theme === "dark"
-            ? "reveal-header bg-blackish-blue"
-            : gContext.header.reveal && showReveal
-              ? "reveal-header"
-              : ""
-          }`}
-      >
-        <Container
-          fluid={gContext.header.isFluid}
-          className={gContext.header.isFluid ? "pr-lg-9 pl-lg-9" : ""}
-        >
-          <nav className="navbar site-navbar offcanvas-active navbar-expand-lg px-0 py-0">
-            {/* <!-- Brand Logo--> */}
-            <div className="brand-logo">
-              <Logo />
-            </div>
-            <HeaderMenu />
-
-            {gContext.signedIn ? <ProfileControls /> : <SignInControls />}
-
-            <ToggleButton
-              className={`navbar-toggler btn-close-off-canvas ml-3 ${gContext.visibleOffCanvas ? "collapsed" : ""
-                }`}
-              type="button"
-              data-toggle="collapse"
-              data-target="#mobile-menu"
-              aria-controls="mobile-menu"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-              onClick={gContext.toggleOffCanvas}
-              dark={gContext.header.theme === "dark" ? 1 : 0}
+              } ${gContext.header.reveal &&
+                showReveal &&
+                gContext.header.theme === "dark"
+                ? "reveal-header bg-blackish-blue"
+                : gContext.header.reveal && showReveal
+                  ? "reveal-header"
+                  : ""
+              }`}
+          >
+            <Container
+              fluid={gContext.header.isFluid}
+              className={gContext.header.isFluid ? "pr-lg-9 pl-lg-9" : ""}
             >
-              <i className="fas fa-bars"></i>
-            </ToggleButton>
-          </nav>
-        </Container>
-      </SiteHeader>
-      <Offcanvas
-        show={gContext.visibleOffCanvas}
-        onHideOffcanvas={gContext.toggleOffCanvas}
-      >
-        <NestedMenu />
-      </Offcanvas>
+              <nav className="navbar site-navbar offcanvas-active navbar-expand-lg px-0 py-0">
+                {/* <!-- Brand Logo--> */}
+                <div className="brand-logo">
+                  <Logo />
+                </div>
+                <HeaderMenu />
+
+                {gContext.signedIn ? <ProfileControls /> : <SignInControls />}
+
+                <ToggleButton
+                  className={`navbar-toggler btn-close-off-canvas ml-3 ${gContext.visibleOffCanvas ? "collapsed" : ""
+                    }`}
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#mobile-menu"
+                  aria-controls="mobile-menu"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                  onClick={gContext.toggleOffCanvas}
+                  dark={gContext.header.theme === "dark" ? 1 : 0}
+                >
+                  <i className="fas fa-bars"></i>
+                </ToggleButton>
+              </nav>
+            </Container>
+          </SiteHeader>
+          <Offcanvas
+            show={gContext.visibleOffCanvas}
+            onHideOffcanvas={gContext.toggleOffCanvas}
+          >
+            <NestedMenu />
+          </Offcanvas>
+        </>
+        :
+        <></>
+      }
     </>
   );
 };

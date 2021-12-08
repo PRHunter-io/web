@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Select } from "@/components/Core";
+import { authService } from "@/services/auth.service"
 
 const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
   const [pickedData, setPickedData] = useState({
@@ -14,13 +15,14 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
   const apiUrl = process.env.NEXT_PUBLIC_EXTERNAL_API_URL;
 
   const getRepoData = async (issuesUrl) => {
-    const token = localStorage.getItem('ACCESS_TOKEN');
+    const token = authService.getAccessToken();
     const url = issuesUrl ? issuesUrl : `${apiUrl}/repo`;
-
     let optionsArr = [];
+    if (!token) return;
+    console.log('reqUrl', url);
+    console.log('bearerToken', token);
 
     try {
-      console.log(url);
       const res = await fetch(url, {
         headers: {
           Accept: 'application/json',
@@ -30,7 +32,6 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
       });
 
       const data = await res.json();
-      console.log(data);
       if (issuesUrl) {
         data.forEach(element => {
           optionsArr.push({
@@ -78,12 +79,12 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
     if (!pickedData.repo_name) return;
 
     // API RETURNS ERROR CODE 500, 401 IN MESSAGE, YET BEARER IS DEFINED
-    // const repoName = pickedData.repo_name;
-    // const repoNameLowercase = repoName.toLowerCase();
-    // const issueUrl = `${apiUrl}/repo/${repoName}/issues`;
-    // getRepoData(issueUrl);
+    const repoName = pickedData.repo_name;
+    const repoNameLowercase = repoName.toLowerCase();
+    const issueUrl = `${apiUrl}/repo/${repoNameLowercase}/issues`;
+    getRepoData(issueUrl);
 
-    getRepoData('/api/issues');
+    // getRepoData('/api/issues');
   }, [pickedData.repo_name])
 
   const handleRepoPick = (e) => {

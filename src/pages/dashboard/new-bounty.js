@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import PageWrapper from "../../components/PageWrapper";
 import CreateBountyForm from "../../components/CreateBountyForm/CreateBountyForm";
@@ -9,12 +9,16 @@ import { useRouter } from "next/router";
 const NewBounty = () => {
   const gContext = useContext(GlobalContext);
   const router = useRouter()
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     if (!gContext.signedIn) {
+      if (!mounted) return;
       router.push("/")
     }
-  }, [])
+  }, [mounted])
 
   return (
     <>

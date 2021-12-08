@@ -1,6 +1,6 @@
 import BountyTable from "@/components/Dashboard/bounty-table";
 import PageWrapper from "@/components/PageWrapper";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import GlobalContext from "src/context/GlobalContext";
 import { useRouter } from "next/router";
 
@@ -8,12 +8,16 @@ const DashboardMain = () => {
 
   const gContext = useContext(GlobalContext);
   const router = useRouter()
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+
     if (!gContext.signedIn) {
+      if (!mounted) return;
       router.push("/")
     }
-  }, [])
+  }, [mounted])
 
   return (
     <>

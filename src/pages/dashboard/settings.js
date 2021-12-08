@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import PageWrapper from "@/components/PageWrapper";
 import { useUserData as useUserData } from "@/lib/swr";
@@ -9,17 +9,20 @@ import GlobalContext from "src/context/GlobalContext";
 import { useRouter } from "next/router";
 
 const DashboardSettings = () => {
-
   const { userData, isLoading, isError } = useUserData()
+  const [mounted, setMounted] = useState(false);
 
   const gContext = useContext(GlobalContext);
   const router = useRouter()
 
   useEffect(() => {
+    setMounted(true);
+
     if (!gContext.signedIn) {
+      if (!mounted) return;
       router.push("/")
     }
-  }, [])
+  }, [mounted])
 
   if (isLoading) return (
     <PageWrapperInternal>
