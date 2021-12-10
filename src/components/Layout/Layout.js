@@ -83,9 +83,9 @@ const Layout = ({ children, pageContext }) => {
       false
     );
 
-    if (authService.isUserSignedIn()){
+    if (authService.isUserSignedIn()) {
       gContext.setSignedIn(true)
-    }else{
+    } else {
       gContext.setSignedIn(false)
     }
 
@@ -109,7 +109,8 @@ const Layout = ({ children, pageContext }) => {
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous" />
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"} />
-          <div className="site-wrapper overflow-hidden min-vh-100" ref={eleRef}>
+          {/* is bg white on purpose?? */}
+          <div className="site-wrapper overflow-hidden min-vh-100 bg-default-2" ref={eleRef}>
             {pageContext.layout !== "bare" &&
               <Header />
             }

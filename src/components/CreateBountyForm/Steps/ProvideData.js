@@ -1,4 +1,5 @@
 import { Select } from "@/components/Core";
+import { authService } from "@/services/auth.service";
 import { useEffect, useState } from "react";
 import { experienceLevel } from "../../../utils/filters";
 import { bountyType } from "../../../utils/filters";
@@ -11,8 +12,9 @@ const requiredFields = [
   'bounty_type',
   'languages',
   'bounty_value',
-  'bountry_currency',
-  'body'
+  'bounty_currency',
+  'problem_statement',
+  'acceptance_criteria'
 ]
 
 const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
@@ -53,29 +55,44 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
   }, [validationErr])
 
   const submitData = async () => {
-    const formattedBody = { ...bountyData };
+    const repo_owner = bountyData.repo_name.split('/')[0];
+    const repo_name = bountyData.repo_name.split('/')[1];
+    const tags = bountyData.tags ? bountyData.tags : [];
+    const formattedBody = {
+      ...bountyData,
+      repo_owner,
+      repo_name,
+      languages: [
+        bountyData.languages
+      ],
+      tags
+    };
 
     delete formattedBody.repoOptions;
     delete formattedBody.issuesOptions;
 
-    // ADD ACTUAL FORM POST
-    // const data = JSON.stringify(formattedBody);
-    // try {
-    //   const res = await fetch('/api/filters', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json'
-    //     },
-    //     body: data
-    //   });
-    //   const newData = await res.json();
+    console.log('finalBody', formattedBody)
 
-    //   setfilteredData(newData.data);
-    // } catch (err) {
-    //   console.error('Failed to fetch bounty:', err)
-    // }
+    const data = JSON.stringify(formattedBody);
+    const apiUrl = process.env.NEXT_PUBLIC_EXTERNAL_API_URL;
+    const token = authService.getAccessToken();
 
-    setFormStep(2);
+    try {
+      const res = await fetch(`${apiUrl}/bounty`, {
+        method: 'POST',
+        headers: {
+          Accept: 'application/json',
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        },
+        body: data
+      });
+      const response = await res.json();
+      console.log(response);
+      setFormStep(2);
+    } catch (err) {
+      console.error('Failed to fetch bounty:', err)
+    }
   }
 
   return (
@@ -193,19 +210,19 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
                   border={false}
                   queryValue={true}
-                  onChange={e => setData(e.value, 'bountry_currency')}
+                  onChange={e => setData(e.value, 'bounty_currency')}
                 />
               </div>
             </div>
           </div>
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-lg-6">
               <div className="form-group">
                 <label
                   htmlFor="aboutTextarea"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Description
+                  Problem Statement
                 </label>
                 <textarea
                   name="textarea"
@@ -214,10 +231,31 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   rows="7"
                   className="border border-mercury text-gray w-100 pt-4 pl-6"
                   placeholder="Describe your bounty"
-                  onChange={e => setData(e.target.value, 'body')}
+                  onChange={e => setData(e.target.value, 'problem_statement')}
                 ></textarea>
               </div>
             </div>
+            <div className="col-lg-6">
+              <div className="form-group">
+                <label
+                  htmlFor="aboutTextarea"
+                  className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
+                >
+                  Acceptance Criteria
+                </label>
+                <textarea
+                  name="textarea"
+                  id="aboutTextarea"
+                  cols="30"
+                  rows="7"
+                  className="border border-mercury text-gray w-100 pt-4 pl-6"
+                  placeholder="Describe your bounty"
+                  onChange={e => setData(e.target.value, 'acceptance_criteria')}
+                ></textarea>
+              </div>
+            </div>
+          </div>
+          <div className="row">
             <div className="col-md-12">
               <div className="form-group">
                 <label

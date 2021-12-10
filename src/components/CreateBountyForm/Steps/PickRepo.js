@@ -5,7 +5,7 @@ import { authService } from "@/services/auth.service"
 const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
   const [pickedData, setPickedData] = useState({
     repo_name: bountyData.repo_name ? bountyData.repo_name : undefined,
-    issue_number: bountyData.issue_number >= 0 ? bountyData.issue_number : undefined
+    issue_number: bountyData.issue_number !== 0 ? bountyData.issue_number : undefined
   });
 
   const [repoOptions, setRepoOptions] = useState(bountyData.repoOptions ? bountyData.repoOptions : false);
@@ -19,8 +19,6 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
     const url = issuesUrl ? issuesUrl : `${apiUrl}/repo`;
     let optionsArr = [];
     if (!token) return;
-    console.log('reqUrl', url);
-    console.log('bearerToken', token);
 
     try {
       const res = await fetch(url, {
@@ -62,7 +60,7 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
     getRepoData();
   }, [])
 
-  const moveToNextStep = () => {
+  const moveToFinalStep = () => {
     setBountyData(prevState => (
       {
         ...prevState,
@@ -78,21 +76,16 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
   useEffect(() => {
     if (!pickedData.repo_name) return;
 
-    // API RETURNS ERROR CODE 500, 401 IN MESSAGE, YET BEARER IS DEFINED
     const repoName = pickedData.repo_name;
-    const repoNameLowercase = repoName.toLowerCase();
-    const issueUrl = `${apiUrl}/repo/${repoNameLowercase}/issues`;
+    const issueUrl = `${apiUrl}/repo/${repoName}/issues`;
     getRepoData(issueUrl);
-
-    // getRepoData('/api/issues');
   }, [pickedData.repo_name])
 
-  const handleRepoPick = (e) => {
-    setPickedData({
-      ...pickedData,
-      repo_name: e.value
-    })
-  }
+  useEffect(() => {
+    if (!pickedData.issue_number) return;
+
+    moveToFinalStep();
+  }, [pickedData.issue_number])
 
   return (
     <>
@@ -105,7 +98,11 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
             border={false}
             placeholder={'Pick repository'}
             queryValue={bountyData.repo_name !== undefined ? bountyData.repo_name : true}
-            onChange={e => handleRepoPick(e)}
+            onChange={e => setPickedData({
+              ...pickedData,
+              repo_name: e.value
+            })
+            }
           />
         </>
         :
@@ -121,13 +118,10 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
             border={false}
             placeholder={'Pick issue'}
             queryValue={bountyData.issue_number !== undefined ? bountyData.issue_number : true}
-            onChange={e => {
-              setPickedData({
-                ...pickedData,
-                issue_number: e.value
-              })
-              moveToNextStep();
-            }
+            onChange={e => setPickedData({
+              ...pickedData,
+              issue_number: e.value
+            })
             }
           />
         </>
