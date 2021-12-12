@@ -128,18 +128,40 @@ const Header = () => {
 const SignInControls = () => {
   const gContext = useContext(GlobalContext);
   return (
-    <div className="header-btns ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
+    <div className="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
       <a
-        className={`btn btn-primary text-uppercase font-size-3`}
+        className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset"
         href="/#"
         onClick={(e) => {
           e.preventDefault();
           gContext.toggleSignInModal();
         }}
       >
-        Sign In
+        Log In
+      </a>
+      <a
+        className={`btn btn-primary text-uppercase font-size-3`}
+        href="/#"
+        onClick={(e) => {
+          e.preventDefault();
+          gContext.toggleSignUpModal();
+        }}
+      >
+        Sign Up
       </a>
     </div>
+    // <div className="header-btns ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
+    //   <a
+    //     className={`btn btn-primary text-uppercase font-size-3`}
+    //     href="/#"
+    //     onClick={(e) => {
+    //       e.preventDefault();
+    //       gContext.toggleSignInModal();
+    //     }}
+    //   >
+    //     Sign In
+    //   </a>
+    // </div>
   )
 }
 

@@ -49,6 +49,11 @@ const GlobalProvider = ({ children }) => {
     setVisibleOffCanvas(false);
   };
 
+  const toggleSignInUp = async () => {
+    setSignInModalVisible(!signInModalVisible);
+    setSignUpModalVisible(!signUpModalVisible);
+  }
+
   return (
     <GlobalContext.Provider
       value={{
@@ -72,7 +77,8 @@ const GlobalProvider = ({ children }) => {
         footer,
         setFooter,
         signedIn, 
-        setSignedIn
+        setSignedIn,
+        toggleSignInUp
       }}
     >
       {children}

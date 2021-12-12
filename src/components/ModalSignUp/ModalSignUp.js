@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Modal } from "react-bootstrap";
 import GlobalContext from "../../context/GlobalContext";
+import { SignUpForm } from "./SignUpForm";
 
 const ModalStyled = styled(Modal)`
   /* &.modal {
@@ -10,21 +11,16 @@ const ModalStyled = styled(Modal)`
 `;
 
 const ModalSignUp = (props) => {
-  const [showPassFirst, setShowPassFirst] = useState(true);
-  const [showPassSecond, setShowPassSecond] = useState(true);
 
   const gContext = useContext(GlobalContext);
+
   const handleClose = () => {
-    gContext.toggleSignInModal();
+    gContext.toggleSignUpModal();
   };
 
-  const togglePasswordFirst = () => {
-    setShowPassFirst(!showPassFirst);
-  };
-
-  const togglePasswordSecond = () => {
-    setShowPassSecond(!showPassSecond);
-  };
+  const toggleModal = () => {
+    gContext.toggleSignInUp()
+  }
 
   return (
     <ModalStyled
@@ -32,7 +28,7 @@ const ModalSignUp = (props) => {
       size="lg"
       centered
       show={gContext.signUpModalVisible}
-      onHide={gContext.toggleSignInModal}
+      onHide={gContext.toggleSignUpModal}
     >
       <Modal.Body className="p-0">
         <button
@@ -77,34 +73,12 @@ const ModalSignUp = (props) => {
                 <div className="row">
                   <div className="col-4 col-xs-12">
                     <a
-                      href="/#"
-                      className="font-size-4 font-weight-semibold position-relative text-white bg-allports h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
+                      href="http://localhost:8080/api/oauth2/authorization/github"
+                      className="font-size-4 font-weight-semibold position-relative text-white bg-black h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
                     >
-                      <i className="fab fa-linkedin pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
+                      <i className="fab fa-github pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
                       <span className="d-none d-xs-block">
-                        Import from LinkedIn
-                      </span>
-                    </a>
-                  </div>
-                  <div className="col-4 col-xs-12">
-                    <a
-                      href="/#"
-                      className="font-size-4 font-weight-semibold position-relative text-white bg-poppy h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
-                    >
-                      <i className="fab fa-google pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
-                      <span className="d-none d-xs-block">
-                        Import from Google
-                      </span>
-                    </a>
-                  </div>
-                  <div className="col-4 col-xs-12">
-                    <a
-                      href="/#"
-                      className="font-size-4 font-weight-semibold position-relative text-white bg-marino h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
-                    >
-                      <i className="fab fa-facebook-square pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
-                      <span className="d-none d-xs-block">
-                        Import from Facebook
+                        Sign up with Github
                       </span>
                     </a>
                   </div>
@@ -112,110 +86,13 @@ const ModalSignUp = (props) => {
                 <div className="or-devider">
                   <span className="font-size-3 line-height-reset">Or</span>
                 </div>
-                <form action="/">
-                  <div className="form-group">
-                    <label
-                      htmlFor="email2"
-                      className="font-size-4 text-black-2 font-weight-semibold line-height-reset"
-                    >
-                      E-mail
-                    </label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="example@gmail.com"
-                      id="email2"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label
-                      htmlFor="password"
-                      className="font-size-4 text-black-2 font-weight-semibold line-height-reset"
-                    >
-                      Password
-                    </label>
-                    <div className="position-relative">
-                      <input
-                        type={showPassFirst ? "password" : "text"}
-                        className="form-control"
-                        id="password"
-                        placeholder="Enter password"
-                      />
-                      <a
-                        href="/#"
-                        className="show-password pos-abs-cr fas mr-6 text-black-2"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          togglePasswordFirst();
-                        }}
-                      >
-                        <span className="d-none">none</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="form-group">
-                    <label
-                      htmlFor="password2"
-                      className="font-size-4 text-black-2 font-weight-semibold line-height-reset"
-                    >
-                      Confirm Password
-                    </label>
-                    <div className="position-relative">
-                      <input
-                        type={showPassSecond ? "password" : "text"}
-                        className="form-control"
-                        id="password2"
-                        placeholder="Enter password"
-                      />
-                      <a
-                        href="/#"
-                        className="show-password pos-abs-cr fas mr-6 text-black-2"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          togglePasswordSecond();
-                        }}
-                      >
-                        <span className="d-none">none</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="form-group d-flex flex-wrap justify-content-between mb-1">
-                    <label
-                      htmlFor="terms-check2"
-                      className="gr-check-input d-flex  mr-3"
-                    >
-                      <input
-                        className="d-none"
-                        type="checkbox"
-                        id="terms-check2"
-                      />
-                      <span className="checkbox mr-5"></span>
-                      <span className="font-size-3 mb-0 line-height-reset d-block">
-                        Agree to the{" "}
-                        <a href="/#" className="text-primary">
-                          Terms &amp; Conditions
-                        </a>
-                      </span>
-                    </label>
-                    <a
-                      href="/#"
-                      className="font-size-3 text-dodger line-height-reset"
-                    >
-                      Forget Password
-                    </a>
-                  </div>
-                  <div className="form-group mb-8">
-                    <button className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase">
-                      Sign Up{" "}
-                    </button>
-                  </div>
-                  <p className="font-size-4 text-center heading-default-color">
-                    Don’t have an account?{" "}
-                    <a href="/#" className="text-primary">
-                      Create a free account
-                    </a>
-                  </p>
-                </form>
+                <SignUpForm />
+                <p className="font-size-4 text-center heading-default-color">
+                  Already have an account?{" "}
+                  <a href="/#" onClick={toggleModal} className="text-primary">
+                    Sign in
+                  </a>
+                </p>
               </div>
             </div>
           </div>
