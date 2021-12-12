@@ -33,7 +33,7 @@ const PickRepo = ({ setFormStep, bountyData, setBountyData }) => {
       if (issuesUrl) {
         data.forEach(element => {
           optionsArr.push({
-            value: element.id,
+            value: element.number,
             label: element.title
           });
         });
