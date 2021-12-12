@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { createUserWithEmailAndPassword, getAuth, onIdTokenChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, GithubAuthProvider } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onIdTokenChanged, signInWithEmailAndPassword, signOut, signInWithPopup, GithubAuthProvider } from "firebase/auth"
 import nookies from 'nookies';
 import app from "@/lib/firebase"
 import { useRouter } from 'next/router';
@@ -35,7 +35,7 @@ export function AuthUserProvider({ children }) {
   }, [])
 
   const githubSignIn = async () => {
-    await signInWithRedirect(auth, provider)
+    await signInWithPopup(auth, provider)
   }
 
   const signIn = async (email, password) => {

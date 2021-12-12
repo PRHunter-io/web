@@ -1,7 +1,7 @@
 import { Formik } from 'formik';
 import React, { useContext, useState } from 'react'
 import * as Yup from "yup";
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useAuth } from 'src/context/AuthUserContext';
 import GlobalContext from 'src/context/GlobalContext';
 
