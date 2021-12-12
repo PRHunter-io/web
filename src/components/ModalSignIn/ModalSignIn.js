@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import styled from "styled-components";
 import { Modal } from "react-bootstrap";
 import GlobalContext from "../../context/GlobalContext";
+import { SignInForm } from "./SignInForm";
 
 const ModalStyled = styled(Modal)`
   /* &.modal {
@@ -10,15 +11,11 @@ const ModalStyled = styled(Modal)`
 `;
 
 const ModalSignIn = (props) => {
-  const [showPass, setShowPass] = useState(true);
+  
   const gContext = useContext(GlobalContext);
 
   const handleClose = () => {
     gContext.toggleSignInModal();
-  };
-
-  const togglePassword = () => {
-    setShowPass(!showPass);
   };
 
   const toggleModal = () => {
@@ -89,81 +86,13 @@ const ModalSignIn = (props) => {
                 <div className="or-devider">
                   <span className="font-size-3 line-height-reset ">Or</span>
                 </div>
-                <form action="/">
-                  <div className="form-group">
-                    <label
-                      htmlFor="email"
-                      className="font-size-4 text-black-2 font-weight-semibold line-height-reset"
-                    >
-                      E-mail
-                    </label>
-                    <input
-                      type="email"
-                      className="form-control"
-                      placeholder="example@gmail.com"
-                      id="email"
-                    />
-                  </div>
-                  <div className="form-group">
-                    <label
-                      htmlFor="password"
-                      className="font-size-4 text-black-2 font-weight-semibold line-height-reset"
-                    >
-                      Password
-                    </label>
-                    <div className="position-relative">
-                      <input
-                        type={showPass ? "password" : "text"}
-                        className="form-control"
-                        id="password"
-                        placeholder="Enter password"
-                      />
-                      <a
-                        href="/#"
-                        className="show-password pos-abs-cr fas mr-6 text-black-2"
-                        onClick={(e) => {
-                          e.preventDefault();
-                          togglePassword();
-                        }}
-                      >
-                        <span className="d-none">none</span>
-                      </a>
-                    </div>
-                  </div>
-                  <div className="form-group d-flex flex-wrap justify-content-between">
-                    <label
-                      htmlFor="terms-check"
-                      className="gr-check-input d-flex  mr-3"
-                    >
-                      <input
-                        className="d-none"
-                        type="checkbox"
-                        id="terms-check"
-                      />
-                      <span className="checkbox mr-5"></span>
-                      <span className="font-size-3 mb-0 line-height-reset mb-1 d-block">
-                        Remember password
-                      </span>
-                    </label>
-                    <a
-                      href="/#"
-                      className="font-size-3 text-dodger line-height-reset"
-                    >
-                      Forget Password
-                    </a>
-                  </div>
-                  <div className="form-group mb-8">
-                    <button className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase">
-                      Log in{" "}
-                    </button>
-                  </div>
+                <SignInForm/>
                   <p className="font-size-4 text-center heading-default-color">
                     Don't have an account?{" "}
                     <a href="/#" onClick={toggleModal} className="text-primary">
                       Create a free account
                     </a>
                   </p>
-                </form>
               </div>
             </div>
           </div>

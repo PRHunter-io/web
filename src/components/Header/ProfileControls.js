@@ -4,6 +4,7 @@ import Dropdown from 'react-bootstrap/Dropdown'
 import Image from "next/image"
 import imgP from "public/images/image/l3/png/pro-img.png";
 import { useWindowSize } from "src/hooks";
+import { useAuth } from "src/context/AuthUserContext";
 
 export const ProfileControls = () => (
     <div className="header-btn-devider ml-auto ml-lg-5 pl-2 d-none d-xs-flex align-items-center">
@@ -35,6 +36,7 @@ export const ProfileControls = () => (
 )
 
 const ProfileMenu = () => {
+    const { logout } = useAuth()
     return (
         <ProfileMenuHeader>
             <Link href="/dashboard">
@@ -47,8 +49,8 @@ const ProfileMenu = () => {
                     Settings
                 </a>
             </Link>
-            <Link href="/logout"  >
-                <a className=" dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
+            <Link href="/#">
+                <a onClick={logout} className=" dropdown-item py-2 text-red font-size-3 font-weight-semibold line-height-1p2 text-uppercase">
                     Log Out
                 </a>
             </Link>

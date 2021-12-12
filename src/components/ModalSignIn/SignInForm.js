@@ -1,30 +1,25 @@
 import { Formik } from 'formik';
 import React, { useContext, useState } from 'react'
 import * as Yup from "yup";
-import Router, { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import { useAuth } from 'src/context/AuthUserContext';
 import GlobalContext from 'src/context/GlobalContext';
 
-export const SignUpForm = () => {
-    
-    const [showPassFirst, setShowPassFirst] = useState(true);
-    const [showPassSecond, setShowPassSecond] = useState(true);
+export const SignInForm = () => {
+
+    const [showPass, setShowPass] = useState(true);
     const gContext = useContext(GlobalContext);
     const router = useRouter()
-    const { signUp } = useAuth();
-
-    const togglePasswordFirst = () => {
-        setShowPassFirst(!showPassFirst);
-    };
-
-    const togglePasswordSecond = () => {
-        setShowPassSecond(!showPassSecond);
+    const { signIn } = useAuth();
+    
+    const togglePassword = () => {
+        setShowPass(!showPass);
     };
 
     const initialValues = {
         email: "",
         password: "",
-        passwordConfirmation: "",
+        termsCheck: false,
     };
 
     const SignUpSchema = Yup.object().shape({
@@ -32,15 +27,15 @@ export const SignUpForm = () => {
         password: Yup.string()
             .required("Password is required")
             .min(10, "Minimum 10 characters"),
-        passwordConfirmation: Yup.string()
-            .oneOf([Yup.ref('password'), null], 'Passwords must match')
+        termsCheck: Yup.boolean().required()
     });
 
     const submitForm = async (values) => {
-        await signUp(values.email, values.password)
+        await signIn(values.email, values.password)
         router.push("/dashboard")
-        gContext.toggleSignUpModal();
+        gContext.toggleSignInModal();
     };
+
 
     return (
         <Formik
@@ -58,7 +53,7 @@ export const SignUpForm = () => {
                     handleBlur,
                     handleSubmit } = formik;
                 return (
-                    <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e)}} >
+                    <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e)}}>
                         <div className="form-group">
                             <label
                                 htmlFor="email"
@@ -71,7 +66,6 @@ export const SignUpForm = () => {
                                 className="form-control"
                                 placeholder="example@gmail.com"
                                 id="email"
-                                name="email"
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
@@ -88,11 +82,10 @@ export const SignUpForm = () => {
                             </label>
                             <div className="position-relative">
                                 <input
-                                    type={showPassFirst ? "password" : "text"}
+                                    type={showPass ? "password" : "text"}
                                     className="form-control"
                                     id="password"
                                     placeholder="Enter password"
-                                    name="password"
                                     value={values.password}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
@@ -104,75 +97,49 @@ export const SignUpForm = () => {
                                     className="show-password pos-abs-cr fas mr-6 text-black-2"
                                     onClick={(e) => {
                                         e.preventDefault();
-                                        togglePasswordFirst();
+                                        togglePassword();
                                     }}
                                 >
                                     <span className="d-none">none</span>
                                 </a>
                             </div>
                         </div>
-                        <div className="form-group">
+                        <div className="form-group d-flex flex-wrap justify-content-between">
                             <label
-                                htmlFor="passwordConfirmation"
-                                className="font-size-4 text-black-2 font-weight-semibold line-height-reset"
-                            >
-                                Confirm Password
-                            </label>
-                            <div className="position-relative">
-                                <input
-                                    type={showPassSecond ? "passwordConfirmation" : "text"}
-                                    className="form-control"
-                                    id="passwordConfirmation"
-                                    placeholder="Enter password"
-                                    value={values.passwordConfirmation}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.passwordConfirmation}
-                                    required
-                                />
-                                <a
-                                    href="/#"
-                                    className="show-password pos-abs-cr fas mr-6 text-black-2"
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        togglePasswordSecond();
-                                    }}
-                                >
-                                    <span className="d-none">none</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div className="form-group d-flex flex-wrap justify-content-between mb-1">
-                            <label
-                                htmlFor="terms-check2"
+                                htmlFor="terms-check"
                                 className="gr-check-input d-flex  mr-3"
                             >
                                 <input
                                     className="d-none"
                                     type="checkbox"
-                                    id="terms-check2"
+                                    id="terms-check"
+                                    value={values.termsCheck}
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    value={values.termsCheck}
+                                    required
                                 />
                                 <span className="checkbox mr-5"></span>
-                                <span className="font-size-3 mb-0 line-height-reset d-block">
-                                    Agree to the{" "}
-                                    <a href="/#" className="text-primary">
-                                        Terms &amp; Conditions
-                                    </a>
+                                <span className="font-size-3 mb-0 line-height-reset mb-1 d-block">
+                                    Remember me
                                 </span>
                             </label>
+                            <a
+                                href="/#"
+                                className="font-size-3 text-dodger line-height-reset"
+                            >
+                                Forgot your password?
+                            </a>
                         </div>
                         <div className="form-group mb-8">
-                            <button
-                             type="submit" className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase" disabled={isSubmitting}>
-                                Sign Up{" "}
+                            <button className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase">
+                                Log in{" "}
                             </button>
                         </div>
+                        );
                     </form>
                 );
             }}
         </Formik>
     )
-
-
-
 }

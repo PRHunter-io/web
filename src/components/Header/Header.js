@@ -11,7 +11,7 @@ import Logo from "../Logo";
 
 import { ProfileControls } from "./ProfileControls";
 import { HeaderMenu } from "./HeaderMenu";
-import { authService } from "@/services/auth.service";
+import { useAuth } from "src/context/AuthUserContext";
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
@@ -44,6 +44,7 @@ const Header = () => {
   const gContext = useContext(GlobalContext);
   const [showScrolling, setShowScrolling] = useState(false);
   const [showReveal, setShowReveal] = useState(false);
+  const { user } = useAuth();
 
   const ToggleButton = styled.button`
   color: ${({ dark, theme }) =>
@@ -96,7 +97,7 @@ const Header = () => {
             </div>
             <HeaderMenu />
 
-            {gContext.signedIn ? <ProfileControls /> : <SignInControls />}
+            {user ? <ProfileControls /> : <SignInControls />}
 
             <ToggleButton
               className={`navbar-toggler btn-close-off-canvas ml-3 ${gContext.visibleOffCanvas ? "collapsed" : ""
@@ -150,18 +151,6 @@ const SignInControls = () => {
         Sign Up
       </a>
     </div>
-    // <div className="header-btns ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
-    //   <a
-    //     className={`btn btn-primary text-uppercase font-size-3`}
-    //     href="/#"
-    //     onClick={(e) => {
-    //       e.preventDefault();
-    //       gContext.toggleSignInModal();
-    //     }}
-    //   >
-    //     Sign In
-    //   </a>
-    // </div>
   )
 }
 

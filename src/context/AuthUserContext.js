@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { createUserWithEmailAndPassword, getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onIdTokenChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import nookies from 'nookies';
 import app from "@/lib/firebase"
 
 export const AuthContext = createContext({
   user: null,
-  loading: true,
   signIn: async () => { },
   signUp: async () => { },
   signOut: async () => { }
@@ -17,20 +17,21 @@ export function AuthUserProvider({ children }) {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    return onIdTokenChanged(auth, async (user) => {
       if (user) {
+        const token = await user.getIdToken();
         setUser(user)
+        nookies.set(undefined, 'token', token, { path: '/' });
       } else {
         setUser(null)
+        nookies.set(undefined, 'token', '', { path: '/' });
       }
     })
-
-    return unsubscribe;
-  })
+  }, [])
 
   const signIn = async (email, password) => {
     try {
-      return await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error(error);
     }
@@ -38,7 +39,7 @@ export function AuthUserProvider({ children }) {
 
   const signUp = async (email, password) => {
     try {
-      return await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
       console.error(error);
     }
@@ -54,7 +55,7 @@ export function AuthUserProvider({ children }) {
 
   
 
-  return <AuthContext.Provider value={{signUp, signIn, logout}}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{user, signUp, signIn, logout}}>{children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => useContext(AuthContext)
