@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Modal } from "react-bootstrap";
 import GlobalContext from "../../context/GlobalContext";
 import { SignInForm } from "./SignInForm";
+import { useAuth } from "src/context/AuthUserContext";
 
 const ModalStyled = styled(Modal)`
   /* &.modal {
@@ -13,6 +14,12 @@ const ModalStyled = styled(Modal)`
 const ModalSignIn = (props) => {
   
   const gContext = useContext(GlobalContext);
+  const { githubSignIn } = useAuth();
+
+  const signInWithGithub = async () => {
+    await githubSignIn()  
+    gContext.toggleSignInModal();
+  }
 
   const handleClose = () => {
     gContext.toggleSignInModal();
@@ -73,7 +80,8 @@ const ModalSignIn = (props) => {
                 <div className="row">
                   <div className="col-4 col-xs-12">
                     <a
-                      href="http://localhost:8080/api/oauth2/authorization/github"
+                      href="#"
+                      onClick={signInWithGithub}
                       className="font-size-4 font-weight-semibold position-relative text-white bg-black h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
                     >
                       <i className="fab fa-github pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}

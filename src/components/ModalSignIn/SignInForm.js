@@ -104,26 +104,8 @@ export const SignInForm = () => {
                                 </a>
                             </div>
                         </div>
-                        <div className="form-group d-flex flex-wrap justify-content-between">
-                            <label
-                                htmlFor="terms-check"
-                                className="gr-check-input d-flex  mr-3"
-                            >
-                                <input
-                                    className="d-none"
-                                    type="checkbox"
-                                    id="terms-check"
-                                    value={values.termsCheck}
-                                    onChange={handleChange}
-                                    onBlur={handleBlur}
-                                    value={values.termsCheck}
-                                    required
-                                />
-                                <span className="checkbox mr-5"></span>
-                                <span className="font-size-3 mb-0 line-height-reset mb-1 d-block">
-                                    Remember me
-                                </span>
-                            </label>
+                        <div className="form-group d-flex flex-wrap justify-content-end">
+                           
                             <a
                                 href="/#"
                                 className="font-size-3 text-dodger line-height-reset"
@@ -132,11 +114,10 @@ export const SignInForm = () => {
                             </a>
                         </div>
                         <div className="form-group mb-8">
-                            <button className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase">
+                            <button type="submit" className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase">
                                 Log in{" "}
                             </button>
                         </div>
-                        );
                     </form>
                 );
             }}

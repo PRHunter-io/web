@@ -1,7 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { createUserWithEmailAndPassword, getAuth, onIdTokenChanged, signInWithEmailAndPassword, signOut } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onIdTokenChanged, signInWithEmailAndPassword, signOut, signInWithRedirect, GithubAuthProvider } from "firebase/auth"
 import nookies from 'nookies';
 import app from "@/lib/firebase"
+import { useRouter } from 'next/router';
 
 export const AuthContext = createContext({
   user: null,
@@ -11,10 +12,12 @@ export const AuthContext = createContext({
 });
 
 const auth = getAuth(app);
+const provider = new GithubAuthProvider();
 
 export function AuthUserProvider({ children }) {
 
   const [user, setUser] = useState(null)
+  const router = useRouter()
 
   useEffect(() => {
     return onIdTokenChanged(auth, async (user) => {
@@ -22,12 +25,18 @@ export function AuthUserProvider({ children }) {
         const token = await user.getIdToken();
         setUser(user)
         nookies.set(undefined, 'token', token, { path: '/' });
+        router.push("/dashboard")
       } else {
         setUser(null)
         nookies.set(undefined, 'token', '', { path: '/' });
+        router.push("/")
       }
     })
   }, [])
+
+  const githubSignIn = async () => {
+    await signInWithRedirect(auth, provider)
+  }
 
   const signIn = async (email, password) => {
     try {
@@ -55,7 +64,7 @@ export function AuthUserProvider({ children }) {
 
   
 
-  return <AuthContext.Provider value={{user, signUp, signIn, logout}}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{user, signUp, signIn, githubSignIn, logout}}>{children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => useContext(AuthContext)
