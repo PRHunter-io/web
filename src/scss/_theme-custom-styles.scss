@@ -443,15 +443,3 @@ html .ui-button.ui-state-disabled:active {
   display: flex;
   flex-wrap: wrap;
 }
-
-label.required-custom {
-  &::after {
-    content: '*';
-    margin-left: 4px;
-    color: #00b074;
-  }
-}
-
-span.required-custom {
-  color: #00b074;
-}

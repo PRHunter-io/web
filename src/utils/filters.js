@@ -40,7 +40,7 @@ export const bountyFilterTags = {
 export const bountyCurrency = {
   "query": "currency",
   "values": [
-    { value: "usd", label: "USD" },
-    { value: "eth", label: "ETH" },
+    { value: "USD", label: "USD" },
+    { value: "ETH", label: "ETH" },
   ]
 };

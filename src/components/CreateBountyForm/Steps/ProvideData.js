@@ -5,6 +5,7 @@ import { experienceLevel } from "../../../utils/filters";
 import { bountyType } from "../../../utils/filters";
 import { languages } from "../../../utils/filters";
 import { bountyCurrency } from "../../../utils/filters";
+import styled from "styled-components";
 
 const requiredFields = [
   'title',
@@ -17,7 +18,15 @@ const requiredFields = [
   'acceptance_criteria'
 ]
 
-const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
+const ValueInput = styled.input`
+  &::-webkit-inner-spin-button, 
+  &::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+`;
+
+const ProvideData = ({ bountyData, setBountyData, setFormCompleted }) => {
   const [validationErr, setValidationErr] = useState([]);
   const [formBlock, setFormBlock] = useState(true);
 
@@ -29,6 +38,12 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
       }
     ))
   }
+
+  useEffect(() => {
+    requiredFields.forEach(field => {
+      setData(false, field)
+    })
+  }, [])
 
   useEffect(() => {
     setValidationErr([]);
@@ -71,8 +86,6 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
     delete formattedBody.repoOptions;
     delete formattedBody.issuesOptions;
 
-    console.log('finalBody', formattedBody)
-
     const data = JSON.stringify(formattedBody);
     const apiUrl = process.env.NEXT_PUBLIC_EXTERNAL_API_URL;
     const token = authService.getAccessToken();
@@ -89,7 +102,7 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
       });
       const response = await res.json();
       console.log(response);
-      setFormStep(2);
+      setFormCompleted(true);
     } catch (err) {
       console.error('Failed to fetch bounty:', err)
     }
@@ -97,7 +110,7 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
 
   return (
     <div className="mt-12">
-      <h2 className="text-muted">Fill in a form</h2>
+      <h2 className="text-muted mb-4">Fill in a form</h2>
 
       <form
         onSubmit={async (e) => {
@@ -113,7 +126,7 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   htmlFor="bounty-title"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Bounty Title
+                  Bounty Title <i className="far fa-file-alt pl-1 text-primary" />
                 </label>
                 <input
                   type="text"
@@ -130,7 +143,7 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   htmlFor="select2"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Experience
+                  Experience <i className="fas fa-signal pl-1 text-primary" />
                 </label>
                 <Select
                   options={experienceLevel.values}
@@ -149,7 +162,7 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   htmlFor="select3"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Bounty Type
+                  Bounty Type <i className="fas fa-briefcase pl-1 text-primary" />
                 </label>
                 <Select
                   options={bountyType.values}
@@ -163,10 +176,10 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
             <div className="col-lg-6">
               <div className="form-group position-relative">
                 <label
-                  htmlFor="address"
+                  htmlFor="select4"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Language
+                  Language <i className="fas fa-code pl-1 text-primary" />
                 </label>
                 <Select
                   options={languages.values}
@@ -186,24 +199,25 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   htmlFor="bounty-title"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Bounty Value
+                  Bounty Value <i className="fas fa-coins pl-1 text-primary" />
                 </label>
-                <input
+                <ValueInput
                   type="number"
                   className="form-control h-px-48"
                   id="bounty-title"
-                  placeholder="eg. New feature JS"
+                  placeholder="Set your bounty price"
                   onChange={e => setData(e.target.value, 'bounty_value')}
+                  step="0.01"
                 />
               </div>
             </div>
             <div className="col-lg-6">
               <div className="form-group">
                 <label
-                  htmlFor="select2"
+                  htmlFor="select5"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Bounty currency
+                  Bounty currency <i className="fas fa-link pl-1 text-primary" />
                 </label>
                 <Select
                   options={bountyCurrency.values}
@@ -222,7 +236,7 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   htmlFor="aboutTextarea"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Problem Statement
+                  Problem Statement <i className="fas fa-user-cog pl-1 text-primary" />
                 </label>
                 <textarea
                   name="textarea"
@@ -230,7 +244,7 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   cols="30"
                   rows="7"
                   className="border border-mercury text-gray w-100 pt-4 pl-6"
-                  placeholder="Describe your bounty"
+                  placeholder="Describe your problem"
                   onChange={e => setData(e.target.value, 'problem_statement')}
                 ></textarea>
               </div>
@@ -241,7 +255,7 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   htmlFor="aboutTextarea"
                   className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
                 >
-                  Acceptance Criteria
+                  Acceptance Criteria <i className="fas fa-user-check pl-1 text-primary" />
                 </label>
                 <textarea
                   name="textarea"
@@ -249,12 +263,13 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   cols="30"
                   rows="7"
                   className="border border-mercury text-gray w-100 pt-4 pl-6"
-                  placeholder="Describe your bounty"
+                  placeholder="Set clear expectations"
                   onChange={e => setData(e.target.value, 'acceptance_criteria')}
                 ></textarea>
               </div>
             </div>
           </div>
+          {/* TODO!
           <div className="row">
             <div className="col-md-12">
               <div className="form-group">
@@ -272,13 +287,23 @@ const ProvideData = ({ setFormStep, bountyData, setBountyData }) => {
                   onChange={e => setData(e.target.value, 'tags')}
                 />
               </div>
+            </div>
+          </div> */}
+          <div className="row">
+            <div className="col-md-12">
               <button
                 disabled={formBlock ? true : false}
-                className="line-height-reset mt-6 btn-submit text-uppercase btn btn-primary"
+                className="btn-submit text-uppercase btn btn-lg btn-primary"
               >
                 Create Bounty!
               </button>
-              <p className="small">Fields with <span className="required-custom">*</span> are required.</p>
+              {formBlock ?
+                <p className="small mt-3 mb-0 text-primary ">
+                  All fields are required.
+                </p>
+                :
+                ''
+              }
             </div>
           </div>
         </fieldset>

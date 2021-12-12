@@ -1,32 +1,27 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
-import { BountySent, PickRepo, ProvideData } from ".";
+import { PickRepo, ProvideData } from ".";
 
 const FormContainer = styled.div`
 `;
 
-const CreateBountyForm = () => {
-  const [formStep, setFormStep] = useState(0);
+const CreateBountyForm = ({ setFormCompleted }) => {
   const [bountyData, setBountyData] = useState(false);
 
   return (
     <FormContainer>
-      {formStep !== 2 && (
-        <PickRepo
-          setFormStep={setFormStep}
-          bountyData={bountyData}
-          setBountyData={setBountyData}
-        />
-      )}
-      {(formStep >= 1 && formStep !== 2) && (
+      <PickRepo
+        bountyData={bountyData}
+        setBountyData={setBountyData}
+      />
+      {bountyData.issue_number && (
         <ProvideData
-          setFormStep={setFormStep}
+          key={`${bountyData.repo_name},${bountyData.issue_number}`}
           bountyData={bountyData}
           setBountyData={setBountyData}
+          setFormCompleted={setFormCompleted}
         />
       )}
-
-      {formStep > 1 && <BountySent />}
     </FormContainer>
   );
 }
