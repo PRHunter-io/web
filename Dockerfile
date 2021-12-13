@@ -5,6 +5,7 @@ RUN npm install
 
 FROM node:lts as builder
 WORKDIR /my-project
+COPY . .
 COPY --from=dependencies /my-project/node_modules ./node_modules
 RUN npm run build
 
