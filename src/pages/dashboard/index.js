@@ -3,14 +3,15 @@ import PageWrapper from "@/components/PageWrapper";
 import { useContext, useEffect } from "react";
 import GlobalContext from "src/context/GlobalContext";
 import { useRouter } from "next/router";
+import { useAuth } from "src/context/AuthUserContext";
 
 const DashboardMain = () => {
 
-  const gContext = useContext(GlobalContext);
+  const { user } = useAuth();
   const router = useRouter()
 
   useEffect(() => {
-    if (!gContext.signedIn) {
+    if(!user) {
       router.push("/")
     }
   }, [])
