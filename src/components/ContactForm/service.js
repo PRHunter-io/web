@@ -11,7 +11,6 @@ class ContactServiceClass {
     });
 
     async sendContactMessage(contactMessageDto) {
-        console.log("Form submit")
         const resp = await this.apiClient.post('contact', contactMessageDto )
         if (resp?.status !== 200) {
             console.log("Error with contact message: ", resp.statusText)

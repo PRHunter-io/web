@@ -3,6 +3,8 @@ import { createUserWithEmailAndPassword, getAuth, onIdTokenChanged, signInWithEm
 import nookies from 'nookies';
 import app from "@/lib/firebase"
 import { useRouter } from 'next/router';
+import { GithubService } from '@/lib/github';
+import axios from 'axios';
 
 export const AuthContext = createContext({
   user: null,
@@ -13,6 +15,14 @@ export const AuthContext = createContext({
 
 const auth = getAuth(app);
 const provider = new GithubAuthProvider();
+
+const apiClient = axios.create({
+  baseURL: process.env.NEXT_PUBLIC_EXTERNAL_API_URL || '',
+  responseType: 'json',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
 
 export function AuthUserProvider({ children }) {
 
@@ -25,22 +35,23 @@ export function AuthUserProvider({ children }) {
         const token = await user.getIdToken();
         setUser(user)
         nookies.set(undefined, 'token', token, { path: '/' });
-        router.push("/dashboard")
       } else {
         setUser(null)
         nookies.set(undefined, 'token', '', { path: '/' });
-        router.push("/")
       }
     })
   }, [])
 
   const githubSignIn = async () => {
-    await signInWithPopup(auth, provider)
+    const result = await signInWithPopup(auth, provider)
+    await GithubService.uploadGithubAccessToken(result)
+    router.push("/dashboard")
   }
 
   const signIn = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      router.push("/dashboard")
     } catch (error) {
       console.error(error);
     }
@@ -49,6 +60,7 @@ export function AuthUserProvider({ children }) {
   const signUp = async (email, password) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
+      router.push("/dashboard")
     } catch (error) {
       console.error(error);
     }
@@ -57,6 +69,7 @@ export function AuthUserProvider({ children }) {
   const logout = async () => {
     try{
       await signOut(auth)
+      router.push("/")
     } catch (error){
       console.error(error)
     }
