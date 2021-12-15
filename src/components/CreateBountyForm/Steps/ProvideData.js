@@ -1,11 +1,11 @@
 import { Select } from "@/components/Core";
-import { authService } from "@/services/auth.service";
 import { useEffect, useState } from "react";
 import { experienceLevel } from "../../../utils/filters";
 import { bountyType } from "../../../utils/filters";
 import { languages } from "../../../utils/filters";
 import { bountyCurrency } from "../../../utils/filters";
 import styled from "styled-components";
+import { parseCookies } from 'nookies'
 
 const requiredFields = [
   'title',
@@ -88,7 +88,7 @@ const ProvideData = ({ bountyData, setBountyData, setFormCompleted }) => {
 
     const data = JSON.stringify(formattedBody);
     const apiUrl = process.env.NEXT_PUBLIC_EXTERNAL_API_URL;
-    const token = authService.getAccessToken();
+    const token = parseCookies().token
 
     try {
       const res = await fetch(`${apiUrl}/bounty`, {

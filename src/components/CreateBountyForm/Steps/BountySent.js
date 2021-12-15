@@ -20,7 +20,7 @@ const BountySent = () => {
 
       <Link href="/bounties">
         <a className="line-height-reset btn-submit btn-xl text-uppercase btn btn-primary px-7">
-          Find bounty for you!
+          Browse bounties
         </a>
       </Link>
     </div>

@@ -39,12 +39,8 @@ export const BountyListView = ({ bounty }) => {
             <td className="table-y-middle py-7 min-width-px-170 pr-0">
                 <div className="">
                     <a
-                        href="/#"
+                        href={`/bounties/${bounty.id}`}
                         className="font-size-3 font-weight-bold text-black-2 text-uppercase"
-                        onClick={(e) => {
-                            e.preventDefault();
-                            gContext.toggleApplicationModal();
-                        }}
                     >
                         Details
                     </a>

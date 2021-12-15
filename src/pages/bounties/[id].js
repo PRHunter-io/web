@@ -68,10 +68,10 @@ const BountyDetails = ({ bounty }) => (
     <div className="row mb-7">
       <div className="col-md-4 mb-lg-0 mb-10">
         <div className="media justify-content-md-start">
-          <span class="font-size-4 d-block mb-4">Bounty value</span>
+          <span className="font-size-4 d-block mb-4">Bounty value</span>
         </div>
         <div className="media justify-content-md-start">
-          <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
+          <div className="font-weight-bold font-size-7 text-hit-gray mb-0">
             <h5 className="text-black-2">
               <span className="text-primary">
                 <i className="fas fa-coins pr-3" />
@@ -79,7 +79,7 @@ const BountyDetails = ({ bounty }) => (
               {bounty.bounty_value}
               <span className="text-hit-gray pl-1">{bounty.bounty_currency}</span>
             </h5>
-          </p>
+          </div>
         </div>
         <div className="media justify-content-md-start">
           <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
@@ -87,10 +87,10 @@ const BountyDetails = ({ bounty }) => (
           </p>
         </div>
       </div>
-      <div class="col-md-4 mb-lg-0 mb-10">
-        <div class="">
-          <span class="font-size-4 d-block mb-4 text-gray">Experience required</span>
-          <h6 class="font-size-5 text-black-2 font-weight-semibold mb-9">
+      <div className="col-md-4 mb-lg-0 mb-10">
+        <div className="">
+          <span className="font-size-4 d-block mb-4 text-gray">Experience required</span>
+          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
             <span className="text-primary">
               <i className="fas fa-signal pr-3" />
             </span>
@@ -98,10 +98,10 @@ const BountyDetails = ({ bounty }) => (
           </h6>
         </div>
       </div>
-      <div class="col-md-4 mb-lg-0 mb-10">
-        <div class="">
-          <span class="font-size-4 d-block mb-4 text-gray">Bounty Type</span>
-          <h6 class="font-size-5 text-black-2 font-weight-semibold mb-9">
+      <div className="col-md-4 mb-lg-0 mb-10">
+        <div className="">
+          <span className="font-size-4 d-block mb-4 text-gray">Bounty Type</span>
+          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
             <span className="text-primary">
               <i className="fas fa-briefcase pr-3" />
             </span>
@@ -111,10 +111,10 @@ const BountyDetails = ({ bounty }) => (
       </div>
     </div>
     <div className="row">
-      <div class="col-md-4 mb-lg-0 mb-10">
-        <div class="">
-          <span class="font-size-4 d-block mb-4 text-gray">Blockchain</span>
-          <h6 class="font-size-5 text-black-2 font-weight-semibold mb-9">
+      <div className="col-md-4 mb-lg-0 mb-10">
+        <div className="">
+          <span className="font-size-4 d-block mb-4 text-gray">Blockchain</span>
+          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
             <span className="text-primary">
               <i className="fas fa-link pr-3" />
             </span>

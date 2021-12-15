@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Select } from "@/components/Core";
-import { authService } from "@/services/auth.service"
+import { parseCookies } from 'nookies'
 
 const PickRepo = ({ bountyData, setBountyData }) => {
   const [pickedData, setPickedData] = useState({});
@@ -22,7 +22,7 @@ const PickRepo = ({ bountyData, setBountyData }) => {
   const apiUrl = process.env.NEXT_PUBLIC_EXTERNAL_API_URL;
 
   const getRepoData = async (issuesUrl) => {
-    const token = authService.getAccessToken();
+    const token = parseCookies().token
     const url = issuesUrl ? issuesUrl : `${apiUrl}/repo`;
     let optionsArr = [];
     if (!token) return;
