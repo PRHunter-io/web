@@ -4,25 +4,21 @@ import PageWrapper from "@/components/PageWrapper";
 import { useUserData as useUserData } from "@/lib/swr";
 import { UserData } from "@/components/Dashboard/user-data";
 import { Spinner } from "react-bootstrap";
-import { useContext, useEffect } from "react";
-import GlobalContext from "src/context/GlobalContext";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useAuth } from "src/context/AuthUserContext";
+
 
 const DashboardSettings = () => {
   const { userData, isLoading, isError } = useUserData()
-  const [mounted, setMounted] = useState(false);
-
-  const gContext = useContext(GlobalContext);
+  const { user } = useAuth();
   const router = useRouter()
 
   useEffect(() => {
-    setMounted(true);
-
-    if (!gContext.signedIn) {
-      if (!mounted) return;
+    if(!user) {
       router.push("/")
     }
-  }, [mounted])
+  }, [])
 
   if (isLoading) return (
     <PageWrapperInternal>

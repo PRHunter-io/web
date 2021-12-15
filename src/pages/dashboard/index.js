@@ -1,23 +1,19 @@
 import BountyTable from "@/components/Dashboard/bounty-table";
 import PageWrapper from "@/components/PageWrapper";
-import { useContext, useEffect, useState } from "react";
-import GlobalContext from "src/context/GlobalContext";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
+import { useAuth } from "src/context/AuthUserContext";
 
 const DashboardMain = () => {
 
-  const gContext = useContext(GlobalContext);
+  const { user } = useAuth();
   const router = useRouter()
-  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-
-    if (!gContext.signedIn) {
-      if (!mounted) return;
+    if (!user) {
       router.push("/")
     }
-  }, [mounted])
+  }, [])
 
   return (
     <>

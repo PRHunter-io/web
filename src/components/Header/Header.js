@@ -11,6 +11,7 @@ import Logo from "../Logo";
 
 import { ProfileControls } from "./ProfileControls";
 import { HeaderMenu } from "./HeaderMenu";
+import { useAuth } from "src/context/AuthUserContext";
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
@@ -51,11 +52,9 @@ const Header = () => {
   const gContext = useContext(GlobalContext);
   const [showScrolling, setShowScrolling] = useState(false);
   const [showReveal, setShowReveal] = useState(false);
-  const [mounted, setMounted] = useState(false);
+  const { user } = useAuth();
 
   useEffect(() => {
-    // fix 'Warning: Prop `className` did not match.' error
-    setMounted(true);
   }, [])
 
   useScrollPosition(({ prevPos, currPos }) => {
@@ -73,66 +72,60 @@ const Header = () => {
 
   return (
     <>
-      {mounted ?
-        <>
-          <SiteHeader
-            className={`site-header site-header--sticky  site-header--absolute py-7 py-xs-0 sticky-header ${gContext.header.bgClass
-              } ${gContext.header.align === "left"
-                ? "site-header--menu-left "
-                : gContext.header.align === "right"
-                  ? "site-header--menu-right "
-                  : "site-header--menu-center "
-              }
+      <SiteHeader
+        className={`site-header site-header--sticky  site-header--absolute py-7 py-xs-0 sticky-header ${gContext.header.bgClass
+          } ${gContext.header.align === "left"
+            ? "site-header--menu-left "
+            : gContext.header.align === "right"
+              ? "site-header--menu-right "
+              : "site-header--menu-center "
+          }
         ${gContext.header.theme === "dark" ? "dark-mode-texts" : " "} ${showScrolling ? "scrolling" : ""
-              } ${gContext.header.reveal &&
-                showReveal &&
-                gContext.header.theme === "dark"
-                ? "reveal-header bg-blackish-blue"
-                : gContext.header.reveal && showReveal
-                  ? "reveal-header"
-                  : ""
-              }`}
-          >
-            <Container
-              fluid={gContext.header.isFluid}
-              className={gContext.header.isFluid ? "pr-lg-9 pl-lg-9" : ""}
+          } ${gContext.header.reveal &&
+            showReveal &&
+            gContext.header.theme === "dark"
+            ? "reveal-header bg-blackish-blue"
+            : gContext.header.reveal && showReveal
+              ? "reveal-header"
+              : ""
+          }`}
+      >
+        <Container
+          fluid={gContext.header.isFluid}
+          className={gContext.header.isFluid ? "pr-lg-9 pl-lg-9" : ""}
+        >
+          <nav className="navbar site-navbar offcanvas-active navbar-expand-lg px-0 py-0">
+            {/* <!-- Brand Logo--> */}
+            <div className="brand-logo">
+              <Logo />
+            </div>
+            <HeaderMenu />
+
+            {user ? <ProfileControls /> : <SignInControls />}
+
+            <ToggleButton
+              className={`navbar-toggler btn-close-off-canvas ml-3 ${gContext.visibleOffCanvas ? "collapsed" : ""
+                }`}
+              type="button"
+              data-toggle="collapse"
+              data-target="#mobile-menu"
+              aria-controls="mobile-menu"
+              aria-expanded="false"
+              aria-label="Toggle navigation"
+              onClick={gContext.toggleOffCanvas}
+              dark={gContext.header.theme === "dark" ? 1 : 0}
             >
-              <nav className="navbar site-navbar offcanvas-active navbar-expand-lg px-0 py-0">
-                {/* <!-- Brand Logo--> */}
-                <div className="brand-logo">
-                  <Logo />
-                </div>
-                <HeaderMenu />
-
-                {gContext.signedIn ? <ProfileControls /> : <SignInControls />}
-
-                <ToggleButton
-                  className={`navbar-toggler btn-close-off-canvas ml-3 ${gContext.visibleOffCanvas ? "collapsed" : ""
-                    }`}
-                  type="button"
-                  data-toggle="collapse"
-                  data-target="#mobile-menu"
-                  aria-controls="mobile-menu"
-                  aria-expanded="false"
-                  aria-label="Toggle navigation"
-                  onClick={gContext.toggleOffCanvas}
-                  dark={gContext.header.theme === "dark" ? 1 : 0}
-                >
-                  <i className="fas fa-bars"></i>
-                </ToggleButton>
-              </nav>
-            </Container>
-          </SiteHeader>
-          <Offcanvas
-            show={gContext.visibleOffCanvas}
-            onHideOffcanvas={gContext.toggleOffCanvas}
-          >
-            <NestedMenu />
-          </Offcanvas>
-        </>
-        :
-        <></>
-      }
+              <i className="fas fa-bars"></i>
+            </ToggleButton>
+          </nav>
+        </Container>
+      </SiteHeader>
+      <Offcanvas
+        show={gContext.visibleOffCanvas}
+        onHideOffcanvas={gContext.toggleOffCanvas}
+      >
+        <NestedMenu />
+      </Offcanvas>
     </>
   );
 };
@@ -140,16 +133,24 @@ const Header = () => {
 const SignInControls = () => {
   const gContext = useContext(GlobalContext);
   return (
-    <div className="header-btns ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
+    <div className="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
       <a
-        className={`btn btn-primary text-uppercase font-size-3`}
-        href="/#"
+        className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset"
         onClick={(e) => {
           e.preventDefault();
           gContext.toggleSignInModal();
         }}
       >
-        Sign In
+        Log In
+      </a>
+      <a
+        className={`btn btn-primary text-uppercase font-size-3`}
+        onClick={(e) => {
+          e.preventDefault();
+          gContext.toggleSignUpModal();
+        }}
+      >
+        Sign Up
       </a>
     </div>
   )
