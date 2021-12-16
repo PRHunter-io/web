@@ -3,29 +3,26 @@ import React from "react";
 import PageWrapper from "@/components/PageWrapper";
 import { useUserData as useUserData } from "@/lib/swr";
 import { UserData } from "@/components/Dashboard/user-data";
-import { Spinner } from "react-bootstrap";
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "src/context/AuthUserContext";
+import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 
 const DashboardSettings = () => {
-
   const { userData, isLoading, isError } = useUserData()
   const { user } = useAuth();
   const router = useRouter()
 
   useEffect(() => {
-    if(!user) {
+    if (!user) {
       router.push("/")
     }
   }, [])
 
   if (isLoading) return (
     <PageWrapperInternal>
-      <Spinner animation="border" role="status">
-        <span className="visually-hidden">Loading...</span>
-      </Spinner>
+      <LoadingSpinner />
     </PageWrapperInternal>
   )
 

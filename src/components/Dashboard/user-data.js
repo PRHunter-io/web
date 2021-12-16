@@ -9,14 +9,11 @@ export const UserData = ({ userData }) => {
                         </h5>
                         <div className="bg-white shadow-8 rounded-4 pl-sm-10 pl-4 pr-sm-11 pr-4 pt-15 pb-13">
                             <div className="row mb-10">
-                                <UserDataEntry label="Username">
-                                    {userData.login ? userData.login : 'missing'}
-                                </UserDataEntry>
                                 <UserDataEntry label="Email">
                                     {userData.email ? userData.email : 'missing'}
                                 </UserDataEntry>
-                                <UserDataEntry label="Full Name">
-                                    {userData.full_name ? userData.full_name : 'missing'}
+                                <UserDataEntry label="Name">
+                                    {userData.display_name ? userData.display_name : 'missing'}
                                 </UserDataEntry>
                             </div>
 

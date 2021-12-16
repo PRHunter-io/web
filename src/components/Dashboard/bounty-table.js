@@ -8,9 +8,12 @@ const BountyTable = () => {
 
     if (isLoading) return (
         <BountyTableInner content={
-            <Spinner animation="border" role="status">
-                <span className="visually-hidden">Loading...</span>
-            </Spinner>
+            <div className="row align-items-center justify-content-center">
+                <Spinner animation="border" role="status">
+                    <h5 className="visually-hidden">Loading...</h5>
+                </Spinner>
+            </div>
+
         } />
     )
 
@@ -23,7 +26,7 @@ const BountyTable = () => {
     )
 
     return (
-        <BountyTableInner children={bounties.map(bounty => <BountyListView key={bounty.id} bounty={bounty} />)}/>
+        <BountyTableInner children={bounties.map(bounty => <BountyListView key={bounty.id} bounty={bounty} />)} />
     )
 }
 
