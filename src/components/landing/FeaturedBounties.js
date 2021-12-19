@@ -25,7 +25,7 @@ const FeaturedBounties = () => {
 
   return (
     <PageWrapperInternal>
-      {bounties.map(bounty => <FeaturedBountyView bounty={bounty}/>)}
+      {bounties.map(bounty => <FeaturedBountyView key={bounty.id} bounty={bounty}/>)}
     </PageWrapperInternal>
   )
 };

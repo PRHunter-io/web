@@ -23,7 +23,7 @@ export const useUserData = () => {
 }
 
 export const useFeaturedBounties = () => {
-  const { data, error } = useSWR("/bounty", fetcher)
+  const { data, error } = useSWR("/bounty/featured", fetcher)
 
   return {
       bounties: data,

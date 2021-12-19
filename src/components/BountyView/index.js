@@ -13,7 +13,7 @@ const calculateDays = date => {
   };
   
 
-export const BountyView = (bounty) => {
+export const BountyView = ({bounty}) => {
     const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}`
     const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}`
     return (
