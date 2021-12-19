@@ -4,19 +4,17 @@ import PageWrapper from "@/components/PageWrapper";
 import { useUserData as useUserData } from "@/lib/swr";
 import { UserData } from "@/components/Dashboard/user-data";
 import { useEffect } from "react";
-import { useRouter } from "next/router";
 import { useAuth } from "src/context/AuthUserContext";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 
 const DashboardSettings = () => {
   const { userData, isLoading, isError } = useUserData()
-  const { user } = useAuth();
-  const router = useRouter()
+  const { isUserSignedIn, logout } = useAuth();
 
   useEffect(() => {
-    if (!user) {
-      router.push("/")
+    if (!isUserSignedIn) {
+      logout()
     }
   }, [])
 
