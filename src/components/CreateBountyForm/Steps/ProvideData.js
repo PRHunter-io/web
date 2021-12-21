@@ -5,7 +5,7 @@ import { bountyType } from "../../../utils/filters";
 import { languages } from "../../../utils/filters";
 import { bountyCurrency } from "../../../utils/filters";
 import styled from "styled-components";
-import { parseCookies } from 'nookies'
+import { CreateBountyService } from "@/lib/create-bounty";
 
 const requiredFields = [
   'title',
@@ -69,45 +69,6 @@ const ProvideData = ({ bountyData, setBountyData, setFormCompleted }) => {
     };
   }, [validationErr])
 
-  const submitData = async () => {
-    const repo_owner = bountyData.repo_name.split('/')[0];
-    const repo_name = bountyData.repo_name.split('/')[1];
-    const tags = bountyData.tags ? bountyData.tags : [];
-    const formattedBody = {
-      ...bountyData,
-      repo_owner,
-      repo_name,
-      languages: [
-        bountyData.languages
-      ],
-      tags
-    };
-
-    delete formattedBody.repoOptions;
-    delete formattedBody.issuesOptions;
-
-    const data = JSON.stringify(formattedBody);
-    const apiUrl = process.env.NEXT_PUBLIC_EXTERNAL_API_URL;
-    const token = parseCookies().token
-
-    try {
-      const res = await fetch(`${apiUrl}/bounty`, {
-        method: 'POST',
-        headers: {
-          Accept: 'application/json',
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: data
-      });
-      const response = await res.json();
-      console.log(response);
-      setFormCompleted(true);
-    } catch (err) {
-      console.error('Failed to fetch bounty:', err)
-    }
-  }
-
   return (
     <div className="mt-12">
       <h2 className="text-muted mb-4">Fill in a form</h2>
@@ -115,7 +76,7 @@ const ProvideData = ({ bountyData, setBountyData, setFormCompleted }) => {
       <form
         onSubmit={async (e) => {
           e.preventDefault();
-          submitData();
+          CreateBountyService.submitData(bountyData, setFormCompleted);
         }}
       >
         <fieldset>
