@@ -21,3 +21,13 @@ export const useUserData = () => {
         isError: error
       }
 }
+
+export const useFeaturedBounties = () => {
+  const { data, error } = useSWR("/bounty/featured", fetcher)
+
+  return {
+      bounties: data,
+      isLoading: !error && !data,
+      isError: error
+    }
+}

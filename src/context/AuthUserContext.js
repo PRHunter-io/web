@@ -1,10 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react'
-import { createUserWithEmailAndPassword, getAuth, onIdTokenChanged, signInWithEmailAndPassword, signOut, signInWithPopup, GithubAuthProvider } from "firebase/auth"
+import { createUserWithEmailAndPassword, getAuth, onIdTokenChanged, signInWithEmailAndPassword, signOut, signInWithPopup, GithubAuthProvider, linkWithPopup } from "firebase/auth"
 import nookies from 'nookies';
+import { parseCookies } from 'nookies'
 import app from "@/lib/firebase"
 import { useRouter } from 'next/router';
 import { GithubService } from '@/lib/github';
-import axios from 'axios';
 
 export const AuthContext = createContext({
   user: null,
@@ -15,14 +15,6 @@ export const AuthContext = createContext({
 
 const auth = getAuth(app);
 const provider = new GithubAuthProvider();
-
-const apiClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_EXTERNAL_API_URL || '',
-  responseType: 'json',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
 
 export function AuthUserProvider({ children }) {
 
@@ -75,9 +67,15 @@ export function AuthUserProvider({ children }) {
     }
   }
 
-  
+  const isUserSignedIn = () => {
+    return parseCookies().token !== "";
+  }
 
-  return <AuthContext.Provider value={{user, signUp, signIn, githubSignIn, logout}}>{children}</AuthContext.Provider>;
+  const linkGithubAccount = async () => {
+    return await linkWithPopup(auth.currentUser, provider)
+  }
+
+  return <AuthContext.Provider value={{user, signUp, signIn, githubSignIn, linkGithubAccount, logout, isUserSignedIn}}>{children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => useContext(AuthContext)
