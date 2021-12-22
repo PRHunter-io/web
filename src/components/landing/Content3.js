@@ -29,7 +29,7 @@ const Content = () => {
                 </p>
                 {/* <!-- content-2 section title end --> */}
                 {/* <!-- content-2 btn start --> */}
-                <Link href="/#">
+                <Link href="/docs#completing-bounties">
                   <a className="text-green font-weight-bold text-uppercase font-size-3">
                     Learn More <i className="fas fa-arrow-right ml-3"></i>
                   </a>

@@ -87,17 +87,12 @@ export default function Documentation() {
                                         <Section>
                                             <SectionTitle id="completing-bounties">Completing bounties</SectionTitle>
                                             <p>
+                                                The first pull request to be <span className='font-weight-bold'>Accepted</span> or  <span className='font-weight-bold'>Merged</span> by the submitter of the PR (or anyone with relevant access to the repository) will automatically complete the bounty and
+                                                pay out the reward to the PR submitter.
+                                            </p>
+                                            <p>
                                                 Unfortunately Github currently does not have an option to tie a PR with an issue 1-1 - you can have multiple PR's published and a merge of a PR is not synonomous with the solving of an issue.
-                                                This is a limation we'll be trying to solve as elegantly as possible in future development effort, but for now we're going for the following conditions:
-                                            </p>
-                                            <p>
-                                                The first pull request to be <span className='font-weight-bold'>Accepted</span> or  <span className='font-weight-bold'>Merged</span> by the submitter of the PR (or anyone with relevant access to the bounty) will automatically complete the bounty and
-                                                pay out the reward to the PR submitter
-                                            </p>
-                                            <p>
-                                                This flow has a few flows, but it's enough to get the job done. The biggest limitation is that we need to know to which account the funds should be payed out, so
-                                                making sure that the submitter has his/hers Metamask wallet connected to PRHunter is absolutely essential. We will try to mitigate this later on, by collecting the bounty
-                                                in his name and safekeeping the funds until he connects his Github account.
+                                                This is a limation we'll be trying to solve as elegantly as possible in future development effort.
                                             </p>
                                         </Section>
                                     </div>

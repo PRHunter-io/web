@@ -26,7 +26,9 @@ const BountyTable = () => {
     )
 
     return (
-        <BountyTableInner children={bounties.map(bounty => <BountyListView key={bounty.id} bounty={bounty} />)} />
+        <BountyTableInner bountyCount={bounties.length} >
+            {bounties.map(bounty => <BountyListView key={bounty.id} bounty={bounty} />)}
+        </BountyTableInner>
     )
 }
 
@@ -35,7 +37,7 @@ const BountyTableInner = props => {
         <div className="mb-14">
             <div className="row mb-11 align-items-center">
                 <div className="col-lg-6 mb-lg-0 mb-4">
-                    <h3 className="font-size-6 mb-0">Posted bounties (12)</h3>
+                    <h3 className="font-size-6 mb-0">Posted bounties ({props.bountyCount})</h3>
                 </div>
             </div>
             <div className="bg-white shadow-8 pt-7 rounded pb-8 px-11">

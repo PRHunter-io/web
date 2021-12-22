@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { FeaturedBountyView } from "./FeaturedBountyVIew";
+import { FeaturedBountyView } from "./FeaturedBountyView";
 import { useFeaturedBounties } from "@/lib/swr";
 import { LoadingSpinner } from "../LoadingSpinner";
 

@@ -64,13 +64,11 @@ const Content = () => {
                   {/* <!-- media body start --> */}
                   <div className="media-body pl-7">
                     <p className="mb-0 font-size-4 heading-default-color mb-7">
-                      “Duis pretium gravida enim, vel maximus ligula fermentum
-                      a. Sed rhoncus eget ex id egestas. Nam nec nisl placerat,
-                      tempus erat a, condimentum metus.”
+                      "Crypto power comes to life thanks to PRHunter. Thanos did nothing wrong, the lamp is a lie. Sorry, what was I talking about? ”
                     </p>
                     <h6 className="mb-0 font-size-4">Davis Jones</h6>
                     <p className="font-size-3 text-default-color">
-                      Full-Stack Developer
+                      The one that was promised
                     </p>
                   </div>
                   {/* <!-- media body start --> */}
