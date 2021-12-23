@@ -9,7 +9,7 @@ const options = {
 };
 
 class CreateBountyClass {
-  async getAvailableRepos(setRepoOptions) {
+  async getAvailableRepos() {
     let optionsArr = [];
 
     try {
@@ -26,7 +26,7 @@ class CreateBountyClass {
         });
       });
 
-      setRepoOptions(optionsArr)
+      return optionsArr;
     } catch (err) {
       console.log(err);
     }

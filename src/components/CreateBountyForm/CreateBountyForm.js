@@ -1,36 +1,17 @@
-import { useEffect, useState } from "react";
-import styled from "styled-components";
-import { PickRepo, ProvideData } from ".";
-import PickIssue from "./Steps/PickIssue";
+import { useState } from "react";
+import { DetailsForm } from "./DetailsForm";
+import { PickIssue } from "./PickIssue";
+import { PickRepo } from "./PickRepo";
 
-const FormContainer = styled.div`
-`;
-
-const CreateBountyForm = ({ setFormCompleted }) => {
-  const [bountyData, setBountyData] = useState(false);
+export const CreateBountyForm = () => {
+  const [repository, setRepository] = useState(null)
+  const [issue, setIssue] = useState(null)
 
   return (
-    <FormContainer>
-      <h2 className="text-muted mb-6">Pick issue</h2>
-
-      <PickRepo
-        bountyData={bountyData}
-        setBountyData={setBountyData}
-      />
-      <PickIssue
-        bountyData={bountyData}
-        setBountyData={setBountyData}
-      />
-      {bountyData.issue_number && (
-        <ProvideData
-          key={`${bountyData.repo_name},${bountyData.issue_number}`}
-          bountyData={bountyData}
-          setBountyData={setBountyData}
-          setFormCompleted={setFormCompleted}
-        />
-      )}
-    </FormContainer>
+    <>
+      <PickRepo setRepository={setRepository} />
+      <PickIssue repository={repository} setIssue={setIssue} />
+      <DetailsForm repository={repository} issue={issue} />
+    </>
   );
 }
-
-export default CreateBountyForm;
