@@ -45,6 +45,6 @@ export function getAllPosts(fields = []) {
 }
 
 export async function markdownToHtml(markdown) {
-  const result = await remark().use(html).process(markdown)
+  const result = await remark().use(html, {allowDangerousHtml: true}).process(markdown)
   return result.toString()
 }
