@@ -21,8 +21,6 @@ const FeaturedBounties = () => {
     </PageWrapperInternal>
   )
 
-  console.log(bounties)
-
   return (
     <PageWrapperInternal>
       {bounties.map(bounty => <FeaturedBountyView key={bounty.id} bounty={bounty}/>)}

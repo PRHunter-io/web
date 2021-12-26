@@ -1,4 +1,5 @@
 import useSWR from "swr"
+import useSWRImmutable from 'swr/immutable'
 
 const { fetcher } = require("./fetcher")
 
@@ -29,5 +30,26 @@ export const useFeaturedBounties = () => {
       bounties: data,
       isLoading: !error && !data,
       isError: error
+    }
+}
+
+export const useRepositories = () => {
+  const { data, error } = useSWRImmutable("/repo", fetcher)
+
+  return {
+      repos: data,
+      isLoading: !error && !data,
+      error: error
+    }
+}
+
+export const useIssues = (repoName) => {
+  const url = (repoName ? `/repo/${repoName}/issues` : null)
+  const { data, error } = useSWRImmutable(url, fetcher)
+
+  return {
+      issues: data,
+      isLoading: !error && !data,
+      error: error
     }
 }

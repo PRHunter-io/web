@@ -36,3 +36,11 @@ export const bountyFilterTags = {
     { value: "gaming", label: "Gaming" },
   ]
 };
+
+export const bountyCurrency = {
+  "query": "currency",
+  "values": [
+    { value: "ETH", label: "Ethereum" },
+    { value: "BSC", label: "Binance Smart Chain" },
+  ]
+};

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import styled from "styled-components";
 import { Container } from "react-bootstrap";
 import { useScrollPosition } from "@n8tb1t/use-scroll-position";
@@ -24,6 +24,7 @@ const SiteHeader = styled.header`
   right: 0;
   width: 100%;
   z-index: 999;
+  
   @media ${device.lg} {
     position: fixed !important;
     transition: 0.6s;
@@ -35,9 +36,16 @@ const SiteHeader = styled.header`
       transform: translateY(0%);
       box-shadow: 0 12px 34px -11px rgba(65, 62, 101, 0.1);
       z-index: 9999;
-      background: "#fff"};
-    }
+      background: "#fff"
+    };
   }
+`;
+
+const ToggleButton = styled.button`
+color: ${({ dark, theme }) =>
+    dark ? theme.colors.lightShade : theme.colors.heading}!important;
+border-color: ${({ dark, theme }) =>
+    dark ? theme.colors.lightShade : theme.colors.heading}!important;
 `;
 
 const Header = () => {
@@ -46,12 +54,8 @@ const Header = () => {
   const [showReveal, setShowReveal] = useState(false);
   const { user } = useAuth();
 
-  const ToggleButton = styled.button`
-  color: ${({ dark, theme }) =>
-      dark ? theme.colors.lightShade : theme.colors.heading}!important;
-  border-color: ${({ dark, theme }) =>
-      dark ? theme.colors.lightShade : theme.colors.heading}!important;
-`;
+  useEffect(() => {
+  }, [])
 
   useScrollPosition(({ prevPos, currPos }) => {
     if (currPos.y < 0) {
