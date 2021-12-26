@@ -3,11 +3,7 @@ import { withTheme } from "styled-components";
 
 import Select from "react-select";
 
-const defaultOptions = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
+const defaultOptions = [];
 
 const getCustomStyles = (theme, accentColor, bg, hoverBg, border, indicator) => {
   return {
@@ -73,9 +69,7 @@ const SelectStyled = ({
       } else {
         result = options.filter((o) => { return o.value == queryValue; });
       }
-    } else {
-      result = options[0];
-    }
+    } 
     return result;
   }
 

@@ -37,7 +37,7 @@ const getData = async (reqBody, setfilteredData) => {
   for (const key in formattedBody) {
     if (Object.hasOwnProperty.call(formattedBody, key)) {
       const element = formattedBody[key];
-      if (element.length === 0) {
+      if (element && element.length === 0) {
         delete formattedBody[key];
       }
     }
@@ -138,23 +138,6 @@ const SearchGrid = ({ bounties, query }) => {
                           <i className="icon icon-zoom-2 text-primary"></i>
                         </span>
                       </div>
-                      {/* <!-- .select-city starts --> */}
-                      {/* <div className="form-group position-relative w-lg-55 w-xl-60 w-xxl-55">
-                        <Select
-                          name="experience"
-                          options={experienceLevel}
-                          className="pl-8 h-100 arrow-3 font-size-4 d-flex align-items-center w-100"
-                          border={false}
-                          queryValue={expValue}
-                          onChange={(e) => {
-                            setExpValue(e.value)
-                          }}
-                        />
-                        <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6">
-                          <i className="icon icon-business-agent text-primary"></i>
-                        </span>
-                      </div> */}
-                      {/* <!-- ./select-city ends --> */}
                     </div>
                     <div className="button-block">
                       <button className="btn btn-primary line-height-reset h-100 btn-submit w-100 text-uppercase">
