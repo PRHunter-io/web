@@ -14,7 +14,7 @@ export const ContactForm = () => {
         message: "",
     };
 
-    const SignUpSchema = Yup.object().shape({
+    const ContactFormSchema = Yup.object().shape({
         name: Yup.string().required("Name is required"),
         email: Yup.string().email().required("Email is required"),
         subject: Yup.string().required("Subject is required"),
@@ -39,7 +39,7 @@ export const ContactForm = () => {
     return (
         <Formik
             initialValues={initialValues}
-            // validationSchema={SignUpSchema}
+            validationSchema={ContactFormSchema}
             onSubmit={submitForm}
         >
             {(formik) => {
