@@ -1,8 +1,8 @@
 import React from "react";
 import Link from "next/link";
-import { FeaturedBountyView } from "./FeaturedBountyView";
 import { useFeaturedBounties } from "@/lib/swr";
 import { LoadingSpinner } from "../LoadingSpinner";
+import { FeaturedBountyView } from "./FeaturedBountyView";
 
 const FeaturedBounties = () => {
   const { bounties, isLoading, isError } = useFeaturedBounties()
