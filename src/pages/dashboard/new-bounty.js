@@ -10,9 +10,9 @@ const NewBounty = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    // if (!user) {
-    //   router.push("/")
-    // }
+    if (!user) {
+      router.push("/")
+    }
   }, [])
 
   return (

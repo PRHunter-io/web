@@ -7,15 +7,16 @@ export const PickRepo = ({ setRepository }) => {
   const { repos, isLoading, error } = useRepositories()
   const renderSelect = (options) => (
     <div className="mb-8">
-      <span className="text-muted mb-4">Repository:</span>
+      <span className="text-muted mb-4">Repository</span>
       <Select
         options={options}
         className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
         border={false}
         placeholder={'Pick repository'}
         queryValue={true}
-        onChange={e => setRepository(e.value)
-        }
+        onChange={e => {
+          setRepository(e.value)
+        }}
       />
     </div>
   )

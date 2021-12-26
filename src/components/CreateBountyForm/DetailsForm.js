@@ -1,236 +1,193 @@
-import { ErrorMessage, Field, Form, Formik } from 'formik';
+import React, { useState } from "react";
+import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import styled from "styled-components";
+import { MyTextInput, MySelect, MyTextArea } from "./fields";
+import { BountyService } from "./service"
 import { languages, bountyCurrency, bountyType, experienceLevel } from "@/utils/filters";
-import { Select } from '../Core';
-import { FormikSelect } from '../FormikSelect';
+import { useRouter } from "next/router";
 
-const ValueInput = styled.input`
-  &::-webkit-inner-spin-button, 
-  &::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
-}
-`;
+export const DetailsForm = ({ repository, issue }) => {
 
-export const DetailsForm = () => {
+  const [createError, setCreateError] = useState(null)
+  const router = useRouter()
 
-    const initialValues = {
-        title: "",
-        // experience: experienceLevel.values[0].label,
-        bounty_type: "",
-        languages: "",
-        bounty_value: "",
-        bounty_currency: "",
-        problem_statement: "",
-        acceptance_criteria: ""
-    };
+  const submitForm = async (details) => {
+    const repo_owner = repository.full_name.split('/')[0];
+    const repo_name = repository.full_name.split('/')[1];
+    const newBountyDto = {
+      repo_owner: repo_owner,
+      repo_name: repo_name,
+      issue_number: issue.number,
+      title: details.title,
+      problem_statement: details.problemStatement,
+      acceptance_criteria: details.acceptanceCriteria,
+      languages: [
+        details.language
+      ],
+      tags: [],
+      experience: details.experience,
+      bounty_type: details.bountyType,
+      bounty_value: details.bountyAmount,
+      bounty_currency: details.currency
+    }
+    try {
+      await BountyService.createNewBounty(newBountyDto);
+      router.push("/dashboard/success")
+    } catch (error) {
+      console.log(error.response)
+      setCreateError(error.response.data.message)
+    }
+  };
 
-    const BountySchema = Yup.object().shape({
-        title: Yup.string().required("Title is required").min("Minimum 10 characters").max("Maximum 100 characters"),
-        experience: Yup.string().required("Experience is required"),
-    });
-
-    const submitForm = async (values) => {
-        // await signUp(values.email, values.password)
-        // router.push("/dashboard")
-        // gContext.toggleSignUpModal();
-    };
-
-    const options = [
-        { value: 'A', label: 'A' },
-        { value: 'B', label: 'B' },
-        { value: 'C', label: 'C' }
-    ]
-
-    return (
-        <Formik
-            initialValues={initialValues}
-            validationSchema={BountySchema}
-            onSubmit={submitForm}
-        >
-            <div className="mt-12">
-                <span className="text-muted mb-4">Bounty details</span>
-
-                <Form
-                    onSubmit={async (e) => {
-                        e.preventDefault();
-                        submitBounty()
-                    }}
-                >
-                    <fieldset>
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <div className="form-group">
-                                    <label
-                                        htmlFor="bounty-title"
-                                        className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
-                                    >
-                                        Bounty Title <i className="far fa-file-alt pl-1 text-primary" />
-                                    </label>
-                                    <Field type="text" name="title" />
-                                    <ErrorMessage name="text" component="div" />
-                                </div>
-                            </div>
-                            <div className="col-lg-6">
-                                <div className="form-group">
-                                    <label
-                                        htmlFor="select2"
-                                        className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
-                                    >
-                                        Experience <i className="fas fa-signal pl-1 text-primary" />
-                                    </label>
-                                    <Field name="experience" component={FormikSelect} options={options} />
-                                    {/* {experienceLevel.values.map((exp) => (
-                                                    <option key={exp.value} value={exp.value}>{exp.value}</option>
-                                                ))} */}
-                                </div>
-                            </div>
-                        </div>
-                        {/* <div className="row">
-                                    <div className="col-lg-6">
-                                        <div className="form-group position-relative">
-                                            <label
-                                                htmlFor="select3"
-                                                className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
-                                            >
-                                                Bounty Type <i className="fas fa-briefcase pl-1 text-primary" />
-                                            </label>
-                                            <Select
-                                                options={bountyType.values}
-                                                className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
-                                                border={false}
-                                                queryValue={true}
-                                                value={values.bounty_type}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="form-group position-relative">
-                                            <label
-                                                htmlFor="select4"
-                                                className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
-                                            >
-                                                Language <i className="fas fa-code pl-1 text-primary" />
-                                            </label>
-                                            <Select
-                                                options={languages.values}
-                                                className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
-                                                border={false}
-                                                queryValue={true}
-                                                value={values.languages}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                required
-                                            />
-                                            <span className="h-100 w-px-50 pos-abs-tl d-flex align-items-center justify-content-center font-size-6"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-6">
-                                        <div className="form-group">
-                                            <label
-                                                htmlFor="bounty-title"
-                                                className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
-                                            >
-                                                Bounty Value <i className="fas fa-coins pl-1 text-primary" />
-                                            </label>
-                                            <ValueInput
-                                                type="number"
-                                                className="form-control h-px-48"
-                                                id="bounty-title"
-                                                placeholder="Set your bounty price"
-                                                value={values.bounty_value}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="form-group">
-                                            <label
-                                                htmlFor="select5"
-                                                className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
-                                            >
-                                                Bounty currency <i className="fas fa-link pl-1 text-primary" />
-                                            </label>
-                                            <Select
-                                                options={bountyCurrency.values}
-                                                className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
-                                                border={false}
-                                                queryValue={true}
-                                                value={values.bounty_currency}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                required
-                                            />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-lg-6">
-                                        <div className="form-group">
-                                            <label
-                                                htmlFor="aboutTextarea"
-                                                className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
-                                            >
-                                                Problem Statement <i className="fas fa-user-cog pl-1 text-primary" />
-                                            </label>
-                                            <textarea
-                                                name="textarea"
-                                                id="aboutTextarea"
-                                                cols="30"
-                                                rows="7"
-                                                className="border border-mercury text-gray w-100 pt-4 pl-6"
-                                                placeholder="Describe your problem"
-                                                value={values.problem_statement}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                    <div className="col-lg-6">
-                                        <div className="form-group">
-                                            <label
-                                                htmlFor="aboutTextarea"
-                                                className="d-block text-black-2 font-size-4 font-weight-semibold mb-4 required-custom"
-                                            >
-                                                Acceptance Criteria <i className="fas fa-user-check pl-1 text-primary" />
-                                            </label>
-                                            <textarea
-                                                name="textarea"
-                                                id="aboutTextarea"
-                                                cols="30"
-                                                rows="7"
-                                                className="border border-mercury text-gray w-100 pt-4 pl-6"
-                                                placeholder="Set clear expectations"
-                                                value={values.acceptance_criteria}
-                                                onChange={handleChange}
-                                                onBlur={handleBlur}
-                                                required
-                                            ></textarea>
-                                        </div>
-                                    </div>
-                                </div> */}
-                        <div className="row">
-                            <div className="col-md-12">
-                                <button
-                                    disabled={true}
-                                    className="btn-submit text-uppercase btn btn-lg btn-primary"
-                                >
-                                    Create Bounty!
-                                </button>
-                            </div>
-                        </div>
-                    </fieldset>
-                </Form>
-            </div>
-        </Formik>
-    );
-}
+  return (
+    <>
+      <Formik
+        initialValues={{
+          title: "",
+          bountyType: bountyType.values.map(exp => exp.value)[0],
+          language: languages.values.map(exp => exp.value)[0],
+          experience: experienceLevel.values.map(exp => exp.value)[0],
+          problemStatement: "",
+          acceptanceCriteria: "",
+          currency: "ETH",
+          bountyAmount: "0.001",
+        }}
+        validationSchema={Yup.object({
+          title: Yup.string()
+            .min(15, "At least 15 characters are required")
+            .max(100, "Must be 100 characters or less")
+            .required("Title is required"),
+          bountyType: Yup.string()
+            .oneOf(
+              bountyType.values.map(exp => exp.value),
+            )
+            .required("Bounty type is required"),
+          language: Yup.string()
+            .oneOf(
+              languages.values.map(exp => exp.value),
+            )
+            .required("Language is required"),
+          experience: Yup.string()
+            .oneOf(
+              experienceLevel.values.map(exp => exp.value),
+            )
+            .required("Experience is required"),
+          problemStatement: Yup.string()
+            .min(15, "At least 15 characters are required")
+            .max(100, "Must be 240 characters or less")
+            .required("Problem statement is required"),
+          acceptanceCriteria: Yup.string()
+            .min(15, "At least 15 characters are required")
+            .max(100, "Must be 240 characters or less")
+            .required("Acceptance criteria are required"),
+          currency: Yup.string()
+            .oneOf(
+              bountyCurrency.values.map(exp => exp.value),
+            )
+            .required("Currency is required"),
+          bountyAmount: Yup.number().min(0.00001, "Amount too small").max(100, "Amount too large").required("Bounty amount is required")
+        })}
+        onSubmit={async values => {
+          await submitForm(values)
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form>
+            <fieldset disabled={issue === null}>
+              <div className="row">
+                <div className="col-lg-12">
+                  <MyTextInput
+                    label="Bounty title"
+                    name="title"
+                    type="text"
+                    icon="far fa-file-alt pl-1 text-primary"
+                    placeholder=""
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
+                  <MySelect
+                    label="Bounty type"
+                    name="bountyType">
+                    {bountyType.values.map((exp) => (
+                      <option key={exp.value} value={exp.value}>{exp.label}</option>
+                    ))}
+                  </MySelect>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
+                  <MySelect
+                    label="Language"
+                    name="language">
+                    {languages.values.map((exp) => (
+                      <option key={exp.value} value={exp.value}>{exp.label}</option>
+                    ))}
+                  </MySelect>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
+                  <MySelect
+                    label="Experience required"
+                    name="experience"
+                  >
+                    {experienceLevel.values.map((exp) => (
+                      <option key={exp.value} value={exp.value}>{exp.value}</option>
+                    ))}
+                  </MySelect>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-12">
+                  <MyTextArea
+                    label="Problem statement"
+                    name="problemStatement"
+                    type="text"
+                    placeholder="Try to describe in a few sentences what is the nature of problem that needs to be solved. The Github issue descrption is a good place to start."
+                  />
+                </div>
+                <div className="col-lg-12">
+                  <MyTextArea
+                    label="Acceptance criteria"
+                    name="acceptanceCriteria"
+                    type="text"
+                    placeholder="Please specify what solution you would find acceptable. The more details you put here, the better."
+                  />
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-12">
+                  <MySelect
+                    label="Currency (Blockchain)"
+                    name="currency">
+                    {bountyCurrency.values.map((exp) => (
+                      <option key={exp.value} value={exp.value}>{exp.label}</option>
+                    ))}
+                  </MySelect>
+                </div>
+              </div>
+              <div className="row">
+                <div className="col-lg-6">
+                  <MyTextInput
+                    label="Bounty amount"
+                    name="bountyAmount"
+                    type="number" />
+                </div>
+                <div className="col-lg-6">
+                  <span className="text-muted pr-2 mb-4">Estimated USD value: </span>
+                  <p className="h-px-48 mb-6">0$</p>
+                </div>
+              </div>
+              <div className="row justify-content-end">
+                <button disabled={isSubmitting} className="btn-submit text-uppercase btn btn-lg btn-primary" type="submit">Create</button>
+              </div>
+            </fieldset>
+            {createError && <div className="error mb-4">{createError}</div>}
+          </Form>
+        )}
+      </Formik>
+    </>
+  );
+};
