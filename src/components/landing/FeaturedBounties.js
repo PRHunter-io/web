@@ -55,7 +55,6 @@ const PageWrapperInternal = (props) => (
         </div>
         {/* <!-- End Section Top --> */}
         <div className="row justify-content-center">
-          {/* <FeaturedBountyView /> */}
           {props.children}
         </div>
       </div>
