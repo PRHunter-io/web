@@ -8,7 +8,7 @@ const DashboardMain = () => {
   const { isUserSignedIn, logout } = useAuth();
 
   useEffect(() => {
-    if(!isUserSignedIn) {
+    if (!isUserSignedIn) {
       logout()
     }
   }, [])

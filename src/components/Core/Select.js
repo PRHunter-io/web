@@ -9,7 +9,7 @@ const defaultOptions = [
   { value: "vanilla", label: "Vanilla" },
 ];
 
-const getCustomStyles = (theme, accentColor, bg, border, indicator) => {
+const getCustomStyles = (theme, accentColor, bg, hoverBg, border, indicator) => {
   return {
     dropdownIndicator: () => {
       return {
@@ -23,6 +23,11 @@ const getCustomStyles = (theme, accentColor, bg, border, indicator) => {
         color: state.isSelected ? theme.colors[accentColor] : theme.colors.dark,
         textAlign: "left",
         backgroundColor: bg,
+        cursor: 'pointer',
+        transition: 'background-color .4s',
+        ['&:hover']: {
+          backgroundColor: hoverBg
+        }
       };
     },
     control: (provided, state) => {
@@ -41,6 +46,7 @@ const getCustomStyles = (theme, accentColor, bg, border, indicator) => {
         boxShadow: "none",
         textAlign: "left",
         backgroundColor: bg,
+        cursor: 'pointer',
       };
     },
   };
@@ -49,6 +55,7 @@ const getCustomStyles = (theme, accentColor, bg, border, indicator) => {
 const SelectStyled = ({
   theme,
   bg = "#fff",
+  hoverBg = "#f3f3f3",
   border = true,
   accentColor = "success",
   name = "item",
@@ -61,7 +68,11 @@ const SelectStyled = ({
   const setDefaultValue = () => {
     let result;
     if (queryValue) {
-      result = options.filter((o) => { return o.value == queryValue; });
+      if (typeof queryValue === 'boolean') {
+        result = false;
+      } else {
+        result = options.filter((o) => { return o.value == queryValue; });
+      }
     } else {
       result = options[0];
     }
@@ -70,7 +81,7 @@ const SelectStyled = ({
 
   return (
     <Select
-      styles={getCustomStyles(theme, accentColor, bg, border, indicator)}
+      styles={getCustomStyles(theme, accentColor, bg, hoverBg, border, indicator)}
       defaultValue={setDefaultValue()}
       name={name}
       options={options}

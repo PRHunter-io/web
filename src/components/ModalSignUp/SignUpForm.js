@@ -1,6 +1,6 @@
 import { Formik } from 'formik';
-import React, { useContext, useState } from 'react'
 import * as Yup from "yup";
+import React, { useContext, useState } from 'react'
 import { useRouter } from 'next/router';
 import { useAuth } from 'src/context/AuthUserContext';
 import GlobalContext from 'src/context/GlobalContext';
@@ -75,7 +75,6 @@ export const SignUpForm = () => {
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                value={values.email}
                                 required
                             />
                         </div>
@@ -96,7 +95,6 @@ export const SignUpForm = () => {
                                     value={values.password}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.password}
                                     required
                                 />
                                 <a
@@ -127,7 +125,6 @@ export const SignUpForm = () => {
                                     value={values.passwordConfirmation}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
-                                    value={values.passwordConfirmation}
                                     required
                                 />
                                 <a
