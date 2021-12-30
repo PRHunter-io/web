@@ -2,8 +2,11 @@
 import PageWrapper from '@/components/PageWrapper';
 import { NextSeo } from 'next-seo';
 import Link from "next/link";
+import { useEffect, useState } from 'react';
 
 export default function Documentation() {
+    const [sidebarList, setSidebarList] = useState([]);
+
     return (
         <>
             <NextSeo
@@ -20,7 +23,10 @@ export default function Documentation() {
                                     <div className="mb-10">
                                         <ChapterTitle>PRHunter Github Application</ChapterTitle>
                                         <Section>
-                                            <SectionTitle id="installing-the-app">Installing the application</SectionTitle>
+                                            <SectionTitle
+                                                id="installing-the-app"
+                                                setSidebarList={setSidebarList}
+                                            >Installing the application</SectionTitle>
                                             <p>
                                                 In order to create and manage bounties on PRHunter, you need to install the PRHunter Github App.
                                             </p>
@@ -34,13 +40,23 @@ export default function Documentation() {
                                             </p>
                                         </Section>
                                         <Section>
-                                            <SectionTitle id="updating-the-app">Updating the application</SectionTitle>
+                                            <SectionTitle
+                                                id="updating-the-app"
+                                                setSidebarList={setSidebarList}
+                                            >
+                                                Updating the application
+                                            </SectionTitle>
                                             <p>
                                                 If you have installed the app but have not given it necessary permissions to a repository you wish to post bounty for, you can modify the permissions accordingly. Just please make sure you're not removing permissions to any repositories that you have active bounties with.
                                             </p>
                                         </Section>
                                         <Section>
-                                            <SectionTitle id="deleting-the-app">Deleting the application</SectionTitle>
+                                            <SectionTitle
+                                                id="deleting-the-app"
+                                                setSidebarList={setSidebarList}
+                                            >
+                                                Deleting the application
+                                            </SectionTitle>
                                             <p>
                                                 If you remove the application from your account, we will no longer be able to monitor any of your active bounties and pay out to the submitters.
                                             </p>
@@ -53,7 +69,12 @@ export default function Documentation() {
                                     <div className="mb-10">
                                         <ChapterTitle>Bounties</ChapterTitle>
                                         <Section>
-                                            <SectionTitle id="creating-bounties">Creating a bounty</SectionTitle>
+                                            <SectionTitle
+                                                id="creating-bounties"
+                                                setSidebarList={setSidebarList}
+                                            >
+                                                Creating a bounty
+                                            </SectionTitle>
                                             <p>
                                                 In order to create a bounty, go to the Dashboard from the user menu in the top right corner after signing in and click "Post a new bounty".
                                                 Pick a repository and an issue for which you wish to set up a bounty and fill in the form details.
@@ -72,20 +93,35 @@ export default function Documentation() {
                                             </p>
                                         </Section>
                                         <Section>
-                                            <SectionTitle id="updating-bounties">Updating a bounty</SectionTitle>
+                                            <SectionTitle
+                                                id="updating-bounties"
+                                                setSidebarList={setSidebarList}
+                                            >
+                                                Updating a bounty
+                                            </SectionTitle>
                                             <p>
                                                 Updating a bounty is not possible, since we don't want submitters to mess with acceptance criteria and/or bounty value.
                                             </p>
                                         </Section>
                                         <Section>
-                                            <SectionTitle id="withdrawing-bounties">Withdrawing a bounty</SectionTitle>
+                                            <SectionTitle
+                                                id="withdrawing-bounties"
+                                                setSidebarList={setSidebarList}
+                                            >
+                                                Withdrawing a bounty
+                                            </SectionTitle>
                                             <p>
                                                 It is possible to withdraw a bounty, however the funds will only be returned to your account once the bounty period is over. We will be closely monitoring the activity of our users to catch any fraudelent behaviour
                                                 (such as withdrawing a bounty only to accept the PR and keep the funds)
                                             </p>
                                         </Section>
                                         <Section>
-                                            <SectionTitle id="completing-bounties">Completing bounties</SectionTitle>
+                                            <SectionTitle
+                                                id="completing-bounties"
+                                                setSidebarList={setSidebarList}
+                                            >
+                                                Completing bounties
+                                            </SectionTitle>
                                             <p>
                                                 The first pull request to be <span className='font-weight-bold'>Accepted</span> or  <span className='font-weight-bold'>Merged</span> by the submitter of the PR (or anyone with relevant access to the repository) will automatically complete the bounty and
                                                 pay out the reward to the PR submitter.
@@ -102,7 +138,17 @@ export default function Documentation() {
 
                                 </div>
                                 <div className='col-xl-4'>
-                                    Sidemenu
+                                    <ul>
+                                        {
+                                            sidebarList.map(item => (
+                                                <li key={item.id}>
+                                                    <a href={`#${item.id}`}>
+                                                        {item.title}
+                                                    </a>
+                                                </li>
+                                            ))
+                                        }
+                                    </ul>
                                 </div>
                             </div>
 
@@ -119,11 +165,25 @@ const ChapterTitle = (props) => (
     <h4 className='mb-10'>{props.children}</h4>
 )
 
-const SectionTitle = (props) => (
-    <h5 className="mb-5" id={props.id}>
-        {props.children}
-    </h5>
-)
+const SectionTitle = ({ id, children, setSidebarList }) => {
+    useEffect(() => {
+        setSidebarList(prevState => (
+            [
+                ...prevState,
+                {
+                    id: id,
+                    title: children
+                }
+            ]
+        ))
+    }, [])
+
+    return (
+        <h5 className="mb-5" id={id}>
+            {children}
+        </h5>
+    )
+}
 
 const Section = (props) => (
     <div className="mb-15">
