@@ -9,7 +9,7 @@ const Footer = () => {
   const gContext = useContext(GlobalContext);
   return (
     <>
-      <footer className="footer bg-ebony-clay dark-mode-texts">
+      <footer className="footer bg-ebony-clay dark-mode-texts overflow-hidden">
         <div className="container">
           {/* <!-- Cta section --> */}
           <div className="pt-11 pt-lg-20 pb-13 pb-lg-20 border-bottom border-width-1 border-default-color-2">

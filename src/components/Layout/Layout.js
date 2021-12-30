@@ -82,7 +82,6 @@ const Layout = ({ children, pageContext }) => {
     );
   }, [gContext]);
 
-
   return (
     <>
       <ThemeProvider
@@ -100,8 +99,7 @@ const Layout = ({ children, pageContext }) => {
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous" />
           </Helmet>
           <Loader id="loading" className={visibleLoader ? "" : "inActive"} />
-          {/* is bg white on purpose?? */}
-          <div className="site-wrapper overflow-hidden min-vh-100 bg-default-2" ref={eleRef}>
+          <div className={`site-wrapper min-vh-100 bg-default-2${gContext.stickyPage ? '' : ' overflow-hidden'}`} ref={eleRef}>
             {pageContext.layout !== "bare" &&
               <Header />
             }

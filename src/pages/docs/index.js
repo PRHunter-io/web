@@ -1,11 +1,22 @@
 
 import PageWrapper from '@/components/PageWrapper';
+import GlobalContext from '@/context/GlobalContext';
 import { NextSeo } from 'next-seo';
 import Link from "next/link";
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import AnchorLink from 'react-anchor-link-smooth-scroll';
+import styled from 'styled-components';
 
 export default function Documentation() {
     const [sidebarList, setSidebarList] = useState([]);
+    const gContext = useContext(GlobalContext);
+
+    useEffect(() => {
+        gContext.toggleStickyPage(true);
+        return () => {
+            gContext.toggleStickyPage(false);
+        }
+    }, []);
 
     return (
         <>
@@ -137,18 +148,24 @@ export default function Documentation() {
                                     </p>
 
                                 </div>
-                                <div className='col-xl-4'>
-                                    <ul>
+                                <div className='col-xl-4 position-relative'>
+                                    <StickyList>
                                         {
                                             sidebarList.map(item => (
-                                                <li key={item.id}>
-                                                    <a href={`#${item.id}`}>
+                                                <li
+                                                    key={item.id}
+                                                    className='py-1'
+                                                >
+                                                    <AnchorLink
+                                                        offset='100'
+                                                        href={`#${item.id}`}
+                                                    >
                                                         {item.title}
-                                                    </a>
+                                                    </AnchorLink>
                                                 </li>
                                             ))
                                         }
-                                    </ul>
+                                    </StickyList>
                                 </div>
                             </div>
 
@@ -160,6 +177,12 @@ export default function Documentation() {
         </>
     )
 }
+
+const StickyList = styled.ul`
+    list-style: none;
+    position: sticky;
+    top: 160px;
+`
 
 const ChapterTitle = (props) => (
     <h4 className='mb-10'>{props.children}</h4>
