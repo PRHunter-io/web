@@ -25,7 +25,7 @@ export default function Documentation() {
                 description="A short description goes here."
             />
             <PageWrapper>
-                <div className="jobDetails-section bg-default pt-md-30 pt-sm-25 pt-23 pb-md-27 pb-sm-20 pb-17">
+                <div className="jobDetails-section bg-default pt-md-30 pt-sm-25 pt-23 pb-md-27 pb-sm-20 pb-17 position-relative">
                     <div className="container">
                         <div className="mb-20">
                             <div className="row">
@@ -148,41 +148,65 @@ export default function Documentation() {
                                     </p>
 
                                 </div>
-                                <div className='col-xl-4 position-relative'>
-                                    <StickyList>
-                                        {
-                                            sidebarList.map(item => (
-                                                <li
-                                                    key={item.id}
-                                                    className='py-1'
-                                                >
-                                                    <AnchorLink
-                                                        offset='100'
-                                                        href={`#${item.id}`}
-                                                    >
-                                                        {item.title}
-                                                    </AnchorLink>
-                                                </li>
-                                            ))
-                                        }
-                                    </StickyList>
+                                <div className='d-none d-xl-block col-xl-4 position-relative'>
+                                    <DocsMenu sidebarList={sidebarList} />
                                 </div>
                             </div>
 
                         </div>
 
                     </div>
+                    {/* <MobileList>
+                        <DocsMenu sidebarList={sidebarList} mobile />
+                    </MobileList> */}
                 </div>
             </PageWrapper>
         </>
     )
 }
 
+const MobileList = styled.div`
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+    background-color: #fff;
+    text-align: center;
+`
+
 const StickyList = styled.ul`
     list-style: none;
-    position: sticky;
+    position: ${props => props.mobile ? "static" : "sticky"};
+    padding-left: ${props => props.mobile ? "0" : "revert"};
     top: 160px;
 `
+
+const DocsMenu = ({ sidebarList, mobile }) => (
+    <StickyList mobile={mobile}>
+        {
+            sidebarList.map(item => (
+                <li
+                    key={item.id}
+                    className='py-1'
+                >
+                    <AnchorLink
+                        offset='100'
+                        href={`#${item.id}`}
+                    >
+                        {item.title}
+                    </AnchorLink>
+                </li>
+            ))
+        }
+    </StickyList>
+)
 
 const ChapterTitle = (props) => (
     <h4 className='mb-10'>{props.children}</h4>
