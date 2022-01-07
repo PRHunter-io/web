@@ -1,6 +1,8 @@
 
+import Offcanvas from '@/components/Offcanvas';
 import PageWrapper from '@/components/PageWrapper';
 import GlobalContext from '@/context/GlobalContext';
+import { device } from '@/utils/breakpoints';
 import { NextSeo } from 'next-seo';
 import Link from "next/link";
 import { useContext, useEffect, useState } from 'react';
@@ -9,6 +11,7 @@ import styled from 'styled-components';
 
 export default function Documentation() {
     const [sidebarList, setSidebarList] = useState([]);
+    const [isShown, setIsShown] = useState(false);
     const gContext = useContext(GlobalContext);
 
     useEffect(() => {
@@ -25,9 +28,9 @@ export default function Documentation() {
                 description="A short description goes here."
             />
             <PageWrapper>
-                <div className="jobDetails-section bg-default pt-md-30 pt-sm-25 pt-23 pb-md-27 pb-sm-20 pb-17 position-relative">
-                    <div className="container">
-                        <div className="mb-20">
+                <div className="jobDetails-section bg-default pt-md-30 pt-sm-25 pt-23 pb-10 position-relative">
+                    <div className="container position-relative">
+                        <div className="mb-10">
                             <div className="row">
                                 <div className='col-xl-8'>
                                     <h3 className="text-center mb-10">Documentation</h3>
@@ -154,31 +157,28 @@ export default function Documentation() {
                             </div>
 
                         </div>
-
+                        <MobileOnly>
+                            <Offcanvas
+                                show={isShown}
+                                onHideOffcanvas={() => setIsShown(prev => !prev)}
+                                customLogo={<h4 className='text-primary mt-6'>Docs Menu</h4>}
+                            >
+                                <DocsMenu sidebarList={sidebarList} hideMenu={setIsShown} mobile />
+                            </Offcanvas>
+                            <OpenButton onClick={() => setIsShown(prev => !prev)}>
+                            </OpenButton>
+                        </MobileOnly>
                     </div>
-                    {/* <MobileList>
-                        <DocsMenu sidebarList={sidebarList} mobile />
-                    </MobileList> */}
                 </div>
             </PageWrapper>
         </>
     )
 }
 
-const MobileList = styled.div`
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: auto;
-    background-color: #fff;
-    text-align: center;
+const MobileOnly = styled.div`
+    @media ${device.xl} {
+        display:none;
+    }
 `
 
 const StickyList = styled.ul`
@@ -186,19 +186,34 @@ const StickyList = styled.ul`
     position: ${props => props.mobile ? "static" : "sticky"};
     padding-left: ${props => props.mobile ? "0" : "revert"};
     top: 160px;
-`
+`;
 
-const DocsMenu = ({ sidebarList, mobile }) => (
+const OpenButton = styled.button`
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+    height: 45px;
+    width: 45px;
+    background-color: transparent;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 24c6.627 0 12-5.373 12-12s-5.373-12-12-12-12 5.373-12 12 5.373 12 12 12zm1-6h-2v-8h2v8zm-1-12.25c.69 0 1.25.56 1.25 1.25s-.56 1.25-1.25 1.25-1.25-.56-1.25-1.25.56-1.25 1.25-1.25z' fill='%2300b074'/%3E%3C/svg%3E");    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: contain;
+    border: none;
+`;
+
+const DocsMenu = ({ sidebarList, hideMenu, mobile }) => (
     <StickyList mobile={mobile}>
         {
             sidebarList.map(item => (
                 <li
                     key={item.id}
-                    className='py-1'
+                    className='py-2'
                 >
                     <AnchorLink
                         offset='100'
                         href={`#${item.id}`}
+                        onClick={() => { if (mobile) { hideMenu(prev => !prev) } }}
                     >
                         {item.title}
                     </AnchorLink>
