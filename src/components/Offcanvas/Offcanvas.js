@@ -49,7 +49,7 @@ const LogoContainer = styled.div`
   font-size: 1.25rem;
 `;
 
-const Offcanvas = ({ show, onHideOffcanvas, children, ...rest }) => {
+const Offcanvas = ({ show, onHideOffcanvas, children, customLogo, ...rest }) => {
   if (typeof document !== "undefined") {
     if (show) {
       document.querySelector("html").classList.add("has-offcanvas");
@@ -66,9 +66,12 @@ const Offcanvas = ({ show, onHideOffcanvas, children, ...rest }) => {
       <Drawer className={show ? "" : "hidden"}>
         <Container>
           <div className="p-3">
-            <LogoContainer className="my-3">
-              <Logo onClick={onHideOffcanvas} />
-            </LogoContainer>
+            {customLogo ?
+              customLogo :
+              <LogoContainer className="my-3">
+                <Logo onClick={onHideOffcanvas} />
+              </LogoContainer>
+            }
             <div className="pt-4">{children}</div>
           </div>
         </Container>

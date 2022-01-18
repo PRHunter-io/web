@@ -10,6 +10,7 @@ const GlobalProvider = ({ children }) => {
   const [signUpModalVisible, setSignUpModalVisible] = useState(false);
   const [videoModalVisible, setVideoModalVisible] = useState(false);
   const [visibleOffCanvas, setVisibleOffCanvas] = useState(false);
+  const [stickyPage, setStickyPage] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
   const [header, setHeader] = useState({});
   const [footer, setFooter] = useState({
@@ -54,6 +55,10 @@ const GlobalProvider = ({ children }) => {
     setSignUpModalVisible(!signUpModalVisible);
   }
 
+  const toggleStickyPage = (bool) => {
+    setStickyPage(bool);
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -76,9 +81,11 @@ const GlobalProvider = ({ children }) => {
         setHeader,
         footer,
         setFooter,
-        signedIn, 
+        signedIn,
         setSignedIn,
-        toggleSignInUp
+        toggleSignInUp,
+        toggleStickyPage,
+        stickyPage
       }}
     >
       {children}

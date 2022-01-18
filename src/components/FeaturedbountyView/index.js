@@ -80,16 +80,15 @@ export const FeaturedBountyView = ({ bounty }) => {
                         </li>
                     </ul>
                 </div>
-                <p className="mb-7 font-size-4 text-gray">
-                    <div className="text-right">
+                <div className="mb-7 font-size-4 text-gray">
+                    <p className="text-right">
                         <Link href="/#">
                             <a className="btn btn-green text-uppercase btn-medium rounded-3">
                                 Details
                             </a>
                         </Link>
-                    </div>
-
-                </p>
+                    </p>
+                </div>
             </div>
             {/* <!-- End Feature One --> */}
         </div>)
