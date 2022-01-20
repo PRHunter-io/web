@@ -12,6 +12,7 @@ jobs:
     steps:
       - name: Checkout master
         uses: actions/checkout@master
+        
         # Setup doctl
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
