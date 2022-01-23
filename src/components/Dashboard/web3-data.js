@@ -16,7 +16,6 @@ export const Web3Data = () =>  {
           {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
         </Text>
         <Text fontSize="md" fontWeight="medium" mr="2">
-          
           {account &&
             `${account.slice(0, 6)}...${account.slice(
               account.length - 4,
@@ -25,6 +24,6 @@ export const Web3Data = () =>  {
         </Text>
       </Box>
     ) : (
-      <Button>Connect to a wallet</Button>
+      <Button onClick={activateBrowserWallet}>Connect to a wallet</Button>
     );
   }

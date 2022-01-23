@@ -1,9 +1,13 @@
 import { Select } from "@/components/Core";
 import { useIssues } from "@/lib/swr";
+import { useEffect, useState } from "react";
+import { BountyService } from "./service"
+import Link from "next/link";
 
-export const PickIssue = ({ repository, setIssue }) => {
+export const PickIssue = ({ repository, issue, setIssue }) => {
 
   const { issues, isLoading, error } = useIssues(repository?.full_name)
+  const [existingBountyForIssue, setExistingBountyForIssue] = useState(null)
 
   const renderIssuePicker = (options, disabled = false) => (
     <div className="mb-8">
@@ -22,6 +26,20 @@ export const PickIssue = ({ repository, setIssue }) => {
       </fieldset>
     </div>
   )
+
+  useEffect(async () => {
+    try{
+      await BountyService.checkIfIssueExists(issue)
+    } catch(err){
+      if (err?.response?.status === 409) {
+        let data = err.response.data
+        console.log(data)
+        setExistingBountyForIssue(data)
+      }
+    }
+    
+  }, [issue])
+
 
   if (!repository) {
     return renderIssuePicker([], true)
@@ -47,6 +65,16 @@ export const PickIssue = ({ repository, setIssue }) => {
       {renderIssuePicker([])}
       <span className="text-danger mt-4">
         {error.message}: {error.info.message}
+      </span>
+    </>
+  )
+
+  if (existingBountyForIssue) return (
+    <>
+      {renderIssuePicker([])}
+      <span className="text-danger mt-4">
+      Looks like this issue already has an active bounty. 
+      Click <Link href={`/bounties/${existingBountyForIssue.id}`}> here </Link> to go to the bounty
       </span>
     </>
   )

@@ -26,16 +26,9 @@ export const UserData = ({ userData }) => {
                             <div className="row mb-10">
                                 <div className="col-lg-6 mb-10">
                                     <span className="mb-3">Web3 wallet</span>
-                                    <Web3Data/>
-                                    {/* <a
-                                        href="#"
-                                        onClick={requestAccount}
-                                        className="font-size-4 font-weight-semibold position-relative text-white bg-black h-px-48 flex-all-center px-6 rounded-5 mb-4"
-                                    >
-                                        Connect web3 wallet
-                                    </a> */}
-                                    
-                                    <h6 className="font-weight-semibold">Integration settings coming soon</h6>
+                                    <div>
+                                        <Web3Data />
+                                    </div>
                                 </div>
                                 <div className="col-lg-6 mb-10">
                                     <span className="mb-3">Github</span>
