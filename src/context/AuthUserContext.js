@@ -43,7 +43,8 @@ export function AuthUserProvider({ children }) {
   const signIn = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard")
+      router.push("/dashboard");
+      return true;
     } catch (error) {
       console.error(error);
     }
@@ -52,7 +53,8 @@ export function AuthUserProvider({ children }) {
   const signUp = async (email, password) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard")
+      router.push("/dashboard");
+      return true;
     } catch (error) {
       console.error(error);
     }
