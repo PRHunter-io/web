@@ -1,4 +1,4 @@
-describe('payment', () => {
+describe('user login', () => {
 	it('user can create new account', () => {
 		// Start fron the index page
 		cy.visit('/');
