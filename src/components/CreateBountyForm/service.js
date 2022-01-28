@@ -30,19 +30,23 @@ class BountyServiceClass {
       const contract = new ethers.Contract(this.bountyFactoryAddress, BountyFactory.abi, signer)
 
       const expiry = new Date().getTime() + 1000
-      const overrides = {
-        value: ethers.utils.parseEther("0.1")     // ether in this case MUST be a string
-      };
-      const transaction = await contract.createBounty(expiry, overrides);
-      const headers = {
-        'Authorization': 'Bearer ' + parseCookies().token
-      }
-      newBountyDto.transaction = transaction;
-      newBountyDto.transaction.value = transaction.value.toString();
-      console.log(newBountyDto)
-      return await this.apiClient.post('bounty', newBountyDto, {
-        headers: headers
-      });
+
+      // console.log(contract.getAllBounties()) 
+      console.log(await contract.allBounties())
+
+      // const overrides = {
+      //   value: ethers.utils.parseEther("0.1")     // ether in this case MUST be a string
+      // };
+      // const transaction = await contract.createBounty(expiry, overrides);
+      // const headers = {
+      //   'Authorization': 'Bearer ' + parseCookies().token
+      // }
+      // console.log(transaction)
+      // newBountyDto.transaction_hash = transaction.hash;
+      // console.log(newBountyDto)
+      // return await this.apiClient.post('bounty', newBountyDto, {
+      //   headers: headers
+      // });
     } catch (err) {
       return this.handleCreateBountyError(err)
     }

@@ -34,7 +34,7 @@ export const DetailsForm = ({ repository, issue }) => {
     }
     try {
       await BountyService.createNewBounty(newBountyDto);
-      router.push("/dashboard/success")
+      // router.push("/dashboard/success")
     } catch (error) {
       setCreateError(error.message)
     }
