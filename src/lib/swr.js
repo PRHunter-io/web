@@ -13,6 +13,16 @@ export const useUserBounties = () => {
       }
 }
 
+export const useUserCompletedBounties = () => {
+  const { data, error } = useSWR("/user/completed", fetcher)
+
+  return {
+    bounties: data,
+    isLoading: !error && !data,
+    isError: error
+  }
+}
+
 export const useUserData = () => {
   const { data, error } = useSWR("/user", fetcher)
 

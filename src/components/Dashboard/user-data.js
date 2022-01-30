@@ -32,7 +32,7 @@ export const UserData = ({ userData }) => {
                                 </div>
                                 <div className="col-lg-6 mb-10">
                                     <span className="mb-3">Github</span>
-                                    {/* <GithubData /> */}
+                                     <GithubData />
                                 </div>
                             </div>
                         </div>

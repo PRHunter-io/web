@@ -1,10 +1,10 @@
 import { BountyListView } from "./bounty-list-view";
-import { useUserBounties } from "@/lib/swr";
+import { useUserBounties, useUserCompletedBounties } from "@/lib/swr";
 import { Spinner } from "react-bootstrap";
 
-const BountyTable = () => {
+const CompletedBountyTable = () => {
 
-  const {bounties, isLoading, isError} = useUserBounties()
+  const {bounties, isLoading, isError} = useUserCompletedBounties()
 
   if (isLoading) return (
     <BountyTableInner content={
@@ -36,7 +36,7 @@ const BountyTableInner = props => {
     <div className="mb-14">
       <div className="row mb-11 align-items-center">
         <div className="col-lg-6 mb-lg-0 mb-4">
-          <h3 className="font-size-6 mb-0">My bounties ({props.bountyCount})</h3>
+          <h3 className="font-size-6 mb-0">Completed bounties ({props.bountyCount})</h3>
         </div>
       </div>
       <div className="bg-white shadow-8 pt-7 rounded pb-8 px-11">
@@ -60,13 +60,7 @@ const BountyTableInner = props => {
                 scope="col"
                 className="border-0 font-size-4 font-weight-normal"
               >
-                Created at
-              </th>
-              <th
-                scope="col"
-                className="border-0 font-size-4 font-weight-normal"
-              >
-                Status
+                Completed at
               </th>
               <th
                 scope="col"
@@ -78,10 +72,10 @@ const BountyTableInner = props => {
             {props.children}
             </tbody>
           </table>
-        </div>) : (<span>Looks like you haven't created any bounties yet.</span>)}
+        </div>) : (<span>Looks like you don't have any completed bounties yet.</span>)}
       </div>
     </div>
   )
 }
 
-export default BountyTable;
+export default CompletedBountyTable;
