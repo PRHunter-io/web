@@ -24,15 +24,13 @@ export const UserData = ({ userData }) => {
                                 Linked accounts
                             </h5>
                             <div className="row mb-10">
-                                <div className="col-lg-6 mb-10">
-                                    <span className="mb-3">Web3 wallet</span>
-                                    <div>
-                                        <Web3Data />
-                                    </div>
+                                <div className="col-lg-12 mb-10">
+                                    <span className="mb-3">Web3 wallet address</span>
+                                    <Web3Data />
                                 </div>
-                                <div className="col-lg-6 mb-10">
+                                <div className="col-lg-12 mb-10">
                                     <span className="mb-3">Github</span>
-                                     <GithubData />
+                                    <GithubData />
                                 </div>
                             </div>
                         </div>

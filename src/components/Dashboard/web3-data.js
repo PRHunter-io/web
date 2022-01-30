@@ -7,23 +7,20 @@ import { formatEther } from "@ethersproject/units";
 export const Web3Data = () =>  {
     const {activateBrowserWallet, account } = useEthers();
     const etherBalance = useEtherBalance(account);
+    console.log(etherBalance);
 
-    console.log(etherBalance)
-  
     return account ? (
       <Box>
-        <Text>
-          {etherBalance && parseFloat(formatEther(etherBalance)).toFixed(3)} ETH
-        </Text>
-        <Text fontSize="md" fontWeight="medium" mr="2">
+        <h6 className="font-weight-semibold">
+        {account}
           {account &&
             `${account.slice(0, 6)}...${account.slice(
               account.length - 4,
               account.length
             )}`}
-        </Text>
+        </h6>
       </Box>
     ) : (
-      <Button onClick={activateBrowserWallet}>Connect to a wallet</Button>
+      <Button onClick={activateBrowserWallet}>Get wallet address from metamask</Button>
     );
   }
