@@ -31,9 +31,9 @@ export const SignInForm = () => {
     });
 
     const submitForm = async (values) => {   
-        const passed = await signIn(values.email, values.password);
+        const isSignInSuccessful  = await signIn(values.email, values.password);
 
-		if (passed) {
+		if (isSignInSuccessful ) {
             gContext.toggleSignInModal();
 		}
     };
