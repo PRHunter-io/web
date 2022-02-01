@@ -94,7 +94,7 @@ export const DetailsForm = ({ repository, issue }) => {
       >
         {({ isSubmitting }) => (
           <Form>
-            <fieldset disabled={issue === null}>
+            <fieldset disabled={issue === null || repository.existingBounty}>
               <div className="row">
                 <div className="col-lg-12">
                   <MyTextInput

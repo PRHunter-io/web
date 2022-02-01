@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { BountyService } from "./service"
 import Link from "next/link";
 
-export const PickIssue = ({ repository, issue, setIssue }) => {
+export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
 
 	const { issues, isLoading, error } = useIssues(repository?.full_name)
 	const [existingBountyForIssue, setExistingBountyForIssue] = useState(null)
@@ -32,16 +32,17 @@ export const PickIssue = ({ repository, issue, setIssue }) => {
 	)
 
 	useEffect(async () => {
-    try{
+    try {
       await BountyService.checkIfIssueExists(issue)
+			setExistingBountyForIssue(null);
+			setRepository(prevState=>({...prevState, existingBounty: false}))
     } catch(err){
       if (err?.response?.status === 409) {
         let data = err.response.data
-        console.log(data)
         setExistingBountyForIssue(data)
+				setRepository(prevState=>({...prevState, existingBounty: true}))
       }
     }
-    
   }, [issue])
 
 
@@ -57,6 +58,11 @@ export const PickIssue = ({ repository, issue, setIssue }) => {
 
 	if (error) return renderIssuePicker([], true, `${error.message}: ${error.info.message}`);
 
+	const options = issues.map(issue => ({
+		value: issue,
+		label: issue.title
+	}))
+
 	if (existingBountyForIssue) {
 		const ErrorMsg = () => (
 			<>
@@ -65,13 +71,8 @@ export const PickIssue = ({ repository, issue, setIssue }) => {
 			</>
 		)
 
-		return renderIssuePicker([], true, <ErrorMsg />);
+		return renderIssuePicker(options, false, <ErrorMsg />);
 	}
-
-	const options = issues.map(issue => ({
-		value: issue,
-		label: issue.title
-	}))
 
 	return renderIssuePicker(options, false)
 }
