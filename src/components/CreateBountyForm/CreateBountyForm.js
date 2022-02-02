@@ -10,7 +10,7 @@ export const CreateBountyForm = () => {
   return (
     <>
       <PickRepo setRepository={setRepository} setIssue={setIssue} />
-      <PickIssue repository={repository} setIssue={setIssue} />
+      <PickIssue repository={repository} setIssue={setIssue} issue={issue} />
       <DetailsForm repository={repository} issue={issue} />
     </>
   );

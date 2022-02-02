@@ -1,4 +1,3 @@
-import { formatStatus } from "@/utils/formatStatus";
 import Link from "next/link";
 import TechIcon from "../Icons/TechIcon";
 import { formatDate } from "src/utils";
@@ -34,14 +33,9 @@ export const BountyListView = ({ bounty }) => {
             </td>
             <td className="table-y-middle py-7 min-width-px-170 pr-0">
                 <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
-                    {formatDate(bounty.created_at)}
+                    {formatDate(bounty.completed_at)}
                 </h3>
             </td>
-          <td className="table-y-middle py-7 min-width-px-170 pr-0">
-            <h3 className="font-size-4 font-weight-normal text-black-2 mb-0">
-              {formatStatus(bounty.bounty_status)}
-            </h3>
-          </td>
             <td className="table-y-middle py-7 min-width-px-170 pr-0">
                 <div className="">
                     <a

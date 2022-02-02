@@ -2,7 +2,7 @@ import { Select } from "@/components/Core";
 import { useRepositories } from "@/lib/swr";
 import Link from "next/link";
 
-export const PickRepo = ({ setRepository }) => {
+export const PickRepo = ({ setRepository, setIssue }) => {
 
   const { repos, isLoading, error } = useRepositories()
   const renderSelect = (options) => (
@@ -16,6 +16,7 @@ export const PickRepo = ({ setRepository }) => {
         queryValue={true}
         onChange={e => {
           setRepository(e.value)
+          setIssue(null)
         }}
       />
     </div>
