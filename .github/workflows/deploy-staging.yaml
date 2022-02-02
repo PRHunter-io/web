@@ -7,7 +7,7 @@ on:
 
 jobs:
   build-production:
-    name: Build production image
+    name: Build staging image
     runs-on: ubuntu-latest
     steps:
       - name: Checkout master
