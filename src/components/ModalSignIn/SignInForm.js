@@ -1,4 +1,4 @@
-import { Formik } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import React, { useContext, useState } from 'react'
 import * as Yup from "yup";
 import { useRouter } from 'next/router';
@@ -23,19 +23,20 @@ export const SignInForm = () => {
     };
 
     const SignUpSchema = Yup.object().shape({
-        email: Yup.string().email().required("Name is required"),
+        email: Yup.string().email().required("Email is required"),
         password: Yup.string()
             .required("Password is required")
             .min(10, "Minimum 10 characters"),
         termsCheck: Yup.boolean().required()
     });
 
-    const submitForm = async (values) => {
-        await signIn(values.email, values.password)
-        router.push("/dashboard")
-        gContext.toggleSignInModal();
-    };
+    const submitForm = async (values) => {   
+        const isSignInSuccessful  = await signIn(values.email, values.password);
 
+		if (isSignInSuccessful ) {
+            gContext.toggleSignInModal();
+		}
+    };
 
     return (
         <Formik
@@ -53,7 +54,7 @@ export const SignInForm = () => {
                     handleBlur,
                     handleSubmit } = formik;
                 return (
-                    <form onSubmit={(e) => { e.preventDefault(); handleSubmit(e)}}>
+                    <Form onSubmit={(e) => { e.preventDefault(); handleSubmit(e)}}>
                         <div className="form-group">
                             <label
                                 htmlFor="email"
@@ -61,7 +62,7 @@ export const SignInForm = () => {
                             >
                                 E-mail
                             </label>
-                            <input
+                            <Field
                                 type="email"
                                 className="form-control"
                                 placeholder="example@gmail.com"
@@ -70,8 +71,12 @@ export const SignInForm = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 value={values.email}
-                                required
                             />
+                            {errors.email && touched.email ? (
+								<small className='text-danger'>
+									{errors.email}
+								</small>
+							) : null}
                         </div>
                         <div className="form-group">
                             <label
@@ -81,7 +86,7 @@ export const SignInForm = () => {
                                 Password
                             </label>
                             <div className="position-relative">
-                                <input
+                                <Field
                                     type={showPass ? "password" : "text"}
                                     className="form-control"
                                     id="password"
@@ -90,7 +95,6 @@ export const SignInForm = () => {
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     value={values.password}
-                                    required
                                 />
                                 <a
                                     href="/#"
@@ -103,6 +107,11 @@ export const SignInForm = () => {
                                     <span className="d-none">none</span>
                                 </a>
                             </div>
+                            {errors.password && touched.password ? (
+								<small className='text-danger'>
+									{errors.password}
+								</small>
+							) : null}
                         </div>
                         <div className="form-group d-flex flex-wrap justify-content-end">
                            
@@ -118,7 +127,7 @@ export const SignInForm = () => {
                                 Log in{" "}
                             </button>
                         </div>
-                    </form>
+                    </Form>
                 );
             }}
         </Formik>
