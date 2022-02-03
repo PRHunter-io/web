@@ -23,7 +23,7 @@ export const Web3Data = ({ isEdited }) => {
 			)}
 		</Box>
 	) : (
-		<Button onClick={activateBrowserWallet}>
+		<Button type='button' onClick={activateBrowserWallet}>
 			Get wallet address from metamask
 		</Button>
 	);
