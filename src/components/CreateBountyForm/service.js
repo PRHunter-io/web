@@ -6,7 +6,7 @@ import BountyFactory from '@/contract/BountyFactory.json'
 
 class BountyServiceClass {
 
-  bountyFactoryAddress = "0x4518188E9f6fB8C8D38eb74e44fC2c1F91B60227"
+  bountyFactoryAddress = "0x153Bab3d11fE9e2f90b9747060855fEbCf31F92C"
 
   apiClient = axios.create({
     baseURL: process.env.NEXT_PUBLIC_EXTERNAL_API_URL || '',
@@ -25,8 +25,9 @@ class BountyServiceClass {
   async createNewBounty(newBountyDto) {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
     try {
-      const bountySecret = this.createBountyOnBackend(newBountyDto)
-      const tx = this.createBountyOnBlockchain(bountySecret)
+      const bountySecret = await this.createBountyOnBackend(newBountyDto)
+      console.log("Created new bounty on backend: " + bountySecret.data)
+      const tx = await this.createBountyOnBlockchain(bountySecret.data.id)
     } catch (err) {
       return this.handleCreateBountyError(err)
     }
@@ -41,7 +42,7 @@ class BountyServiceClass {
     });
   }
 
-  async createBountyOnBlockchain(bountySecret){
+  async createBountyOnBlockchain(bountyId){
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const signer = provider.getSigner()
     const contract = new ethers.Contract(this.bountyFactoryAddress, BountyFactory.abi, signer)
@@ -49,7 +50,7 @@ class BountyServiceClass {
     const overrides = {
       value: ethers.utils.parseEther("0.1")     // ether in this case MUST be a string
     };
-    return await contract.createBounty(expiry, bountySecret, overrides);
+    return await contract.createBounty(expiry, bountyId, overrides);
   }
 
   handleCreateBountyError(err) {

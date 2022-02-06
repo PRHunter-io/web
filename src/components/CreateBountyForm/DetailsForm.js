@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { MyTextInput, MySelect, MyTextArea } from "./fields";
@@ -34,7 +34,7 @@ export const DetailsForm = ({ repository, issue }) => {
     }
     try {
       await BountyService.createNewBounty(newBountyDto);
-      // router.push("/dashboard/success")
+      router.push("/dashboard/success")
     } catch (error) {
       setCreateError(error.message)
     }
@@ -53,41 +53,41 @@ export const DetailsForm = ({ repository, issue }) => {
           currency: "ETH",
           bountyAmount: "0.001",
         }}
-        // validationSchema={Yup.object({
-        //   title: Yup.string()
-        //     .min(15, "At least 15 characters are required")
-        //     .max(100, "Must be 100 characters or less")
-        //     .required("Title is required"),
-        //   bountyType: Yup.string()
-        //     .oneOf(
-        //       bountyType.values.map(exp => exp.value),
-        //     )
-        //     .required("Bounty type is required"),
-        //   language: Yup.string()
-        //     .oneOf(
-        //       languages.values.map(exp => exp.value),
-        //     )
-        //     .required("Language is required"),
-        //   experience: Yup.string()
-        //     .oneOf(
-        //       experienceLevel.values.map(exp => exp.value),
-        //     )
-        //     .required("Experience is required"),
-        //   problemStatement: Yup.string()
-        //     .min(15, "At least 15 characters are required")
-        //     .max(100, "Must be 240 characters or less")
-        //     .required("Problem statement is required"),
-        //   acceptanceCriteria: Yup.string()
-        //     .min(15, "At least 15 characters are required")
-        //     .max(100, "Must be 240 characters or less")
-        //     .required("Acceptance criteria are required"),
-        //   currency: Yup.string()
-        //     .oneOf(
-        //       bountyCurrency.values.map(exp => exp.value),
-        //     )
-        //     .required("Currency is required"),
-        //   bountyAmount: Yup.number().min(0.00001, "Amount too small").max(100, "Amount too large").required("Bounty amount is required")
-        // })}
+        validationSchema={Yup.object({
+          title: Yup.string()
+            .min(15, "At least 15 characters are required")
+            .max(100, "Must be 100 characters or less")
+            .required("Title is required"),
+          bountyType: Yup.string()
+            .oneOf(
+              bountyType.values.map(exp => exp.value),
+            )
+            .required("Bounty type is required"),
+          language: Yup.string()
+            .oneOf(
+              languages.values.map(exp => exp.value),
+            )
+            .required("Language is required"),
+          experience: Yup.string()
+            .oneOf(
+              experienceLevel.values.map(exp => exp.value),
+            )
+            .required("Experience is required"),
+          problemStatement: Yup.string()
+            .min(15, "At least 15 characters are required")
+            .max(100, "Must be 240 characters or less")
+            .required("Problem statement is required"),
+          acceptanceCriteria: Yup.string()
+            .min(15, "At least 15 characters are required")
+            .max(100, "Must be 240 characters or less")
+            .required("Acceptance criteria are required"),
+          currency: Yup.string()
+            .oneOf(
+              bountyCurrency.values.map(exp => exp.value),
+            )
+            .required("Currency is required"),
+          bountyAmount: Yup.number().min(0.00001, "Amount too small").max(100, "Amount too large").required("Bounty amount is required")
+        })}
         onSubmit={async values => {
           await submitForm(values)
         }}
