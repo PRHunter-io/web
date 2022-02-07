@@ -1,10 +1,9 @@
 // import { Button, Box, Text } from "@chakra-ui/react";
 import { useEthers } from '@usedapp/core';
-import { Box, Button } from '../Core';
+import { Box } from '../Core';
 
-export const Web3Data = ({ walletAddres, setWalletAddress, isEdited }) => {
+export const Web3Data = ({ walletAddress, setWalletAddress, isEdited }) => {
 	const { activateBrowserWallet, account } = useEthers();
-
 	const loadFromMetamask = () => {
 		try {
 			activateBrowserWallet()
@@ -22,17 +21,22 @@ export const Web3Data = ({ walletAddres, setWalletAddress, isEdited }) => {
 						className='form-control'
 						name='eth_wallet_address'
 						defaultValue={account}
+						placeholder='Write down wallet address'
 					/>
-					<Button onClick={loadFromMetamask}>
+					<p className='mb-0'>or</p>
+					<button
+						className='btn btn-primary btn-lg px-8 text-uppercase'
+						onClick={loadFromMetamask}>
 						Get wallet address from metamask
-					</Button>
+					</button>
 				</div>
-
 			) : (
 				<h6 className='font-weight-semibold text-break'>
-					<span>{walletAddres}</span>
+					<span>
+						{account ? walletAddress : 'Edit settings to add wallet address'}
+					</span>
 				</h6>
 			)}
 		</Box>
-	)
+	);
 };
