@@ -10,6 +10,8 @@ import "../scss/main.scss";
 import { useEffect } from "react";
 import * as ga from '../lib/ga';
 import { AuthUserProvider } from "src/context/AuthUserContext";
+import { DAppProvider } from "@usedapp/core";
+
 
 const MyApp = ({ Component, pageProps, router }) => {
 
@@ -28,36 +30,44 @@ const MyApp = ({ Component, pageProps, router }) => {
     }
   }, [router.events])
 
+
+
   if (router.pathname.match(/404/)) {
     return (
       <AuthUserProvider>
-        <GlobalProvider>
-          <Layout pageContext={{ layout: "bare" }}>
-            <Component {...pageProps} />
-          </Layout>
-        </GlobalProvider>
+        <DAppProvider config={{}}>
+          <GlobalProvider>
+            <Layout pageContext={{ layout: "bare" }}>
+              <Component {...pageProps} />
+            </Layout>
+          </GlobalProvider>
+        </DAppProvider>
       </AuthUserProvider>
     );
   }
   if (router.pathname.match(/dashboard/)) {
     return (
       <AuthUserProvider>
-        <GlobalProvider>
-          <Layout pageContext={{ layout: "dashboard" }}>
-            <Component {...pageProps} />
-          </Layout>
-        </GlobalProvider>
+        <DAppProvider config={{}}>
+          <GlobalProvider>
+            <Layout pageContext={{ layout: "dashboard" }}>
+              <Component {...pageProps} />
+            </Layout>
+          </GlobalProvider>
+        </DAppProvider>
       </AuthUserProvider>
     );
   }
 
   return (
     <AuthUserProvider>
-      <GlobalProvider>
-        <Layout pageContext={{}}>
-          <Component {...pageProps} />
-        </Layout>
-      </GlobalProvider>
+      <DAppProvider config={{}}>
+        <GlobalProvider>
+          <Layout pageContext={{}}>
+            <Component {...pageProps} />
+          </Layout>
+        </GlobalProvider>
+      </DAppProvider>
     </AuthUserProvider>
   );
 };
