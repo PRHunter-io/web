@@ -42,7 +42,7 @@ export const bountyCurrency = {
   "query": "currency",
   "values": [
     { value: "ETH", label: "Ethereum (ETH)" },
-    { value: "BSC", label: "Binance Smart Chain (BNB)" },
+    { value: "BNB", label: "Binance Smart Chain (BNB)" },
   ]
 };
 

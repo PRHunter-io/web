@@ -6,7 +6,7 @@ import BountyFactory from '@/contract/BountyFactory.json'
 
 class BountyServiceClass {
 
-  bountyFactoryAddress = "0x5Ad2A671E49ebdc90C4c70f3d137a040aa6e1B99"
+  bountyFactoryAddress = "0x153Bab3d11fE9e2f90b9747060855fEbCf31F92C"
 
   apiClient = axios.create({
     baseURL: process.env.NEXT_PUBLIC_EXTERNAL_API_URL || '',
@@ -25,31 +25,32 @@ class BountyServiceClass {
   async createNewBounty(newBountyDto) {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
     try {
-      const provider = new ethers.providers.Web3Provider(window.ethereum)
-      const signer = provider.getSigner()
-      const contract = new ethers.Contract(this.bountyFactoryAddress, BountyFactory.abi, signer)
-
-      const expiry = new Date().getTime() + 1000
-
-      // console.log(contract.getAllBounties()) 
-      console.log(await contract.allBounties())
-
-      // const overrides = {
-      //   value: ethers.utils.parseEther("0.1")     // ether in this case MUST be a string
-      // };
-      // const transaction = await contract.createBounty(expiry, overrides);
-      // const headers = {
-      //   'Authorization': 'Bearer ' + parseCookies().token
-      // }
-      // console.log(transaction)
-      // newBountyDto.transaction_hash = transaction.hash;
-      // console.log(newBountyDto)
-      // return await this.apiClient.post('bounty', newBountyDto, {
-      //   headers: headers
-      // });
+      const bountySecret = await this.createBountyOnBackend(newBountyDto)
+      console.log("Created new bounty on backend: " + bountySecret.data)
+      const tx = await this.createBountyOnBlockchain(bountySecret.data.id)
     } catch (err) {
       return this.handleCreateBountyError(err)
     }
+  }
+
+  async createBountyOnBackend(newBountyDto){
+    const headers = {
+      'Authorization': 'Bearer ' + parseCookies().token
+    }
+    return await this.apiClient.post('bounty', newBountyDto, {
+      headers: headers
+    });
+  }
+
+  async createBountyOnBlockchain(bountyId){
+    const provider = new ethers.providers.Web3Provider(window.ethereum)
+    const signer = provider.getSigner()
+    const contract = new ethers.Contract(this.bountyFactoryAddress, BountyFactory.abi, signer)
+    const expiry = new Date().getTime() + 1000
+    const overrides = {
+      value: ethers.utils.parseEther("0.1")     // ether in this case MUST be a string
+    };
+    return await contract.createBounty(expiry, bountyId, overrides);
   }
 
   handleCreateBountyError(err) {
