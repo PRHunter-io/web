@@ -1,3 +1,5 @@
+import { Form, Formik } from 'formik';
+import * as Yup from 'yup';
 import { useState } from 'react';
 import { Box } from '../Core';
 import { GithubData } from './github-data';
@@ -57,6 +59,7 @@ export const UserData = ({ userData }) => {
 												type='button'
 												onClick={e => {
 													e.target.blur();
+													setWalletAddress(userData.eth_wallet_address);
 													setIsEdited(!isEdited);
 												}}>
 												Cancel
