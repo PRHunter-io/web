@@ -1,31 +1,42 @@
 // import { Button, Box, Text } from "@chakra-ui/react";
 import { useEthers } from '@usedapp/core';
+import { Field } from 'formik';
 import styled from 'styled-components';
 import { Box } from '../Core';
 
-export const Web3Data = ({ walletAddress, setWalletAddress, isEdited }) => {
+export const Web3Data = ({
+	walletAddress,
+	isEdited,
+	setFieldValue,
+	value,
+	error,
+}) => {
 	const { activateBrowserWallet, account } = useEthers();
 	const loadFromMetamask = () => {
 		try {
 			activateBrowserWallet();
+			setFieldValue('eth_wallet_address', account);
 		} catch {
 			// handle any possible errors thrown
 		}
-		setWalletAddress(account);
 	};
 	return (
 		<Box>
 			{isEdited ? (
 				<div>
-					<input
+					<Field
 						className='form-control'
 						name='eth_wallet_address'
-						defaultValue={walletAddress}
+						value={value}
+						error={error}
 						placeholder='Write down wallet address'
 					/>
-					<BlankBtn onClick={loadFromMetamask}>
+					<BlankBtn type='button' onClick={loadFromMetamask}>
 						Click to load address from metamask
 					</BlankBtn>
+					{error ? (
+						<small className='d-block text-danger'>{error}</small>
+					) : null}
 				</div>
 			) : (
 				<h6 className='font-weight-semibold text-break'>
