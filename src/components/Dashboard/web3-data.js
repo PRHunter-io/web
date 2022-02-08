@@ -15,7 +15,7 @@ export const Web3Data = ({
 	const loadFromMetamask = () => {
 		try {
 			activateBrowserWallet();
-			setFieldValue('eth_wallet_address', account);
+			setFieldValue('walletAddress', account);
 		} catch {
 			// handle any possible errors thrown
 		}
@@ -26,7 +26,7 @@ export const Web3Data = ({
 				<div>
 					<Field
 						className='form-control'
-						name='eth_wallet_address'
+						name='walletAddress'
 						value={value}
 						error={error}
 						placeholder='Write down wallet address'

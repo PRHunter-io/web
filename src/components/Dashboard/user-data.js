@@ -4,24 +4,36 @@ import { useState } from 'react';
 import { Box } from '../Core';
 import { GithubData } from './github-data';
 import { Web3Data } from './web3-data';
+import { UserDataService } from './service';
+import { useUserData } from '@/lib/swr';
 
 export const UserData = ({ userData }) => {
 	const [isEdited, setIsEdited] = useState(null);
+	const { mutate } = useUserData();
 
 	const initialValues = {
 		email: userData.email,
-		eth_wallet_address: userData.eth_wallet_address,
+		walletAddress: userData.eth_wallet_address,
 	};
 
 	const UserDataSchema = Yup.object().shape({
 		email: Yup.string().email().required('Email is required'),
-		eth_wallet_address: Yup.string()
+		walletAddress: Yup.string()
 			.nullable()
 			.matches(/^0x[a-fA-F0-9]{40}$/, 'Enter valid wallet address'),
 	});
 
 	const submitForm = async values => {
-		alert(JSON.stringify(values, null, 2));
+		try {
+			const userDataDto = {
+				email: values.email,
+				eth_wallet_address: values.walletAddress ? values.walletAddress : '',
+			};
+
+			await UserDataService.sendUserData(userDataDto, mutate, setIsEdited);
+		} catch (error) {
+			console.log(error.message);
+		}
 	};
 
 	return (
@@ -32,6 +44,7 @@ export const UserData = ({ userData }) => {
 						<Formik
 							initialValues={initialValues}
 							validationSchema={UserDataSchema}
+							enableReinitialize
 							onSubmit={submitForm}>
 							{formik => {
 								const { values, errors, handleReset, setFieldValue } = formik;
@@ -68,10 +81,11 @@ export const UserData = ({ userData }) => {
 														Web3 wallet address
 													</span>
 													<Web3Data
+														walletAddress={userData.eth_wallet_address}
 														isEdited={isEdited}
 														setFieldValue={setFieldValue}
-														value={values.eth_wallet_address}
-														error={errors.eth_wallet_address}
+														value={values.walletAddress}
+														error={errors.walletAddress}
 													/>
 												</div>
 												<div className='col-xl-6 mb-10'>
@@ -84,7 +98,8 @@ export const UserData = ({ userData }) => {
 													<>
 														<button
 															type='submit'
-															className='btn btn-primary mr-5'>
+															className='btn btn-primary mr-5'
+															disabled={!(formik.isValid && formik.dirty)}>
 															Save!
 														</button>
 														<button
