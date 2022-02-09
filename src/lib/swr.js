@@ -24,12 +24,13 @@ export const useUserCompletedBounties = () => {
 }
 
 export const useUserData = () => {
-  const { data, error } = useSWR("/user", fetcher)
+  const { data, error, mutate } = useSWR("/user", fetcher)
 
     return {
         userData: data,
         isLoading: !error && !data,
-        isError: error
+        isError: error,
+        mutate
       }
 }
 
