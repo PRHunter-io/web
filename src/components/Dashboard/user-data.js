@@ -20,6 +20,7 @@ export const UserData = ({ userData }) => {
 		email: Yup.string().email().required('Email is required'),
 		walletAddress: Yup.string()
 			.nullable()
+			.required('Wallet address is required')
 			.matches(/^0x[a-fA-F0-9]{40}$/, 'Enter valid wallet address'),
 	});
 
