@@ -4,7 +4,7 @@ import nookies from 'nookies';
 import { parseCookies } from 'nookies'
 import app from "@/lib/firebase"
 import { useRouter } from 'next/router';
-import { GithubService } from '@/lib/github';
+import { useApi } from './ApiServiceContext';
 
 export const AuthContext = createContext({
   user: null,
@@ -20,6 +20,7 @@ export function AuthUserProvider({ children }) {
 
   const [user, setUser] = useState(null)
   const router = useRouter()
+  const { post } = useApi()
 
   useEffect(() => {
     return onIdTokenChanged(auth, async (user) => {
@@ -34,10 +35,35 @@ export function AuthUserProvider({ children }) {
     })
   }, [])
 
+  const apiClient = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_EXTERNAL_API_URL || '',
+    responseType: 'json',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+  })
+
+
+  const uploadGithubAccessToken = async (signInResult) => {
+    const credential = GithubAuthProvider.credentialFromResult(signInResult);
+    let githubUserDto = {
+        firebase_user_id: signInResult.user.uid,
+        access_token: credential.accessToken
+    }
+    const token = await signInResult.user.getIdToken();
+    const headers = {
+        'Authorization': 'Bearer ' + token
+    }
+    console.log("pre send post");
+    const res = await post('github/token', githubUserDto, headers);
+    console.log("Back from posting");
+    return res;
+}
+
   const githubSignIn = async () => {
     const result = await signInWithPopup(auth, provider)
-    await GithubService.uploadGithubAccessToken(result)
-    router.push("/dashboard")
+    await uploadGithubAccessToken(result)
+    // router.push("/dashboard")
   }
 
   const signIn = async (email, password) => {

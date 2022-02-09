@@ -94,7 +94,6 @@ const Layout = ({ children, pageContext }) => {
           <Helmet>
             <title>PRHunter</title>
             <link rel="icon" type="image/png" href={imgFavicon} />
-            <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css" />
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous" />
           </Helmet>
