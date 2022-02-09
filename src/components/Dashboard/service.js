@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { parseCookies } from 'nookies';
+import { toast } from 'react-toastify';
 
 class UserDataServiceClass {
 	apiClient = axios.create({
@@ -26,6 +27,7 @@ class UserDataServiceClass {
 
 		await mutate();
 		setIsEdited(prev => !prev);
+		toast.success('Your Account has been updated!');
 	}
 }
 

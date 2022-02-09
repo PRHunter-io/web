@@ -2,7 +2,7 @@ import axios from 'axios';
 import { parseCookies } from 'nookies';
 import { ethers } from 'ethers'
 import BountyFactory from '@/contract/BountyFactory.json'
-
+import { toast } from 'react-toastify';
 
 class BountyServiceClass {
 
@@ -27,7 +27,8 @@ class BountyServiceClass {
     try {
       const bountySecret = await this.createBountyOnBackend(newBountyDto)
       console.log("Created new bounty on backend: " + bountySecret.data)
-      const tx = await this.createBountyOnBlockchain(bountySecret.data.id)
+      toast.success('Bounty created!');
+      const tx = await this.createBountyOnBlockchain(bountySecret.data.id) 
     } catch (err) {
       return this.handleCreateBountyError(err)
     }

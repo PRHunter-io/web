@@ -109,7 +109,7 @@ export const UserData = ({ userData }) => {
 															disabled={!(formik.isValid && formik.dirty)}>
 															{isSubmitting ? (
 																<span
-																	class='spinner-grow position-absolute'
+																	className='spinner-grow position-absolute'
 																	role='status'
 																	aria-hidden='true'></span>
 															) : null}

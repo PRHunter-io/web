@@ -20,6 +20,8 @@ import { get, merge } from "lodash";
 
 // the full theme object
 import { theme as baseTheme } from "../../utils";
+import { Flip, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.min.css';
 
 const Loader = styled.div`
   position: fixed;
@@ -115,6 +117,7 @@ const Layout = ({ children, pageContext }) => {
           <ModalApplication />
           <ModalSignIn />
           <ModalSignUp />
+          <ToastContainer position="top-center" transition={Flip}/>
         </div>
       </ThemeProvider>
     </>
