@@ -47,7 +47,13 @@ export const UserData = ({ userData }) => {
 							enableReinitialize
 							onSubmit={submitForm}>
 							{formik => {
-								const { values, errors, handleReset, setFieldValue } = formik;
+								const {
+									values,
+									errors,
+									handleReset,
+									setFieldValue,
+									isSubmitting,
+								} = formik;
 								return (
 									<Form>
 										<Box className='d-flex justify-content-between align-items-center mb-11'>
@@ -98,13 +104,20 @@ export const UserData = ({ userData }) => {
 													<>
 														<button
 															type='submit'
-															className='btn btn-primary mr-5'
+															className='btn btn-primary mr-5 position-relative'
 															disabled={!(formik.isValid && formik.dirty)}>
+															{isSubmitting ? (
+																<span
+																	class='spinner-grow position-absolute'
+																	role='status'
+																	aria-hidden='true'></span>
+															) : null}
 															Save!
 														</button>
 														<button
 															className='btn btn-outline-danger'
 															type='button'
+															disabled={isSubmitting ? true : false}
 															onClick={e => {
 																e.target.blur();
 																handleReset();
@@ -114,7 +127,6 @@ export const UserData = ({ userData }) => {
 														</button>
 													</>
 												) : null}
-
 												{isEdited ? null : (
 													<button
 														className='btn btn-primary'
