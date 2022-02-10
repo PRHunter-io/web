@@ -117,7 +117,11 @@ const Layout = ({ children, pageContext }) => {
           <ModalApplication />
           <ModalSignIn />
           <ModalSignUp />
-          <ToastContainer position="top-center" transition={Flip}/>
+          <ToastContainer
+            hideProgressBar={true}
+            autoClose={2000}
+            position="top-center"
+            transition={Flip} />
         </div>
       </ThemeProvider>
     </>
