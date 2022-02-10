@@ -3,10 +3,7 @@ import { parseCookies } from 'nookies';
 import { createContext, useContext } from "react";
 import axios from "axios";
 
-export const ApiServiceContext = createContext({
-    get: async () => { },
-    post: async () => { },
-});
+export const ApiServiceContext = createContext({});
 
 export function ApiServiceProvider({ children }) {
 
@@ -54,8 +51,6 @@ export function ApiServiceProvider({ children }) {
             headers: getHeaders()
         }).then(res => res.data)
     }
-
-
 
     return <ApiServiceContext.Provider value={{ get, post, put }}>{children}</ApiServiceContext.Provider>;
 }
