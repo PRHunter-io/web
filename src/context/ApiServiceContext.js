@@ -37,19 +37,27 @@ export function ApiServiceProvider({ children }) {
         }
     }
 
-    const post = async (resource, payload, headers = getHeaders()) => {
+    const post = async (resource, payload) => {
         return await apiClient.post(resource, payload, {
-            headers: headers
+            headers: getHeaders()
         })
     }
 
-    const get = async (resource, headers = getHeaders()) => {
+    const put = async (resource, payload) => {
+        return await apiClient.put(resource, payload, {
+            headers: getHeaders()
+        })
+    }
+
+    const get = async (resource) => {
         return await apiClient.get(resource, {
-            headers: headers
+            headers: getHeaders()
         })
     }
 
-    return <ApiServiceContext.Provider value={{ get, post }}>{children}</ApiServiceContext.Provider>;
+
+
+    return <ApiServiceContext.Provider value={{ get, post, put }}>{children}</ApiServiceContext.Provider>;
 }
 
 export const useApi = () => useContext(ApiServiceContext)

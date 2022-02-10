@@ -10,7 +10,7 @@ import { useApi } from '@/context/ApiServiceContext';
 export const UserData = ({ userData }) => {
 	const [isEdited, setIsEdited] = useState(null);
 	const { mutate } = useUserData();
-	const { post } = useApi();
+	const { put } = useApi();
 
 	const initialValues = {
 		email: userData.email,
@@ -31,7 +31,7 @@ export const UserData = ({ userData }) => {
 				email: values.email,
 				eth_wallet_address: values.walletAddress ? values.walletAddress : '',
 			};
-			await post('user', userDataDto);
+			await put('user', userDataDto);
 			await mutate();
 			setIsEdited(prev => !prev);
 		} catch (error) {
