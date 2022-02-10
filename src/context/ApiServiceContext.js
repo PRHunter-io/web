@@ -18,7 +18,9 @@ export function ApiServiceProvider({ children }) {
         headers: {
             'Content-Type': 'application/json',
         },
-    }).interceptors.response.use(function (response) {
+    })
+
+    apiClient.interceptors.response.use(function (response) {
         return response;
     }, function (error) {
         if (401 === error.response.status) {

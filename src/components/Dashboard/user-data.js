@@ -4,12 +4,13 @@ import { useState } from 'react';
 import { Box } from '../Core';
 import { GithubData } from './github-data';
 import { Web3Data } from './web3-data';
-import { UserDataService } from './service';
 import { useUserData } from '@/lib/swr';
+import { useApi } from '@/context/ApiServiceContext';
 
 export const UserData = ({ userData }) => {
 	const [isEdited, setIsEdited] = useState(null);
 	const { mutate } = useUserData();
+	const { post } = useApi();
 
 	const initialValues = {
 		email: userData.email,
@@ -30,8 +31,9 @@ export const UserData = ({ userData }) => {
 				email: values.email,
 				eth_wallet_address: values.walletAddress ? values.walletAddress : '',
 			};
-
-			await UserDataService.sendUserData(userDataDto, mutate, setIsEdited);
+			await post('user', userDataDto);
+			await mutate();
+			setIsEdited(prev => !prev);
 		} catch (error) {
 			console.log(error.message);
 		}

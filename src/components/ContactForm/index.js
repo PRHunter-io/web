@@ -1,11 +1,13 @@
 import { Formik } from 'formik';
 import React from 'react'
 import * as Yup from "yup";
-import { ContactService } from './service';
 import Router from 'next/router';
+import { useApi } from '@/context/ApiServiceContext';
 
 
 export const ContactForm = () => {
+
+    const { post } = useApi()
 
     const initialValues = {
         name: "",
@@ -29,7 +31,7 @@ export const ContactForm = () => {
                 subject: values.subject,
                 message: values.message,
             }
-            await ContactService.sendContactMessage(contactDto)
+            await post('contact', contactDto)
             Router.push("/contact/success");
         } catch (error) {
             console.log(error.message);

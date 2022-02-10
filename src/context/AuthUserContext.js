@@ -4,7 +4,7 @@ import nookies from 'nookies';
 import { parseCookies } from 'nookies'
 import app from "@/lib/firebase"
 import { useRouter } from 'next/router';
-import { useApi } from './ApiServiceContext';
+import axios from 'axios';
 
 export const AuthContext = createContext({
   user: null,
@@ -20,7 +20,6 @@ export function AuthUserProvider({ children }) {
 
   const [user, setUser] = useState(null)
   const router = useRouter()
-  const { post } = useApi()
 
   useEffect(() => {
     return onIdTokenChanged(auth, async (user) => {
@@ -43,7 +42,6 @@ export function AuthUserProvider({ children }) {
     },
   })
 
-
   const uploadGithubAccessToken = async (signInResult) => {
     const credential = GithubAuthProvider.credentialFromResult(signInResult);
     let githubUserDto = {
@@ -54,10 +52,9 @@ export function AuthUserProvider({ children }) {
     const headers = {
         'Authorization': 'Bearer ' + token
     }
-    console.log("pre send post");
-    const res = await post('github/token', githubUserDto, headers);
-    console.log("Back from posting");
-    return res;
+    await apiClient.post('github/token', githubUserDto, {
+      headers: headers
+    })
 }
 
   const githubSignIn = async () => {

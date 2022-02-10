@@ -1,10 +1,12 @@
+import { useApi } from "@/context/ApiServiceContext"
 import useSWR from "swr"
 import useSWRImmutable from 'swr/immutable'
 
-const { fetcher } = require("./fetcher")
-
 export const useUserBounties = () => {
-    const { data, error } = useSWR("/user/bounties", fetcher)
+
+    const { get } = useApi()
+    const axiosFetcher = url => get(url).then(res => res.data)
+    const { data, error } = useSWR("/user/bounties", axiosFetcher)
 
     return {
         bounties: data,
@@ -14,7 +16,9 @@ export const useUserBounties = () => {
 }
 
 export const useUserCompletedBounties = () => {
-  const { data, error } = useSWR("/user/completed", fetcher)
+  const { get } = useApi()
+  const axiosFetcher = url => get(url).then(res => res.data)
+  const { data, error } = useSWR("/user/completed", axiosFetcher)
 
   return {
     bounties: data,
@@ -24,7 +28,9 @@ export const useUserCompletedBounties = () => {
 }
 
 export const useUserData = () => {
-  const { data, error, mutate } = useSWR("/user", fetcher)
+  const { get } = useApi()
+  const axiosFetcher = url => get(url).then(res => res.data)
+  const { data, error, mutate } = useSWR("/user", axiosFetcher)
 
     return {
         userData: data,
@@ -35,7 +41,9 @@ export const useUserData = () => {
 }
 
 export const useFeaturedBounties = () => {
-  const { data, error } = useSWR("/bounty/featured", fetcher)
+  const { get } = useApi()
+  const axiosFetcher = url => get(url).then(res => res.data)
+  const { data, error } = useSWR("/bounty/featured", axiosFetcher)
 
   return {
       bounties: data,
@@ -45,7 +53,9 @@ export const useFeaturedBounties = () => {
 }
 
 export const useRepositories = () => {
-  const { data, error } = useSWRImmutable("/repo", fetcher)
+  const { get } = useApi()
+  const axiosFetcher = url => get(url).then(res => res.data)
+  const { data, error } = useSWRImmutable("/repo", axiosFetcher)
 
   return {
       repos: data,
@@ -56,7 +66,9 @@ export const useRepositories = () => {
 
 export const useIssues = (repoName) => {
   const url = (repoName ? `/repo/${repoName}/issues` : null)
-  const { data, error } = useSWRImmutable(url, fetcher)
+  const { get } = useApi()
+  const axiosFetcher = url => get(url)
+  const { data, error } = useSWRImmutable(url, axiosFetcher)
 
   return {
       issues: data,
