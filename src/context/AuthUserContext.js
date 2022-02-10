@@ -66,7 +66,7 @@ export function AuthUserProvider({ children }) {
 
   const githubSignIn = async () => {
     const result = await signInWithPopup(auth, provider)
-    await GithubService.uploadGithubAccessToken(result)
+    uploadGithubAccessToken(result)
     await router.push("/dashboard")
     toast.success(notificationsText.signIn);
   }

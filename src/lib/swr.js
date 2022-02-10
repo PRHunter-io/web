@@ -5,7 +5,7 @@ import useSWRImmutable from 'swr/immutable'
 export const useUserBounties = () => {
 
     const { get } = useApi()
-    const axiosFetcher = url => get(url).then(res => res.data)
+    const axiosFetcher = url => get(url)
     const { data, error } = useSWR("/user/bounties", axiosFetcher)
 
     return {
@@ -17,7 +17,7 @@ export const useUserBounties = () => {
 
 export const useUserCompletedBounties = () => {
   const { get } = useApi()
-  const axiosFetcher = url => get(url).then(res => res.data)
+  const axiosFetcher = url => get(url)
   const { data, error } = useSWR("/user/completed", axiosFetcher)
 
   return {
@@ -29,7 +29,7 @@ export const useUserCompletedBounties = () => {
 
 export const useUserData = () => {
   const { get } = useApi()
-  const axiosFetcher = url => get(url).then(res => res.data)
+  const axiosFetcher = url => get(url)
   const { data, error, mutate } = useSWR("/user", axiosFetcher)
 
     return {
@@ -42,7 +42,7 @@ export const useUserData = () => {
 
 export const useFeaturedBounties = () => {
   const { get } = useApi()
-  const axiosFetcher = url => get(url).then(res => res.data)
+  const axiosFetcher = url => get(url)
   const { data, error } = useSWR("/bounty/featured", axiosFetcher)
 
   return {
@@ -54,7 +54,7 @@ export const useFeaturedBounties = () => {
 
 export const useRepositories = () => {
   const { get } = useApi()
-  const axiosFetcher = url => get(url).then(res => res.data)
+  const axiosFetcher = url => get(url)
   const { data, error } = useSWRImmutable("/repo", axiosFetcher)
 
   return {

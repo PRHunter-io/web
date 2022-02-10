@@ -40,19 +40,19 @@ export function ApiServiceProvider({ children }) {
     const post = async (resource, payload) => {
         return await apiClient.post(resource, payload, {
             headers: getHeaders()
-        })
+        }).then(res => res.data)
     }
 
     const put = async (resource, payload) => {
         return await apiClient.put(resource, payload, {
             headers: getHeaders()
-        })
+        }).then(res => res.data)
     }
 
     const get = async (resource) => {
         return await apiClient.get(resource, {
             headers: getHeaders()
-        })
+        }).then(res => res.data)
     }
 
 

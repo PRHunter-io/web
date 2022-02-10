@@ -6,14 +6,6 @@ import { useAuth } from "src/context/AuthUserContext";
 
 const DashboardMain = () => {
 
-  const { isUserSignedIn, logout } = useAuth();
-
-  useEffect(() => {
-    if (!isUserSignedIn) {
-      logout()
-    }
-  }, [])
-
   return (
     <>
       <PageWrapper

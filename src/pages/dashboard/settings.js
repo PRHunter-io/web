@@ -10,13 +10,6 @@ import { LoadingSpinner } from "@/components/LoadingSpinner";
 
 const DashboardSettings = () => {
   const { userData, isLoading, isError } = useUserData()
-  const { isUserSignedIn, logout } = useAuth();
-
-  useEffect(() => {
-    if (!isUserSignedIn) {
-      logout()
-    }
-  }, [])
 
   if (isLoading) return (
     <PageWrapperInternal>

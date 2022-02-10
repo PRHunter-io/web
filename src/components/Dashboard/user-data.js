@@ -6,6 +6,7 @@ import { GithubData } from './github-data';
 import { Web3Data } from './web3-data';
 import { useUserData } from '@/lib/swr';
 import { useApi } from '@/context/ApiServiceContext';
+import { toast } from 'react-toastify';
 
 export const UserData = ({ userData }) => {
 	const [isEdited, setIsEdited] = useState(null);
@@ -34,6 +35,7 @@ export const UserData = ({ userData }) => {
 			await put('user', userDataDto);
 			await mutate();
 			setIsEdited(prev => !prev);
+			toast.success('Your Account has been updated!');
 		} catch (error) {
 			console.log(error.message);
 		}
