@@ -5,6 +5,13 @@ import { parseCookies } from 'nookies'
 import app from "@/lib/firebase"
 import { useRouter } from 'next/router';
 import axios from 'axios';
+import { toast } from 'react-toastify';
+
+const notificationsText = {
+  signIn: 'You have been logged in',
+  signUp: 'Your account has been created',
+  signOut: 'You have been logged out',
+}
 
 export const AuthContext = createContext({
   user: null,
@@ -59,14 +66,16 @@ export function AuthUserProvider({ children }) {
 
   const githubSignIn = async () => {
     const result = await signInWithPopup(auth, provider)
-    await uploadGithubAccessToken(result)
-    // router.push("/dashboard")
+    await GithubService.uploadGithubAccessToken(result)
+    await router.push("/dashboard")
+    toast.success(notificationsText.signIn);
   }
 
   const signIn = async (email, password) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard");
+      await router.push("/dashboard");
+      toast.success(notificationsText.signIn);
       return true;
     } catch (error) {
       console.error(error);
@@ -76,7 +85,8 @@ export function AuthUserProvider({ children }) {
   const signUp = async (email, password) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      router.push("/dashboard");
+      await router.push("/dashboard");
+      toast.success(notificationsText.signUp);
       return true;
     } catch (error) {
       console.error(error);
@@ -86,7 +96,8 @@ export function AuthUserProvider({ children }) {
   const logout = async () => {
     try{
       await signOut(auth)
-      router.push("/")
+      await router.push("/")
+      toast.success(notificationsText.signOut);
     } catch (error){
       console.error(error)
     }
