@@ -44,6 +44,22 @@ jobs:
             kubectl --namespace=production rollout status deployment/web
             kubectl --namespace=production get services -o wide
 
+  cypress-run:
+    name: Run sanity tests
+    runs-on: ubuntu-latest
+    needs: deploy-production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      # Install NPM dependencies, cache them correctly
+      # and run all Cypress tests
+      - name: Cypress run
+        uses: cypress-io/github-action@v2
+        with:
+          build: npm run build
+          start: npm run start
+          spec: cypress/integration/sanity_spec_prod.js
+          config: pageLoadTimeout=100000,baseUrl=https://prhunter.io/
 
 #TODO:
 # - Verify that release was successfull

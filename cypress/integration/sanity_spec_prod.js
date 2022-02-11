@@ -1,5 +1,5 @@
 describe('user login', () => {
-	it('user can create new account', () => {
+	it('user can login with email', () => {
 		// Start fron the index page
 		cy.visit('/');
 
@@ -7,8 +7,8 @@ describe('user login', () => {
 		cy.findByText(/log in/i).click();
 
 		// Provide login credentials, proceed with login
-		cy.findByLabelText(/e\-mail/i).type('testowy22@gmail.com');
-		cy.findByLabelText(/password/i).type('qwe321qwe321');
+		cy.findByLabelText(/e\-mail/i).type('rvodecnokjsctfcuax@nvhrw.com');
+		cy.findByLabelText(/password/i).type('ney7GWH2vhp!qgz.pzm');
 		cy.findByRole('button', {
 			name: /log in/i,
 		}).click();
@@ -16,9 +16,11 @@ describe('user login', () => {
 		// The new url should include "/dashboard"
 		cy.url().should('include', '/dashboard');
 
-		// The new page should contain an h3 with "Posted bounties"
-		cy.get('h3').contains('Posted bounties');
+		// The new page should contain an h3 with "My bounties"
+		cy.get('h3').contains('My bounties');
+	});
 
+	it('user can log out successfully', () => {
 		// Logout
 		cy.get('.show-gr-dropdown').click();
 		cy.findByRole('link', {
@@ -27,5 +29,5 @@ describe('user login', () => {
 
 		// Check if back on home page
 		cy.get('h1').contains(/Submit pull requests. Get paid in crypto/i);
-	});
+	})
 });
