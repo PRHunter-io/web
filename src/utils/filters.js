@@ -46,31 +46,32 @@ export const bountyCurrency = {
   ]
 };
 
-export const bountyValueRange = {
-  "query": "bountyValueRange",
+export const bountyValues = {
+  "query": "bountyValues",
   "values": [
     {
-      value: {
-        min: 0,
-        max: 100
-      }, label: "< 100 USD"
+      value: 50,
+      label: "50 USD"
     },
     {
-      value: {
-        min: 100,
-        max: 500
-      }, label: "100-500 USD"
+      value: 100,
+      label: "100 USD"
     },
     {
-      value: {
-        min: 500,
-        max: 1000
-      }, label: "500-1000 USD"
+      value: 250,
+      label: "250 USD"
     },
     {
-      value: {
-        min: 1000
-      }, label: "1000+ USD"
+      value: 500,
+      label: "500 USD"
+    },
+    {
+      value: 1000,
+      label: "1000 USD"
+    },
+    {
+      value: 2000,
+      label: "2000 USD"
     }
   ]
 };

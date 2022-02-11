@@ -46,7 +46,6 @@ const Check = ({ queryKey, querriesArr, setquerriesArr, queryValue, children }) 
   }
 
   useEffect(() => {
-
     querriesArr === queryValue ? setActive(true) : setActive(false);
   }, [querriesArr])
 
@@ -72,7 +71,11 @@ const CheckboxesList = ({ fullQuery, setFullQuery, filtersList }) => {
   const [querriesArr, setquerriesArr] = useState(fullQuery[filtersList.query])
 
   useEffect(() => {
-    if (querriesArr === undefined) return;
+    if(!fullQuery) setquerriesArr(false);
+  }, [fullQuery])
+
+  useEffect(() => {
+    if (!querriesArr) return;
     setFullQuery(prevState => ({
       ...prevState,
       [filtersList.query]: querriesArr

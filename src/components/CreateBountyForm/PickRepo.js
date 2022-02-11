@@ -2,7 +2,7 @@ import { Select } from "@/components/Core";
 import { useRepositories } from "@/lib/swr";
 import Link from "next/link";
 
-export const PickRepo = ({ setRepository, setIssue }) => {
+export const PickRepo = ({ repository, setRepository, setIssue }) => {
 
   const { repos, isLoading, error } = useRepositories()
   const renderSelect = (options) => (
@@ -13,7 +13,10 @@ export const PickRepo = ({ setRepository, setIssue }) => {
         className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
         border={false}
         placeholder={'Pick repository'}
-        queryValue={true}
+        value={ repository ? {
+          value: repository,
+          label: repository.full_name,
+        } : false }
         onChange={e => {
           setRepository(e.value)
           setIssue(null)
