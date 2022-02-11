@@ -1,6 +1,6 @@
-import React from "react";
-import styled, { keyframes } from "styled-components";
-import GoogleMapReact from "google-map-react";
+import React from 'react';
+import styled, { keyframes } from 'styled-components';
+import GoogleMapReact from 'google-map-react';
 
 const keyBounce = keyframes`
 

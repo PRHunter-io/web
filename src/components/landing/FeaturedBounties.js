@@ -1,31 +1,33 @@
-import React from "react";
-import Link from "next/link";
-import { useFeaturedBounties } from "@/lib/swr";
-import { LoadingSpinner } from "../LoadingSpinner";
-import { FeaturedBountyView } from "../FeaturedbountyView";
+import React from 'react';
+import Link from 'next/link';
+import { useFeaturedBounties } from '@/lib/swr';
+import { LoadingSpinner } from '../LoadingSpinner';
+import { FeaturedBountyView } from '../FeaturedbountyView';
 
 const FeaturedBounties = () => {
-  const { bounties, isLoading, isError } = useFeaturedBounties()
+  const { bounties, isLoading, isError } = useFeaturedBounties();
 
-  if (isLoading) return (
-    <PageWrapperInternal>
-      <LoadingSpinner />
-    </PageWrapperInternal>
-  )
+  if (isLoading)
+    return (
+      <PageWrapperInternal>
+        <LoadingSpinner />
+      </PageWrapperInternal>
+    );
 
-  if (isError) return (
-    <PageWrapperInternal>
-      <div>
-        No featured bounties
-      </div>
-    </PageWrapperInternal>
-  )
+  if (isError)
+    return (
+      <PageWrapperInternal>
+        <div>No featured bounties</div>
+      </PageWrapperInternal>
+    );
 
   return (
     <PageWrapperInternal>
-      {bounties.map(bounty => <FeaturedBountyView key={bounty.id} bounty={bounty}/>)}
+      {bounties.map((bounty) => (
+        <FeaturedBountyView key={bounty.id} bounty={bounty} />
+      ))}
     </PageWrapperInternal>
-  )
+  );
 };
 
 const PageWrapperInternal = (props) => (
@@ -38,7 +40,9 @@ const PageWrapperInternal = (props) => (
           {/* <!-- Section Title --> */}
           <div className="col-12 col-xl-6 col-lg-6">
             <div className="text-center text-lg-left mb-13 mb-lg-0">
-              <h2 className="font-size-9 font-weight-bold">Featured Bounties</h2>
+              <h2 className="font-size-9 font-weight-bold">
+                Featured Bounties
+              </h2>
             </div>
           </div>
           {/* <!-- Section Button --> */}
@@ -54,12 +58,10 @@ const PageWrapperInternal = (props) => (
           {/* <!-- Section Button End --> */}
         </div>
         {/* <!-- End Section Top --> */}
-        <div className="row justify-content-center">
-          {props.children}
-        </div>
+        <div className="row justify-content-center">{props.children}</div>
       </div>
     </div>
   </>
-)
+);
 
 export default FeaturedBounties;

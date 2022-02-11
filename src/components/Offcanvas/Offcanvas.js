@@ -1,7 +1,7 @@
-import React from "react";
-import { Container } from "react-bootstrap";
-import styled from "styled-components";
-import Logo from "../Logo";
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import styled from 'styled-components';
+import Logo from '../Logo';
 
 const Overlay = styled.div`
   position: fixed;
@@ -49,29 +49,36 @@ const LogoContainer = styled.div`
   font-size: 1.25rem;
 `;
 
-const Offcanvas = ({ show, onHideOffcanvas, children, customLogo, ...rest }) => {
-  if (typeof document !== "undefined") {
+const Offcanvas = ({
+  show,
+  onHideOffcanvas,
+  children,
+  customLogo,
+  ...rest
+}) => {
+  if (typeof document !== 'undefined') {
     if (show) {
-      document.querySelector("html").classList.add("has-offcanvas");
-      document.body.classList.add("has-offcanvas");
+      document.querySelector('html').classList.add('has-offcanvas');
+      document.body.classList.add('has-offcanvas');
     } else {
-      document.querySelector("html").classList.remove("has-offcanvas");
-      document.body.classList.remove("has-offcanvas");
+      document.querySelector('html').classList.remove('has-offcanvas');
+      document.body.classList.remove('has-offcanvas');
     }
   }
 
   return (
     <div {...rest}>
-      <Overlay className={show ? "" : "hidden"} onClick={onHideOffcanvas} />
-      <Drawer className={show ? "" : "hidden"}>
+      <Overlay className={show ? '' : 'hidden'} onClick={onHideOffcanvas} />
+      <Drawer className={show ? '' : 'hidden'}>
         <Container>
           <div className="p-3">
-            {customLogo ?
-              customLogo :
+            {customLogo ? (
+              customLogo
+            ) : (
               <LogoContainer className="my-3">
                 <Logo onClick={onHideOffcanvas} />
               </LogoContainer>
-            }
+            )}
             <div className="pt-4">{children}</div>
           </div>
         </Container>

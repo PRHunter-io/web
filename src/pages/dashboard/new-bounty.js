@@ -1,27 +1,27 @@
-import React, { useState } from "react";
-import PageWrapper from "@/components/PageWrapper";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
-import { useAuth } from "src/context/AuthUserContext";
-import { CreateBountyForm } from "@/components/CreateBountyForm/CreateBountyForm";
+import React, { useState } from 'react';
+import PageWrapper from '@/components/PageWrapper';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { useAuth } from 'src/context/AuthUserContext';
+import { CreateBountyForm } from '@/components/CreateBountyForm/CreateBountyForm';
 
 const NewBounty = () => {
-  const router = useRouter()
+  const router = useRouter();
   const { user } = useAuth();
 
   useEffect(() => {
     if (!user) {
-      router.push("/")
+      router.push('/');
     }
-  }, [])
+  }, []);
 
   return (
     <>
       <PageWrapper
         headerConfig={{
-          button: "profile",
+          button: 'profile',
           isFluid: true,
-          bgClass: "bg-default",
+          bgClass: 'bg-default',
           reveal: false,
         }}
       >

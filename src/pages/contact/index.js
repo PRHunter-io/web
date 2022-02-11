@@ -1,7 +1,7 @@
-import React from "react";
-import PageWrapper from "@/components/PageWrapper";
-import { ContactForm } from "@/components/ContactForm";
-import { NextSeo } from "next-seo";
+import React from 'react';
+import PageWrapper from '@/components/PageWrapper';
+import { ContactForm } from '@/components/ContactForm';
+import { NextSeo } from 'next-seo';
 
 const Contact = () => {
   return (

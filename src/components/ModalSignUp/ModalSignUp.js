@@ -1,9 +1,9 @@
-import React, { useContext, useState } from "react";
-import styled from "styled-components";
-import { Modal } from "react-bootstrap";
-import GlobalContext from "../../context/GlobalContext";
-import { SignUpForm } from "./SignUpForm";
-import { useAuth } from "src/context/AuthUserContext";
+import React, { useContext, useState } from 'react';
+import styled from 'styled-components';
+import { Modal } from 'react-bootstrap';
+import GlobalContext from '../../context/GlobalContext';
+import { SignUpForm } from './SignUpForm';
+import { useAuth } from 'src/context/AuthUserContext';
 
 const ModalStyled = styled(Modal)`
   /* &.modal {
@@ -12,22 +12,21 @@ const ModalStyled = styled(Modal)`
 `;
 
 const ModalSignUp = (props) => {
-
   const gContext = useContext(GlobalContext);
   const { githubSignIn } = useAuth();
 
   const signUpWithGithub = async () => {
-    await githubSignIn()  
+    await githubSignIn();
     gContext.toggleSignUpModal();
-  }
+  };
 
   const handleClose = () => {
     gContext.toggleSignUpModal();
   };
 
   const toggleModal = () => {
-    gContext.toggleSignInUp()
-  }
+    gContext.toggleSignInUp();
+  };
 
   return (
     <ModalStyled
@@ -84,7 +83,7 @@ const ModalSignUp = (props) => {
                       onClick={signUpWithGithub}
                       className="font-size-4 font-weight-semibold position-relative text-white bg-black h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
                     >
-                      <i className="fab fa-github pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
+                      <i className="fab fa-github pos-xs-abs-cl font-size-7 ml-xs-4"></i>{' '}
                       <span className="d-none d-xs-block">
                         Sign up with Github
                       </span>
@@ -96,7 +95,7 @@ const ModalSignUp = (props) => {
                 </div>
                 <SignUpForm />
                 <p className="font-size-4 text-center heading-default-color">
-                  Already have an account?{" "}
+                  Already have an account?{' '}
                   <a href="/#" onClick={toggleModal} className="text-primary">
                     Sign in
                   </a>

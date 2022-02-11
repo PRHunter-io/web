@@ -1,16 +1,16 @@
-import { initializeApp, getApps, getApp } from "firebase/app";
+import { initializeApp, getApps, getApp } from 'firebase/app';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_PUBLIC_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
 };
 
 let app;
 
 if (!getApps().length) {
   app = initializeApp(firebaseConfig);
-}else {
+} else {
   app = getApp();
 }
 

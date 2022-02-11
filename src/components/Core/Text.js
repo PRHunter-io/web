@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { color, space, typography, shadow } from "styled-system";
+import React from 'react';
+import styled from 'styled-components';
+import { color, space, typography, shadow } from 'styled-system';
 
 const Paragraph = styled.p`
   font-size: 1.0625rem;
@@ -36,10 +36,10 @@ const Text = ({ variant, ...props }) => {
   let TextRender;
 
   switch (variant) {
-    case "sm":
+    case 'sm':
       TextRender = ParagraphSmall;
       break;
-    case "lg":
+    case 'lg':
       TextRender = ParagraphLarge;
       break;
     default:

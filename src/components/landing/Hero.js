@@ -1,16 +1,14 @@
-import React from "react";
-import { Button } from "react-bootstrap";
-import Link from "next/link";
+import React from 'react';
+import { Button } from 'react-bootstrap';
+import Link from 'next/link';
 import Typed from 'typed.js';
 
-
 const Hero = () => {
-
   // Create reference to store the DOM element containing the animation
   const el = React.useRef(null);
   // Create reference to store the Typed instance itself
   const typed = React.useRef(null);
-  let globePattern = '/images/globe-pattern.png'
+  let globePattern = '/images/globe-pattern.png';
 
   React.useEffect(() => {
     const options = {
@@ -19,12 +17,12 @@ const Hero = () => {
         'Kotlin, Android development',
         'Python, Machine learning',
         'Functional Programming',
-        'Devops tasks'
+        'Devops tasks',
       ],
       typeSpeed: 35,
       backSpeed: 15,
       shuffle: true,
-      loop: true
+      loop: true,
     };
 
     // elRef refers to the <span> rendered below
@@ -34,8 +32,8 @@ const Hero = () => {
       // Make sure to destroy Typed instance during cleanup
       // to prevent memory leaks
       typed.current.destroy();
-    }
-  }, [])
+    };
+  }, []);
 
   return (
     <>
@@ -61,7 +59,8 @@ const Hero = () => {
                     Submit pull requests. Get paid in crypto.
                   </h1>
                   <p className="font-size-5">
-                    PRHunter allows repository maintainers to pay programmers for solving Github issues
+                    PRHunter allows repository maintainers to pay programmers
+                    for solving Github issues
                   </p>
                 </div>
               </div>
@@ -88,9 +87,7 @@ const Hero = () => {
                   </div>
                   <div className="button-block">
                     <Link href="/bounties">
-                      <Button
-                        className="line-height-reset h-100 btn-submit w-100 text-uppercase"
-                      >
+                      <Button className="line-height-reset h-100 btn-submit w-100 text-uppercase">
                         Search
                       </Button>
                     </Link>

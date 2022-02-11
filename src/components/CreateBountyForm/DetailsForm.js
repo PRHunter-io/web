@@ -1,19 +1,23 @@
-import React, { useState } from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import { MyTextInput, MySelect, MyTextArea } from "./fields";
-import { BountyService } from "./service"
-import { languages, bountyCurrency, bountyType, experienceLevel } from "@/utils/filters";
-import { useRouter } from "next/router";
+import React, { useState } from 'react';
+import { Formik, Form } from 'formik';
+import * as Yup from 'yup';
+import { MyTextInput, MySelect, MyTextArea } from './fields';
+import { BountyService } from './service';
+import {
+  languages,
+  bountyCurrency,
+  bountyType,
+  experienceLevel,
+} from '@/utils/filters';
+import { useRouter } from 'next/router';
 
 export const DetailsForm = ({ repository, issue }) => {
+  const [createError, setCreateError] = useState(null);
 
-  const [createError, setCreateError] = useState(null)
-  
-  const router = useRouter()
+  const router = useRouter();
 
   const submitForm = async (details) => {
-    setCreateError(null)
+    setCreateError(null);
     const repo_owner = repository.full_name.split('/')[0];
     const repo_name = repository.full_name.split('/')[1];
     const newBountyDto = {
@@ -23,20 +27,18 @@ export const DetailsForm = ({ repository, issue }) => {
       title: details.title,
       problem_statement: details.problemStatement,
       acceptance_criteria: details.acceptanceCriteria,
-      languages: [
-        details.language
-      ],
+      languages: [details.language],
       tags: [],
       experience: details.experience,
       bounty_type: details.bountyType,
       bounty_value: details.bountyAmount,
-      bounty_currency: details.currency
-    }
+      bounty_currency: details.currency,
+    };
     try {
       await BountyService.createNewBounty(newBountyDto);
-      router.push("/dashboard/success")
+      router.push('/dashboard/success');
     } catch (error) {
-      setCreateError(error.message)
+      setCreateError(error.message);
     }
   };
 
@@ -44,52 +46,47 @@ export const DetailsForm = ({ repository, issue }) => {
     <>
       <Formik
         initialValues={{
-          title: "",
-          bountyType: bountyType.values.map(exp => exp.value)[0],
-          language: languages.values.map(exp => exp.value)[0],
-          experience: experienceLevel.values.map(exp => exp.value)[0],
-          problemStatement: "",
-          acceptanceCriteria: "",
-          currency: "ETH",
-          bountyAmount: "0.001",
+          title: '',
+          bountyType: bountyType.values.map((exp) => exp.value)[0],
+          language: languages.values.map((exp) => exp.value)[0],
+          experience: experienceLevel.values.map((exp) => exp.value)[0],
+          problemStatement: '',
+          acceptanceCriteria: '',
+          currency: 'ETH',
+          bountyAmount: '0.001',
         }}
         validationSchema={Yup.object({
           title: Yup.string()
-            .min(15, "At least 15 characters are required")
-            .max(100, "Must be 100 characters or less")
-            .required("Title is required"),
+            .min(15, 'At least 15 characters are required')
+            .max(100, 'Must be 100 characters or less')
+            .required('Title is required'),
           bountyType: Yup.string()
-            .oneOf(
-              bountyType.values.map(exp => exp.value),
-            )
-            .required("Bounty type is required"),
+            .oneOf(bountyType.values.map((exp) => exp.value))
+            .required('Bounty type is required'),
           language: Yup.string()
-            .oneOf(
-              languages.values.map(exp => exp.value),
-            )
-            .required("Language is required"),
+            .oneOf(languages.values.map((exp) => exp.value))
+            .required('Language is required'),
           experience: Yup.string()
-            .oneOf(
-              experienceLevel.values.map(exp => exp.value),
-            )
-            .required("Experience is required"),
+            .oneOf(experienceLevel.values.map((exp) => exp.value))
+            .required('Experience is required'),
           problemStatement: Yup.string()
-            .min(15, "At least 15 characters are required")
-            .max(100, "Must be 240 characters or less")
-            .required("Problem statement is required"),
+            .min(15, 'At least 15 characters are required')
+            .max(100, 'Must be 240 characters or less')
+            .required('Problem statement is required'),
           acceptanceCriteria: Yup.string()
-            .min(15, "At least 15 characters are required")
-            .max(100, "Must be 240 characters or less")
-            .required("Acceptance criteria are required"),
+            .min(15, 'At least 15 characters are required')
+            .max(100, 'Must be 240 characters or less')
+            .required('Acceptance criteria are required'),
           currency: Yup.string()
-            .oneOf(
-              bountyCurrency.values.map(exp => exp.value),
-            )
-            .required("Currency is required"),
-          bountyAmount: Yup.number().min(0.00001, "Amount too small").max(100, "Amount too large").required("Bounty amount is required")
+            .oneOf(bountyCurrency.values.map((exp) => exp.value))
+            .required('Currency is required'),
+          bountyAmount: Yup.number()
+            .min(0.00001, 'Amount too small')
+            .max(100, 'Amount too large')
+            .required('Bounty amount is required'),
         })}
-        onSubmit={async values => {
-          await submitForm(values)
+        onSubmit={async (values) => {
+          await submitForm(values);
         }}
       >
         {({ isSubmitting }) => (
@@ -108,34 +105,33 @@ export const DetailsForm = ({ repository, issue }) => {
               </div>
               <div className="row">
                 <div className="col-lg-6">
-                  <MySelect
-                    label="Bounty type"
-                    name="bountyType">
+                  <MySelect label="Bounty type" name="bountyType">
                     {bountyType.values.map((exp) => (
-                      <option key={exp.value} value={exp.value}>{exp.label}</option>
+                      <option key={exp.value} value={exp.value}>
+                        {exp.label}
+                      </option>
                     ))}
                   </MySelect>
                 </div>
               </div>
               <div className="row">
                 <div className="col-lg-6">
-                  <MySelect
-                    label="Language"
-                    name="language">
+                  <MySelect label="Language" name="language">
                     {languages.values.map((exp) => (
-                      <option key={exp.value} value={exp.value}>{exp.label}</option>
+                      <option key={exp.value} value={exp.value}>
+                        {exp.label}
+                      </option>
                     ))}
                   </MySelect>
                 </div>
               </div>
               <div className="row">
                 <div className="col-lg-6">
-                  <MySelect
-                    label="Experience required"
-                    name="experience"
-                  >
+                  <MySelect label="Experience required" name="experience">
                     {experienceLevel.values.map((exp) => (
-                      <option key={exp.value} value={exp.value}>{exp.value}</option>
+                      <option key={exp.value} value={exp.value}>
+                        {exp.value}
+                      </option>
                     ))}
                   </MySelect>
                 </div>
@@ -160,11 +156,11 @@ export const DetailsForm = ({ repository, issue }) => {
               </div>
               <div className="row">
                 <div className="col-lg-12">
-                  <MySelect
-                    label="Currency (Blockchain)"
-                    name="currency">
+                  <MySelect label="Currency (Blockchain)" name="currency">
                     {bountyCurrency.values.map((exp) => (
-                      <option key={exp.value} value={exp.value}>{exp.label}</option>
+                      <option key={exp.value} value={exp.value}>
+                        {exp.label}
+                      </option>
                     ))}
                   </MySelect>
                 </div>
@@ -174,15 +170,24 @@ export const DetailsForm = ({ repository, issue }) => {
                   <MyTextInput
                     label="Bounty amount"
                     name="bountyAmount"
-                    type="number" />
+                    type="number"
+                  />
                 </div>
                 <div className="col-lg-6">
-                  <span className="text-muted pr-2 mb-4">Estimated USD value: </span>
+                  <span className="text-muted pr-2 mb-4">
+                    Estimated USD value:{' '}
+                  </span>
                   <p className="h-px-48 mb-6">0$</p>
                 </div>
               </div>
               <div className="row justify-content-end">
-                <button disabled={isSubmitting} className="btn-submit text-uppercase btn btn-lg btn-primary" type="submit">Create</button>
+                <button
+                  disabled={isSubmitting}
+                  className="btn-submit text-uppercase btn btn-lg btn-primary"
+                  type="submit"
+                >
+                  Create
+                </button>
               </div>
             </fieldset>
             {createError && <div className="error mb-4">{createError}</div>}

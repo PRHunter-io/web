@@ -1,16 +1,15 @@
-import BountyTable from "@/components/Dashboard/bounty-table";
-import CompletedBountyTable from "@/components/Dashboard/completed-bounty-table";
-import PageWrapper from "@/components/PageWrapper";
+import BountyTable from '@/components/Dashboard/bounty-table';
+import CompletedBountyTable from '@/components/Dashboard/completed-bounty-table';
+import PageWrapper from '@/components/PageWrapper';
 
 const DashboardMain = () => {
-
   return (
     <>
       <PageWrapper
         headerConfig={{
-          button: "profile",
+          button: 'profile',
           isFluid: true,
-          bgClass: "bg-default",
+          bgClass: 'bg-default',
           reveal: false,
         }}
       >

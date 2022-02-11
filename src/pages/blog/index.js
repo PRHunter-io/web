@@ -1,6 +1,5 @@
-
 import PageWrapper from '@/components/PageWrapper';
-import HeroPost from '@/components/HeroPost'
+import HeroPost from '@/components/HeroPost';
 import { getAllPosts } from 'src/lib/ga/blogApi';
 import { NextSeo } from 'next-seo';
 
@@ -12,11 +11,11 @@ export async function getStaticProps() {
     'author',
     'coverImage',
     'excerpt',
-  ])
+  ]);
 
   return {
     props: { allPosts },
-  }
+  };
 }
 
 export default function BlogMain({ allPosts }) {
@@ -31,12 +30,11 @@ export default function BlogMain({ allPosts }) {
           <div className="container">
             <div className="mb-20">
               <h3 className="text-center">Blog</h3>
-              <h4 className="text-center text-muted font-weight-light">The latest news about PRHunter.io</h4>
+              <h4 className="text-center text-muted font-weight-light">
+                The latest news about PRHunter.io
+              </h4>
             </div>
-            <div
-              data-aos="fade-left"
-              data-aos-duration="1000"
-            >
+            <div data-aos="fade-left" data-aos-duration="1000">
               {allPosts.map((post) => (
                 <HeroPost
                   key={post.slug}
@@ -53,5 +51,5 @@ export default function BlogMain({ allPosts }) {
         </div>
       </PageWrapper>
     </>
-  )
+  );
 }

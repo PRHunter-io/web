@@ -1,9 +1,9 @@
-import React, { useState, useContext } from "react";
-import ReactPlayer from "react-player";
-import styled from "styled-components";
-import { Modal } from "react-bootstrap";
-import GlobalContext from "../../context/GlobalContext";
-import { device } from "../../utils";
+import React, { useState, useContext } from 'react';
+import ReactPlayer from 'react-player';
+import styled from 'styled-components';
+import { Modal } from 'react-bootstrap';
+import GlobalContext from '../../context/GlobalContext';
+import { device } from '../../utils';
 
 const ModalStyled = styled(Modal)`
   &.modal {
@@ -104,7 +104,7 @@ const ModalVideo = (props) => {
         <CloseButton onClick={handleClose} />
 
         <div className={`h-100 d-flex align-items-center w-100`}>
-          <DivStyled className={`${loading ? "loading" : "loaded"}`}>
+          <DivStyled className={`${loading ? 'loading' : 'loaded'}`}>
             <ReactPlayer
               url={`https://www.youtube.com/watch?v=zlInYm2JrFw`}
               width="100%"

@@ -1,10 +1,10 @@
-import React, { useState, useContext } from "react";
-import styled from "styled-components";
-import { ListGroup, Collapse } from "react-bootstrap";
-import { FaAngleRight, FaAngleDown } from "react-icons/fa";
-import Link from "next/link";
-import GlobalContext from "../../context/GlobalContext";
-import { menuItems } from "../Header/menu-items";
+import React, { useState, useContext } from 'react';
+import styled from 'styled-components';
+import { ListGroup, Collapse } from 'react-bootstrap';
+import { FaAngleRight, FaAngleDown } from 'react-icons/fa';
+import Link from 'next/link';
+import GlobalContext from '../../context/GlobalContext';
+import { menuItems } from '../Header/menu-items';
 
 const NestedMenuContainer = styled.div`
   a,

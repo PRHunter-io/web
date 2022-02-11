@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
-import TechIcon from "../Icons/TechIcon";
+import TechIcon from '../Icons/TechIcon';
 
-const calculateDays = date => {
+const calculateDays = (date) => {
   const currentDate = new Date();
   const parsedDate = Date.parse(date);
   const issueDate = new Date(parsedDate);
@@ -15,16 +15,12 @@ const calculateDays = date => {
 };
 
 export const BountiesListRegular = ({ bounties }) => {
-  return (
-    <>
-      {bounties.map((bounty) => BountyView(bounty))}
-    </>
-  )
+  return <>{bounties.map((bounty) => BountyView(bounty))}</>;
 };
 
 const BountyView = (bounty) => {
-  const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}`
-  const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}`
+  const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}`;
+  const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}`;
   return (
     <div className="mb-8" key={bounty.id}>
       {/* <!-- Single Featured Job --> */}
@@ -44,7 +40,10 @@ const BountyView = (bounty) => {
                   </Link>
                 </h3>
                 <div className="media align-items-center">
-                  <a href={githubUrl} className="font-size-3 text-gray line-height-2">
+                  <a
+                    href={githubUrl}
+                    className="font-size-3 text-gray line-height-2"
+                  >
                     <i className="devicon-github-original mr-1"></i>
                     {fullRepoName}
                   </a>
@@ -60,13 +59,18 @@ const BountyView = (bounty) => {
                     <i className="fas fa-coins pr-3" />
                   </span>
                   {bounty.bounty_value}
-                  <span className="text-hit-gray pl-1">{bounty.bounty_currency}</span>
+                  <span className="text-hit-gray pl-1">
+                    {bounty.bounty_currency}
+                  </span>
                 </span>
               </p>
             </div>
             <div className="media justify-content-md-end">
               <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
-                ~<span className="text-black-2 pl-1">{bounty.bounty_value_usd} $</span>
+                ~
+                <span className="text-black-2 pl-1">
+                  {bounty.bounty_value_usd} $
+                </span>
               </p>
             </div>
           </div>
@@ -110,5 +114,5 @@ const BountyView = (bounty) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};

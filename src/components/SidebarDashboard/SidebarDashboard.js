@@ -1,10 +1,10 @@
-import React, { useContext } from "react";
-import Link from "next/link";
-import { Collapse } from "react-bootstrap";
-import GlobalContext from "../../context/GlobalContext";
-import imgL1LogoBlack from "../../../public/images/logo-main-black.svg";
-import { dashboardItems } from "./dashboardItems";
-import Image from 'next/image'
+import React, { useContext } from 'react';
+import Link from 'next/link';
+import { Collapse } from 'react-bootstrap';
+import GlobalContext from '../../context/GlobalContext';
+import imgL1LogoBlack from '../../../public/images/logo-main-black.svg';
+import { dashboardItems } from './dashboardItems';
+import Image from 'next/image';
 
 const Sidebar = () => {
   const gContext = useContext(GlobalContext);
@@ -27,32 +27,31 @@ const Sidebar = () => {
             </Link>
           </div>
           <ul className="list-unstyled dashboard-layout-sidebar">
-            {dashboardItems.map(
-              (item, index) => {
-                return (
-                  <li className="" key={index}>
-                    <Link href={`/dashboard/${item.name}`}>
-                      <a className="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center">
-                        <i className={`${item.iconClass} mr-7`}></i>{item.label}
-                      </a>
-                    </Link>
-                  </li>
-                )
-              }
-            )}
+            {dashboardItems.map((item, index) => {
+              return (
+                <li className="" key={index}>
+                  <Link href={`/dashboard/${item.name}`}>
+                    <a className="px-10 py-1 my-5 font-size-4 font-weight-semibold flex-y-center">
+                      <i className={`${item.iconClass} mr-7`}></i>
+                      {item.label}
+                    </a>
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         </div>
       </Collapse>
-      <a
-        href="/#"
-        className="sidebar-mobile-button"
+      <button
+        id="sidebar-mobile-button"
+        className="blank-btn"
         onClick={(e) => {
-          e.preventDefault();
+          e.target.blur();
           gContext.toggleSidebarDashboard();
         }}
       >
         <i className="icon icon-sidebar-2"></i>
-      </a>
+      </button>
     </>
   );
 };

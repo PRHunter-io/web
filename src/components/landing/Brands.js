@@ -1,12 +1,12 @@
-import React from "react";
+import React from 'react';
 
-import imgB1 from "public/images/image/resized/linkedin.png";
-import imgB2 from "public/images/image/resized/upwork.png";
-import imgB3 from "public/images/image/resized/fiverr.png";
-import imgB4 from "public/images/image/resized/angellist.png";
-import imgB5 from "public/images/image/resized/freelancer.png";
-import imgB6 from "public/images/image/resized/indeed.png";
-import Image from 'next/image'
+import imgB1 from 'public/images/image/resized/linkedin.png';
+import imgB2 from 'public/images/image/resized/upwork.png';
+import imgB3 from 'public/images/image/resized/fiverr.png';
+import imgB4 from 'public/images/image/resized/angellist.png';
+import imgB5 from 'public/images/image/resized/freelancer.png';
+import imgB6 from 'public/images/image/resized/indeed.png';
+import Image from 'next/image';
 
 const Brands = () => {
   return (

@@ -1,26 +1,26 @@
-import React from "react";
+import React from 'react';
 
-import PageWrapper from "../components/PageWrapper";
-import { Select } from "../components/Core";
+import PageWrapper from '../components/PageWrapper';
+import { Select } from '../components/Core';
 
 const defaultTypes = [
-  { value: "b2b", label: "B2B" },
-  { value: "saas", label: "SAAS" },
-  { value: "b2b", label: "b2b" },
+  { value: 'b2b', label: 'B2B' },
+  { value: 'saas', label: 'SAAS' },
+  { value: 'b2b', label: 'b2b' },
 ];
 
 const defaultEmployees = [
-  { value: "10-50", label: "10-50" },
-  { value: "50-100", label: "50-100" },
-  { value: "100-500", label: "100-500" },
-  { value: "500-2000", label: "500-2000" },
+  { value: '10-50', label: '10-50' },
+  { value: '50-100', label: '50-100' },
+  { value: '100-500', label: '100-500' },
+  { value: '500-2000', label: '500-2000' },
 ];
 
 const defaultLocations = [
-  { value: "bd", label: "Bangladesh" },
-  { value: "sp", label: "Singapore" },
-  { value: "tl", label: "Thailand" },
-  { value: "de", label: "Germany" },
+  { value: 'bd', label: 'Bangladesh' },
+  { value: 'sp', label: 'Singapore' },
+  { value: 'tl', label: 'Thailand' },
+  { value: 'de', label: 'Germany' },
 ];
 
 const DashboardSettings = () => {
@@ -28,9 +28,9 @@ const DashboardSettings = () => {
     <>
       <PageWrapper
         headerConfig={{
-          button: "profile",
+          button: 'profile',
           isFluid: true,
-          bgClass: "bg-default",
+          bgClass: 'bg-default',
           reveal: false,
         }}
       >
@@ -106,7 +106,7 @@ const DashboardSettings = () => {
                                 htmlFor="select3"
                                 className="d-block text-black-2 font-size-4 font-weight-semibold mb-4"
                               >
-                                Employee Size{" "}
+                                Employee Size{' '}
                               </label>
                               <Select
                                 options={defaultEmployees}

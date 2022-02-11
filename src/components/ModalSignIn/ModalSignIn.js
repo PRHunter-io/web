@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import styled from "styled-components";
-import { Modal } from "react-bootstrap";
-import GlobalContext from "../../context/GlobalContext";
-import { SignInForm } from "./SignInForm";
-import { useAuth } from "src/context/AuthUserContext";
+import React, { useContext } from 'react';
+import styled from 'styled-components';
+import { Modal } from 'react-bootstrap';
+import GlobalContext from '../../context/GlobalContext';
+import { SignInForm } from './SignInForm';
+import { useAuth } from 'src/context/AuthUserContext';
 
 const ModalStyled = styled(Modal)`
   /* &.modal {
@@ -12,22 +12,21 @@ const ModalStyled = styled(Modal)`
 `;
 
 const ModalSignIn = (props) => {
-  
   const gContext = useContext(GlobalContext);
   const { githubSignIn } = useAuth();
 
   const signInWithGithub = async () => {
-    await githubSignIn()  
+    await githubSignIn();
     gContext.toggleSignInModal();
-  }
+  };
 
   const handleClose = () => {
     gContext.toggleSignInModal();
   };
 
   const toggleModal = () => {
-    gContext.toggleSignInUp()
-  }
+    gContext.toggleSignInUp();
+  };
 
   return (
     <ModalStyled
@@ -84,7 +83,7 @@ const ModalSignIn = (props) => {
                       onClick={signInWithGithub}
                       className="font-size-4 font-weight-semibold position-relative text-white bg-black h-px-48 flex-all-center w-100 px-6 rounded-5 mb-4"
                     >
-                      <i className="fab fa-github pos-xs-abs-cl font-size-7 ml-xs-4"></i>{" "}
+                      <i className="fab fa-github pos-xs-abs-cl font-size-7 ml-xs-4"></i>{' '}
                       <span className="d-none d-xs-block">
                         Log in with Github
                       </span>
@@ -94,13 +93,13 @@ const ModalSignIn = (props) => {
                 <div className="or-devider">
                   <span className="font-size-3 line-height-reset ">Or</span>
                 </div>
-                <SignInForm/>
-                  <p className="font-size-4 text-center heading-default-color">
-                    Don't have an account?{" "}
-                    <a href="/#" onClick={toggleModal} className="text-primary">
-                      Create a free account
-                    </a>
-                  </p>
+                <SignInForm />
+                <p className="font-size-4 text-center heading-default-color">
+                  Don't have an account?{' '}
+                  <a href="/#" onClick={toggleModal} className="text-primary">
+                    Create a free account
+                  </a>
+                </p>
               </div>
             </div>
           </div>

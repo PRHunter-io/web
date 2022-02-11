@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
-import Link from "next/link";
-import styled from "styled-components";
-import { Modal } from "react-bootstrap";
-import GlobalContext from "../../context/GlobalContext";
-import ProfileSidebar from "../ProfileSidebar";
+import React, { useContext } from 'react';
+import Link from 'next/link';
+import styled from 'styled-components';
+import { Modal } from 'react-bootstrap';
+import GlobalContext from '../../context/GlobalContext';
+import ProfileSidebar from '../ProfileSidebar';
 
-import Image from 'next/image'
-import imgF1 from "public/images/image/l2/png/featured-job-logo-1.png";
-import imgF2 from "public/images/image/l1/png/feature-brand-1.png";
-import imgF3 from "public/images/image/svg/harvard.svg";
-import imgF4 from "public/images/image/svg/mit.svg";
-import imgL from "public/images/image/svg/icon-loaction-pin-black.svg";
+import Image from 'next/image';
+import imgF1 from 'public/images/image/l2/png/featured-job-logo-1.png';
+import imgF2 from 'public/images/image/l1/png/feature-brand-1.png';
+import imgF3 from 'public/images/image/svg/harvard.svg';
+import imgF4 from 'public/images/image/svg/mit.svg';
+import imgL from 'public/images/image/svg/icon-loaction-pin-black.svg';
 
 const ModalStyled = styled(Modal)`
   /* &.modal {
@@ -286,7 +286,7 @@ const ModalSignIn = (props) => {
                           <h3 className="mb-0">
                             <Link href="/#">
                               <a className="font-size-5 font-weight-semibold text-black-2">
-                                Bachelor in Software Engineering{" "}
+                                Bachelor in Software Engineering{' '}
                               </a>
                             </Link>
                           </h3>
@@ -329,7 +329,7 @@ const ModalSignIn = (props) => {
                           <h3 className="mb-0">
                             <Link href="/#">
                               <a className="font-size-5 font-weight-semibold text-black-2">
-                                Bachelor in Software Engineering{" "}
+                                Bachelor in Software Engineering{' '}
                               </a>
                             </Link>
                           </h3>

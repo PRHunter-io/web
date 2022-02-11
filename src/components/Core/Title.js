@@ -1,7 +1,7 @@
-import React from "react";
-import styled from "styled-components";
-import { color, space, typography, shadow } from "styled-system";
-import { device } from "../../utils";
+import React from 'react';
+import styled from 'styled-components';
+import { color, space, typography, shadow } from 'styled-system';
+import { device } from '../../utils';
 
 const SectionTitle = styled.h2`
   font-size: calc(1.35rem + 1.2vw);
@@ -59,13 +59,13 @@ const Title = ({ variant, ...rest }) => {
   let TitleStyled = SectionTitle;
 
   switch (variant) {
-    case "pre":
+    case 'pre':
       TitleStyled = PreTitle;
       break;
-    case "card":
+    case 'card':
       TitleStyled = CardTitle;
       break;
-    case "hero":
+    case 'hero':
       TitleStyled = HeroTitle;
       break;
     default:

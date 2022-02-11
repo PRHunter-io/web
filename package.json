@@ -9,7 +9,8 @@
     "build": "next build",
     "build:staging": "env-cmd -f .env.development next build",
     "start": "next start",
-    "export": "next build && next export"
+    "export": "next build && next export",
+    "lint": "next lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
@@ -66,6 +67,10 @@
     "@testing-library/cypress": "^8.0.2",
     "babel-plugin-styled-components": "^1.10.7",
     "cypress": "^9.3.1",
-    "imagemin-mozjpeg": "^9.0.0"
+    "eslint": "7.32.0",
+    "eslint-config-next": "12.0.10",
+    "eslint-config-prettier": "^8.3.0",
+    "imagemin-mozjpeg": "^9.0.0",
+    "prettier": "2.5.1"
   }
 }
