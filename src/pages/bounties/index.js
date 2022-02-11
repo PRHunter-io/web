@@ -23,7 +23,7 @@ export const getServerSideProps = async ({ query }) => {
 
 const getData = async (reqBody, setfilteredData) => {
   const formattedBody = { ...reqBody };
-  if (formattedBody.price_to) {
+  if (formattedBody.price_to || formattedBody.price_min) {
     formattedBody.price = {
       min: reqBody.price_min,
       to: reqBody.price_to,
@@ -101,9 +101,7 @@ const SearchGrid = ({ bounties, query }) => {
   }
 
   useEffect(() => {
-    if (Object.keys(fullQuery). length !== 0) {
-      updateQuery(fullQuery);
-    }
+    updateQuery(fullQuery);
   }, [fullQuery])
 
   return (

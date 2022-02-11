@@ -18,7 +18,6 @@ export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
 					className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100"
 					border={false}
 					placeholder={'Pick issue'}
-					queryValue={true}
 					value={ issue ? {
 						value: issue,
 						label: issue.title,

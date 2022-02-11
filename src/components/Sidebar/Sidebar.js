@@ -1,77 +1,118 @@
-import React from "react";
-import { bountyType, bountyCurrency, languages, experienceLevel, bountyValueRange } from "../../utils/filters";
-import { Button, Select } from "../Core";
-import CheckboxesList from "./CheckboxesList";
+import React from 'react';
+import {
+	bountyType,
+	bountyCurrency,
+	languages,
+	experienceLevel,
+	bountyValues,
+} from '../../utils/filters';
+import { Button, Select } from '../Core';
+import CheckboxesList from './CheckboxesList';
 
-const Sidebar = ({ setFullQuery }) => {
+const Sidebar = ({ fullQuery, setFullQuery }) => {
+	const bountyInputsData = [
+		{
+			placeholder: 'From',
+			query: 'price_min',
+		},
+		{
+			placeholder: 'To',
+			query: 'price_to',
+		},
+	];
 
-  const updateLanguage = (language) => {
-    setFullQuery(prevState => ({
-      ...prevState,
-      language: language.value
-    }));
-  }
+	const updateSelectField = (selectValue, key) => {
+		setFullQuery(prevState => {
+			let newState;
 
-  const updateExperience = (experience) => {
-    setFullQuery(prevState => ({
-      ...prevState,
-      experience: experience.value
-    }));
-  }
+			if (selectValue) {
+				newState = {
+					...prevState,
+					[key]: selectValue.value,
+				};
+			} else {
+				newState = { ...prevState };
+				delete newState[key];
+			}
 
-  const updateBountyRange = (range) => {
-    setFullQuery(prevState => ({
-      ...prevState,
-      price_min: range.value.min,
-      price_to: range.value.max
-    }));
-  }
+			return newState;
+		});
+	};
 
-  const clearFilters = () => {
-    // console.log("Clearing filters")
-    // setFullQuery({})
-  }
+	const clearFilters = () => {
+		setFullQuery(false);
+	};
 
-  return (
-    <>
-      {/* <!-- Sidebar Start --> */}
-      <div className="widgets mb-11">
-        <h4 className="font-size-6 font-weight-semibold mb-6">Bounty Type</h4>
-        <CheckboxesList fullQuery setFullQuery={setFullQuery} filtersList={bountyType} />
-      </div>
-      <div className="widgets mb-11 ">
-        <div className="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
-          <h4 className="font-size-6 font-weight-semibold mb-6 w-75">
-            Experience level
-          </h4>
-        </div>
-        <Select options={experienceLevel.values} onChange={(value) => updateExperience(value)} />
-      </div>
-      <div className="widgets mb-11 ">
-        <div className="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
-          <h4 className="font-size-6 font-weight-semibold mb-6 w-75">
-            Language
-          </h4>
-        </div>
-        <Select options={languages.values} onChange={(value) => updateLanguage(value)} />
-      </div>
-      <div className="widgets mb-11">
-        <h4 className="font-size-6 font-weight-semibold mb-6">
-          Currency / Blockchain{" "}
-        </h4>
-        <CheckboxesList fullQuery setFullQuery={setFullQuery} filtersList={bountyCurrency} />
-      </div>
-      <div className="widgets mb-11 ">
-        <div className="d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22">
-          <h4 className="font-size-6 font-weight-semibold mb-6 w-75">
-            Bounty Value
-          </h4>
-        </div>
-        <Select options={bountyValueRange.values} onChange={(value) => updateBountyRange(value)} />
-      </div>
-      {/* <Button onClick={() => clearFilters()}>Clear all filters</Button> */}
-    </>
-  );
+	return (
+		<>
+			{/* <!-- Sidebar Start --> */}
+			<div className='widgets mb-11'>
+				<h4 className='font-size-6 font-weight-semibold mb-6'>Bounty Type</h4>
+				<CheckboxesList
+					fullQuery
+					setFullQuery={setFullQuery}
+					filtersList={bountyType}
+				/>
+			</div>
+			<div className='widgets mb-11 '>
+				<div className='d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22'>
+					<h4 className='font-size-6 font-weight-semibold mb-6 w-75'>
+						Experience level
+					</h4>
+				</div>
+				<Select
+					options={experienceLevel.values}
+					onChange={value => updateSelectField(value, 'experience')}
+					queryValue={fullQuery['experience']}
+					clearable
+				/>
+			</div>
+			<div className='widgets mb-11 '>
+				<div className='d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22'>
+					<h4 className='font-size-6 font-weight-semibold mb-6 w-75'>
+						Language
+					</h4>
+				</div>
+				<Select
+					options={languages.values}
+					onChange={value => updateSelectField(value, 'language')}
+					queryValue={fullQuery['language']}
+					clearable
+				/>
+			</div>
+			<div className='widgets mb-11'>
+				<h4 className='font-size-6 font-weight-semibold mb-6'>
+					Currency / Blockchain{' '}
+				</h4>
+				<CheckboxesList
+					fullQuery
+					setFullQuery={setFullQuery}
+					filtersList={bountyCurrency}
+				/>
+			</div>
+			<div className='widgets mb-11 '>
+				<div className='d-flex align-items-center pr-15 pr-xs-0 pr-md-0 pr-xl-22'>
+					<h4 className='font-size-6 font-weight-semibold mb-6 w-75'>
+						Bounty Value
+					</h4>
+				</div>
+				<div className='row'>
+					{bountyInputsData.map((bounty, index) => (
+						<div className='col-6' key={index}>
+							<Select
+								options={bountyValues.values}
+								placeholder={bounty.placeholder}
+								onChange={value => updateSelectField(value, bounty.query)}
+								queryValue={fullQuery[bounty.query]}
+								clearable
+							/>
+						</div>
+					))}
+				</div>
+			</div>
+			<Button onClick={clearFilters}>Clear all filters</Button>
+		</>
+	);
 };
 
 export default Sidebar;

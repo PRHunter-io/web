@@ -58,15 +58,14 @@ const SelectStyled = ({
   indicator = true,
   options = defaultOptions,
   queryValue = false,
+  clearable,
   ...rest
-}) => {
+  }) => {
 
-  const setDefaultValue = () => {
-    let result;
+  const setCurrentValue = () => {
+    let result = null;
     if (queryValue) {
-      if (typeof queryValue === 'boolean') {
-        result = false;
-      } else {
+      if (typeof queryValue !== 'boolean') {
         result = options.filter((o) => { return o.value == queryValue; });
       }
     } 
@@ -76,10 +75,11 @@ const SelectStyled = ({
   return (
     <Select
       styles={getCustomStyles(theme, accentColor, bg, hoverBg, border, indicator)}
-      defaultValue={setDefaultValue()}
+      value={setCurrentValue()}
       name={name}
       options={options}
-      instanceId="inId"
+      isClearable={clearable}
+      instanceId={`inId-${name}`}
       {...rest}
     />
   );
