@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
 import Link from "next/link";
+import Typed from 'typed.js';
+
 
 const Hero = () => {
 

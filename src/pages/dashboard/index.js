@@ -1,18 +1,8 @@
 import BountyTable from "@/components/Dashboard/bounty-table";
 import CompletedBountyTable from "@/components/Dashboard/completed-bounty-table";
 import PageWrapper from "@/components/PageWrapper";
-import { useEffect } from "react";
-import { useAuth } from "src/context/AuthUserContext";
 
 const DashboardMain = () => {
-
-  const { isUserSignedIn, logout } = useAuth();
-
-  useEffect(() => {
-    if (!isUserSignedIn) {
-      logout()
-    }
-  }, [])
 
   return (
     <>

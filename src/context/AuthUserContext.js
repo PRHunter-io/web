@@ -4,13 +4,13 @@ import nookies from 'nookies';
 import { parseCookies } from 'nookies'
 import app from "@/lib/firebase"
 import { useRouter } from 'next/router';
-import { GithubService } from '@/lib/github';
+import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const notificationsText = {
   signIn: 'You have been logged in',
   signUp: 'Your account has been created',
-  signOut: 'You have been logged out'
+  signOut: 'You have been logged out',
 }
 
 export const AuthContext = createContext({
@@ -41,9 +41,32 @@ export function AuthUserProvider({ children }) {
     })
   }, [])
 
+  const apiClient = axios.create({
+    baseURL: process.env.NEXT_PUBLIC_EXTERNAL_API_URL || '',
+    responseType: 'json',
+    headers: {
+        'Content-Type': 'application/json',
+    },
+  })
+
+  const uploadGithubAccessToken = async (signInResult) => {
+    const credential = GithubAuthProvider.credentialFromResult(signInResult);
+    let githubUserDto = {
+        firebase_user_id: signInResult.user.uid,
+        access_token: credential.accessToken
+    }
+    const token = await signInResult.user.getIdToken();
+    const headers = {
+        'Authorization': 'Bearer ' + token
+    }
+    await apiClient.post('github/token', githubUserDto, {
+      headers: headers
+    })
+}
+
   const githubSignIn = async () => {
     const result = await signInWithPopup(auth, provider)
-    await GithubService.uploadGithubAccessToken(result)
+    uploadGithubAccessToken(result)
     await router.push("/dashboard")
     toast.success(notificationsText.signIn);
   }

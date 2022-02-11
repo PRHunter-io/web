@@ -21,6 +21,10 @@ export const GithubData = () => {
             console.error(ex)
         }
     }
+    
+    if(user === null){
+        return (<span>Loading...</span>)
+    }
 
     const githubProvider = user.proactiveRefresh.user.reloadUserInfo.providerUserInfo.filter((provider) => { return provider.providerId === "github.com"; });
     if (githubProvider.length !== 0) {

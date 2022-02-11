@@ -4,12 +4,14 @@ import { useState } from 'react';
 import { Box } from '../Core';
 import { GithubData } from './github-data';
 import { Web3Data } from './web3-data';
-import { UserDataService } from './service';
 import { useUserData } from '@/lib/swr';
+import { useApi } from '@/context/ApiServiceContext';
+import { toast } from 'react-toastify';
 
 export const UserData = ({ userData }) => {
 	const [isEdited, setIsEdited] = useState(null);
 	const { mutate } = useUserData();
+	const { put } = useApi();
 
 	const initialValues = {
 		email: userData.email,
@@ -30,8 +32,10 @@ export const UserData = ({ userData }) => {
 				email: values.email,
 				eth_wallet_address: values.walletAddress ? values.walletAddress : '',
 			};
-
-			await UserDataService.sendUserData(userDataDto, mutate, setIsEdited);
+			await put('user', userDataDto);
+			await mutate();
+			setIsEdited(prev => !prev);
+			toast.success('Your Account has been updated!');
 		} catch (error) {
 			console.log(error.message);
 		}
