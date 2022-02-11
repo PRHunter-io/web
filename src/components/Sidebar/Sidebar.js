@@ -39,13 +39,8 @@ const Sidebar = ({ fullQuery, setFullQuery }) => {
 		});
 	};
 
-	const clearFilters = () => {
-		setFullQuery(false);
-	};
-
 	return (
 		<>
-			{/* <!-- Sidebar Start --> */}
 			<div className='widgets mb-11'>
 				<h4 className='font-size-6 font-weight-semibold mb-6'>Bounty Type</h4>
 				<CheckboxesList
@@ -110,7 +105,13 @@ const Sidebar = ({ fullQuery, setFullQuery }) => {
 					))}
 				</div>
 			</div>
-			<Button onClick={clearFilters}>Clear all filters</Button>
+			<Button
+				className='d-none d-lg-block'
+				onClick={() => {
+					setFullQuery(false);
+				}}>
+				Clear all filters
+			</Button>
 		</>
 	);
 };

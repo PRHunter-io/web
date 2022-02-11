@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageWrapper from "../../components/PageWrapper";
 import Sidebar from "../../components/Sidebar";
 import Router from 'next/router';
-import { BountiesListRegular, BountiesListGrid } from "../../components/BountiesLists";
+import { BountiesListRegular } from "../../components/BountiesLists";
 
 export const getServerSideProps = async ({ query }) => {
   const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
@@ -110,7 +110,7 @@ const SearchGrid = ({ bounties, query }) => {
         <div className="bg-default-1 pt-26 pt-lg-28 pb-13 pb-lg-25">
           <div className="container">
             <div className="row">
-              <div className="col-12 col-lg-4 col-md-5 col-xs-8">
+              <div className="col-12 col-lg-4">
                 <Sidebar fullQuery={fullQuery} setFullQuery={setFullQuery} />
               </div>
               {/* <!-- Main Body --> */}
@@ -143,6 +143,13 @@ const SearchGrid = ({ bounties, query }) => {
                       </button>
                     </div>
                   </div>
+                  <button
+				              className='d-lg-none mt-10 btn btn-primary'
+                      onClick={() => {
+                        setFullQuery(false);
+                      }}>
+                      Clear all filters
+                  </button>
                 </form>
                 <div className="pt-12">
                   <div className="d-flex align-items-center justify-content-between mb-6">
