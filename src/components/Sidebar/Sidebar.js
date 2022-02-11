@@ -49,7 +49,7 @@ const Sidebar = ({ fullQuery, setFullQuery }) => {
 			<div className='widgets mb-11'>
 				<h4 className='font-size-6 font-weight-semibold mb-6'>Bounty Type</h4>
 				<CheckboxesList
-					fullQuery
+					fullQuery={fullQuery}
 					setFullQuery={setFullQuery}
 					filtersList={bountyType}
 				/>
@@ -85,7 +85,7 @@ const Sidebar = ({ fullQuery, setFullQuery }) => {
 					Currency / Blockchain{' '}
 				</h4>
 				<CheckboxesList
-					fullQuery
+					fullQuery={fullQuery}
 					setFullQuery={setFullQuery}
 					filtersList={bountyCurrency}
 				/>
