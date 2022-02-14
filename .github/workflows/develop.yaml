@@ -6,7 +6,7 @@ on:
       - develop
 
 jobs:
-  build-production:
+  build-staging:
     name: Build staging image
     runs-on: ubuntu-latest
     steps:
@@ -27,7 +27,7 @@ jobs:
   deploy-staging:
       name: Deploy web to staging
       runs-on: ubuntu-latest
-      needs: build-production
+      needs: build-staging
       steps:
         - name: Checkout
           uses: actions/checkout@v2
@@ -43,8 +43,11 @@ jobs:
             kubectl --namespace=staging set image deployment/web web=registry.digitalocean.com/prhunter/web:${{github.sha}} --record
             kubectl --namespace=staging rollout status deployment/web
             kubectl --namespace=staging get services -o wide
+
   cypress-run:
+    name: Run sanity tests
     runs-on: ubuntu-latest
+    needs: deploy-staging
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -55,5 +58,5 @@ jobs:
         with:
           build: npm run build
           start: npm run start
-          spec: cypress/integration/sanity_spec.js
+          spec: cypress/integration/sanity_spec_staging.js
           config: pageLoadTimeout=100000,baseUrl=https://staging.prhunter.io/
