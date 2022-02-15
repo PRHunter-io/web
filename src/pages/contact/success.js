@@ -1,4 +1,4 @@
-import PageWrapper from "@/components/PageWrapper";
+import PageWrapper from '@/components/PageWrapper';
 
 const Contact = () => {
   return (
@@ -12,12 +12,11 @@ const Contact = () => {
                 <div className="bg-white px-9 pt-9 pb-7 shadow-8 rounded-4">
                   <div className="mt-8">
                     <p>
-                      Thanks for reaching out, we promise to get back to you asap.
+                      Thanks for reaching out, we promise to get back to you
+                      asap.
                     </p>
-                    
-                    <div className="text-lg-right">
-                      Your PRHunter team
-                    </div>
+
+                    <div className="text-lg-right">Your PRHunter team</div>
                   </div>
                 </div>
               </div>

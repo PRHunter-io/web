@@ -1,26 +1,26 @@
-import React, { useState, useEffect, useContext, useRef } from "react";
+import React, { useState, useEffect, useContext, useRef } from 'react';
 
-import styled, { ThemeProvider } from "styled-components";
-import Helmet from "next/head";
-import AOS from "aos";
+import styled, { ThemeProvider } from 'styled-components';
+import Helmet from 'next/head';
+import AOS from 'aos';
 
-import Header from "../Header";
-import Footer from "../Footer";
+import Header from '../Header';
+import Footer from '../Footer';
 
-import SidebarDashboard from "../SidebarDashboard";
-import ModalVideo from "../ModalVideo";
-import ModalApplication from "../ModalApplication";
-import ModalSignIn from "../ModalSignIn";
-import ModalSignUp from "../ModalSignUp";
+import SidebarDashboard from '../SidebarDashboard';
+import ModalVideo from '../ModalVideo';
+import ModalApplication from '../ModalApplication';
+import ModalSignIn from '../ModalSignIn';
+import ModalSignUp from '../ModalSignUp';
 
-import GlobalContext from "../../context/GlobalContext";
-import GlobalStyle from "../../utils/globalStyle";
+import GlobalContext from '../../context/GlobalContext';
+import GlobalStyle from '../../utils/globalStyle';
 
-import { get, merge } from "lodash";
+import { get, merge } from 'lodash';
 
 // the full theme object
-import { theme as baseTheme } from "../../utils";
-import { Flip, ToastContainer } from "react-toastify";
+import { theme as baseTheme } from '../../utils';
+import { Flip, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 const Loader = styled.div`
@@ -41,9 +41,9 @@ const Loader = styled.div`
 `;
 
 // options for different color modes
-const modes = { light: "light", dark: "dark" };
+const modes = { light: 'light', dark: 'dark' };
 
-const imgFavicon = "/images/image/favicon.png";
+const imgFavicon = '/images/image/favicon.png';
 
 // merge the color mode with the base theme
 // to create a new theme object
@@ -67,7 +67,7 @@ const Layout = ({ children, pageContext }) => {
 
   useEffect(() => {
     window.addEventListener(
-      "popstate",
+      'popstate',
       function (event) {
         // The popstate event is fired each time when the current history entry changes.
         gContext.closeOffCanvas();
@@ -75,7 +75,7 @@ const Layout = ({ children, pageContext }) => {
       false
     );
     window.addEventListener(
-      "pushState",
+      'pushState',
       function (event) {
         // The pushstate event is fired each time when the current history entry changes.
         gContext.closeOffCanvas();
@@ -86,30 +86,36 @@ const Layout = ({ children, pageContext }) => {
 
   return (
     <>
-      <ThemeProvider
-        theme={
-          getTheme(modes.light)
-        }
-      >
+      <ThemeProvider theme={getTheme(modes.light)}>
         <div data-theme-mode-panel-active data-theme="light">
           <GlobalStyle />
           <Helmet>
             <title>PRHunter</title>
             <link rel="icon" type="image/png" href={imgFavicon} />
-            <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css" />
-            <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossOrigin="anonymous" />
+            <link
+              rel="stylesheet"
+              href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css"
+            />
+            <link
+              rel="stylesheet"
+              href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
+              integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm"
+              crossOrigin="anonymous"
+            />
           </Helmet>
-          <Loader id="loading" className={visibleLoader ? "" : "inActive"} />
-          <div className={`site-wrapper min-vh-100 bg-default-2${gContext.stickyPage ? '' : ' overflow-hidden'}`} ref={eleRef}>
-            {pageContext.layout !== "bare" &&
-              <Header />
-            }
-            {pageContext.layout === "dashboard" && <SidebarDashboard />}
+          <Loader id="loading" className={visibleLoader ? '' : 'inActive'} />
+          <div
+            className={`site-wrapper min-vh-100 bg-default-2${
+              gContext.stickyPage ? '' : ' overflow-hidden'
+            }`}
+            ref={eleRef}
+          >
+            {pageContext.layout !== 'bare' && <Header />}
+            {pageContext.layout === 'dashboard' && <SidebarDashboard />}
 
             {children}
-            {pageContext.layout !== "bare" && pageContext.layout !== "dashboard" &&
-              <Footer />
-            }
+            {pageContext.layout !== 'bare' &&
+              pageContext.layout !== 'dashboard' && <Footer />}
           </div>
 
           <ModalVideo />
@@ -120,12 +126,12 @@ const Layout = ({ children, pageContext }) => {
             hideProgressBar={true}
             autoClose={2000}
             position="top-center"
-            transition={Flip} />
+            transition={Flip}
+          />
         </div>
       </ThemeProvider>
     </>
-  )
+  );
 };
-
 
 export default Layout;

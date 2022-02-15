@@ -1,17 +1,17 @@
-import React, { useState, useContext, useEffect } from "react";
-import styled from "styled-components";
-import { Container } from "react-bootstrap";
-import { useScrollPosition } from "@n8tb1t/use-scroll-position";
+import React, { useState, useContext, useEffect } from 'react';
+import styled from 'styled-components';
+import { Container } from 'react-bootstrap';
+import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
-import GlobalContext from "../../context/GlobalContext";
-import Offcanvas from "../Offcanvas";
-import NestedMenu from "../NestedMenu";
-import { device } from "../../utils";
-import Logo from "../Logo";
+import GlobalContext from '../../context/GlobalContext';
+import Offcanvas from '../Offcanvas';
+import NestedMenu from '../NestedMenu';
+import { device } from '../../utils';
+import Logo from '../Logo';
 
-import { ProfileControls } from "./ProfileControls";
-import { HeaderMenu } from "./HeaderMenu";
-import { useAuth } from "src/context/AuthUserContext";
+import { ProfileControls } from './ProfileControls';
+import { HeaderMenu } from './HeaderMenu';
+import { useAuth } from 'src/context/AuthUserContext';
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
@@ -24,7 +24,7 @@ const SiteHeader = styled.header`
   right: 0;
   width: 100%;
   z-index: 999;
-  
+
   @media ${device.lg} {
     position: fixed !important;
     transition: 0.6s;
@@ -36,15 +36,15 @@ const SiteHeader = styled.header`
       transform: translateY(0%);
       box-shadow: 0 12px 34px -11px rgba(65, 62, 101, 0.1);
       z-index: 9999;
-      background: "#fff"
-    };
+      background: '#fff';
+    }
   }
 `;
 
 const ToggleButton = styled.button`
-color: ${({ dark, theme }) =>
+  color: ${({ dark, theme }) =>
     dark ? theme.colors.lightShade : theme.colors.heading}!important;
-border-color: ${({ dark, theme }) =>
+  border-color: ${({ dark, theme }) =>
     dark ? theme.colors.lightShade : theme.colors.heading}!important;
 `;
 
@@ -54,8 +54,7 @@ const Header = () => {
   const [showReveal, setShowReveal] = useState(false);
   const { user } = useAuth();
 
-  useEffect(() => {
-  }, [])
+  useEffect(() => {}, []);
 
   useScrollPosition(({ prevPos, currPos }) => {
     if (currPos.y < 0) {
@@ -73,26 +72,30 @@ const Header = () => {
   return (
     <>
       <SiteHeader
-        className={`site-header site-header--sticky  site-header--absolute py-7 py-xs-0 sticky-header ${gContext.header.bgClass
-          } ${gContext.header.align === "left"
-            ? "site-header--menu-left "
-            : gContext.header.align === "right"
-              ? "site-header--menu-right "
-              : "site-header--menu-center "
-          }
-        ${gContext.header.theme === "dark" ? "dark-mode-texts" : " "} ${showScrolling ? "scrolling" : ""
-          } ${gContext.header.reveal &&
-            showReveal &&
-            gContext.header.theme === "dark"
-            ? "reveal-header bg-blackish-blue"
+        className={`site-header site-header--sticky  site-header--absolute py-7 py-xs-0 sticky-header ${
+          gContext.header.bgClass
+        } ${
+          gContext.header.align === 'left'
+            ? 'site-header--menu-left '
+            : gContext.header.align === 'right'
+            ? 'site-header--menu-right '
+            : 'site-header--menu-center '
+        }
+        ${gContext.header.theme === 'dark' ? 'dark-mode-texts' : ' '} ${
+          showScrolling ? 'scrolling' : ''
+        } ${
+          gContext.header.reveal &&
+          showReveal &&
+          gContext.header.theme === 'dark'
+            ? 'reveal-header bg-blackish-blue'
             : gContext.header.reveal && showReveal
-              ? "reveal-header"
-              : ""
-          }`}
+            ? 'reveal-header'
+            : ''
+        }`}
       >
         <Container
           fluid={gContext.header.isFluid}
-          className={gContext.header.isFluid ? "pr-lg-9 pl-lg-9" : ""}
+          className={gContext.header.isFluid ? 'pr-lg-9 pl-lg-9' : ''}
         >
           <nav className="navbar site-navbar offcanvas-active navbar-expand-lg px-0 py-0">
             {/* <!-- Brand Logo--> */}
@@ -104,8 +107,9 @@ const Header = () => {
             {user ? <ProfileControls /> : <SignInControls />}
 
             <ToggleButton
-              className={`navbar-toggler btn-close-off-canvas ml-3 ${gContext.visibleOffCanvas ? "collapsed" : ""
-                }`}
+              className={`navbar-toggler btn-close-off-canvas ml-3 ${
+                gContext.visibleOffCanvas ? 'collapsed' : ''
+              }`}
               type="button"
               data-toggle="collapse"
               data-target="#mobile-menu"
@@ -113,7 +117,7 @@ const Header = () => {
               aria-expanded="false"
               aria-label="Toggle navigation"
               onClick={gContext.toggleOffCanvas}
-              dark={gContext.header.theme === "dark" ? 1 : 0}
+              dark={gContext.header.theme === 'dark' ? 1 : 0}
             >
               <i className="fas fa-bars"></i>
             </ToggleButton>
@@ -153,7 +157,7 @@ const SignInControls = () => {
         Sign Up
       </a>
     </div>
-  )
-}
+  );
+};
 
 export default Header;

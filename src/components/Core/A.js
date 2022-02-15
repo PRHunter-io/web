@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { color, space, typography, shadow } from "styled-system";
+import React from 'react';
+import styled from 'styled-components';
+import { color, space, typography, shadow } from 'styled-system';
 
 const Paragraph = styled.a`
   font-size: 20px;
@@ -19,7 +19,7 @@ const Paragraph = styled.a`
   }
 `;
 
-const A = ({ href = "#", ...props }) => {
+const A = ({ href = '#', ...props }) => {
   return <Paragraph href={href} color="secondary" {...props} />;
 };
 

@@ -1,9 +1,9 @@
-import React from "react";
-import Link from "next/link";
-import imgC1 from "public/images/image/l3/png/content-1-img1.png";
-import imgC2 from "public/images/image/l3/png/content-1-img2.png";
-import imgM from "public/images/image/l3/png/media-img1.png";
-import Image from 'next/image'
+import React from 'react';
+import Link from 'next/link';
+import imgC1 from 'public/images/image/l3/png/content-1-img1.png';
+import imgC2 from 'public/images/image/l3/png/content-1-img2.png';
+import imgM from 'public/images/image/l3/png/media-img1.png';
+import Image from 'next/image';
 
 const Content = () => {
   return (
@@ -44,7 +44,9 @@ const Content = () => {
                   Looking for a <span className="text-green">coding gig</span>?
                 </h2>
                 <p className="text-default-color font-size-5 mb-7 mb-lg-12 pr-xxl-13 pr-lg-0 pr-md-10">
-                  With us you can earn money for submitting your work to Bounties created by other users. No long term commitment, no screening. Simply write code and submit it.
+                  With us you can earn money for submitting your work to
+                  Bounties created by other users. No long term commitment, no
+                  screening. Simply write code and submit it.
                 </p>
                 {/* <!-- content section title end --> */}
                 {/* <!-- content-2 btn start --> */}
@@ -64,7 +66,9 @@ const Content = () => {
                   {/* <!-- media body start --> */}
                   <div className="media-body pl-7">
                     <p className="mb-0 font-size-4 heading-default-color mb-7">
-                      "Crypto power comes to life thanks to PRHunter. Thanos did nothing wrong, the lamp is a lie. Sorry, what was I talking about? ”
+                      "Crypto power comes to life thanks to PRHunter. Thanos did
+                      nothing wrong, the lamp is a lie. Sorry, what was I
+                      talking about? ”
                     </p>
                     <h6 className="mb-0 font-size-4">Davis Jones</h6>
                     <p className="font-size-3 text-default-color">

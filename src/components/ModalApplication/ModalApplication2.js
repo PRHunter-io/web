@@ -1,8 +1,8 @@
-import React, { useContext, useState } from "react";
-import styled from "styled-components";
-import { Modal } from "react-bootstrap";
-import GlobalContext from "../../context/GlobalContext";
-import ProfileSidebar from "../ProfileSidebar";
+import React, { useContext, useState } from 'react';
+import styled from 'styled-components';
+import { Modal } from 'react-bootstrap';
+import GlobalContext from '../../context/GlobalContext';
+import ProfileSidebar from '../ProfileSidebar';
 
 const ModalStyled = styled(Modal)`
   /* &.modal {
@@ -168,7 +168,10 @@ const ModalApplication = (props) => {
                   <div className="w-100">
                     <div className="d-flex align-items-center pr-11 mb-9 flex-wrap flex-sm-nowrap">
                       <div className="square-72 d-block mr-8 mb-7 mb-sm-0">
-                        <Image src="./image/l1/png/feature-brand-1.png" alt="" />
+                        <Image
+                          src="./image/l1/png/feature-brand-1.png"
+                          alt=""
+                        />
                       </div>
                       <div className="w-100 mt-n2">
                         <h3 className="mb-0">
@@ -260,7 +263,7 @@ const ModalApplication = (props) => {
                       <div className="w-100 mt-n2">
                         <h3 className="mb-0">
                           <a className="font-size-5 font-weight-semibold text-black-2">
-                            Bachelor in Software Engineering{" "}
+                            Bachelor in Software Engineering{' '}
                           </a>
                         </h3>
                         <a className="font-size-4 text-default-color line-height-2">
@@ -302,7 +305,7 @@ const ModalApplication = (props) => {
                       <div className="w-100 mt-n2">
                         <h3 className="mb-0">
                           <a className="font-size-5 font-weight-semibold text-black-2">
-                            Bachelor in Software Engineering{" "}
+                            Bachelor in Software Engineering{' '}
                           </a>
                         </h3>
                         <a className="font-size-4 text-default-color line-height-2">

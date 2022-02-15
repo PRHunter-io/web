@@ -7,25 +7,25 @@ export default async function filters(req, res) {
       const res = await fetch(url, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
-        body: data
+        body: data,
       });
       const newData = await res.json();
       return newData;
     } catch (err) {
       return false;
     }
-  }
+  };
 
   try {
-    const data = await fetchData(req)
+    const data = await fetchData(req);
     if (data) {
-      res.status(200).send({ data })
+      res.status(200).send({ data });
     } else {
-      res.status(400).send({ error: 'failed to fetch data' })
+      res.status(400).send({ error: 'failed to fetch data' });
     }
   } catch (err) {
-    res.status(500).send({ error: 'Internal server error' })
+    res.status(500).send({ error: 'Internal server error' });
   }
 }

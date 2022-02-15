@@ -1,5 +1,5 @@
-import React from "react";
-import styled from "styled-components";
+import React from 'react';
+import styled from 'styled-components';
 
 const TechIconColored = styled.i`
   font-size: 65px;
@@ -8,7 +8,6 @@ const TechIconColored = styled.i`
 const TechIconSmall = styled.i`
   font-size: 35px;
 `;
-
 
 let deviconMap = new Map([
   ['javascript', 'devicon-javascript-plain'],
@@ -35,33 +34,30 @@ let fontawesomeMap = new Map([
   ['security', 'fas fa-shield-alt'],
   ['data', 'fas fa-archive'],
   ['support', 'fas fa-hands-helping'],
-  ['other', 'fas fa-code']
-])
+  ['other', 'fas fa-code'],
+]);
 
 const getClassName = (devicon, faIcon) => {
   if (devicon != null) {
-    return `${devicon} colored`
-  }else if (faIcon != null) {
-    return `${faIcon} colored`
-  }else{
-    return "devicon-atom-original colored"
-  } 
-}
-
+    return `${devicon} colored`;
+  } else if (faIcon != null) {
+    return `${faIcon} colored`;
+  } else {
+    return 'devicon-atom-original colored';
+  }
+};
 
 const TechIcon = ({ language, small }) => {
+  const devicon = deviconMap.get(language);
+  const faIcon = fontawesomeMap.get(language);
 
-  const devicon = deviconMap.get(language)
-  const faIcon = fontawesomeMap.get(language)
+  const className = getClassName(devicon, faIcon);
 
-  const className = getClassName(devicon, faIcon)
-
-  if(small === true){
-    return <TechIconSmall className={className}/>
-  }else{
-    return <TechIconColored className={className}/>
+  if (small === true) {
+    return <TechIconSmall className={className} />;
+  } else {
+    return <TechIconColored className={className} />;
   }
-
 };
 
 export default TechIcon;

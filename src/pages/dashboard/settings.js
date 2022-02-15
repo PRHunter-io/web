@@ -1,42 +1,41 @@
-import React from "react";
+import React from 'react';
 
-import PageWrapper from "@/components/PageWrapper";
-import { useUserData as useUserData } from "@/lib/swr";
-import { UserData } from "@/components/Dashboard/user-data";
-import { LoadingSpinner } from "@/components/LoadingSpinner";
-
+import PageWrapper from '@/components/PageWrapper';
+import { useUserData as useUserData } from '@/lib/swr';
+import { UserData } from '@/components/Dashboard/user-data';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 
 const DashboardSettings = () => {
-  const { userData, isLoading, isError } = useUserData()
+  const { userData, isLoading, isError } = useUserData();
 
-  if (isLoading) return (
-    <PageWrapperInternal>
-      <LoadingSpinner />
-    </PageWrapperInternal>
-  )
+  if (isLoading)
+    return (
+      <PageWrapperInternal>
+        <LoadingSpinner />
+      </PageWrapperInternal>
+    );
 
-  if (isError) return (
-    <PageWrapperInternal>
-      <div>
-        Error
-      </div>
-    </PageWrapperInternal>
-  )
+  if (isError)
+    return (
+      <PageWrapperInternal>
+        <div>Error</div>
+      </PageWrapperInternal>
+    );
 
   return (
     <PageWrapperInternal>
       <UserData userData={userData} />
     </PageWrapperInternal>
-  )
+  );
 };
 
-const PageWrapperInternal = props => (
+const PageWrapperInternal = (props) => (
   <>
     <PageWrapper
       headerConfig={{
-        button: "profile",
+        button: 'profile',
         isFluid: true,
-        bgClass: "bg-default",
+        bgClass: 'bg-default',
         reveal: false,
       }}
     >
@@ -48,6 +47,6 @@ const PageWrapperInternal = props => (
       </div>
     </PageWrapper>
   </>
-)
+);
 
 export default DashboardSettings;

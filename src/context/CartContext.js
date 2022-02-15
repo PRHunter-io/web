@@ -1,21 +1,21 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
-import imgP1 from "public/images/image/logo-main-black.svg";
-import imgP2 from "public/images/image/logo-main-black.svg";
+import imgP1 from 'public/images/image/logo-main-black.svg';
+import imgP2 from 'public/images/image/logo-main-black.svg';
 
 const CartContext = React.createContext();
 
 const defaultItems = [
   {
-    id: "p1",
-    title: "Amazon Echo Super Extra Bass Home System",
+    id: 'p1',
+    title: 'Amazon Echo Super Extra Bass Home System',
     img: imgP1,
     qty: 2,
     price: 70,
   },
   {
-    id: "p2",
-    title: "Apple AirPods with Wired Charging Case",
+    id: 'p2',
+    title: 'Apple AirPods with Wired Charging Case',
     img: imgP2,
     qty: 1,
     price: 150,

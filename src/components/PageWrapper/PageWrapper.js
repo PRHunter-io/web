@@ -1,17 +1,17 @@
-import React, { useEffect, useContext } from "react";
+import React, { useEffect, useContext } from 'react';
 
-import GlobalContext from "../../context/GlobalContext";
+import GlobalContext from '../../context/GlobalContext';
 
 const headerConfigDefault = {
-  bgClass: "dynamic-sticky-bg",
-  align: "right",
+  bgClass: 'dynamic-sticky-bg',
+  align: 'right',
   isFluid: false,
   reveal: true,
 };
 
 const footerConfigDefault = {
-  theme: "dark",
-  style: "style1", //style1, style2, style3
+  theme: 'dark',
+  style: 'style1', //style1, style2, style3
 };
 
 const PageWrapper = ({

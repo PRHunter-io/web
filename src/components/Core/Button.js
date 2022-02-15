@@ -1,6 +1,6 @@
-import React from "react";
-import styled from "styled-components";
-import { rgba, darken, desaturate } from "polished";
+import React from 'react';
+import styled from 'styled-components';
+import { rgba, darken, desaturate } from 'polished';
 import {
   color,
   background,
@@ -10,9 +10,9 @@ import {
   shadow,
   flexbox,
   layout,
-} from "styled-system";
+} from 'styled-system';
 
-import { device } from "../../utils";
+import { device } from '../../utils';
 
 const ButtonSolid = styled.button`
   font-weight: 700;
@@ -58,12 +58,12 @@ const ButtonSolid = styled.button`
 `;
 
 const Button = ({
-  variant = "solid",
-  color = "light",
-  bg = "primary",
+  variant = 'solid',
+  color = 'light',
+  bg = 'primary',
   ...rest
 }) => {
-  return variant === "solid" ? (
+  return variant === 'solid' ? (
     <ButtonSolid color={color} borderColor={bg} bg={bg} {...rest} />
   ) : (
     <ButtonSolid

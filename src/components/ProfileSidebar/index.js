@@ -1,1 +1,1 @@
-export { default } from "./ProfileSidebar";
+export { default } from './ProfileSidebar';

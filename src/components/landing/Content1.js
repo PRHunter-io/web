@@ -1,10 +1,10 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
 
-import imgC1 from "public/images/image/l3/png/content-2-img1.png";
-import imgC2 from "public/images/image/l3/png/content-2-img2.png";
-import imgC3 from "public/images/image/l3/png/content-2-img3.png";
-import Image from 'next/image'
+import imgC1 from 'public/images/image/l3/png/content-2-img1.png';
+import imgC2 from 'public/images/image/l3/png/content-2-img2.png';
+import imgC3 from 'public/images/image/l3/png/content-2-img3.png';
+import Image from 'next/image';
 const Content = () => {
   return (
     <>
@@ -23,7 +23,9 @@ const Content = () => {
                   Looking for help with your software project?
                 </h2>
                 <p className="text-default-color font-size-5 mb-7 mb-lg-12 pr-xxl-13 pr-lg-0 pr-md-10">
-                  Don't waste time recruiting people. Simply describe the problem and create a Bounty for it. If someone gets the job done, they get paid. Plain and simple!
+                  Don't waste time recruiting people. Simply describe the
+                  problem and create a Bounty for it. If someone gets the job
+                  done, they get paid. Plain and simple!
                 </p>
                 {/* <!-- content-2 section title end --> */}
                 {/* <!-- content-2 btn start --> */}

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from 'react';
 
 const GlobalContext = React.createContext();
 
@@ -14,8 +14,8 @@ const GlobalProvider = ({ children }) => {
   const [signedIn, setSignedIn] = useState(false);
   const [header, setHeader] = useState({});
   const [footer, setFooter] = useState({
-    theme: "dark",
-    style: "style1", //style1, style2
+    theme: 'dark',
+    style: 'style1', //style1, style2
   });
 
   const toggleTheme = () => {
@@ -53,7 +53,7 @@ const GlobalProvider = ({ children }) => {
   const toggleSignInUp = async () => {
     setSignInModalVisible(!signInModalVisible);
     setSignUpModalVisible(!signUpModalVisible);
-  }
+  };
 
   const toggleStickyPage = (bool) => {
     setStickyPage(bool);
@@ -85,7 +85,7 @@ const GlobalProvider = ({ children }) => {
         setSignedIn,
         toggleSignInUp,
         toggleStickyPage,
-        stickyPage
+        stickyPage,
       }}
     >
       {children}

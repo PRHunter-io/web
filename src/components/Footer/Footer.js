@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
-import Link from "next/link";
-import GlobalContext from "../../context/GlobalContext";
-import Logo from "../Logo";
-import imgM from "../../../public/images/image/l1/png/message.png";
-import Image from 'next/image'
+import React, { useContext } from 'react';
+import Link from 'next/link';
+import GlobalContext from '../../context/GlobalContext';
+import Logo from '../Logo';
+import imgM from '../../../public/images/image/l1/png/message.png';
+import Image from 'next/image';
 
 const Footer = () => {
   const gContext = useContext(GlobalContext);
@@ -37,16 +37,15 @@ const Footer = () => {
               >
                 {/* <!-- cta-btns start --> */}
                 <div className="btns d-flex justify-content-xl-end justify-content-center align-items-xl-center flex-wrap h-100  mx-n4">
-                  <a
-                    className="btn btn-green btn-h-60 btn-xl mx-4 mt-6 text-uppercase"
-                    href="/#"
+                  <button
+                    className="btn btn-primary btn-h-60 btn-xl mx-4 mt-6 text-uppercase"
                     onClick={(e) => {
-                      e.preventDefault();
+                      e.target.blur();
                       gContext.toggleSignInModal();
                     }}
                   >
                     Sign in
-                  </a>
+                  </button>
                 </div>
                 {/* <!-- cta-btns end --> */}
               </div>

@@ -1,9 +1,9 @@
-import Link from "next/link";
-import React from "react";
-import Image from 'next/image'
-import imgL1LogoBlack from "../../public/images/logo-main-black.svg";
-import imgError from "public/images/image/svg/404.svg";
-import PageWrapper from "../components/PageWrapper";
+import Link from 'next/link';
+import React from 'react';
+import Image from 'next/image';
+import imgL1LogoBlack from '../../public/images/logo-main-black.svg';
+import imgError from 'public/images/image/svg/404.svg';
+import PageWrapper from '../components/PageWrapper';
 
 const Contact = () => {
   return (
@@ -15,7 +15,7 @@ const Contact = () => {
               <div className="col-12 text-center">
                 <Link href="/">
                   <a className="brand-logo">
-                  <Image src={imgL1LogoBlack} alt="" />
+                    <Image src={imgL1LogoBlack} alt="" />
                   </a>
                 </Link>
               </div>

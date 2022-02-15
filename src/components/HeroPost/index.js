@@ -1,14 +1,8 @@
-import DateFormatter from '../DateFormatter'
-import Link from 'next/link'
-import Avatar from '@/components/Avatar'
+import DateFormatter from '../DateFormatter';
+import Link from 'next/link';
+import Avatar from '@/components/Avatar';
 
-export default function HeroPost({
-  title,
-  date,
-  excerpt,
-  author,
-  slug,
-}) {
+export default function HeroPost({ title, date, excerpt, author, slug }) {
   return (
     <div className="row">
       <div className="mb-20">
@@ -26,5 +20,5 @@ export default function HeroPost({
         </div>
       </div>
     </div>
-  )
+  );
 }
