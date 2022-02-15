@@ -26,7 +26,7 @@ export const getServerSideProps = async ({ params }) => {
 };
 
 const BountyHeader = ({ bounty }) => {
-  const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}`;
+  const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}/issues/${bounty.issue_number}`;
   const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}`;
   return (
     <div className="pt-9 pl-sm-9 pl-5 pr-sm-9 pr-5 pb-8 border-bottom border-width-1 border-default-color light-mode-texts">
