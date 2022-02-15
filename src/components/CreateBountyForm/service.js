@@ -26,8 +26,11 @@ class BountyServiceClass {
     try {
       const bountySecret = await this.createBountyOnBackend(newBountyDto);
       console.log('Created new bounty on backend: ' + bountySecret.data);
+      const tx = await this.createBountyOnBlockchain(
+        bountySecret.data.id,
+        newBountyDto.bounty_value
+      );
       toast.success('Bounty created!');
-      const tx = await this.createBountyOnBlockchain(bountySecret.data.id);
     } catch (err) {
       return this.handleCreateBountyError(err);
     }
@@ -42,7 +45,7 @@ class BountyServiceClass {
     });
   }
 
-  async createBountyOnBlockchain(bountyId) {
+  async createBountyOnBlockchain(bountyId, bountyValue) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
@@ -52,7 +55,7 @@ class BountyServiceClass {
     );
     const expiry = new Date().getTime() + 1000;
     const overrides = {
-      value: ethers.utils.parseEther('0.1'), // ether in this case MUST be a string
+      value: ethers.utils.parseEther(bountyValue.toString()), // ether in this case MUST be a string
     };
     return await contract.createBounty(expiry, bountyId, overrides);
   }
