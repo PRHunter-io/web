@@ -1,7 +1,7 @@
 import { Select } from '@/components/Core';
 import { useIssues } from '@/lib/swr';
 import { useEffect, useState } from 'react';
-import { BountyService } from './service';
+import { BountyService } from '../service';
 import Link from 'next/link';
 
 export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
@@ -34,15 +34,20 @@ export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
   );
 
   useEffect(async () => {
-    try {
-      await BountyService.checkIfIssueExists(issue);
-      setExistingBountyForIssue(null);
-      setRepository((prevState) => ({ ...prevState, existingBounty: false }));
-    } catch (err) {
-      if (err?.response?.status === 409) {
-        let data = err.response.data;
-        setExistingBountyForIssue(data);
-        setRepository((prevState) => ({ ...prevState, existingBounty: true }));
+    if (repository) {
+      try {
+        await BountyService.checkIfIssueExists(issue);
+        setExistingBountyForIssue(null);
+        setRepository((prevState) => ({ ...prevState, existingBounty: false }));
+      } catch (err) {
+        if (err?.response?.status === 409) {
+          let data = err.response.data;
+          setExistingBountyForIssue(data);
+          setRepository((prevState) => ({
+            ...prevState,
+            existingBounty: true,
+          }));
+        }
       }
     }
   }, [issue]);

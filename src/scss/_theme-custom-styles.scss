@@ -443,3 +443,13 @@ html .ui-button.ui-state-disabled:active {
   display: flex;
   flex-wrap: wrap;
 }
+
+.blank-btn {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  
+  &:focus {
+    outline: none;
+  }
+}
