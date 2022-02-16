@@ -75,7 +75,6 @@ export const SignInForm = () => {
                 value={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}
-                value={values.email}
               />
               {errors.email && touched.email ? (
                 <small className="text-danger">{errors.email}</small>
@@ -97,7 +96,6 @@ export const SignInForm = () => {
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
-                  value={values.password}
                 />
                 <a
                   href="/#"

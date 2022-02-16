@@ -1,0 +1,21 @@
+name: Lint
+
+on: pull_request
+
+jobs:
+  lint:
+    name: Lint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@master
+      - uses: actions/setup-node@v2
+        name: Setup node
+        with:
+          node-version: '16'
+      - run: npm i -g npm@latest
+      - run: npm install
+      - name: Lint
+        run: |-
+            npm run lint
+            
