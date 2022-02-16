@@ -3,6 +3,7 @@ import PageWrapper from '../../components/PageWrapper';
 import Sidebar from '../../components/Sidebar';
 import Router from 'next/router';
 import { BountiesListRegular } from '../../components/BountiesLists';
+import { useApi } from '@/context/ApiServiceContext';
 
 export const getServerSideProps = async ({ query }) => {
   const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
@@ -21,7 +22,7 @@ export const getServerSideProps = async ({ query }) => {
   }
 };
 
-const getData = async (reqBody, setfilteredData) => {
+const getData = async (reqBody, setfilteredData, post) => {
   const formattedBody = { ...reqBody };
   if (formattedBody.price_to || formattedBody.price_min) {
     formattedBody.price = {
@@ -43,25 +44,13 @@ const getData = async (reqBody, setfilteredData) => {
     }
   }
 
-  const data = JSON.stringify(formattedBody);
-  try {
-    const res = await fetch('/api/filters', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: data,
-    });
-    const newData = await res.json();
-
-    setfilteredData(newData.data);
-  } catch (err) {
-    console.error('Failed to fetch bounty:', err);
-  }
+  const filteredBounties = await post('/bounty/search', formattedBody);
+  setfilteredData(filteredBounties);
 };
 
 const SearchGrid = ({ bounties, query }) => {
   const [filteredData, setfilteredData] = useState(false);
+  const { post } = useApi();
 
   const bountiesCount = bounties ? bounties.length : 0;
 
@@ -79,7 +68,7 @@ const SearchGrid = ({ bounties, query }) => {
       undefined,
       { shallow: true }
     );
-    getData(fullQuery, setfilteredData);
+    getData(fullQuery, setfilteredData, post);
   };
 
   const handleForm = (e) => {
