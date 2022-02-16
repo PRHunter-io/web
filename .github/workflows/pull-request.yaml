@@ -13,8 +13,8 @@ jobs:
         name: Setup node
         with:
           node-version: '14'
-        # Setup doctl
+      - run: npm ci
       - name: Lint
         run: |-
-            npm install
             npm run lint
+            
