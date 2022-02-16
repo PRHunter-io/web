@@ -160,7 +160,7 @@ const ModalSignIn = (props) => {
                             </a>
                           </Link>
                           <div className="d-flex align-items-center justify-content-md-between flex-wrap">
-                            <Link href="/#" href="">
+                            <Link href="/#">
                               <a className="font-size-3 text-gray">
                                 Jun 2017 - April 2020- 3 years
                               </a>
