@@ -16,4 +16,5 @@ jobs:
         # Setup doctl
       - name: Lint
         run: |-
+            npm install
             npm run lint
