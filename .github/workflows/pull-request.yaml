@@ -12,8 +12,8 @@ jobs:
       - uses: actions/setup-node@v2
         name: Setup node
         with:
-          node-version: '14'
-      - run: npm ci
+          node-version: '16'
+      - run: npm i -g npm@latest
       - name: Lint
         run: |-
             npm run lint
