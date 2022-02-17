@@ -9,6 +9,7 @@ import { languages, bountyType, experienceLevel } from '@/utils/filters';
 import validationSchema from './FormModel/ValidationSchema';
 import { PaymentsForm } from './Steps/PaymentsForm';
 import { BountyReview } from './Steps/BountyReview';
+import { getUnixTime } from 'date-fns';
 
 const steps = [
   'Pick issue',
@@ -72,9 +73,11 @@ export const CreateBountyForm = () => {
         bounty_type: details.bountyType,
         bounty_value: details.bountyAmount,
         bounty_currency: details.currency,
+        expires_at: getUnixTime(details.expirationDate),
       };
       setCurrentStep(currentStep + 1);
-
+      console.log('details', details);
+      console.log('newBountyDto', newBountyDto);
       // try {
       //   await BountyService.createNewBounty(newBountyDto);
       //   router.push('/dashboard/success');
@@ -101,6 +104,7 @@ export const CreateBountyForm = () => {
             acceptanceCriteria: '',
             currency: 'ETH',
             bountyAmount: '0.001',
+            expirationDate: '',
           }}
           validationSchema={validationSchema[currentStep]}
           onSubmit={async (values) => {
@@ -115,7 +119,7 @@ export const CreateBountyForm = () => {
                 <div className="row justify-content-end pr-6">
                   {currentStep > 0 && (
                     <button
-                      className="btn-submit text-uppercase btn btn-sm btn-primary mr-3"
+                      className="text-uppercase btn btn-sm btn-outline-primary mr-3"
                       type="button"
                       onClick={(e) => {
                         e.target.blur();

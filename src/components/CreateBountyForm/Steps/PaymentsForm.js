@@ -1,13 +1,14 @@
 import React from 'react';
 import { MyTextInput, MySelect } from '../fields';
 import { bountyCurrency } from '@/utils/filters';
+import DatePicker from '@/components/DatePicker';
 
 export const PaymentsForm = ({ repository, issue }) => {
   return (
     <>
       <fieldset disabled={issue === null || repository.existingBounty}>
         <div className="row">
-          <div className="col-lg-12">
+          <div className="col-lg-6">
             <MySelect label="Currency (Blockchain)" name="currency">
               {bountyCurrency.values.map((exp) => (
                 <option key={exp.value} value={exp.value}>
@@ -15,6 +16,13 @@ export const PaymentsForm = ({ repository, issue }) => {
                 </option>
               ))}
             </MySelect>
+          </div>
+          <div className="col-lg-6">
+            <label className="text-muted pr-2 mb-4">Expiration date</label>
+            <DatePicker
+              className="form-control h-px-48"
+              name="expirationDate"
+            />
           </div>
         </div>
         <div className="row">
