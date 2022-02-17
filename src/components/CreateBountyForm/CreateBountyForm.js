@@ -10,6 +10,7 @@ import validationSchema from './FormModel/ValidationSchema';
 import { PaymentsForm } from './Steps/PaymentsForm';
 import { BountyReview } from './Steps/BountyReview';
 import { getUnixTime } from 'date-fns';
+import Stepper from '../Stepper';
 
 const steps = [
   'Pick issue',
@@ -94,59 +95,65 @@ export const CreateBountyForm = () => {
       {currentStep === steps.length ? (
         <p>THANK YOU!</p>
       ) : (
-        <Formik
-          initialValues={{
-            title: '',
-            bountyType: bountyType.values.map((exp) => exp.value)[0],
-            language: languages.values.map((exp) => exp.value)[0],
-            experience: experienceLevel.values.map((exp) => exp.value)[0],
-            problemStatement: '',
-            acceptanceCriteria: '',
-            currency: 'ETH',
-            bountyAmount: '0.001',
-            expirationDate: '',
-          }}
-          validationSchema={validationSchema[currentStep]}
-          onSubmit={async (values) => {
-            await submitForm(values);
-          }}
-        >
-          {({ isSubmitting, values }) => {
-            return (
-              <Form>
-                {renderStepContent(currentStep, values)}
+        <>
+          <Stepper steps={steps} currentStep={currentStep} />
 
-                <div className="row justify-content-end pr-6">
-                  {currentStep > 0 && (
+          <Formik
+            initialValues={{
+              title: '',
+              bountyType: bountyType.values.map((exp) => exp.value)[0],
+              language: languages.values.map((exp) => exp.value)[0],
+              experience: experienceLevel.values.map((exp) => exp.value)[0],
+              problemStatement: '',
+              acceptanceCriteria: '',
+              currency: 'ETH',
+              bountyAmount: '0.001',
+              expirationDate: '',
+            }}
+            validationSchema={validationSchema[currentStep]}
+            onSubmit={async (values) => {
+              await submitForm(values);
+            }}
+          >
+            {({ isSubmitting, values }) => {
+              return (
+                <Form>
+                  {renderStepContent(currentStep, values)}
+
+                  <div className="row justify-content-end pr-6">
+                    {currentStep > 0 && (
+                      <button
+                        className="text-uppercase btn btn-sm btn-outline-primary mr-3"
+                        type="button"
+                        onClick={(e) => {
+                          e.target.blur();
+                          setCurrentStep(currentStep - 1);
+                        }}
+                      >
+                        back
+                      </button>
+                    )}
                     <button
-                      className="text-uppercase btn btn-sm btn-outline-primary mr-3"
-                      type="button"
+                      disabled={
+                        isSubmitting || !issue || repository.existingBounty
+                      }
+                      className="btn-submit text-uppercase btn btn-sm btn-primary"
+                      type="submit"
                       onClick={(e) => {
                         e.target.blur();
-                        setCurrentStep(currentStep - 1);
                       }}
                     >
-                      back
+                      {isLastStep ? 'Submit' : 'next'}
                     </button>
+                  </div>
+                  {createError && (
+                    <div className="error mb-4">{createError}</div>
                   )}
-                  <button
-                    disabled={
-                      isSubmitting || !issue || repository.existingBounty
-                    }
-                    className="btn-submit text-uppercase btn btn-sm btn-primary"
-                    type="submit"
-                    onClick={(e) => {
-                      e.target.blur();
-                    }}
-                  >
-                    {isLastStep ? 'Submit' : 'next'}
-                  </button>
-                </div>
-                {createError && <div className="error mb-4">{createError}</div>}
-              </Form>
-            );
-          }}
-        </Formik>
+                </Form>
+              );
+            }}
+          </Formik>
+        </>
       )}
     </>
   );
