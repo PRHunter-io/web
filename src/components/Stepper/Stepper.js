@@ -1,16 +1,42 @@
+import { breakpoints } from '@/utils/breakpoints';
 import styled from 'styled-components';
 
 const SingleStep = styled.div`
-  pointer-events: none;
+  flex-grow: 1;
+  font-size: 14px;
+  /* pointer-events: none; */
+
+  &:after {
+    @media (min-width: ${breakpoints.lg}px) {
+      content: '';
+      display: block;
+      height: 1px;
+      border-top: 1px solid
+        ${({ theme, finished }) =>
+          finished ? theme.colors.primary : theme.colors.border};
+      flex-grow: 1;
+      margin: 0 5%;
+      transition: border-color 0.4s;
+    }
+  }
+
+  &:last-of-type {
+    flex-grow: 0;
+
+    &::after {
+      display: none;
+    }
+  }
 
   span {
+    flex-shrink: 0;
     width: 2em;
     height: 2em;
-    background-color: ${({ finished, theme }) =>
-      finished ? theme.colors.primary : theme.colors.darkShade};
+    background-color: ${({ current, theme }) =>
+      current ? theme.colors.primary : theme.colors.darkShade};
     border-radius: 50%;
     color: white;
-    transition: background-color 0.4s, color 0.4s, border 0.4s;
+    transition: background-color 0.4s 0.2s;
   }
 `;
 
@@ -20,12 +46,12 @@ const Stepper = ({ steps, currentStep }) => {
       {steps &&
         steps.map((step, index) => (
           <SingleStep
-            className="mb-4 mb-lg-10"
+            className="d-flex align-items-center mb-4 mb-lg-10"
             key={index}
-            finished={index <= currentStep}
-            current={index === currentStep}
+            current={index <= currentStep}
+            finished={index < currentStep}
           >
-            <span className="d-inline-flex align-items-center justify-content-center mr-3">
+            <span className="d-flex align-items-center justify-content-center mr-3">
               {index + 1}
             </span>
             {step}
