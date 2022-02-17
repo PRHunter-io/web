@@ -76,15 +76,12 @@ export const CreateBountyForm = () => {
         bounty_currency: details.currency,
         expires_at: getUnixTime(details.expirationDate),
       };
-      setCurrentStep(currentStep + 1);
-      console.log('details', details);
-      console.log('newBountyDto', newBountyDto);
-      // try {
-      //   await BountyService.createNewBounty(newBountyDto);
-      //   router.push('/dashboard/success');
-      // } catch (error) {
-      //   setCreateError(error.message);
-      // }
+      try {
+        await BountyService.createNewBounty(newBountyDto);
+        router.push('/dashboard/success');
+      } catch (error) {
+        setCreateError(error.message);
+      }
     } else {
       setCurrentStep(currentStep + 1);
     }
@@ -92,9 +89,7 @@ export const CreateBountyForm = () => {
 
   return (
     <>
-      {currentStep === steps.length ? (
-        <p>THANK YOU!</p>
-      ) : (
+      {currentStep < steps.length && (
         <>
           <Stepper steps={steps} currentStep={currentStep} />
 
@@ -137,12 +132,19 @@ export const CreateBountyForm = () => {
                       disabled={
                         isSubmitting || !issue || repository.existingBounty
                       }
-                      className="btn-submit text-uppercase btn btn-sm btn-primary"
+                      className="btn-submit text-uppercase btn btn-sm btn-primary  position-relative"
                       type="submit"
                       onClick={(e) => {
                         e.target.blur();
                       }}
                     >
+                      {isSubmitting && (
+                        <span
+                          className="spinner-grow position-absolute"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
+                      )}
                       {isLastStep ? 'Submit' : 'next'}
                     </button>
                   </div>

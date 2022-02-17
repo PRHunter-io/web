@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const SingleStep = styled.div`
   flex-grow: 1;
   font-size: 14px;
-  /* pointer-events: none; */
+  pointer-events: none;
 
   &:after {
     @media (min-width: ${breakpoints.lg}px) {
@@ -16,7 +16,8 @@ const SingleStep = styled.div`
           finished ? theme.colors.primary : theme.colors.border};
       flex-grow: 1;
       margin: 0 5%;
-      transition: border-color 0.4s;
+      transition: border-color 0.4s
+        ${({ finished }) => (finished ? '0s' : '0.1s')};
     }
   }
 
@@ -36,7 +37,8 @@ const SingleStep = styled.div`
       current ? theme.colors.primary : theme.colors.darkShade};
     border-radius: 50%;
     color: white;
-    transition: background-color 0.4s 0.2s;
+    transition: background-color 0.4s
+      ${({ current }) => (current ? '0.1s' : '0s')};
   }
 `;
 
