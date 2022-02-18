@@ -22,8 +22,7 @@ export default function Documentation() {
               <p>
                 If you already have an account, please{' '}
                 <Link href="/docs#creating-bounties">
-                  {' '}
-                  see the docs on creating bounties{' '}
+                  see the docs on creating bounties
                 </Link>
               </p>
             </div>
