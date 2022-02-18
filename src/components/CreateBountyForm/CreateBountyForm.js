@@ -11,6 +11,7 @@ import { PaymentsForm } from './Steps/PaymentsForm';
 import { BountyReview } from './Steps/BountyReview';
 import { getUnixTime } from 'date-fns';
 import Stepper from '../Stepper';
+import { PickerForm } from './Steps/PickerForm';
 
 const steps = [
   'Pick issue',
@@ -31,19 +32,12 @@ export const CreateBountyForm = () => {
     switch (step) {
       case 0:
         return (
-          <>
-            <PickRepo
-              repository={repository}
-              setRepository={setRepository}
-              setIssue={setIssue}
-            />
-            <PickIssue
-              repository={repository}
-              setRepository={setRepository}
-              setIssue={setIssue}
-              issue={issue}
-            />
-          </>
+          <PickerForm
+            repository={repository}
+            issue={issue}
+            setRepository={setRepository}
+            setIssue={setIssue}
+          />
         );
       case 1:
         return <DetailsForm repository={repository} issue={issue} />;

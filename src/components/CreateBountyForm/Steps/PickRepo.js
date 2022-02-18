@@ -1,4 +1,5 @@
 import { Select } from '@/components/Core';
+import { FieldTooltip } from '@/components/FieldTooltip';
 import { useRepositories } from '@/lib/swr';
 import Link from 'next/link';
 
@@ -6,7 +7,14 @@ export const PickRepo = ({ repository, setRepository, setIssue }) => {
   const { repos, isLoading, error } = useRepositories();
   const renderSelect = (options) => (
     <div className="mb-8">
-      <span className="text-muted mb-4">Repository</span>
+      <span className="text-muted mb-4">
+        Repository
+        <FieldTooltip
+          icon="fa-question-circle"
+          text="Pick a repository from ones you have given the PRHunter app access to. "
+        />
+      </span>
+
       <Select
         options={options}
         className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
