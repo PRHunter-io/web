@@ -6,11 +6,11 @@ import { PickRepo } from './Steps/PickRepo';
 import { useRouter } from 'next/router';
 import { BountyService } from './service';
 import { languages, bountyType, experienceLevel } from '@/utils/filters';
-import validationSchema from './FormModel/ValidationSchema';
 import { PaymentsForm } from './Steps/PaymentsForm';
 import { BountyReview } from './Steps/BountyReview';
 import { getUnixTime } from 'date-fns';
 import Stepper from '../Stepper';
+import { validationSchema } from './FormModel/validationSchema';
 
 const steps = [
   'Pick issue',
