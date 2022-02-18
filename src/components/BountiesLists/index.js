@@ -1,1 +1,1 @@
-export { BountiesListRegular, BountiesListGrid } from './BountiesLists';
+export { BountiesListRegular } from './BountiesLists';
