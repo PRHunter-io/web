@@ -38,6 +38,7 @@ const DatePickerStyled = styled.div`
 
 const DatePickerComponent = ({ className, ...props }) => {
   const today = new Date();
+  today.setDate(new Date().getDate() + 7);
   const [field, , { setValue }] = useField(props);
 
   return (

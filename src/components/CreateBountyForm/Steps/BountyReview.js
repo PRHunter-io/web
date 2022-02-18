@@ -5,7 +5,7 @@ import {
   BountyHeader,
 } from 'src/pages/bounties/[id]';
 
-export const BountyReview = ({ repository, values }) => {
+export const BountyReview = ({ repository, issue, values }) => {
   const repo_owner = repository.full_name.split('/')[0];
   const repo_name = repository.full_name.split('/')[1];
   const currentDate = Date.now();
@@ -22,6 +22,7 @@ export const BountyReview = ({ repository, values }) => {
     problem_statement: values.problemStatement,
     repo_name: repo_name,
     repo_owner: repo_owner,
+    issue_number: issue.number,
     tags: [],
     title: values.title,
   };
@@ -30,9 +31,9 @@ export const BountyReview = ({ repository, values }) => {
     <div className="row">
       <div className="col-12 mb-8">
         <div className="bg-white rounded-4 border border-mercury shadow-9">
-          <BountyHeader bounty={bounty} />
-          <BountyDetails bounty={bounty} />
-          <BountyBody bounty={bounty} />
+          <BountyHeader bounty={bounty} isPreview={true} />
+          <BountyDetails bounty={bounty} isPreview={true} />
+          <BountyBody bounty={bounty} isPreview={true} />
         </div>
       </div>
     </div>

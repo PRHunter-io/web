@@ -14,7 +14,10 @@ export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
       <fieldset disabled={disabled}>
         <span className="text-muted mb-4">
           Issue
-          <FieldTooltip icon="fa-question-circle" text="Here I go again" />
+          <FieldTooltip
+            icon="fa-question-circle"
+            text="Pick an issue you'd like to create a bounty for"
+          />
         </span>
         <Select
           options={options}

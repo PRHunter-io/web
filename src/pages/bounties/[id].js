@@ -26,9 +26,9 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 
-export const BountyHeader = ({ bounty }) => {
+export const BountyHeader = ({ bounty, isPreview }) => {
   const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}/issues/${bounty.issue_number}`;
-  const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}`;
+  const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}#${bounty.issue_number}`;
   return (
     <div className="pt-9 pl-sm-9 pl-5 pr-sm-9 pr-5 pb-8 border-bottom border-width-1 border-default-color light-mode-texts">
       <div className="row">
@@ -58,10 +58,11 @@ export const BountyHeader = ({ bounty }) => {
               {formatDate(bounty.created_at)}
             </p>
           </div>
-          <div className="mt-10 h5">
-            Status: {formatStatus(bounty.bounty_status)}
-          </div>
-
+          {!isPreview && (
+            <div className="mt-10 h5">
+              Status: {formatStatus(bounty.bounty_status)}
+            </div>
+          )}
           {/* <!-- media date end --> */}
         </div>
       </div>

@@ -44,7 +44,9 @@ export const CreateBountyForm = () => {
       case 2:
         return <PaymentsForm repository={repository} issue={issue} />;
       case 3:
-        return <BountyReview repository={repository} values={values} />;
+        return (
+          <BountyReview repository={repository} issue={issue} values={values} />
+        );
       default:
         return <div>Not Found</div>;
     }
@@ -71,8 +73,8 @@ export const CreateBountyForm = () => {
         expires_at: getUnixTime(details.expirationDate),
       };
       try {
-        await BountyService.createNewBounty(newBountyDto);
-        router.push('/dashboard/success');
+        const bountyId = await BountyService.createNewBounty(newBountyDto);
+        router.push(`/dashboard/success?bounty_id=${bountyId}`);
       } catch (error) {
         setCreateError(error.message);
       }
