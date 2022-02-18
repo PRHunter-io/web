@@ -1,4 +1,6 @@
 export const experienceLevel = {
+  heading: 'Experience level',
+  fieldType: 'SELECT',
   query: 'experience',
   values: [
     { value: 'Beginner', label: 'Beginner' },
@@ -7,7 +9,23 @@ export const experienceLevel = {
   ],
 };
 
+export const bountyStatus = {
+  heading: 'Bounty Status',
+  fieldType: 'SELECT',
+  query: 'bounty_status',
+  values: [
+    { value: 'PENDING', label: 'Pending' },
+    { value: 'ACTIVE', label: 'Active' },
+    { value: 'COMPLETED', label: 'Completed' },
+    { value: 'EXPIRED', label: 'Expired' },
+    { value: 'FAILED', label: 'Failed' },
+    { value: 'CANCELLED', label: 'Canceled' },
+  ],
+};
+
 export const bountyType = {
+  heading: 'Bounty Type',
+  fieldType: 'CHECKBOX',
   query: 'bounty_type',
   values: [
     { value: 'Feature', label: 'Feature' },
@@ -19,6 +37,8 @@ export const bountyType = {
 };
 
 export const languages = {
+  heading: 'Language',
+  fieldType: 'SELECT',
   query: 'language',
   values: [
     { value: 'javascript', label: 'Javascript' },
@@ -39,6 +59,8 @@ export const languages = {
 };
 
 export const bountyCurrency = {
+  heading: 'Currency / Blockchain',
+  fieldType: 'CHECKBOX',
   query: 'currency',
   values: [
     { value: 'ETH', label: 'Ethereum (ETH)' },
@@ -47,6 +69,8 @@ export const bountyCurrency = {
 };
 
 export const bountyValues = {
+  heading: 'Bounty Value',
+  fieldType: 'DOUBLESELECT',
   query: 'bountyValues',
   values: [
     {
@@ -75,3 +99,14 @@ export const bountyValues = {
     },
   ],
 };
+
+const allFiltersArr = [
+  bountyType,
+  bountyStatus,
+  experienceLevel,
+  languages,
+  bountyCurrency,
+  bountyValues,
+];
+
+export default allFiltersArr;
