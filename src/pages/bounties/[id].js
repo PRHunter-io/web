@@ -26,7 +26,7 @@ export const getServerSideProps = async ({ params }) => {
   };
 };
 
-const BountyHeader = ({ bounty }) => {
+export const BountyHeader = ({ bounty }) => {
   const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}/issues/${bounty.issue_number}`;
   const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}`;
   return (
@@ -69,7 +69,7 @@ const BountyHeader = ({ bounty }) => {
   );
 };
 
-const BountyDetails = ({ bounty }) => (
+export const BountyDetails = ({ bounty }) => (
   <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 border-bottom border-width-1 border-default-color light-mode-texts">
     <div className="row mb-7">
       <div className="col-md-4 mb-lg-0 mb-10">
@@ -164,7 +164,7 @@ const BountyDetails = ({ bounty }) => (
   </div>
 );
 
-const BountyBody = ({ bounty }) => (
+export const BountyBody = ({ bounty }) => (
   <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 light-mode-texts">
     <div className="row">
       <div className="col-xl-11 col-md-12 pr-xxl-9 pr-xl-10 pr-lg-20">
