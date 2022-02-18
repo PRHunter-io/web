@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import PageWrapper from '../../components/PageWrapper';
 import TechIcon from '@/components/Icons/TechIcon';
 import { formatDate } from 'src/utils';
+import { formatStatus } from '@/utils/formatStatus';
 
 const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
@@ -57,6 +58,10 @@ const BountyHeader = ({ bounty }) => {
               {formatDate(bounty.created_at)}
             </p>
           </div>
+          <div className="mt-10 h5">
+            Status: {formatStatus(bounty.bounty_status)}
+          </div>
+
           {/* <!-- media date end --> */}
         </div>
       </div>
@@ -128,7 +133,8 @@ const BountyDetails = ({ bounty }) => (
             <span className="text-primary">
               <i className="fas fa-link pr-3" />
             </span>
-            Ethereum
+            {bounty.bounty_currency === 'ETH' && 'Ethereum'}
+            {bounty.bounty_currency === 'BNB' && 'Binance Smart Chain'}
           </h6>
         </div>
       </div>
