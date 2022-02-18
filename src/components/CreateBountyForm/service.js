@@ -31,6 +31,7 @@ class BountyServiceClass {
         newBountyDto.bounty_value
       );
       toast.success('Bounty created!');
+      return bountySecret.data.id;
     } catch (err) {
       return this.handleCreateBountyError(err);
     }

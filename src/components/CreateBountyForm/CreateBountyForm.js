@@ -1,8 +1,6 @@
 import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import { DetailsForm } from './Steps/DetailsForm';
-import { PickIssue } from './Steps/PickIssue';
-import { PickRepo } from './Steps/PickRepo';
 import { useRouter } from 'next/router';
 import { BountyService } from './service';
 import { languages, bountyType, experienceLevel } from '@/utils/filters';
@@ -11,6 +9,7 @@ import { BountyReview } from './Steps/BountyReview';
 import { getUnixTime } from 'date-fns';
 import Stepper from '../Stepper';
 import { validationSchema } from './FormModel/validationSchema';
+import { PickerForm } from './Steps/PickerForm';
 
 const steps = [
   'Pick issue',
@@ -31,26 +30,21 @@ export const CreateBountyForm = () => {
     switch (step) {
       case 0:
         return (
-          <>
-            <PickRepo
-              repository={repository}
-              setRepository={setRepository}
-              setIssue={setIssue}
-            />
-            <PickIssue
-              repository={repository}
-              setRepository={setRepository}
-              setIssue={setIssue}
-              issue={issue}
-            />
-          </>
+          <PickerForm
+            repository={repository}
+            issue={issue}
+            setRepository={setRepository}
+            setIssue={setIssue}
+          />
         );
       case 1:
         return <DetailsForm repository={repository} issue={issue} />;
       case 2:
         return <PaymentsForm repository={repository} issue={issue} />;
       case 3:
-        return <BountyReview repository={repository} values={values} />;
+        return (
+          <BountyReview repository={repository} issue={issue} values={values} />
+        );
       default:
         return <div>Not Found</div>;
     }
@@ -77,8 +71,8 @@ export const CreateBountyForm = () => {
         expires_at: getUnixTime(details.expirationDate),
       };
       try {
-        await BountyService.createNewBounty(newBountyDto);
-        router.push('/dashboard/success');
+        const bountyId = await BountyService.createNewBounty(newBountyDto);
+        router.push(`/dashboard/success?bounty_id=${bountyId}`);
       } catch (error) {
         setCreateError(error.message);
       }

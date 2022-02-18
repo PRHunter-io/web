@@ -16,7 +16,7 @@ export default function Documentation() {
               <h3 className="mb-15">Thank you for installing PRHunter!</h3>
               <p>You can now create and manage bounties on PRHunter.</p>
               <p>
-                If you don't have an account yet, please sign in with your
+                If you don't have an account yet, please sign in and link your
                 Github Account
               </p>
               <p>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { MyTextInput, MySelect } from '../fields';
+import { MyTextInput, MySelect, MyDatePicker } from '../fields';
 import { bountyCurrency } from '@/utils/filters';
-import DatePicker from '@/components/DatePicker';
+import { FieldTooltip } from '@/components/FieldTooltip';
 
 export const PaymentsForm = ({ repository, issue }) => {
   return (
@@ -9,7 +9,11 @@ export const PaymentsForm = ({ repository, issue }) => {
       <fieldset disabled={issue === null || repository.existingBounty}>
         <div className="row">
           <div className="col-lg-6">
-            <MySelect label="Currency (Blockchain)" name="currency">
+            <MySelect
+              label="Currency (Blockchain)"
+              name="currency"
+              tooltip="The platform on which the contract will be created"
+            >
               {bountyCurrency.values.map((exp) => (
                 <option key={exp.value} value={exp.value}>
                   {exp.label}
@@ -18,10 +22,10 @@ export const PaymentsForm = ({ repository, issue }) => {
             </MySelect>
           </div>
           <div className="col-lg-6">
-            <label className="text-muted pr-2 mb-4">Expiration date</label>
-            <DatePicker
-              className="form-control h-px-48"
+            <MyDatePicker
+              label="Expiration date"
               name="expirationDate"
+              tooltip="Minimum bounty duration is 7 days. You will have to lock in your funds in the smart contract for that period"
             />
           </div>
         </div>
@@ -31,10 +35,17 @@ export const PaymentsForm = ({ repository, issue }) => {
               label="Bounty amount"
               name="bountyAmount"
               type="number"
+              tooltip="Enter the bounty value in the selected currency. Make sure you have such amount available in your wallet, as you will have to deposit it into the smart contract."
             />
           </div>
           <div className="col-lg-6">
-            <span className="text-muted pr-2 mb-4">Estimated USD value: </span>
+            <span className="text-muted pr-2 mb-4">
+              Estimated USD value:
+              <FieldTooltip
+                icon="fa-question-circle"
+                text="The current USD value of the bounty"
+              />
+            </span>
             <p className="h-px-48 mb-6">0$</p>
           </div>
         </div>

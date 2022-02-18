@@ -3,6 +3,7 @@ import { useIssues } from '@/lib/swr';
 import { useEffect, useState } from 'react';
 import { BountyService } from '../service';
 import Link from 'next/link';
+import { FieldTooltip } from '@/components/FieldTooltip';
 
 export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
   const { issues, isLoading, error } = useIssues(repository?.full_name);
@@ -11,7 +12,13 @@ export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
   const renderIssuePicker = (options, disabled = true, errorMsg) => (
     <div className="mb-8">
       <fieldset disabled={disabled}>
-        <span className="text-muted mb-4">Issue</span>
+        <span className="text-muted mb-4">
+          Issue
+          <FieldTooltip
+            icon="fa-question-circle"
+            text="Pick an issue you'd like to create a bounty for"
+          />
+        </span>
         <Select
           options={options}
           className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100"
@@ -77,7 +84,7 @@ export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
   if (existingBountyForIssue) {
     const ErrorMsg = () => (
       <>
-        Looks like this issue already has an active bounty. Click{' '}
+        Looks like this issue already has an active/pending bounty. Click{' '}
         <Link href={`/bounties/${existingBountyForIssue.id}`}> here </Link> to
         go to the bounty.
       </>
