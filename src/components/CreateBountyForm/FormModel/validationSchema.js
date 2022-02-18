@@ -6,7 +6,7 @@ import {
   experienceLevel,
 } from '@/utils/filters';
 
-const validationSchema = [
+export const validationSchema = [
   false,
   Yup.object().shape({
     title: Yup.string()
@@ -41,5 +41,3 @@ const validationSchema = [
       .required('Bounty amount is required'),
   }),
 ];
-
-export default validationSchema;
