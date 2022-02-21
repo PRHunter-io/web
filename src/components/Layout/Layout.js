@@ -33,10 +33,11 @@ const Loader = styled.div`
   z-index: 9999999999;
   opacity: 1;
   visibility: visible;
-  transition: all 1s ease-out 0.5s;
+
   &.inActive {
     opacity: 0;
     visibility: hidden;
+    transition: all 1s ease-out 0.5s;
   }
 `;
 
@@ -87,6 +88,7 @@ const Layout = ({ children, pageContext }) => {
   return (
     <>
       <ThemeProvider theme={getTheme(modes.light)}>
+        <Loader id="loading" className={visibleLoader ? '' : 'inActive'} />
         <div data-theme-mode-panel-active data-theme="light">
           <GlobalStyle />
           <Helmet>
@@ -103,7 +105,6 @@ const Layout = ({ children, pageContext }) => {
               crossOrigin="anonymous"
             />
           </Helmet>
-          <Loader id="loading" className={visibleLoader ? '' : 'inActive'} />
           <div
             className={`site-wrapper min-vh-100 bg-default-2${
               gContext.stickyPage ? '' : ' overflow-hidden'
