@@ -56,9 +56,9 @@ export const BountyHeader = ({ bounty, isPreview }) => {
           <div className="media justify-content-md-end">
             <p className="font-size-4 text-gray mb-0">
               <small className="d-block text-left text-md-right text-hit-gray">
-                Expires:
+                Created at:
               </small>
-              {formatDate(bounty.expires_at)}
+              {formatDate(bounty.created_at)}
             </p>
           </div>
           {!isPreview && (
@@ -74,6 +74,18 @@ export const BountyHeader = ({ bounty, isPreview }) => {
     </div>
   );
 };
+
+const SimpleBounty = ({ label, value, iconClass }) => (
+  <div className="col-md-4 mb-lg-0 mb-10">
+    <span className="font-size-4 d-block mb-4 text-gray">{label}</span>
+    <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
+      <span className="text-primary">
+        <i className={`${iconClass} pr-3`} />
+      </span>
+      {value}
+    </h6>
+  </div>
+);
 
 export const BountyDetails = ({ bounty }) => (
   <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 border-bottom border-width-1 border-default-color light-mode-texts">
@@ -104,46 +116,31 @@ export const BountyDetails = ({ bounty }) => (
           </p>
         </div>
       </div>
-      <div className="col-md-4 mb-lg-0 mb-10">
-        <div className="">
-          <span className="font-size-4 d-block mb-4 text-gray">
-            Experience required
-          </span>
-          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
-            <span className="text-primary">
-              <i className="fas fa-signal pr-3" />
-            </span>
-            {bounty.experience}
-          </h6>
-        </div>
-      </div>
-      <div className="col-md-4 mb-lg-0 mb-10">
-        <div className="">
-          <span className="font-size-4 d-block mb-4 text-gray">
-            Bounty Type
-          </span>
-          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
-            <span className="text-primary">
-              <i className="fas fa-briefcase pr-3" />
-            </span>
-            {bounty.bounty_type}
-          </h6>
-        </div>
-      </div>
+      <SimpleBounty
+        label="Experience required"
+        value={bounty.experience}
+        iconClass="fas fa-signal"
+      />
+      <SimpleBounty
+        label="Bounty Type"
+        value={bounty.bounty_type}
+        iconClass="fas fa-briefcase"
+      />
     </div>
     <div className="row">
-      <div className="col-md-4 mb-lg-0 mb-10">
-        <div className="">
-          <span className="font-size-4 d-block mb-4 text-gray">Blockchain</span>
-          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
-            <span className="text-primary">
-              <i className="fas fa-link pr-3" />
-            </span>
-            {bounty.bounty_currency === 'ETH' && 'Ethereum'}
-            {bounty.bounty_currency === 'BNB' && 'Binance Smart Chain'}
-          </h6>
-        </div>
-      </div>
+      <SimpleBounty
+        label="Blockchain"
+        value={
+          (bounty.bounty_currency === 'ETH' && 'Ethereum') ||
+          (bounty.bounty_currency === 'BNB' && 'Binance Smart Chain')
+        }
+        iconClass="fas fa-link"
+      />
+      <SimpleBounty
+        label="Expires"
+        value={formatDate(bounty.expires_at)}
+        iconClass="fas fa-clock"
+      />
     </div>
     <div className="row">
       <div className="col-12 mb-lg-0 mb-8">
@@ -151,9 +148,6 @@ export const BountyDetails = ({ bounty }) => (
           <h6 className="font-size-5 text-black-2 font-weight-semibold mb-0">
             Technologies used:
           </h6>
-          {/* <p className="font-size-4 text-gray mb-3">
-                            Tech Stack
-                          </p> */}
           <ul className="d-flex list-unstyled flex-wrap pr-sm-25 pr-md-0">
             {bounty.languages.map((language, index) => (
               <li
@@ -238,4 +232,5 @@ const Bounty = ({ bounty }) => {
     </>
   );
 };
+
 export default Bounty;
