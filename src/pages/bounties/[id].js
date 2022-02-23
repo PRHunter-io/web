@@ -117,17 +117,22 @@ export const BountyDetails = ({ bounty }) => (
         </div>
       </div>
       <SimpleBounty
+        label="Expires"
+        value={formatDate(bounty.expires_at)}
+        iconClass="fas fa-clock"
+      />
+      <SimpleBounty
         label="Experience required"
         value={bounty.experience}
         iconClass="fas fa-signal"
       />
+    </div>
+    <div className="row">
       <SimpleBounty
         label="Bounty Type"
         value={bounty.bounty_type}
         iconClass="fas fa-briefcase"
       />
-    </div>
-    <div className="row">
       <SimpleBounty
         label="Blockchain"
         value={
@@ -135,11 +140,6 @@ export const BountyDetails = ({ bounty }) => (
           (bounty.bounty_currency === 'BNB' && 'Binance Smart Chain')
         }
         iconClass="fas fa-link"
-      />
-      <SimpleBounty
-        label="Expires"
-        value={formatDate(bounty.expires_at)}
-        iconClass="fas fa-clock"
       />
     </div>
     <div className="row">
