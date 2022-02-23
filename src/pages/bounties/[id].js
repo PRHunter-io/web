@@ -76,9 +76,9 @@ export const BountyHeader = ({ bounty, isPreview }) => {
 };
 
 const SimpleBounty = ({ label, value, iconClass }) => (
-  <div className="col-md-4 mb-lg-0 mb-10">
-    <span className="font-size-4 d-block mb-4 text-gray">{label}</span>
-    <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
+  <div className="col-md-4 mb-lg-0 mb-6">
+    <span className="font-size-4 d-block mb-2 text-gray">{label}</span>
+    <h6 className="font-size-5 text-black-2 font-weight-semibold">
       <span className="text-primary">
         <i className={`${iconClass} pr-3`} />
       </span>
@@ -89,10 +89,10 @@ const SimpleBounty = ({ label, value, iconClass }) => (
 
 export const BountyDetails = ({ bounty }) => (
   <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 border-bottom border-width-1 border-default-color light-mode-texts">
-    <div className="row mb-7">
-      <div className="col-md-4 mb-lg-0 mb-10">
+    <div className="row mb-md-7">
+      <div className="col-md-4 mb-lg-0 mb-6">
         <div className="media justify-content-md-start">
-          <span className="font-size-4 d-block mb-4">Bounty value</span>
+          <span className="font-size-4 d-block mb-2">Bounty value</span>
         </div>
         <div className="media justify-content-md-start">
           <div className="font-weight-bold font-size-7 text-hit-gray mb-0">
@@ -142,7 +142,7 @@ export const BountyDetails = ({ bounty }) => (
         iconClass="fas fa-link"
       />
     </div>
-    <div className="row">
+    <div className="row mt-9">
       <div className="col-12 mb-lg-0 mb-8">
         <div className="tags">
           <h6 className="font-size-5 text-black-2 font-weight-semibold mb-0">
