@@ -38,11 +38,11 @@ export const BountyHeader = ({ bounty, isPreview }) => {
               <TechIcon language={bounty.languages[0]} />
             </div>
             <div>
-              <h3 className="font-size-6 mb-0">{bounty.title}</h3>
+              <h3 className="font-size-6 mb-0 text-break">{bounty.title}</h3>
               <div className="media align-items-center">
                 <a
                   href={githubUrl}
-                  className="font-size-3 text-gray line-height-2"
+                  className="font-size-3 text-gray line-height-2 text-break"
                 >
                   <i className="devicon-github-original mr-1"></i>
                   {fullRepoName}
@@ -55,12 +55,17 @@ export const BountyHeader = ({ bounty, isPreview }) => {
           {/* <!-- media date start --> */}
           <div className="media justify-content-md-end">
             <p className="font-size-4 text-gray mb-0">
-              {formatDate(bounty.created_at)}
+              <small className="d-block text-md-right text-hit-gray">
+                Expires:
+              </small>
+              {formatDate(bounty.expires_at)}
             </p>
           </div>
           {!isPreview && (
-            <div className="mt-10 h5">
-              Status: {formatStatus(bounty.bounty_status)}
+            <div className="media justify-content-md-end">
+              <p className="mt-3 pt-4 h5 border-top border-primary">
+                Status: {formatStatus(bounty.bounty_status)}
+              </p>
             </div>
           )}
           {/* <!-- media date end --> */}
