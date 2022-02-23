@@ -1,68 +1,62 @@
-import axios from 'axios';
-import { parseCookies } from 'nookies';
-import { ethers } from 'ethers';
 import BountyFactory from '@/contract/BountyFactory.json';
+import { ethers } from 'ethers';
 import { toast } from 'react-toastify';
 
 class BountyServiceClass {
-  bountyFactoryAddress = '0x153Bab3d11fE9e2f90b9747060855fEbCf31F92C';
-
-  apiClient = axios.create({
-    baseURL: process.env.NEXT_PUBLIC_EXTERNAL_API_URL || '',
-    responseType: 'json',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-
   async checkIfIssueExists(issue) {
     if (issue) {
       return await this.apiClient.get(`bounty/issue/${issue.id}`);
     }
   }
 
-  async createNewBounty(newBountyDto) {
+  async createNewBounty(newBountyDto, post) {
     await window.ethereum.request({ method: 'eth_requestAccounts' });
     try {
-      const bountySecret = await this.createBountyOnBackend(newBountyDto);
-      console.log('Created new bounty on backend: ' + bountySecret.data);
-      const tx = await this.createBountyOnBlockchain(
-        bountySecret.data.id,
-        newBountyDto.bounty_value
+      const createBountyResponse = await this.createBountyOnBackend(
+        newBountyDto,
+        post
+      );
+      await this.createBountyOnBlockchain(
+        createBountyResponse,
+        newBountyDto.bounty_value,
+        newBountyDto.expires_at
       );
       toast.success('Bounty created!');
-      return bountySecret.data.id;
+      return createBountyResponse.new_bounty_id;
     } catch (err) {
       return this.handleCreateBountyError(err);
     }
   }
 
-  async createBountyOnBackend(newBountyDto) {
-    const headers = {
-      Authorization: 'Bearer ' + parseCookies().token,
-    };
-    return await this.apiClient.post('bounty', newBountyDto, {
-      headers: headers,
-    });
+  async createBountyOnBackend(newBountyDto, post) {
+    return await post('bounty', newBountyDto);
   }
 
-  async createBountyOnBlockchain(bountyId, bountyValue) {
+  async createBountyOnBlockchain(
+    createBountyResponse,
+    bountyValue,
+    bountyExpiry
+  ) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
     const signer = provider.getSigner();
     const contract = new ethers.Contract(
-      this.bountyFactoryAddress,
+      createBountyResponse.bounty_factory_address,
       BountyFactory.abi,
       signer
     );
-    const expiry = new Date().getTime() + 1000;
+    const ethValue = ethers.utils.parseEther(bountyValue.toString()); // ether in this case MUST be a string
     const overrides = {
-      value: ethers.utils.parseEther(bountyValue.toString()), // ether in this case MUST be a string
+      value: ethValue,
     };
-    return await contract.createBounty(expiry, bountyId, overrides);
+    return await contract.createBounty(
+      bountyExpiry,
+      createBountyResponse.new_bounty_id,
+      overrides
+    );
   }
 
   handleCreateBountyError(err) {
-    console.log({ err });
+    console.error(err);
 
     // metamask errors
     if (err.code === 4001) {
@@ -78,11 +72,13 @@ class BountyServiceClass {
     }
 
     // api errors
-    if (err.response.data.code !== 200) {
+    if (err.response !== undefined && err.response.data.code !== 200) {
       throw new Error(err.response.data.message);
     }
 
-    throw new Error('An error has occured');
+    throw new Error(
+      'An error has occured, please check the console for metamask errors'
+    );
   }
 }
 

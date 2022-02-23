@@ -60,7 +60,7 @@ const Success = () => {
                       <div className="d-flex flex-column align-items-center">
                         <Link href={bountyLink}>
                           <a className="line-height-reset btn-submit btn-xl text-uppercase btn btn-primary px-7">
-                            Click here to go to the bounty
+                            See bounty
                           </a>
                         </Link>
                       </div>
