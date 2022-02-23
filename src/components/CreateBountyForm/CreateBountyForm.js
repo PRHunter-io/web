@@ -6,10 +6,11 @@ import { BountyService } from './service';
 import { languages, bountyType, experienceLevel } from '@/utils/filters';
 import { PaymentsForm } from './Steps/PaymentsForm';
 import { BountyReview } from './Steps/BountyReview';
-import { getUnixTime } from 'date-fns';
+import { getUnixTime, parseISO } from 'date-fns';
 import Stepper from '../Stepper';
 import { validationSchema } from './FormModel/validationSchema';
 import { PickerForm } from './Steps/PickerForm';
+import { useApi } from '@/context/ApiServiceContext';
 
 const steps = [
   'Pick issue',
@@ -25,6 +26,7 @@ export const CreateBountyForm = () => {
   const [createError, setCreateError] = useState(null);
   const isLastStep = currentStep === steps.length - 1;
   const router = useRouter();
+  const { post } = useApi();
 
   function renderStepContent(step, values) {
     switch (step) {
@@ -71,7 +73,11 @@ export const CreateBountyForm = () => {
         expires_at: getUnixTime(details.expirationDate),
       };
       try {
-        const bountyId = await BountyService.createNewBounty(newBountyDto);
+        console.log(details);
+        const bountyId = await BountyService.createNewBounty(
+          newBountyDto,
+          post
+        );
         router.push(`/dashboard/success?bounty_id=${bountyId}`);
       } catch (error) {
         setCreateError(error.message);
