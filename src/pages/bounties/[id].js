@@ -55,7 +55,7 @@ export const BountyHeader = ({ bounty, isPreview }) => {
           {/* <!-- media date start --> */}
           <div className="media justify-content-md-end">
             <p className="font-size-4 text-gray mb-0">
-              <small className="d-block text-md-right text-hit-gray">
+              <small className="d-block text-left text-md-right text-hit-gray">
                 Expires:
               </small>
               {formatDate(bounty.expires_at)}
