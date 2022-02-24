@@ -15,7 +15,7 @@ const ClipboardButton = ({ bountyId, ...props }) => {
     >
       {props?.tooltip ? (
         <FieldTooltip
-          icon="fa fa-clipboard text-primary mr-4"
+          customClass="fa fa-clipboard text-primary mr-4"
           text={props.tooltip}
         />
       ) : (
