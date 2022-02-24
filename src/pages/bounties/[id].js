@@ -165,7 +165,7 @@ export const BountyDetails = ({ bounty }) => (
 );
 
 export const BountyBody = ({ bounty }) => (
-  <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 light-mode-texts">
+  <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 light-mode-texts border-bottom border-width-1 border-default-color">
     <div className="row">
       <div className="col-xl-11 col-md-12 pr-xxl-9 pr-xl-10 pr-lg-20">
         <div>

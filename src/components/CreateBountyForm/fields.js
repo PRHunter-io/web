@@ -74,7 +74,7 @@ export const MySelect = ({ label, ...props }) => {
 
 export const MyDatePicker = ({ label, ...props }) => {
   return (
-    <>
+    <div className="mb-4">
       <label className="text-muted pr-2 mb-4" htmlFor={props.id || props.name}>
         {label}
         {props?.tooltip && (
@@ -82,6 +82,6 @@ export const MyDatePicker = ({ label, ...props }) => {
         )}
       </label>
       <DatePicker className="form-control h-px-48" name="expirationDate" />
-    </>
+    </div>
   );
 };
