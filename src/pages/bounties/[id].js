@@ -4,6 +4,7 @@ import PageWrapper from '../../components/PageWrapper';
 import TechIcon from '@/components/Icons/TechIcon';
 import { formatDate } from 'src/utils';
 import { formatStatus } from '@/utils/formatStatus';
+import ClipboardButton from '@/components/ClipboardButton';
 
 const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
@@ -48,6 +49,12 @@ export const BountyHeader = ({ bounty, isPreview }) => {
                   {fullRepoName}
                 </a>
               </div>
+              {!isPreview && (
+                <ClipboardButton
+                  bountyId={bounty.id}
+                  tooltip="In order to link the bounty with user's pull request, you must copy and paste bounty ID into the Pull Request title"
+                />
+              )}
             </div>
           </div>
         </div>
