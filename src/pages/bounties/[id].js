@@ -38,11 +38,11 @@ export const BountyHeader = ({ bounty, isPreview }) => {
               <TechIcon language={bounty.languages[0]} />
             </div>
             <div>
-              <h3 className="font-size-6 mb-0">{bounty.title}</h3>
+              <h3 className="font-size-6 mb-0 text-break">{bounty.title}</h3>
               <div className="media align-items-center">
                 <a
                   href={githubUrl}
-                  className="font-size-3 text-gray line-height-2"
+                  className="font-size-3 text-gray line-height-2 text-break"
                 >
                   <i className="devicon-github-original mr-1"></i>
                   {fullRepoName}
@@ -55,12 +55,17 @@ export const BountyHeader = ({ bounty, isPreview }) => {
           {/* <!-- media date start --> */}
           <div className="media justify-content-md-end">
             <p className="font-size-4 text-gray mb-0">
+              <small className="d-block text-left text-md-right text-hit-gray">
+                Created at:
+              </small>
               {formatDate(bounty.created_at)}
             </p>
           </div>
           {!isPreview && (
-            <div className="mt-10 h5">
-              Status: {formatStatus(bounty.bounty_status)}
+            <div className="media justify-content-md-end">
+              <p className="mt-3 pt-4 h5 border-top border-primary">
+                Status: {formatStatus(bounty.bounty_status)}
+              </p>
             </div>
           )}
           {/* <!-- media date end --> */}
@@ -70,12 +75,24 @@ export const BountyHeader = ({ bounty, isPreview }) => {
   );
 };
 
+const SimpleBounty = ({ label, value, iconClass }) => (
+  <div className="col-md-4 mb-lg-0 mb-6">
+    <span className="font-size-4 d-block mb-2 text-gray">{label}</span>
+    <h6 className="font-size-5 text-black-2 font-weight-semibold">
+      <span className="text-primary">
+        <i className={`${iconClass} pr-3`} />
+      </span>
+      {value}
+    </h6>
+  </div>
+);
+
 export const BountyDetails = ({ bounty }) => (
   <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 border-bottom border-width-1 border-default-color light-mode-texts">
-    <div className="row mb-7">
-      <div className="col-md-4 mb-lg-0 mb-10">
+    <div className="row mb-md-7">
+      <div className="col-md-4 mb-lg-0 mb-6">
         <div className="media justify-content-md-start">
-          <span className="font-size-4 d-block mb-4">Bounty value</span>
+          <span className="font-size-4 d-block mb-2">Bounty value</span>
         </div>
         <div className="media justify-content-md-start">
           <div className="font-weight-bold font-size-7 text-hit-gray mb-0">
@@ -99,56 +116,38 @@ export const BountyDetails = ({ bounty }) => (
           </p>
         </div>
       </div>
-      <div className="col-md-4 mb-lg-0 mb-10">
-        <div className="">
-          <span className="font-size-4 d-block mb-4 text-gray">
-            Experience required
-          </span>
-          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
-            <span className="text-primary">
-              <i className="fas fa-signal pr-3" />
-            </span>
-            {bounty.experience}
-          </h6>
-        </div>
-      </div>
-      <div className="col-md-4 mb-lg-0 mb-10">
-        <div className="">
-          <span className="font-size-4 d-block mb-4 text-gray">
-            Bounty Type
-          </span>
-          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
-            <span className="text-primary">
-              <i className="fas fa-briefcase pr-3" />
-            </span>
-            {bounty.bounty_type}
-          </h6>
-        </div>
-      </div>
+      <SimpleBounty
+        label="Expires"
+        value={formatDate(bounty.expires_at)}
+        iconClass="fas fa-clock"
+      />
+      <SimpleBounty
+        label="Experience required"
+        value={bounty.experience}
+        iconClass="fas fa-signal"
+      />
     </div>
     <div className="row">
-      <div className="col-md-4 mb-lg-0 mb-10">
-        <div className="">
-          <span className="font-size-4 d-block mb-4 text-gray">Blockchain</span>
-          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-9">
-            <span className="text-primary">
-              <i className="fas fa-link pr-3" />
-            </span>
-            {bounty.bounty_currency === 'ETH' && 'Ethereum'}
-            {bounty.bounty_currency === 'BNB' && 'Binance Smart Chain'}
-          </h6>
-        </div>
-      </div>
+      <SimpleBounty
+        label="Bounty Type"
+        value={bounty.bounty_type}
+        iconClass="fas fa-briefcase"
+      />
+      <SimpleBounty
+        label="Blockchain"
+        value={
+          (bounty.bounty_currency === 'ETH' && 'Ethereum') ||
+          (bounty.bounty_currency === 'BNB' && 'Binance Smart Chain')
+        }
+        iconClass="fas fa-link"
+      />
     </div>
-    <div className="row">
+    <div className="row mt-9">
       <div className="col-12 mb-lg-0 mb-8">
         <div className="tags">
           <h6 className="font-size-5 text-black-2 font-weight-semibold mb-0">
             Technologies used:
           </h6>
-          {/* <p className="font-size-4 text-gray mb-3">
-                            Tech Stack
-                          </p> */}
           <ul className="d-flex list-unstyled flex-wrap pr-sm-25 pr-md-0">
             {bounty.languages.map((language, index) => (
               <li
@@ -233,4 +232,5 @@ const Bounty = ({ bounty }) => {
     </>
   );
 };
+
 export default Bounty;

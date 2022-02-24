@@ -2,17 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 
 import TechIcon from '../Icons/TechIcon';
-
-const calculateDays = (date) => {
-  const currentDate = new Date();
-  const parsedDate = Date.parse(date);
-  const issueDate = new Date(parsedDate);
-
-  const differenceInTime = currentDate.getTime() - issueDate.getTime();
-
-  const differenceInDays = differenceInTime / (1000 * 3600 * 24);
-  return differenceInDays.toFixed();
-};
+import { formatDate } from '@/utils/formatDate';
 
 export const BountiesListRegular = ({ bounties }) => {
   return <>{bounties.map((bounty) => BountyView(bounty))}</>;
@@ -26,7 +16,7 @@ const BountyView = (bounty) => {
       {/* <!-- Single Featured Job --> */}
       <div className="pt-9 px-xl-9 px-lg-7 px-7 pb-7 light-mode-texts bg-white rounded hover-shadow-3 ">
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-8">
             <div className="media align-items-center">
               <div className="square-72 d-block mr-8">
                 <TechIcon language={bounty.languages[0]}></TechIcon>
@@ -34,7 +24,7 @@ const BountyView = (bounty) => {
               <div>
                 <h3 className="mb-0">
                   <Link href={`/bounties/${bounty.id}`}>
-                    <a className="font-size-6 heading-default-color">
+                    <a className="font-size-6 heading-default-color text-break">
                       {bounty.title}
                     </a>
                   </Link>
@@ -51,7 +41,7 @@ const BountyView = (bounty) => {
               </div>
             </div>
           </div>
-          <div className="col-md-6 text-right pt-7 pt-md-5">
+          <div className="col-md-4 text-right pt-7 pt-md-5">
             <div className="media justify-content-md-end">
               <p className="font-weight-bold font-size-7 text-hit-gray mb-0">
                 <span className="text-black-2">
@@ -76,7 +66,7 @@ const BountyView = (bounty) => {
           </div>
         </div>
         <div className="row pt-8">
-          <div className="col-md-7">
+          <div className="col-md-4">
             <ul className="d-flex list-unstyled mr-n3 flex-wrap">
               {bounty.languages.map((language, index) => (
                 <li key={index}>
@@ -89,24 +79,30 @@ const BountyView = (bounty) => {
               ))}
             </ul>
           </div>
-          <div className="col-md-5">
+          <div className="col-md-8">
             <ul className="d-flex list-unstyled mr-n3 flex-wrap mr-n8 justify-content-md-end">
-              <li className="mt-2 mr-8 font-size-small text-black-2 d-flex">
+              <li className="mt-2 mr-8 font-size-small text-black-2">
                 <i className="fas fa-briefcase pr-3" />
                 <span className="font-weight-semibold">
                   {bounty.bounty_type}
                 </span>
               </li>
-              <li className="mt-2 mr-8 font-size-small text-black-2 d-flex">
+              <li className="mt-2 mr-8 font-size-small text-black-2">
                 <i className="fas fa-signal pr-3" />
                 <span className="font-weight-semibold">
                   {bounty.experience}
                 </span>
               </li>
-              <li className="mt-2 mr-8 font-size-small text-black-2 d-flex">
-                <i className="fas fa-calendar pr-3" />
+              <li className="mt-2 mr-8 font-size-small text-black-2">
+                <i className="fas fa-cog pr-3" />
                 <span className="font-weight-semibold">
-                  {calculateDays(bounty.created_at)}d ago
+                  {bounty.bounty_status}
+                </span>
+              </li>
+              <li className="mt-2 mr-8 font-size-small text-black-2">
+                <i className="fas fa-clock pr-3" />
+                <span className="font-weight-semibold">
+                  {formatDate(bounty.expires_at)}
                 </span>
               </li>
             </ul>

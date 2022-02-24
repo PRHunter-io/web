@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -40,6 +40,10 @@ const DatePickerComponent = ({ className, ...props }) => {
   const today = new Date();
   today.setDate(new Date().getDate() + 7);
   const [field, , { setValue }] = useField(props);
+
+  useEffect(() => {
+    if (!field.value) setValue(today);
+  }, []);
 
   return (
     <DatePickerStyled>

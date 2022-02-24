@@ -17,6 +17,7 @@ export const BountyReview = ({ repository, issue, values }) => {
     bounty_value: values.bountyAmount,
     bounty_value_usd: 'todo',
     created_at: currentDate,
+    expires_at: values.expirationDate,
     experience: values.experience,
     languages: [values.language],
     problem_statement: values.problemStatement,
