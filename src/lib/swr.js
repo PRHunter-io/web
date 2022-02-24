@@ -71,7 +71,7 @@ export const useIssues = (repoName) => {
 
   return {
     issues: data,
-    isLoading: !error && !data,
+    isLoading: !error && !data && repoName,
     error: error,
   };
 };
