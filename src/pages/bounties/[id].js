@@ -4,6 +4,7 @@ import PageWrapper from '../../components/PageWrapper';
 import TechIcon from '@/components/Icons/TechIcon';
 import { formatDate } from 'src/utils';
 import { formatStatus } from '@/utils/formatStatus';
+import { useUsdPricing } from '@/lib/crypto-pricing';
 
 const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
@@ -87,82 +88,86 @@ const SimpleBounty = ({ label, value, iconClass }) => (
   </div>
 );
 
-export const BountyDetails = ({ bounty }) => (
-  <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 border-bottom border-width-1 border-default-color light-mode-texts">
-    <div className="row mb-md-7">
-      <div className="col-md-4 mb-lg-0 mb-6">
-        <div className="media justify-content-md-start">
-          <span className="font-size-4 d-block mb-2">Bounty value</span>
-        </div>
-        <div className="media justify-content-md-start">
-          <div className="font-weight-bold font-size-7 text-hit-gray mb-0">
-            <h5 className="text-black-2">
-              <span className="text-primary">
-                <i className="fas fa-coins pr-3" />
+export const BountyDetails = ({ bounty }) => {
+  const { getUsdPrice } = useUsdPricing();
+
+  return (
+    <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 border-bottom border-width-1 border-default-color light-mode-texts">
+      <div className="row mb-md-7">
+        <div className="col-md-4 mb-lg-0 mb-6">
+          <div className="media justify-content-md-start">
+            <span className="font-size-4 d-block mb-2">Bounty value</span>
+          </div>
+          <div className="media justify-content-md-start">
+            <div className="font-weight-bold font-size-7 text-hit-gray mb-0">
+              <h5 className="text-black-2">
+                <span className="text-primary">
+                  <i className="fas fa-coins pr-3" />
+                </span>
+                {bounty.bounty_value}
+                <span className="text-hit-gray pl-1">
+                  {bounty.bounty_currency}
+                </span>
+              </h5>
+            </div>
+          </div>
+          <div className="media justify-content-md-start">
+            <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
+              ~
+              <span className="text-black-2 pl-1">
+                {getUsdPrice(bounty.bounty_value, bounty.bounty_currency)} $
               </span>
-              {bounty.bounty_value}
-              <span className="text-hit-gray pl-1">
-                {bounty.bounty_currency}
-              </span>
-            </h5>
+            </p>
           </div>
         </div>
-        <div className="media justify-content-md-start">
-          <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
-            ~
-            <span className="text-black-2 pl-1">
-              {bounty.bounty_value_usd} $
-            </span>
-          </p>
-        </div>
+        <SimpleBounty
+          label="Expires"
+          value={formatDate(bounty.expires_at)}
+          iconClass="fas fa-clock"
+        />
+        <SimpleBounty
+          label="Experience required"
+          value={bounty.experience}
+          iconClass="fas fa-signal"
+        />
       </div>
-      <SimpleBounty
-        label="Expires"
-        value={formatDate(bounty.expires_at)}
-        iconClass="fas fa-clock"
-      />
-      <SimpleBounty
-        label="Experience required"
-        value={bounty.experience}
-        iconClass="fas fa-signal"
-      />
-    </div>
-    <div className="row">
-      <SimpleBounty
-        label="Bounty Type"
-        value={bounty.bounty_type}
-        iconClass="fas fa-briefcase"
-      />
-      <SimpleBounty
-        label="Blockchain"
-        value={
-          (bounty.bounty_currency === 'ETH' && 'Ethereum') ||
-          (bounty.bounty_currency === 'BNB' && 'Binance Smart Chain')
-        }
-        iconClass="fas fa-link"
-      />
-    </div>
-    <div className="row mt-9">
-      <div className="col-12 mb-lg-0 mb-8">
-        <div className="tags">
-          <h6 className="font-size-5 text-black-2 font-weight-semibold mb-0">
-            Technologies used:
-          </h6>
-          <ul className="d-flex list-unstyled flex-wrap pr-sm-25 pr-md-0">
-            {bounty.languages.map((language, index) => (
-              <li
-                key={index}
-                className="bg-regent-opacity-15 mr-3 h-px-33 text-center flex-all-center rounded-3 px-5 font-size-3 text-black-2 mt-2"
-              >
-                {language}
-              </li>
-            ))}
-          </ul>
+      <div className="row">
+        <SimpleBounty
+          label="Bounty Type"
+          value={bounty.bounty_type}
+          iconClass="fas fa-briefcase"
+        />
+        <SimpleBounty
+          label="Blockchain"
+          value={
+            (bounty.bounty_currency === 'ETH' && 'Ethereum') ||
+            (bounty.bounty_currency === 'BNB' && 'Binance Smart Chain')
+          }
+          iconClass="fas fa-link"
+        />
+      </div>
+      <div className="row mt-9">
+        <div className="col-12 mb-lg-0 mb-8">
+          <div className="tags">
+            <h6 className="font-size-5 text-black-2 font-weight-semibold mb-0">
+              Technologies used:
+            </h6>
+            <ul className="d-flex list-unstyled flex-wrap pr-sm-25 pr-md-0">
+              {bounty.languages.map((language, index) => (
+                <li
+                  key={index}
+                  className="bg-regent-opacity-15 mr-3 h-px-33 text-center flex-all-center rounded-3 px-5 font-size-3 text-black-2 mt-2"
+                >
+                  {language}
+                </li>
+              ))}
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const BountyBody = ({ bounty }) => (
   <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 light-mode-texts border-bottom border-width-1 border-default-color">

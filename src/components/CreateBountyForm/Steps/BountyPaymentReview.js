@@ -1,3 +1,4 @@
+import { useUsdPricing } from '@/lib/crypto-pricing';
 import Link from 'next/link';
 
 export const BountyPaymentReview = ({
@@ -5,18 +6,20 @@ export const BountyPaymentReview = ({
   bountyValue,
   commision,
   totalBountyValue,
-  getUsdPrice,
-}) => (
-  <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 light-mode-texts">
-    <div className="row">
-      <div className="col-lg-12">
+}) => {
+  const { getUsdPrice } = useUsdPricing();
+
+  return (
+    <div className="job-details-content pt-8 pl-sm-9 pl-6 pr-sm-9 pr-6 pb-10 light-mode-texts">
+      <div className="row">
         <span className="col-lg-6">Bounty value</span>
         <span className="col-lg-6 text-right">
           {parseFloat(bountyValue).toFixed(4)} {currency} (~ $
-          {getUsdPrice(bountyValue).toFixed(2)})
+          {getUsdPrice(bountyValue, currency)})
         </span>
       </div>
-      <div className="col-lg-12 mb-4">
+
+      <div className="row mb-4">
         <span className="col-lg-6">
           <span>Operational fee</span>
           <Link href="/docs#operational-fee">
@@ -29,18 +32,18 @@ export const BountyPaymentReview = ({
             </a>
           </Link>
         </span>
-        <span className="col-lg-6 text-right">
+        <span className="col-md-6 text-right">
           {commision.toFixed(4)} {currency} (~ $
-          {getUsdPrice(commision).toFixed(2)})
+          {getUsdPrice(commision, currency)})
         </span>
       </div>
-      <div className="col-lg-12">
-        <span className="col-lg-6 font-weight-bold">Total</span>
-        <span className="col-lg-6 text-right font-weight-bold">
+      <div className="row">
+        <span className="col-md-6 font-weight-bold">Total</span>
+        <span className="col-md-6 text-md-right font-weight-bold">
           {totalBountyValue.toFixed(4)} {currency} (~ $
-          {getUsdPrice(totalBountyValue).toFixed(2)})
+          {getUsdPrice(totalBountyValue, currency)})
         </span>
       </div>
     </div>
-  </div>
-);
+  );
+};

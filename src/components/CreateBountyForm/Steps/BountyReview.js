@@ -1,4 +1,3 @@
-import { useCryptoPrices } from '@/lib/swr';
 import React from 'react';
 import {
   BountyBody,
@@ -18,19 +17,6 @@ export const BountyReview = ({
   const repo_name = repository.full_name.split('/')[1];
   const currentDate = Date.now();
 
-  const { cryptoPrices, isLoading } = useCryptoPrices();
-
-  const getUsdPrice = (param) => {
-    if (isLoading) {
-      return 0.0;
-    } else {
-      const value =
-        cryptoPrices.filter((t) => t.currency == values.currency)[0].usd_value *
-        param;
-      return value;
-    }
-  };
-
   const bounty = {
     acceptance_criteria: values.acceptanceCriteria,
     bounty_currency: values.currency,
@@ -49,10 +35,6 @@ export const BountyReview = ({
     title: values.title,
   };
 
-  console.log(values.bountyAmount);
-  console.log(commision);
-  console.log(totalBountyValue);
-
   return (
     <div className="row">
       <div className="col-12 mb-8">
@@ -61,11 +43,10 @@ export const BountyReview = ({
           <BountyDetails bounty={bounty} isPreview={true} />
           <BountyBody bounty={bounty} isPreview={true} />
           <BountyPaymentReview
-            currency={bounty.currency}
+            currency={values.currency}
             bountyValue={values.bountyAmount}
             commision={commision}
             totalBountyValue={totalBountyValue}
-            getUsdPrice={getUsdPrice}
           />
         </div>
       </div>

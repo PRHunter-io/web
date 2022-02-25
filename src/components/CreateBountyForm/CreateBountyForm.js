@@ -6,7 +6,7 @@ import { BountyService } from './service';
 import { languages, bountyType, experienceLevel } from '@/utils/filters';
 import { PaymentsForm } from './Steps/PaymentsForm';
 import { BountyReview } from './Steps/BountyReview';
-import { getUnixTime, parseISO } from 'date-fns';
+import { getUnixTime } from 'date-fns';
 import Stepper from '../Stepper';
 import { validationSchema } from './FormModel/validationSchema';
 import { PickerForm } from './Steps/PickerForm';
@@ -92,7 +92,6 @@ export const CreateBountyForm = () => {
         expires_at: getUnixTime(details.expirationDate),
       };
       try {
-        console.log(details);
         const bountyId = await BountyService.createNewBounty(
           newBountyDto,
           post
@@ -169,6 +168,12 @@ export const CreateBountyForm = () => {
                   </div>
                   {createError && (
                     <div className="error mb-4">{createError}</div>
+                  )}
+                  {isSubmitting && (
+                    <div className="info mt-4 mb-4 text-md-right">
+                      Note: Please check your metamask extension if nothing
+                      happens
+                    </div>
                   )}
                 </Form>
               );
