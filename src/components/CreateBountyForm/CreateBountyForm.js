@@ -6,7 +6,7 @@ import { BountyService } from './service';
 import { languages, bountyType, experienceLevel } from '@/utils/filters';
 import { PaymentsForm } from './Steps/PaymentsForm';
 import { BountyReview } from './Steps/BountyReview';
-import { getUnixTime, parseISO } from 'date-fns';
+import { getUnixTime } from 'date-fns';
 import Stepper from '../Stepper';
 import { validationSchema } from './FormModel/validationSchema';
 import { PickerForm } from './Steps/PickerForm';
@@ -22,6 +22,8 @@ const steps = [
 export const CreateBountyForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [repository, setRepository] = useState(null);
+  const [commision, setCommision] = useState(0.08);
+  const [totalBountyValue, setTotalBountyValue] = useState(commision);
   const [issue, setIssue] = useState(null);
   const [createError, setCreateError] = useState(null);
   const isLastStep = currentStep === steps.length - 1;
@@ -42,10 +44,27 @@ export const CreateBountyForm = () => {
       case 1:
         return <DetailsForm repository={repository} issue={issue} />;
       case 2:
-        return <PaymentsForm repository={repository} issue={issue} />;
+        return (
+          <PaymentsForm
+            currency={values.currency}
+            bountyValue={values.bountyAmount}
+            commision={commision}
+            setCommision={setCommision}
+            totalBountyValue={totalBountyValue}
+            setTotalBountyValue={setTotalBountyValue}
+            repository={repository}
+            issue={issue}
+          />
+        );
       case 3:
         return (
-          <BountyReview repository={repository} issue={issue} values={values} />
+          <BountyReview
+            totalBountyValue={totalBountyValue}
+            commision={commision}
+            repository={repository}
+            issue={issue}
+            values={values}
+          />
         );
       default:
         return <div>Not Found</div>;
@@ -73,7 +92,6 @@ export const CreateBountyForm = () => {
         expires_at: getUnixTime(details.expirationDate),
       };
       try {
-        console.log(details);
         const bountyId = await BountyService.createNewBounty(
           newBountyDto,
           post
@@ -102,7 +120,7 @@ export const CreateBountyForm = () => {
               problemStatement: '',
               acceptanceCriteria: '',
               currency: 'ETH',
-              bountyAmount: '0.001',
+              bountyAmount: '0.01',
               expirationDate: '',
             }}
             validationSchema={validationSchema[currentStep]}
@@ -150,6 +168,12 @@ export const CreateBountyForm = () => {
                   </div>
                   {createError && (
                     <div className="error mb-4">{createError}</div>
+                  )}
+                  {isSubmitting && (
+                    <div className="info mt-4 mb-4 text-md-right">
+                      Note: Please check your metamask extension if nothing
+                      happens
+                    </div>
                   )}
                 </Form>
               );

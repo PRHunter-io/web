@@ -75,3 +75,16 @@ export const useIssues = (repoName) => {
     error: error,
   };
 };
+
+export const useCryptoPrices = () => {
+  const url = `/crypto/prices`;
+  const { get } = useApi();
+  const axiosFetcher = (url) => get(url);
+  const { data, error } = useSWRImmutable(url, axiosFetcher);
+
+  return {
+    cryptoPrices: data,
+    isLoading: !error && !data,
+    error: error,
+  };
+};

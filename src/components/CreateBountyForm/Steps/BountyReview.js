@@ -4,8 +4,15 @@ import {
   BountyDetails,
   BountyHeader,
 } from 'src/pages/bounties/[id]';
+import { BountyPaymentReview } from './BountyPaymentReview';
 
-export const BountyReview = ({ repository, issue, values }) => {
+export const BountyReview = ({
+  repository,
+  issue,
+  values,
+  commision,
+  totalBountyValue,
+}) => {
   const repo_owner = repository.full_name.split('/')[0];
   const repo_name = repository.full_name.split('/')[1];
   const currentDate = Date.now();
@@ -35,6 +42,12 @@ export const BountyReview = ({ repository, issue, values }) => {
           <BountyHeader bounty={bounty} isPreview={true} />
           <BountyDetails bounty={bounty} isPreview={true} />
           <BountyBody bounty={bounty} isPreview={true} />
+          <BountyPaymentReview
+            currency={values.currency}
+            bountyValue={values.bountyAmount}
+            commision={commision}
+            totalBountyValue={totalBountyValue}
+          />
         </div>
       </div>
     </div>
