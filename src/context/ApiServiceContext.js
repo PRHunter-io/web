@@ -31,9 +31,14 @@ export function ApiServiceProvider({ children }) {
   );
 
   const getHeaders = () => {
-    return {
-      Authorization: 'Bearer ' + parseCookies().token,
-    };
+    const token = parseCookies().token;
+    if (token !== undefined) {
+      return {
+        Authorization: 'Bearer ' + parseCookies().token,
+      };
+    } else {
+      return token;
+    }
   };
 
   const post = async (resource, payload) => {

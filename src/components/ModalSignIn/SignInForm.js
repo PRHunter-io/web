@@ -124,6 +124,7 @@ export const SignInForm = () => {
               <button
                 type="submit"
                 className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase"
+                data-cy="log-in-button"
               >
                 Log in{' '}
               </button>

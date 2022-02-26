@@ -4,7 +4,8 @@ describe('user login', () => {
     cy.visit('/');
 
     // Open login modal
-    cy.findByText(/log in/i).click();
+
+    cy.get('[data-cy=log-in-modal-button]').click();
 
     // Provide login credentials, proceed with login
     cy.findByLabelText(/e\-mail/i).type('pyghjftqqrononkpzb@nvhrw.com');
