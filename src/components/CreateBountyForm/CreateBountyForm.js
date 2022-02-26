@@ -87,7 +87,7 @@ export const CreateBountyForm = () => {
         tags: [],
         experience: details.experience,
         bounty_type: details.bountyType,
-        bounty_value: details.bountyAmount,
+        bounty_value: totalBountyValue,
         bounty_currency: details.currency,
         expires_at: getUnixTime(details.expirationDate),
       };
@@ -167,7 +167,7 @@ export const CreateBountyForm = () => {
                     </button>
                   </div>
                   {createError && (
-                    <div className="error mb-4">{createError}</div>
+                    <div className="error mt-4 mb-4">{createError}</div>
                   )}
                   {isSubmitting && (
                     <div className="info mt-4 mb-4 text-md-right">
