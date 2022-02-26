@@ -56,7 +56,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v2
         with:
-          build: npm run build
-          start: npm run start
           spec: cypress/integration/sanity_spec_staging.js
           config: pageLoadTimeout=100000,baseUrl=https://staging.prhunter.io/
