@@ -140,6 +140,7 @@ const SignInControls = () => {
     <div className="header-btns header-btn-devider ml-auto pr-2 ml-lg-6 d-none d-xs-flex">
       <a
         className="btn btn-transparent text-uppercase font-size-3 heading-default-color focus-reset"
+        data-cy="log-in-modal-button"
         onClick={(e) => {
           e.preventDefault();
           gContext.toggleSignInModal();

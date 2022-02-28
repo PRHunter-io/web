@@ -36,8 +36,8 @@ export const validationSchema = [
       .oneOf(bountyCurrency.values.map((exp) => exp.value))
       .required('Currency is required'),
     bountyAmount: Yup.number()
-      .min(0.00001, 'Amount too small')
-      .max(100, 'Amount too large')
+      .min(0.01, 'Amount too small')
+      .max(1000, 'Amount too large')
       .required('Bounty amount is required'),
   }),
 ];

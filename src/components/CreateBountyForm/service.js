@@ -55,6 +55,20 @@ class BountyServiceClass {
     );
   }
 
+  calculateCommision(formValue) {
+    if (formValue < 0.25) {
+      return this.getBaseCommision();
+    } else {
+      // Calc the 103% of bounty value and subtract the value
+      const total = (parseFloat(formValue) * 103) / 100;
+      return total - formValue;
+    }
+  }
+
+  getBaseCommision() {
+    return 0.008;
+  }
+
   handleCreateBountyError(err) {
     console.error(err);
 
