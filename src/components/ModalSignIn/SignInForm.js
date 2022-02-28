@@ -1,14 +1,11 @@
 import { Field, Form, Formik } from 'formik';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import * as Yup from 'yup';
-import { useRouter } from 'next/router';
 import { useAuth } from 'src/context/AuthUserContext';
-import GlobalContext from 'src/context/GlobalContext';
 
 export const SignInForm = () => {
   const [showPass, setShowPass] = useState(true);
-  const gContext = useContext(GlobalContext);
-  const router = useRouter();
+  const [loginError, setLoginError] = useState(false);
   const { signIn } = useAuth();
 
   const togglePassword = () => {
@@ -30,11 +27,7 @@ export const SignInForm = () => {
   });
 
   const submitForm = async (values) => {
-    const isSignInSuccessful = await signIn(values.email, values.password);
-
-    if (isSignInSuccessful) {
-      gContext.toggleSignInModal();
-    }
+    await signIn(values.email, values.password, setLoginError);
   };
 
   return (
@@ -97,28 +90,28 @@ export const SignInForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                <a
-                  href="/#"
-                  className="show-password pos-abs-cr fas mr-6 text-black-2"
+                <button
+                  type="button"
+                  className="blank-btn show-password pos-abs-cr fas mr-6 text-black-2"
                   onClick={(e) => {
                     e.preventDefault();
                     togglePassword();
                   }}
                 >
                   <span className="d-none">none</span>
-                </a>
+                </button>
               </div>
-              {errors.password && touched.password ? (
+              {errors.password && touched.password && (
                 <small className="text-danger">{errors.password}</small>
-              ) : null}
+              )}
             </div>
             <div className="form-group d-flex flex-wrap justify-content-end">
-              <a
-                href="/#"
-                className="font-size-3 text-dodger line-height-reset"
+              <button
+                type="button"
+                className="blank-btn font-size-3 text-dodger line-height-reset"
               >
                 Forgot your password?
-              </a>
+              </button>
             </div>
             <div className="form-group mb-8">
               <button
@@ -126,8 +119,11 @@ export const SignInForm = () => {
                 className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase"
                 data-cy="log-in-button"
               >
-                Log in{' '}
+                Log in
               </button>
+              {loginError && (
+                <small className="text-danger">{loginError}</small>
+              )}
             </div>
           </Form>
         );

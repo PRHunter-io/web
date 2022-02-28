@@ -15,6 +15,7 @@ import app from '@/lib/firebase';
 import { useRouter } from 'next/router';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import GlobalContext from './GlobalContext';
 
 const notificationsText = {
   signIn: 'You have been logged in',
@@ -35,6 +36,13 @@ const provider = new GithubAuthProvider();
 export function AuthUserProvider({ children }) {
   const [user, setUser] = useState(null);
   const router = useRouter();
+  const gContext = useContext(GlobalContext);
+
+  const confirmAuth = (toastText) => {
+    gContext.toggleSignInModal();
+    router.push('/dashboard');
+    toast.success(toastText);
+  };
 
   useEffect(() => {
     return onIdTokenChanged(auth, async (user) => {
@@ -75,29 +83,24 @@ export function AuthUserProvider({ children }) {
   const githubSignIn = async () => {
     const result = await signInWithPopup(auth, provider);
     uploadGithubAccessToken(result);
-    await router.push('/dashboard');
-    toast.success(notificationsText.signIn);
+    confirmAuth(notificationsText.signIn);
   };
 
-  const signIn = async (email, password) => {
+  const signIn = async (email, password, setLoginError) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      await router.push('/dashboard');
-      toast.success(notificationsText.signIn);
-      return true;
+      confirmAuth(notificationsText.signIn);
     } catch (error) {
-      console.error(error);
+      setLoginError('Email or password you entered is incorect.');
     }
   };
 
-  const signUp = async (email, password) => {
+  const signUp = async (email, password, setSignupError) => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
-      await router.push('/dashboard');
-      toast.success(notificationsText.signUp);
-      return true;
+      confirmAuth(notificationsText.signUp);
     } catch (error) {
-      console.error(error);
+      setSignupError('This email is already in use.');
     }
   };
 

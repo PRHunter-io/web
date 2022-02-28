@@ -17,7 +17,6 @@ const ModalSignIn = (props) => {
 
   const signInWithGithub = async () => {
     await githubSignIn();
-    gContext.toggleSignInModal();
   };
 
   const handleClose = () => {
@@ -96,9 +95,12 @@ const ModalSignIn = (props) => {
                 <SignInForm />
                 <p className="font-size-4 text-center heading-default-color">
                   Don't have an account?{' '}
-                  <a href="/#" onClick={toggleModal} className="text-primary">
+                  <button
+                    onClick={toggleModal}
+                    className="blank-btn text-primary"
+                  >
                     Create a free account
-                  </a>
+                  </button>
                 </p>
               </div>
             </div>
