@@ -40,17 +40,17 @@ const MyApp = ({ Component, pageProps, router }) => {
   };
 
   return (
-    <AuthUserProvider>
-      <ApiServiceProvider>
-        <DAppProvider config={{}}>
-          <GlobalProvider>
+    <GlobalProvider>
+      <AuthUserProvider>
+        <ApiServiceProvider>
+          <DAppProvider config={{}}>
             <Layout pageContext={pageContext()}>
               <Component {...pageProps} />
             </Layout>
-          </GlobalProvider>
-        </DAppProvider>
-      </ApiServiceProvider>
-    </AuthUserProvider>
+          </DAppProvider>
+        </ApiServiceProvider>
+      </AuthUserProvider>
+    </GlobalProvider>
   );
 };
 

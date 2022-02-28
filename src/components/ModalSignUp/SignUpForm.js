@@ -1,14 +1,13 @@
 import { Field, Form, Formik } from 'formik';
 import * as Yup from 'yup';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from 'src/context/AuthUserContext';
-import GlobalContext from 'src/context/GlobalContext';
 import Link from 'next/link';
 
 export const SignUpForm = () => {
   const [showPassFirst, setShowPassFirst] = useState(true);
   const [showPassSecond, setShowPassSecond] = useState(true);
-  const gContext = useContext(GlobalContext);
+  const [signupError, setSignupError] = useState(false);
   const { signUp } = useAuth();
 
   const togglePasswordFirst = () => {
@@ -37,11 +36,7 @@ export const SignUpForm = () => {
   });
 
   const submitForm = async (values) => {
-    const passed = await signUp(values.email, values.password);
-
-    if (passed) {
-      gContext.toggleSignUpModal();
-    }
+    await signUp(values.email, values.password, setSignupError);
   };
 
   return (
@@ -175,8 +170,11 @@ export const SignUpForm = () => {
                 className="btn btn-primary btn-medium w-100 rounded-5 text-uppercase"
                 disabled={isSubmitting}
               >
-                Sign Up{' '}
+                Sign Up
               </button>
+              {signupError && (
+                <small className="text-danger">{signupError}</small>
+              )}
             </div>
           </Form>
         );

@@ -17,7 +17,6 @@ const ModalSignUp = (props) => {
 
   const signUpWithGithub = async () => {
     await githubSignIn();
-    gContext.toggleSignUpModal();
   };
 
   const handleClose = () => {
