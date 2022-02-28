@@ -225,7 +225,7 @@ export default function Documentation() {
 
 const MobileOnly = styled.div`
   position: relative;
-  z-index: 999;
+  z-index: 1000;
 
   @media ${device.xl} {
     display: none;
