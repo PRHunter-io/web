@@ -49,7 +49,7 @@ const MenuItem = ({
   label,
   isExternal = false,
   clickFunction,
-  addClasses = false,
+  addClasses = '',
   name,
   items,
   depthStep = 20,

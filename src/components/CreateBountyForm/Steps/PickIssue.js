@@ -4,13 +4,14 @@ import { useEffect, useState } from 'react';
 import { BountyService } from '../service';
 import Link from 'next/link';
 import { FieldTooltip } from '@/components/FieldTooltip';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 
 export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
   const { issues, isLoading, error } = useIssues(repository?.full_name);
   const [existingBountyForIssue, setExistingBountyForIssue] = useState(null);
 
   const renderIssuePicker = (options, disabled = true, errorMsg) => (
-    <div className="mb-8">
+    <div className="my-8 position-relative">
       <fieldset disabled={disabled}>
         <span className="text-muted mb-4">
           Issue
@@ -21,7 +22,7 @@ export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
         </span>
         <Select
           options={options}
-          className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100"
+          className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 mb-1"
           border={false}
           placeholder={'Pick issue'}
           value={
@@ -37,6 +38,7 @@ export const PickIssue = ({ repository, setRepository, issue, setIssue }) => {
         />
       </fieldset>
       {errorMsg ? <span className="text-danger mt-4">{errorMsg}</span> : ''}
+      {isLoading && <LoadingSpinner />}
     </div>
   );
 

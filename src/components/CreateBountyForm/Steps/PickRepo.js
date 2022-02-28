@@ -1,12 +1,20 @@
 import { Select } from '@/components/Core';
 import { FieldTooltip } from '@/components/FieldTooltip';
+import { LoadingSpinner } from '@/components/LoadingSpinner';
 import { useRepositories } from '@/lib/swr';
 import Link from 'next/link';
+
+const LoaderStyles = {
+  position: 'absolute',
+  bottom: '8px',
+  left: '50%',
+  transform: 'translateX(-50%)',
+};
 
 export const PickRepo = ({ repository, setRepository, setIssue }) => {
   const { repos, isLoading, error } = useRepositories();
   const renderSelect = (options) => (
-    <div className="mb-8">
+    <div className="position-relative">
       <span className="text-muted mb-4">
         Repository
         <FieldTooltip
@@ -17,7 +25,7 @@ export const PickRepo = ({ repository, setRepository, setIssue }) => {
 
       <Select
         options={options}
-        className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100 "
+        className="form-control pl-0 arrow-3 w-100 font-size-4 d-flex align-items-center w-100"
         border={false}
         placeholder={'Pick repository'}
         value={
@@ -33,6 +41,11 @@ export const PickRepo = ({ repository, setRepository, setIssue }) => {
           setIssue(null);
         }}
       />
+      {isLoading && (
+        <div style={LoaderStyles} className="position-absolute">
+          <LoadingSpinner />
+        </div>
+      )}
     </div>
   );
 
