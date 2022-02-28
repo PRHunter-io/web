@@ -91,7 +91,7 @@ export function AuthUserProvider({ children }) {
       await signInWithEmailAndPassword(auth, email, password);
       confirmAuth(notificationsText.signIn);
     } catch (error) {
-      setLoginError('Email or password you entered is incorect.');
+      setLoginError('Invalid email or password.');
     }
   };
 
