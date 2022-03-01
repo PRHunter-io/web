@@ -169,6 +169,29 @@ export default function Documentation() {
                     </Section>
                     <Section>
                       <SectionTitle
+                        id="eth-fees"
+                        setSidebarList={setSidebarList}
+                      >
+                        Ethereum transaction costs
+                      </SectionTitle>
+                      <p>
+                        With current state of Ethereum, transaction costs can be
+                        quite extensive. We've built this project with the
+                        future in mind, however until Eth 2.0 is released along
+                        with other improvements, the cost of using Ethereum for
+                        running smart contracts is substantial.
+                      </p>
+                      <p>
+                        With this in mind, we've added support for Binance Smart
+                        Chain - it's EVM compatible, which means that it works
+                        exactly (for the most part) as Ethereum does, however it
+                        does have much lower transaction fees. We encourage our
+                        users to use BSC and its token, BNB, if then wish to
+                        reduce the cost of their bounties.
+                      </p>
+                    </Section>
+                    <Section>
+                      <SectionTitle
                         id="updating-bounties"
                         setSidebarList={setSidebarList}
                       >

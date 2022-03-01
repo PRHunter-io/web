@@ -33,7 +33,7 @@ export const BountyPaymentReview = ({
           </Link>
         </span>
         <span className="col-md-6 text-right">
-          {commision.toPrecision(4)} {currency} (~ $
+          {parseFloat(commision.toPrecision(4))} {currency} (~ $
           {getUsdPrice(commision, currency)})
         </span>
       </div>

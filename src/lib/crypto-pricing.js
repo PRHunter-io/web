@@ -9,7 +9,7 @@ export const useUsdPricing = () => {
     } else {
       const value =
         cryptoPrices.filter((t) => t.currency == currency)[0].usd_value * param;
-      return value.toPrecision(2);
+      return value.toFixed(2);
     }
   };
 
