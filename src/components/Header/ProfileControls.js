@@ -1,8 +1,6 @@
 import Link from 'next/link';
 import Dropdown from 'react-bootstrap/Dropdown';
 
-import Image from 'next/image';
-import imgP from 'public/images/image/l3/png/pro-img.png';
 import { useWindowSize } from 'src/hooks';
 import { useAuth } from 'src/context/AuthUserContext';
 
@@ -22,7 +20,7 @@ export const ProfileControls = () => (
       <Dropdown className="show-gr-dropdown py-5">
         <Dropdown.Toggle as="a" className="proile media ml-7 flex-y-center">
           <div className="circle-40">
-            <Image src={imgP} alt="" />
+            <i className="fas fa-user pr-3 heading-default-color" />
           </div>
           <i className="fas fa-chevron-down heading-default-color ml-6"></i>
         </Dropdown.Toggle>
