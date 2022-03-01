@@ -87,14 +87,14 @@ export const PaymentsForm = ({
             </span>
 
             <span className="col-lg-6 text-right">
-              {commision.toFixed(4)} {currency} (~ $
+              {commision.toPrecision(4)} {currency} (~ $
               {getUsdPrice(commision, currency)})
             </span>
           </div>
           <div className="col-lg-12">
             <span className="col-lg-6">Total</span>
             <span className="col-lg-6 text-right font-weight-bold">
-              {totalBountyValue.toFixed(4)} {currency} (~ $
+              {totalBountyValue.toPrecision(4)} {currency} (~ $
               {getUsdPrice(totalBountyValue, currency)})
             </span>
           </div>

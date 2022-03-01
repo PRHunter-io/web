@@ -21,15 +21,28 @@ const Faq = () => {
                     Frequently Asked Questions
                   </h3>
                   <p className="font-size-4 mb-2">
-                    PRHunter is currently in a pre-launch phase. If you have any
-                    suggestions or would like to know more, please don't
-                    hestitate to contact us. We'd love to hear from you!
+                    If you have any suggestions or would like to know more,
+                    please don't hestitate to contact us. We'd love to hear from
+                    you!
                   </p>
                   <Link href="/contact">
                     <a className="font-size-3 font-weight-bold text-green text-uppercase">
                       Send us a message
                     </a>
                   </Link>
+                  <br />
+                  <p className="font-size-4 mb-2 mt-6">
+                    Our code is (mostly) open-source, so you can also
+                    <span>
+                      <Link href="https://github.com/PRHunter-io/web/discussions">
+                        <a className="text-green">
+                          start a discussion on Github.
+                        </a>
+                      </Link>{' '}
+                      We plan on making all of our code open-source, but this
+                      will take some time.
+                    </span>
+                  </p>
                 </div>
               </div>
               <div
@@ -226,18 +239,14 @@ const Faq = () => {
                       onClick={() => setOpenItem(8)}
                       aria-expanded={openItem === 8}
                     >
-                      What currencies are supported?
+                      Which cryptocurrencies are supported?
                     </button>
                   </div>
                   <Collapse in={openItem === 8}>
                     <div className="pr-7">
                       <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
-                        We're currently investigating the best blockchain to
-                        build our contract upon, it looks like we'll definitely
-                        use both ETH and BSC. If you have any suggestions,
-                        please let us know. We plan on supporting multiple
-                        cryptocurrencies, however FIAT payments are unlikely in
-                        the foreseeable future.
+                        ETH and BNB. We're investigating adding more chains to
+                        the platform.
                       </div>
                     </div>
                   </Collapse>
@@ -256,10 +265,9 @@ const Faq = () => {
                   <Collapse in={openItem === 9}>
                     <div className="pr-7">
                       <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
-                        We currently do not charge any fees. A Bounty Creator
-                        must only pay gas fees for the smart contract. In future
-                        it's likely that a small fee will be introduced to
-                        support the development of the platform.
+                        <Link href="/docs#operational-fee">
+                          Operational fee docs
+                        </Link>
                       </div>
                     </div>
                   </Collapse>

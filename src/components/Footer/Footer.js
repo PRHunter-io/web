@@ -155,13 +155,6 @@ const Footer = () => {
                         </Link>
                       </li>
                       <li className="mb-6">
-                        <Link href="/blog">
-                          <a className="heading-default-color font-size-4 font-weight-normal">
-                            Blog
-                          </a>
-                        </Link>
-                      </li>
-                      <li className="mb-6">
                         <Link href="/contact">
                           <a className="heading-default-color font-size-4 font-weight-normal">
                             Support
