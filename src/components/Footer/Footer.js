@@ -56,20 +56,9 @@ const Footer = () => {
           <div className="row">
             <div className="col-lg-4 col-sm-6 mb-lg-0 mb-9">
               {/* <!-- footer logo start --> */}
-              <Logo white className="footer-logo mb-14" />
+              <Logo white className="footer-logo mb-10" />
               {/* <!-- footer logo End --> */}
               {/* <!-- media start --> */}
-              <div className="media mb-11">
-                <Image src={imgM} className="align-self-center mr-3" alt="" />
-                <div className="media-body pl-5">
-                  <p className="mb-0 font-size-4 text-white">Contact us at</p>
-                  <Link href="/#">
-                    <a className="mb-0 font-size-4 font-weight-bold">
-                      support@prhunter.io
-                    </a>
-                  </Link>
-                </div>
-              </div>
               {/* <!-- media start --> */}
               {/* <!-- widget social icon start --> */}
               <div className="social-icons">
