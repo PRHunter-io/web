@@ -55,6 +55,8 @@ export const languages = {
     { value: 'android', label: 'Android' },
     { value: 'swift', label: 'Swift' },
     { value: 'go', label: 'Go' },
+    { value: 'bash', label: 'Bash' },
+    { value: 'other', label: 'Other' },
   ],
 };
 
