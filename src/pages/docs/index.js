@@ -83,7 +83,7 @@ export default function Documentation() {
                       <p>
                         If you remove the application from your account, we will
                         no longer be able to monitor any of your active bounties
-                        and pay out to the submitters.
+                        and pay out the bounty upon completion.
                       </p>
                       <p>
                         If you don't have any active bounties this action is
@@ -107,26 +107,20 @@ export default function Documentation() {
                         the user menu in the top right corner after signing in
                         and click "Post a new bounty". Pick a repository and an
                         issue for which you wish to set up a bounty and fill in
-                        the form details. Currently the bounty creation *does
-                        not* interact with actual smart contracts and is only
-                        for demonstration purposes. However, once the app is
-                        live additional steps will be required:
+                        the form details.
                       </p>
                       <p>
                         After you fill in the bounty details, you will be
                         required to deposit the bounty amount to the smart
-                        contract for a certain period (we're currently thinking
-                        about 2-3 weeks minimum). The funds will be stored in
-                        the smart contract and will be payed out to whoever
-                        completes the bounty. If the bounty is not completed
-                        within that time period, the funds are returned to your
-                        metamask wallet, although you will have the option to
-                        resubmit the bounty.
+                        contract for a certain period (1 week minimum). The
+                        funds will be stored in the smart contract and will be
+                        payed out to whoever completes the bounty. If the bounty
+                        is not completed within the chosen time period, the
+                        funds will be returned to the original metamask wallet.
                       </p>
                       <p>
                         The bounty submitter will be the one paying the gas
-                        fees. We're also planning a small maintenance fee to
-                        support the development of the platform.
+                        fees.
                       </p>
                       <p>
                         Please read the "Completing bounties" section to see the
@@ -136,16 +130,74 @@ export default function Documentation() {
                     </Section>
                     <Section>
                       <SectionTitle
+                        id="operational-fee"
+                        setSidebarList={setSidebarList}
+                      >
+                        Operational fee
+                      </SectionTitle>
+                      <p>
+                        PRHunter maintains the bounty contracts which are
+                        created by our users. This means that we periodically
+                        interact with all smart contracts and perform action if
+                        necessary. These actions include: <br />
+                        <br />
+                        - Paying out a completed bounty <br />
+                        - Returning the bounty value to the owner upon
+                        expiration <br />
+                        <br />
+                        Unfortunately the transaction fees for these operations
+                        can get quite expensive. On top of that, we need to
+                        support deploying updated contract factories as well as
+                        the hosting and development of the platform. For the
+                        reasons described here, we include an operional fee on
+                        all bounties:
+                        <p />
+                        <p>
+                          - flat 0.008 ETH/BNB for bounties &lt; 0.25 ETH/BNB{' '}
+                          <br />- 3% for bounties &gt; 0.25 ETH/BNB
+                        </p>
+                        <p>
+                          We'd love to lower or get rid of the fees totally, but
+                          given the current state of the blockchain ecosystem we
+                          don't see that being possible. We're looking into
+                          using L2 and other chains as a means for lowering the
+                          transaction fees. For now, we recommend using BNB
+                          instead of ETH as the fees are much lower on that
+                          chain.
+                        </p>
+                      </p>
+                    </Section>
+                    <Section>
+                      <SectionTitle
+                        id="eth-fees"
+                        setSidebarList={setSidebarList}
+                      >
+                        Ethereum transaction costs
+                      </SectionTitle>
+                      <p>
+                        With current state of Ethereum, transaction costs can be
+                        quite extensive. We've built this project with the
+                        future in mind, however until Eth 2.0 is released along
+                        with other improvements, the cost of using Ethereum for
+                        running smart contracts is substantial.
+                      </p>
+                      <p>
+                        With this in mind, we've added support for Binance Smart
+                        Chain - it's EVM compatible, which means that it works
+                        exactly (for the most part) as Ethereum does, however it
+                        does have much lower transaction fees. We encourage our
+                        users to use BSC and its token, BNB, if then wish to
+                        reduce the cost of their bounties.
+                      </p>
+                    </Section>
+                    <Section>
+                      <SectionTitle
                         id="updating-bounties"
                         setSidebarList={setSidebarList}
                       >
                         Updating a bounty
                       </SectionTitle>
-                      <p>
-                        Updating a bounty is not possible, since we don't want
-                        submitters to mess with acceptance criteria and/or
-                        bounty value.
-                      </p>
+                      <p>Updating a bounty is currently not possible.</p>
                     </Section>
                     <Section>
                       <SectionTitle
@@ -171,20 +223,25 @@ export default function Documentation() {
                         Completing bounties
                       </SectionTitle>
                       <p>
-                        The first pull request to be{' '}
-                        <span className="font-weight-bold">Accepted</span> or{' '}
-                        <span className="font-weight-bold">Merged</span> by the
-                        submitter of the PR (or anyone with relevant access to
-                        the repository) will automatically complete the bounty
-                        and pay out the reward to the PR submitter.
+                        First of all, make sure you are registered on PRHunter
+                        and have linked your Github account as well as added a
+                        Metamask/web3 wallet address. <br />
+                        <br />
                       </p>
                       <p>
-                        Unfortunately Github currently does not have an option
-                        to tie a PR with an issue 1-1 - you can have multiple
-                        PR's published and a merge of a PR is not synonomous
-                        with the solving of an issue. This is a limation we'll
-                        be trying to solve as elegantly as possible in future
-                        development effort.
+                        In order to complete a bounty, fork the repository of
+                        the linked issue and submit a PR to the original repo.
+                        Make sure to copy the bounty ID from the bounty view and
+                        post it in the body of the Pull Request.
+                      </p>
+                      <p>
+                        If the PR is successfully linked to the bounty, a
+                        comment will be posted on the Pull Request.
+                      </p>
+                      <p>
+                        When the pull request is merged, the bounty value will
+                        be sent from the bounty contract to the address
+                        configured in your PRHunter account.
                       </p>
                     </Section>
                   </div>

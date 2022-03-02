@@ -52,7 +52,8 @@ const ModalSignUp = (props) => {
                     Create a free account today
                   </h3>
                   <p className="mb-0 font-size-4 text-white">
-                    Create your account to continue and explore new jobs.
+                    Create your account to manage and complete Bounties on
+                    PRHunter.io
                   </p>
                 </div>
                 <div className="border-top border-default-color-2 mt-auto">
@@ -60,13 +61,13 @@ const ModalSignUp = (props) => {
                     <div className="pt-5 px-9">
                       <h3 className="font-size-7 text-white">295</h3>
                       <p className="font-size-3 text-white gr-opacity-5 line-height-1p4">
-                        New jobs posted today
+                        Completed bounties
                       </p>
                     </div>
                     <div className="pt-5 px-9">
                       <h3 className="font-size-7 text-white">14</h3>
                       <p className="font-size-3 text-white gr-opacity-5 line-height-1p4">
-                        New companies registered
+                        New bounties today
                       </p>
                     </div>
                   </div>

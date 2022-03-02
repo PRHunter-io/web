@@ -1,10 +1,10 @@
 export const formatBountyValue = (number, digits = 2) => {
-  if (number < 1) return number.toFixed(2);
+  if (number < 1) return number.toPrecision(2);
 
   let expK = Math.floor(Math.log10(Math.abs(number)) / 3);
   let scaled = number / Math.pow(1000, expK);
 
-  if (Math.abs(scaled.toFixed(digits)) >= 1000) {
+  if (Math.abs(scaled.toPrecision(digits)) >= 1000) {
     // Check for rounding to next exponent
     scaled /= 1000;
     expK += 1;
@@ -20,7 +20,7 @@ export const formatBountyValue = (number, digits = 2) => {
   } else if (expK + BASE0_OFFSET < 0) return 0; // Too small
 
   return (
-    scaled.toFixed(digits).replace(/(\.|(\..*?))0+$/, '$2') +
+    scaled.toPrecision(digits).replace(/(\.|(\..*?))0+$/, '$2') +
     SI_SYMBOLS[expK + BASE0_OFFSET].trim()
   );
 };

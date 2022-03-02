@@ -14,7 +14,7 @@ export const BountyPaymentReview = ({
       <div className="row">
         <span className="col-lg-6">Bounty value</span>
         <span className="col-lg-6 text-right">
-          {parseFloat(bountyValue).toFixed(4)} {currency} (~ $
+          {parseFloat(bountyValue).toPrecision(4)} {currency} (~ $
           {getUsdPrice(bountyValue, currency)})
         </span>
       </div>
@@ -33,14 +33,14 @@ export const BountyPaymentReview = ({
           </Link>
         </span>
         <span className="col-md-6 text-right">
-          {commision.toFixed(4)} {currency} (~ $
+          {parseFloat(commision.toPrecision(4))} {currency} (~ $
           {getUsdPrice(commision, currency)})
         </span>
       </div>
       <div className="row">
         <span className="col-md-6 font-weight-bold">Total</span>
         <span className="col-md-6 text-md-right font-weight-bold">
-          {totalBountyValue.toFixed(4)} {currency} (~ $
+          {totalBountyValue.toPrecision(4)} {currency} (~ $
           {getUsdPrice(totalBountyValue, currency)})
         </span>
       </div>

@@ -21,15 +21,28 @@ const Faq = () => {
                     Frequently Asked Questions
                   </h3>
                   <p className="font-size-4 mb-2">
-                    PRHunter is currently in a pre-launch phase. If you have any
-                    suggestions or would like to know more, please don't
-                    hestitate to contact us. We'd love to hear from you!
+                    If you have any suggestions or would like to know more,
+                    please don't hestitate to contact us. We'd love to hear from
+                    you!
                   </p>
                   <Link href="/contact">
                     <a className="font-size-3 font-weight-bold text-green text-uppercase">
                       Send us a message
                     </a>
                   </Link>
+                  <br />
+                  <p className="font-size-4 mb-2 mt-6">
+                    Our code is (mostly) open-source, so you can also
+                    <span>
+                      <Link href="https://github.com/PRHunter-io/web/discussions">
+                        <a className="text-green">
+                          start a discussion on Github.
+                        </a>
+                      </Link>{' '}
+                      We plan on making all of our code open-source, but this
+                      will take some time.
+                    </span>
+                  </p>
                 </div>
               </div>
               <div
@@ -226,18 +239,14 @@ const Faq = () => {
                       onClick={() => setOpenItem(8)}
                       aria-expanded={openItem === 8}
                     >
-                      What currencies are supported?
+                      Which cryptocurrencies are supported?
                     </button>
                   </div>
                   <Collapse in={openItem === 8}>
                     <div className="pr-7">
                       <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
-                        We're currently investigating the best blockchain to
-                        build our contract upon, it looks like we'll definitely
-                        use both ETH and BSC. If you have any suggestions,
-                        please let us know. We plan on supporting multiple
-                        cryptocurrencies, however FIAT payments are unlikely in
-                        the foreseeable future.
+                        ETH and BNB. We're investigating adding more chains to
+                        the platform.
                       </div>
                     </div>
                   </Collapse>
@@ -256,10 +265,9 @@ const Faq = () => {
                   <Collapse in={openItem === 9}>
                     <div className="pr-7">
                       <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
-                        We currently do not charge any fees. A Bounty Creator
-                        must only pay gas fees for the smart contract. In future
-                        it's likely that a small fee will be introduced to
-                        support the development of the platform.
+                        <Link href="/docs#operational-fee">
+                          Operational fee docs
+                        </Link>
                       </div>
                     </div>
                   </Collapse>
@@ -283,6 +291,32 @@ const Faq = () => {
                         the Bounty amount in the PRHunter Smart Contract. The
                         contract will pay out the Bounty amount to the Hunter's
                         Metamask wallet, once his PR is merged.
+                      </div>
+                    </div>
+                  </Collapse>
+                </div>
+                <div className="border-bottom overflow-hidden">
+                  <div className="mb-0 border-bottom-0" id="heading2-1">
+                    <button
+                      className="btn-reset font-size-5 font-weight-semibold text-left px-0 pb-6 pt-7 accordion-trigger arrow-icon w-100 border-left-0 border-right-0 focus-reset mt-n2"
+                      type="button"
+                      onClick={() => setOpenItem(11)}
+                      aria-expanded={openItem === 11}
+                    >
+                      I want to try PRHunter out, but I don't want to use my
+                      real funds
+                    </button>
+                  </div>
+                  <Collapse in={openItem === 11}>
+                    <div className="pr-7">
+                      <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
+                        We have a test instance set up at{' '}
+                        <Link href="https://staging.prhunter.io">
+                          staging.prhunter.io
+                        </Link>
+                        , which contains upcoming features and is configured
+                        with Ropsten ETH Testnet and BSC Testnet, so you can
+                        play around with that if you want.
                       </div>
                     </div>
                   </Collapse>

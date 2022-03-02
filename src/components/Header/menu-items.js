@@ -13,11 +13,10 @@ export const menuItems = [
     items: [
       { name: 'docs', label: 'PRHunter docs' },
       { name: 'faq', label: 'FAQ' },
-      { name: 'about', label: 'About us' },
     ],
   },
   {
-    name: 'blog',
-    label: 'Blog',
+    name: 'about',
+    label: 'About',
   },
 ];
