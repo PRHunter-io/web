@@ -115,8 +115,8 @@ export default function Documentation() {
                         contract for a certain period (1 week minimum). The
                         funds will be stored in the smart contract and will be
                         payed out to whoever completes the bounty. If the bounty
-                        is not completed within that time period, the funds will
-                        be returned to the original metamask wallet.
+                        is not completed within the chosen time period, the
+                        funds will be returned to the original metamask wallet.
                       </p>
                       <p>
                         The bounty submitter will be the one paying the gas

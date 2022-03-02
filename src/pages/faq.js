@@ -310,10 +310,13 @@ const Faq = () => {
                   <Collapse in={openItem === 11}>
                     <div className="pr-7">
                       <div className="mt-n3 font-size-4 text-gray font-weight-normal pb-7 pr-7 pt-6">
-                        We have a test instance set up at staging.prhunter.io,
-                        which contains upcoming features and is configured with
-                        Ropsten ETH testnet and BSC Testnet, so you can play
-                        around with that if you want.
+                        We have a test instance set up at{' '}
+                        <Link href="https://staging.prhunter.io">
+                          staging.prhunter.io
+                        </Link>
+                        , which contains upcoming features and is configured
+                        with Ropsten ETH Testnet and BSC Testnet, so you can
+                        play around with that if you want.
                       </div>
                     </div>
                   </Collapse>

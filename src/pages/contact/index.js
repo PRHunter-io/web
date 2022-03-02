@@ -18,15 +18,6 @@ const Contact = () => {
                 <h2 className="font-size-9 text-center mb-11">Contact Us</h2>
                 <div className="bg-white px-9 pt-9 pb-7 shadow-8 rounded-4">
                   <ContactForm />
-                  <div className="mt-8">
-                    <h3 className="font-size-4">Contact Information</h3>
-                    <div className="media mb-2">
-                      <div className="mr-6">
-                        <i className="fas fa-envelope mt-2"></i>
-                      </div>
-                      <p className="font-size-4 mb-0">support@prhunter.io</p>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
