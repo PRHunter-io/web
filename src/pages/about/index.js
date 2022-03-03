@@ -37,8 +37,10 @@ export default function AboutPage() {
                 </p>
                 <p>
                   Any feedback is welcome, don't hestitate to reach out on{' '}
-                  <Link href="/#">Github</Link> or via the{' '}
-                  <Link href="/#">Contact Form</Link>
+                  <Link href="https://github.com/PRHunter-io/web/discussions">
+                    Github
+                  </Link>{' '}
+                  or via the <Link href="/contact">Contact Form</Link>
                 </p>
               </div>
             </div>
