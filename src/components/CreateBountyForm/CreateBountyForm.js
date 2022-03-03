@@ -2,7 +2,6 @@ import { Form, Formik } from 'formik';
 import { useState } from 'react';
 import { DetailsForm } from './Steps/DetailsForm';
 import { useRouter } from 'next/router';
-import { BountyService } from './service';
 import { languages, bountyType, experienceLevel } from '@/utils/filters';
 import { PaymentsForm } from './Steps/PaymentsForm';
 import { BountyReview } from './Steps/BountyReview';
@@ -11,6 +10,7 @@ import Stepper from '../Stepper';
 import { validationSchema } from './FormModel/validationSchema';
 import { PickerForm } from './Steps/PickerForm';
 import { useApi } from '@/context/ApiServiceContext';
+import { BountyService } from './service';
 
 const steps = [
   'Pick issue',

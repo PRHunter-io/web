@@ -61,7 +61,7 @@ const BountyTableInner = (props) => {
                     scope="col"
                     className="border-0 font-size-4 font-weight-normal"
                   >
-                    Created at
+                    Expires at
                   </th>
                   <th
                     scope="col"

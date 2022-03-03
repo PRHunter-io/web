@@ -21,7 +21,7 @@ export const BountyReview = ({
     acceptance_criteria: values.acceptanceCriteria,
     bounty_currency: values.currency,
     bounty_type: values.bountyType,
-    bounty_value: values.bountyAmount,
+    bounty_value: totalBountyValue,
     bounty_value_usd: 'todo',
     created_at: currentDate,
     expires_at: values.expirationDate,

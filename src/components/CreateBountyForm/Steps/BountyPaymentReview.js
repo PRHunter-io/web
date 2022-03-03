@@ -1,4 +1,5 @@
 import { useUsdPricing } from '@/lib/crypto-pricing';
+import { formatNumber } from '@/utils/formatNumber';
 import Link from 'next/link';
 
 export const BountyPaymentReview = ({
@@ -14,7 +15,7 @@ export const BountyPaymentReview = ({
       <div className="row">
         <span className="col-lg-6">Bounty value</span>
         <span className="col-lg-6 text-right">
-          {parseFloat(bountyValue).toPrecision(4)} {currency} (~ $
+          {formatNumber(bountyValue)} {currency} (~ $
           {getUsdPrice(bountyValue, currency)})
         </span>
       </div>
@@ -33,14 +34,13 @@ export const BountyPaymentReview = ({
           </Link>
         </span>
         <span className="col-md-6 text-right">
-          {parseFloat(commision.toPrecision(4))} {currency} (~ $
-          {getUsdPrice(commision, currency)})
+          {commision} {currency} (~ ${getUsdPrice(commision, currency)})
         </span>
       </div>
       <div className="row">
         <span className="col-md-6 font-weight-bold">Total</span>
         <span className="col-md-6 text-md-right font-weight-bold">
-          {totalBountyValue.toPrecision(4)} {currency} (~ $
+          {totalBountyValue} {currency} (~ $
           {getUsdPrice(totalBountyValue, currency)})
         </span>
       </div>
