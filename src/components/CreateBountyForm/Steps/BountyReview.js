@@ -34,6 +34,7 @@ export const BountyReview = ({
     tags: [],
     title: values.title,
   };
+  console.log(bounty);
 
   return (
     <div className="row">

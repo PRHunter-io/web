@@ -21,7 +21,7 @@ const ClipboardButton = ({ bountyId, ...props }) => {
       ) : (
         <i className="fa fa-clipboard text-primary pr-4"></i>
       )}
-      Copy PR ID to clipboard
+      Copy Pull Request Link to clipboard
     </button>
   );
 };
