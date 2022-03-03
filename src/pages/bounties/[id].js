@@ -6,6 +6,7 @@ import { formatDate } from 'src/utils';
 import { formatStatus } from '@/utils/formatStatus';
 import ClipboardButton from '@/components/ClipboardButton';
 import { useUsdPricing } from '@/lib/crypto-pricing';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 const bountiesUrl = process.env.NEXT_PUBLIC_INTERNAL_API_URL + '/bounty';
 
@@ -95,7 +96,7 @@ const SimpleBounty = ({ label, value, iconClass }) => (
   </div>
 );
 
-export const BountyDetails = ({ bounty }) => {
+export const BountyDetails = ({ bounty, isPreview }) => {
   const { getUsdPrice } = useUsdPricing();
 
   return (
@@ -152,6 +153,7 @@ export const BountyDetails = ({ bounty }) => {
           }
           iconClass="fas fa-link"
         />
+        <BountyBlockchainLink bounty={bounty} />
       </div>
       <div className="row mt-9">
         <div className="col-12 mb-lg-0 mb-8">
@@ -243,6 +245,58 @@ const Bounty = ({ bounty }) => {
       </PageWrapper>
     </>
   );
+};
+
+const BountyBlockchainLink = ({ bounty }) => {
+  if (bounty.blockchain_url) {
+    return (
+      <div className="col-md-4 mb-lg-0 mb-6">
+        <div className="media justify-content-md-start">
+          <span className="font-size-4 d-block mb-2">Smart Contract</span>
+        </div>
+        <div className="media justify-content-md-start">
+          <h6 className="font-size-5 text-black-2 font-weight-semibold">
+            <span className="text-primary">
+              <i className="fas fa-external-link-alt pr-3"></i>
+            </span>
+            <a target="_blank" href={bounty.blockchain_url} rel="noreferrer">
+              See on Etherscan
+            </a>
+          </h6>
+        </div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="col-md-4 mb-lg-0 mb-6">
+        <div className="media justify-content-md-start">
+          <span className="font-size-4 d-block mb-2">Smart Contract</span>
+        </div>
+        <div className="media justify-content-md-start">
+          <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
+            <OverlayTrigger
+              overlay={
+                <Tooltip id="tooltip-disabled">
+                  Smart contract will be available once the contract is
+                  successfully deployed
+                </Tooltip>
+              }
+            >
+              <h6
+                className="font-size-5 text-hit-gray font-weight-semibold"
+                data-toggle="tooltip"
+              >
+                <span className="text-hit-gray-1">
+                  <i className="fas fa-external-link-alt pr-3"></i>
+                </span>
+                See on Etherscan
+              </h6>
+            </OverlayTrigger>
+          </p>
+        </div>
+      </div>
+    );
+  }
 };
 
 export default Bounty;
