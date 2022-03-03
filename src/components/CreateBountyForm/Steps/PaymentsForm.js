@@ -4,6 +4,7 @@ import { bountyCurrency } from '@/utils/filters';
 import { BountyService } from '../service';
 import Link from 'next/link';
 import { useUsdPricing } from '@/lib/crypto-pricing';
+import { formatNumber } from '@/utils/formatNumber';
 
 export const PaymentsForm = ({
   bountyValue,
@@ -19,14 +20,15 @@ export const PaymentsForm = ({
 
   useEffect(() => {
     const commision = BountyService.calculateCommision(bountyValue);
-    setCommision(commision);
+    setCommision(formatNumber(commision));
   }, [bountyValue]);
 
   useEffect(() => {
     if (bountyValue !== '') {
-      setTotalBountyValue(parseFloat(bountyValue) + parseFloat(commision));
+      const total = parseFloat(+bountyValue + commision);
+      setTotalBountyValue(formatNumber(total));
     } else {
-      setTotalBountyValue(parseFloat(commision));
+      setTotalBountyValue(commision);
     }
   }, [bountyValue, commision]);
 
@@ -87,14 +89,13 @@ export const PaymentsForm = ({
             </span>
 
             <span className="col-lg-6 text-right">
-              {commision.toPrecision(4)} {currency} (~ $
-              {getUsdPrice(commision, currency)})
+              {commision} {currency} (~ ${getUsdPrice(commision, currency)})
             </span>
           </div>
           <div className="col-lg-12">
             <span className="col-lg-6">Total</span>
             <span className="col-lg-6 text-right font-weight-bold">
-              {totalBountyValue.toPrecision(4)} {currency} (~ $
+              {totalBountyValue} {currency} (~ $
               {getUsdPrice(totalBountyValue, currency)})
             </span>
           </div>

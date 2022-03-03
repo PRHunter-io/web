@@ -44,7 +44,7 @@ class BountyServiceClass {
       BountyFactory.abi,
       signer
     );
-    const ethValue = ethers.utils.parseEther(bountyValue.toString()); // ether in this case MUST be a string
+    const ethValue = ethers.utils.parseEther(bountyValue.toPrecision(6)); // ether in this case MUST be a string
     const overrides = {
       value: ethValue,
     };

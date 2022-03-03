@@ -273,26 +273,24 @@ const BountyBlockchainLink = ({ bounty }) => {
           <span className="font-size-4 d-block mb-2">Smart Contract</span>
         </div>
         <div className="media justify-content-md-start">
-          <p className="font-weight-bold font-size-4 text-hit-gray mb-0">
-            <OverlayTrigger
-              overlay={
-                <Tooltip id="tooltip-disabled">
-                  Smart contract will be available once the contract is
-                  successfully deployed
-                </Tooltip>
-              }
+          <OverlayTrigger
+            overlay={
+              <Tooltip id="tooltip-disabled">
+                Smart contract will be available once the contract is
+                successfully deployed
+              </Tooltip>
+            }
+          >
+            <h6
+              className="font-size-5 text-hit-gray font-weight-semibold"
+              data-toggle="tooltip"
             >
-              <h6
-                className="font-size-5 text-hit-gray font-weight-semibold"
-                data-toggle="tooltip"
-              >
-                <span className="text-hit-gray-1">
-                  <i className="fas fa-external-link-alt pr-3"></i>
-                </span>
-                See on Etherscan
-              </h6>
-            </OverlayTrigger>
-          </p>
+              <span className="text-hit-gray-1">
+                <i className="fas fa-external-link-alt pr-3"></i>
+              </span>
+              See on Etherscan
+            </h6>
+          </OverlayTrigger>
         </div>
       </div>
     );
