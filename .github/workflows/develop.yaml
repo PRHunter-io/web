@@ -5,12 +5,14 @@ on:
     branches:
       - develop
 
+env:
+  NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ env.ANALYTICS_STAGING }}
+
 jobs:
   build-staging:
     name: Build staging image
     runs-on: ubuntu-latest
-    env:
-      NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ env.ANALYTICS_STAGING }}
+
     steps:
       - name: Checkout master
         uses: actions/checkout@master
