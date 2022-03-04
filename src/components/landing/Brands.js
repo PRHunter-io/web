@@ -17,7 +17,7 @@ const Brands = () => {
           <div className="row">
             <div className="col-12">
               <div className="section-title mb-9 text-center text-lg-left">
-                <h5 className="font-size-5 font-weight-normal">
+                <h5 className="font-size-5 font-weight-normal mt-10">
                   With us, you can forget about using these sites to find work:
                 </h5>
               </div>
