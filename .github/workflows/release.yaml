@@ -4,9 +4,6 @@ on:
   release:
     types: [published]
 
-env:
-  NEXT_PUBLIC_GOOGLE_ANALYTICS: ${{ secrets.ANALYTICS_PROD }}
-
 jobs:
   build-production:
     name: Build production image

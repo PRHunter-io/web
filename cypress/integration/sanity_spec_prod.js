@@ -4,11 +4,11 @@ describe('user login', () => {
     cy.visit('/');
 
     // Open login modal
-    cy.findByText(/log in/i).click();
+    cy.get('[data-cy=log-in-modal-button]').click();
 
     // Provide login credentials, proceed with login
-    cy.findByLabelText(/e\-mail/i).type('rvodecnokjsctfcuax@nvhrw.com');
-    cy.findByLabelText(/password/i).type('ney7GWH2vhp!qgz.pzm');
+    cy.findByLabelText(/e\-mail/i).type('e2e_sanity_spec_user@test.com');
+    cy.findByLabelText(/password/i).type('TUB9rxc2mkz-rat@byv');
     cy.findByRole('button', {
       name: /log in/i,
     }).click();
