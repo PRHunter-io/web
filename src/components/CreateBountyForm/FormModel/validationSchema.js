@@ -24,11 +24,11 @@ export const validationSchema = [
       .required('Experience is required'),
     problemStatement: Yup.string()
       .min(15, 'At least 15 characters are required')
-      .max(240, 'Must be 240 characters or less')
+      .max(2000, 'Must be 2000 characters or less')
       .required('Problem statement is required'),
     acceptanceCriteria: Yup.string()
       .min(15, 'At least 15 characters are required')
-      .max(240, 'Must be 240 characters or less')
+      .max(2000, 'Must be 2000 characters or less')
       .required('Acceptance criteria are required'),
   }),
   Yup.object().shape({
