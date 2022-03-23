@@ -87,7 +87,8 @@ export const CreateBountyForm = () => {
         tags: [],
         experience: details.experience,
         bounty_type: details.bountyType,
-        bounty_value: totalBountyValue,
+        bounty_value: details.bountyAmount,
+        total_bounty_value: totalBountyValue,
         bounty_currency: details.currency,
         expires_at: getUnixTime(details.expirationDate),
       };

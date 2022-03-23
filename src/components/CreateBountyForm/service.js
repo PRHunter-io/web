@@ -18,7 +18,7 @@ class BountyServiceClass {
       );
       await this.createBountyOnBlockchain(
         createBountyResponse,
-        newBountyDto.bounty_value,
+        newBountyDto.total_bounty_value,
         newBountyDto.expires_at
       );
       toast.success('Bounty created!');
@@ -34,7 +34,7 @@ class BountyServiceClass {
 
   async createBountyOnBlockchain(
     createBountyResponse,
-    bountyValue,
+    totalBountyValue,
     bountyExpiry
   ) {
     const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -44,7 +44,7 @@ class BountyServiceClass {
       BountyFactory.abi,
       signer
     );
-    const ethValue = ethers.utils.parseEther(bountyValue.toPrecision(6)); // ether in this case MUST be a string
+    const ethValue = ethers.utils.parseEther(totalBountyValue.toPrecision(6)); // ether in this case MUST be a string
     const overrides = {
       value: ethValue,
     };
