@@ -13,8 +13,8 @@ const calculateDays = (date) => {
 };
 
 export const FeaturedBountyView = ({ bounty }) => {
-  const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}`;
-  const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}`;
+  const githubUrl = `https://github.com/${bounty.repo_owner}/${bounty.repo_name}/issues/${bounty.issue_number}`;
+  const fullRepoName = `${bounty.repo_owner}/${bounty.repo_name}#${bounty.issue_number}`;
   return (
     <div
       className="col-12 col-lg-4 col-md-6 px-xxl-7"
