@@ -31,7 +31,7 @@ export const ContactForm = () => {
         subject: values.subject,
         message: values.message,
       };
-      await post('contact', contactDto);
+      await post('email/contact', contactDto);
       Router.push('/contact/success');
     } catch (error) {
       console.log(error.message);

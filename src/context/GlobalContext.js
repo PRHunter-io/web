@@ -59,6 +59,15 @@ const GlobalProvider = ({ children }) => {
     setStickyPage(bool);
   };
 
+  const closeAllModals = () => {
+    if (signInModalVisible) {
+      setSignInModalVisible(false);
+    }
+    if (signUpModalVisible) {
+      setSignUpModalVisible(false);
+    }
+  };
+
   return (
     <GlobalContext.Provider
       value={{
@@ -86,6 +95,7 @@ const GlobalProvider = ({ children }) => {
         toggleSignInUp,
         toggleStickyPage,
         stickyPage,
+        closeAllModals,
       }}
     >
       {children}

@@ -8,6 +8,7 @@ import {
   signInWithPopup,
   GithubAuthProvider,
   linkWithPopup,
+  applyActionCode,
 } from 'firebase/auth';
 import nookies from 'nookies';
 import { parseCookies } from 'nookies';
@@ -38,8 +39,8 @@ export function AuthUserProvider({ children }) {
   const router = useRouter();
   const gContext = useContext(GlobalContext);
 
-  const confirmAuth = (toastText) => {
-    gContext.toggleSignInModal();
+  const completeAuthProcess = (toastText) => {
+    gContext.closeAllModals();
     router.push('/dashboard');
     toast.success(toastText);
   };
@@ -80,16 +81,38 @@ export function AuthUserProvider({ children }) {
     });
   };
 
+  const sendRegistrationEmail = async (signUpResult, email) => {
+    const token = await signUpResult.user.getIdToken();
+    const headers = {
+      Authorization: 'Bearer ' + token,
+    };
+    let dto = {
+      email: email,
+    };
+    await apiClient.post('email/signup', dto, {
+      headers: headers,
+    });
+  };
+
+  const verifyEmailAddress = async (actionCode) => {
+    try {
+      await applyActionCode(auth, actionCode);
+      router.push('/email-verify-success');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const githubSignIn = async () => {
     const result = await signInWithPopup(auth, provider);
     uploadGithubAccessToken(result);
-    confirmAuth(notificationsText.signIn);
+    completeAuthProcess(notificationsText.signIn);
   };
 
   const signIn = async (email, password, setLoginError) => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      confirmAuth(notificationsText.signIn);
+      completeAuthProcess(notificationsText.signIn);
     } catch (error) {
       setLoginError('Invalid email or password.');
     }
@@ -97,8 +120,13 @@ export function AuthUserProvider({ children }) {
 
   const signUp = async (email, password, setSignupError) => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
-      confirmAuth(notificationsText.signUp);
+      const signUpResult = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      await sendRegistrationEmail(signUpResult, email);
+      completeAuthProcess(notificationsText.signUp);
     } catch (error) {
       setSignupError('This email is already in use.');
     }
@@ -132,6 +160,7 @@ export function AuthUserProvider({ children }) {
         linkGithubAccount,
         logout,
         isUserSignedIn,
+        verifyEmailAddress,
       }}
     >
       {children}
