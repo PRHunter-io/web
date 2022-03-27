@@ -39,10 +39,25 @@ export function AuthUserProvider({ children }) {
   const router = useRouter();
   const gContext = useContext(GlobalContext);
 
-  const completeAuthProcess = (toastText) => {
+  const completeAuthProcess = async (toastText) => {
     gContext.closeAllModals();
     router.push('/dashboard');
     toast.success(toastText);
+
+    const token = parseCookies().token;
+    const userData = await apiClient.get('user', {
+      headers: {
+        Authorization: 'Bearer ' + token,
+      },
+    });
+
+    const emailData = {
+      email: userData.data.email,
+      isEmailVerified: userData.data.is_email_verified,
+    };
+
+    localStorage.setItem('emailData', JSON.stringify(emailData));
+    gContext.setEmailData(emailData);
   };
 
   useEffect(() => {

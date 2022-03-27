@@ -1,7 +1,7 @@
 import React from 'react';
 
 import PageWrapper from '@/components/PageWrapper';
-import { useUserData as useUserData } from '@/lib/swr';
+import { useUserData } from '@/lib/swr';
 import { UserData } from '@/components/Dashboard/user-data';
 import { LoadingSpinner } from '@/components/LoadingSpinner';
 
