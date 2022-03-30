@@ -9,6 +9,7 @@ import {
   GithubAuthProvider,
   linkWithPopup,
   applyActionCode,
+  sendEmailVerification,
 } from 'firebase/auth';
 import nookies from 'nookies';
 import { parseCookies } from 'nookies';
@@ -39,11 +40,7 @@ export function AuthUserProvider({ children }) {
   const router = useRouter();
   const gContext = useContext(GlobalContext);
 
-  const completeAuthProcess = async (toastText) => {
-    gContext.closeAllModals();
-    router.push('/dashboard');
-    toast.success(toastText);
-
+  const checkEmailData = async () => {
     const token = parseCookies().token;
     const userData = await apiClient.get('user', {
       headers: {
@@ -58,6 +55,13 @@ export function AuthUserProvider({ children }) {
 
     localStorage.setItem('emailData', JSON.stringify(emailData));
     gContext.setEmailData(emailData);
+  };
+
+  const completeAuthProcess = async (toastText) => {
+    gContext.closeAllModals();
+    router.push('/dashboard');
+    toast.success(toastText);
+    await checkEmailData();
   };
 
   useEffect(() => {
@@ -165,6 +169,15 @@ export function AuthUserProvider({ children }) {
     return await linkWithPopup(auth.currentUser, provider);
   };
 
+  const resendVerificationEmail = async () => {
+    try {
+      await sendEmailVerification(auth.currentUser);
+      toast.success('Thanks! Please check your mailbox for verification link.');
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -176,6 +189,8 @@ export function AuthUserProvider({ children }) {
         logout,
         isUserSignedIn,
         verifyEmailAddress,
+        checkEmailData,
+        resendVerificationEmail,
       }}
     >
       {children}

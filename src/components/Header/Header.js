@@ -14,6 +14,18 @@ import { HeaderMenu } from './HeaderMenu';
 import { useAuth } from 'src/context/AuthUserContext';
 import classNames from 'classnames';
 
+const ResendEmailBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: ${({ theme }) => theme.colors.secondary};
+
+  &:focus {
+    outline: none;
+  }
+`;
+
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
     opacity: 0;
@@ -53,7 +65,7 @@ const Header = () => {
   const gContext = useContext(GlobalContext);
   const [showScrolling, setShowScrolling] = useState(false);
   const [showReveal, setShowReveal] = useState(false);
-  const { user } = useAuth();
+  const { user, resendVerificationEmail } = useAuth();
   const emailData = gContext.emailData;
   const isEmailDataInvalid =
     emailData && user && (!emailData.email || !emailData.isEmailVerified);
@@ -72,9 +84,18 @@ const Header = () => {
   });
 
   useEffect(() => {
-    typeof window !== 'undefined' &&
+    if (typeof window === 'undefined') return;
+
+    const contextData = gContext.emailData;
+    const localStorageData = JSON.parse(localStorage.getItem('emailData'));
+
+    const compareEmails = contextData?.email !== localStorageData?.email;
+    const compareIsEmailVerified =
+      contextData?.isEmailVerified !== localStorageData?.isEmailVerified;
+
+    (compareEmails || compareIsEmailVerified) &&
       gContext.setEmailData(JSON.parse(localStorage.getItem('emailData')));
-  }, []);
+  }, [gContext]);
 
   const headerClassNames = classNames(
     {
@@ -132,8 +153,15 @@ const Header = () => {
           <Alert variant="warning" className="mb-0 rounded-0 text-center">
             {!emailData.email
               ? 'Please configure your email address'
-              : !emailData.isEmailVerified &&
-                'Please confirm your email address'}
+              : !emailData.isEmailVerified && (
+                  <>
+                    Please confirm your email address. Click{' '}
+                    <ResendEmailBtn onClick={resendVerificationEmail}>
+                      here
+                    </ResendEmailBtn>{' '}
+                    to send confirmation email .
+                  </>
+                )}
           </Alert>
         )}
       </SiteHeader>
