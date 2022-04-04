@@ -12,6 +12,7 @@ const GlobalProvider = ({ children }) => {
   const [visibleOffCanvas, setVisibleOffCanvas] = useState(false);
   const [stickyPage, setStickyPage] = useState(false);
   const [signedIn, setSignedIn] = useState(false);
+  const [emailData, setEmailData] = useState(false);
   const [header, setHeader] = useState({});
   const [footer, setFooter] = useState({
     theme: 'dark',
@@ -96,6 +97,8 @@ const GlobalProvider = ({ children }) => {
         toggleStickyPage,
         stickyPage,
         closeAllModals,
+        setEmailData,
+        emailData,
       }}
     >
       {children}

@@ -1,6 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react';
 import styled from 'styled-components';
-import { Container } from 'react-bootstrap';
+import { Alert, Container } from 'react-bootstrap';
 import { useScrollPosition } from '@n8tb1t/use-scroll-position';
 
 import GlobalContext from '../../context/GlobalContext';
@@ -12,6 +12,19 @@ import Logo from '../Logo';
 import { ProfileControls } from './ProfileControls';
 import { HeaderMenu } from './HeaderMenu';
 import { useAuth } from 'src/context/AuthUserContext';
+import classNames from 'classnames';
+
+const ResendEmailBtn = styled.button`
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: ${({ theme }) => theme.colors.secondary};
+
+  &:focus {
+    outline: none;
+  }
+`;
 
 const SiteHeader = styled.header`
   .dropdown-toggle::after {
@@ -52,9 +65,10 @@ const Header = () => {
   const gContext = useContext(GlobalContext);
   const [showScrolling, setShowScrolling] = useState(false);
   const [showReveal, setShowReveal] = useState(false);
-  const { user } = useAuth();
-
-  useEffect(() => {}, []);
+  const { user, resendVerificationEmail } = useAuth();
+  const emailData = gContext.emailData;
+  const isEmailDataInvalid =
+    emailData && user && (!emailData.email || !emailData.isEmailVerified);
 
   useScrollPosition(({ prevPos, currPos }) => {
     if (currPos.y < 0) {
@@ -69,30 +83,42 @@ const Header = () => {
     }
   });
 
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const contextData = gContext.emailData;
+    const localStorageData = JSON.parse(localStorage.getItem('emailData'));
+
+    const compareEmails = contextData?.email !== localStorageData?.email;
+    const compareIsEmailVerified =
+      contextData?.isEmailVerified !== localStorageData?.isEmailVerified;
+
+    (compareEmails || compareIsEmailVerified) &&
+      gContext.setEmailData(JSON.parse(localStorage.getItem('emailData')));
+  }, [gContext]);
+
+  const headerClassNames = classNames(
+    {
+      [gContext.header.bgClass]: gContext.header.bgClass,
+      'site-header--menu-left': gContext.header.align === 'left',
+      'site-header--menu-right': gContext.header.align === 'right',
+      'site-header--menu-center':
+        gContext.header.align !== 'left' && gContext.header.align !== 'right',
+      'dark-mode-texts': gContext.header.theme === 'dark',
+      scrolling: showScrolling,
+      'reveal-header':
+        (gContext.header.reveal && showReveal) || isEmailDataInvalid,
+      'bg-blackish-blue':
+        gContext.header.reveal &&
+        showReveal &&
+        gContext.header.theme === 'dark',
+    },
+    'site-header site-header--sticky  site-header--absolute py-7 py-xs-0 sticky-header'
+  );
+
   return (
     <>
-      <SiteHeader
-        className={`site-header site-header--sticky  site-header--absolute py-7 py-xs-0 sticky-header ${
-          gContext.header.bgClass
-        } ${
-          gContext.header.align === 'left'
-            ? 'site-header--menu-left '
-            : gContext.header.align === 'right'
-            ? 'site-header--menu-right '
-            : 'site-header--menu-center '
-        }
-        ${gContext.header.theme === 'dark' ? 'dark-mode-texts' : ' '} ${
-          showScrolling ? 'scrolling' : ''
-        } ${
-          gContext.header.reveal &&
-          showReveal &&
-          gContext.header.theme === 'dark'
-            ? 'reveal-header bg-blackish-blue'
-            : gContext.header.reveal && showReveal
-            ? 'reveal-header'
-            : ''
-        }`}
-      >
+      <SiteHeader className={headerClassNames}>
         <Container
           fluid={gContext.header.isFluid}
           className={gContext.header.isFluid ? 'pr-lg-9 pl-lg-9' : ''}
@@ -123,6 +149,21 @@ const Header = () => {
             </ToggleButton>
           </nav>
         </Container>
+        {isEmailDataInvalid && (
+          <Alert variant="warning" className="mb-0 rounded-0 text-center">
+            {!emailData.email
+              ? 'Please configure your email address'
+              : !emailData.isEmailVerified && (
+                  <>
+                    Please confirm your email address. Click{' '}
+                    <ResendEmailBtn onClick={resendVerificationEmail}>
+                      here
+                    </ResendEmailBtn>{' '}
+                    to send confirmation email .
+                  </>
+                )}
+          </Alert>
+        )}
       </SiteHeader>
       <Offcanvas
         show={gContext.visibleOffCanvas}
